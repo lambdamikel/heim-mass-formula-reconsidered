@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.python-version
+venv/
+.venv/
+
+# C build artefacts (annotated/ is rebuilt with `make`)
+annotated/src/*.o
+annotated/heimmass
+annotated/heimmass.exe
+annotated/mkdepend
+
+# Same for the upstream copy under downloads/
+downloads/c_impl/src/*.o
+downloads/c_impl/heimmass
+downloads/c_impl/heimmass.exe
+downloads/c_impl/mkdepend
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local Claude/CLI state — do not publish
+.claude/

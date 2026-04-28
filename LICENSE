@@ -1,0 +1,81 @@
+                       LICENSE — heim-mass-formula-reconsidered
+                       =========================================
+
+This repository contains:
+
+  (A) Original upstream code  — the C implementation under `downloads/c_impl/`
+      © 2006 Eli Gildish <netloc@gmail.com>
+
+  (B) Derivative work         — the annotations under `annotated/`,
+                                the Python port under `python/`,
+                                the analysis scripts and plots,
+                                this README, REPORT.de.md, and other
+                                project-level files.
+
+  (C) Mirrored documents      — the PDFs under `downloads/pdfs/`
+      © IGW Innsbruck and the Forschungskreis Heimsche Theorie.
+
+
+────────────────────────────────────────────────────────────────────────────
+(A)  Upstream C code — Eli Gildish (2006), reproduced verbatim
+────────────────────────────────────────────────────────────────────────────
+
+Copyright (c) 2006 Eli Gildish (netloc@gmail.com). All rights reserved.
+
+Redistribution  and  use in source  and  binary forms,  with or without
+modification,  are permitted provided that the following conditions and
+exceptions are met:
+
+  - Redistribution of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  - Redistributions  in  binary  form  must reproduce the above copyright
+    notice,  this list of conditions  and the following disclaimer in the
+    documentation  and/or other materials provided with the distribution.
+  - The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.
+  - Any commercial distribution  or use whatsoever is not allowed without
+    a written permission from the author.
+
+THIS SOFTWARE IS PROVIDED AS IS, AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+THE AUTHOR BE LIABLE FOR ANY  DIRECT,  INDIRECT,  INCIDENTAL,  SPECIAL,
+EXEMPLARY,  OR  CONSEQUENTIAL DAMAGES  (INCLUDING,  BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE  GOODS OR SERVICES;   LOSS OF USE,  DATA,  OR
+PROFITS;  OR BUSINESS INTERRUPTION) HOWEVER CAUSED  AND  ON  ANY THEORY
+OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE  OR  OTHERWISE)  ARISING IN  ANY  WAY OUT OF THE USE OF THIS
+SOFTWARE,  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+────────────────────────────────────────────────────────────────────────────
+(B)  Derivative work — annotations, Python port, analysis, documentation
+────────────────────────────────────────────────────────────────────────────
+
+The derivative material in this repository is released under the same
+terms as the upstream C code, in the spirit of preserving the upstream
+license:
+
+  - Redistribution and modification are permitted with attribution.
+  - Inclusion of this LICENSE file is required in all copies.
+  - The names of the original author (Eli Gildish) and the author of
+    this investigation may not be used to endorse or promote derived
+    works without specific prior written permission.
+  - Any commercial distribution or use whatsoever is not allowed
+    without written permission from the original author of the upstream
+    C code.
+
+THIS DERIVATIVE WORK IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+
+────────────────────────────────────────────────────────────────────────────
+(C)  Mirrored PDFs — IGW Innsbruck reformulations
+────────────────────────────────────────────────────────────────────────────
+
+The PDF documents under `downloads/pdfs/` are © IGW Innsbruck and the
+Forschungskreis Heimsche Theorie. They are mirrored here for archival and
+reproducibility purposes only. Primary distribution remains with their
+publisher; please consult <https://heim-theory.com/> for canonical
+versions and any redistribution rights beyond local archival use.
