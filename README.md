@@ -19,18 +19,29 @@ does not accept it. This repository:
 4. Probes — by perturbing each ingredient — *which* parts of the formula are
    actually doing the work.
 
-**Headline result.** Heim explicitly identified three constants
-(⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We find these
-constants are essentially **inert** — scaling any of them by a factor of
-1000× changes the predictions by less than the formula's own quoted
-accuracy. The accuracy comes instead from quantities that are *not* free
-to tune: the mass element μ (built only from G, ℏ, c), the integer
-"structure constants" Q_n…Q_σ derived from `z = 2^(k²)`, and a specific
-auxiliary function η whose four shape parameters all sit at simple integer
-values within ≤1% tolerance.
+**Headline finding (analytical).** Heim explicitly identified three
+constants (⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We
+find these constants are essentially **inert** — scaling any of them by
+a factor of 1000× changes the predictions by less than the formula's own
+quoted accuracy. The accuracy comes instead from quantities that are
+*not* free to tune: the mass element μ (built only from G, ℏ, c), the
+integer "structure constants" Q_n…Q_σ derived from `z = 2^(k²)`, and a
+specific auxiliary function η whose four shape parameters all sit at
+simple integer values within ≤1% tolerance.
 
 This is a more nuanced picture than either "fully derived" or "secretly
 fitted." See [Findings](#findings) for the detailed verdict.
+
+**Headline finding (methodological).** This repository contains what
+appears to be the **first publicly available reimplementation of Heim's
+1989 mean-lifetime formula** ([B47]–[B57]) since Heim's own FORTRAN code
+(sent to MBB/DASA in 1989) was lost. Every other public implementation
+on record — DESY 1982, Heim's UCSD-Pascal, Protosimplex (Posdzech),
+Heim Group / A. Mueller, Eli Gildish 2006 — covers masses only. The
+first-pass numerical results are **mixed** (5 of 18 measured particles
+within factor 3, including the muon to 0.1 %; the rest with sign
+problems or large discrepancies that suggest transcription errors in
+the long b₁/b₂ expressions). See [Lifetime predictions](#lifetime-predictions).
 
 ---
 
