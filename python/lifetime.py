@@ -123,13 +123,16 @@ def calc_F(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
     D = calc_D(eps, P, q_x)
     b0 = beta_0()
 
+    # [B52]: F = 1 - (1/3)(1-q)(P-1)²(3-P)·(1 + P − Q − εCP/2)·(1 + β_0(−1)^k)
+    #            − (P,3)(1 + D)
+    # NB: (1 + P − Q − εCP/2), with MINUS Q. Earlier had +Q from a misread.
     return (
         1.0
         - (1.0 / 3.0)
         * (1.0 - q)
         * (P - 1) ** 2
         * (3 - P)
-        * (1.0 + P + Q - eps * C * P / 2.0)
+        * (1.0 + P - Q - eps * C * P / 2.0)
         * (1.0 + b0 * ((-1) ** k))
         - comb(P, 3) * (1.0 + D)
     )
@@ -177,10 +180,12 @@ def calc_b1(
     P2 = comb(P, 2)
     P3 = comb(P, 3)
 
+    # [B54] first bracket: [P·{…} + κQ·{(3Z−1)B + 1}]·(2−k)
+    # The "+1" is INSIDE the κQ braces, so the inner factor is κQ·((3Z−1)B + 1)
+    # = κQ(3Z−1)B + κQ. Earlier had "+1" outside the braces.
     term_first = (
         P * (7 + 6 * (1 - q) * (C - P2) - 2 * q * (1 - P2))
-        + kap * Q * (3 * Z - 1) * B
-        + 1
+        + kap * Q * ((3 * Z - 1) * B + 1)
     ) * (2 - k)
 
     # Avoid division by zero when 1 + P(P²−1) = 0 (P = 0 → 1; P = 1 → 1; P = 2 → 7;
@@ -222,8 +227,11 @@ def calc_b2(
     # Line 1:  B(5B+3) + (2H−3)/(P+1)
     line1 = B * (5 * B + 3) + (2 * H - 3) / (P + 1)
 
-    # Line 2:  C^k · {B(3B + 2(H+1))·H + H/2 + 3} · (1 − q)
-    line2 = (C ** k) * (B * (3 * B + 2 * (H + 1)) * H + H / 2 + 3) * (1 - q)
+    # Line 2:  C^k · {B·(3B + 2(H+1)) + H + 1/2} · (1 − q)
+    # Earlier (image-based) read had three errors here: (·H instead of +H),
+    # (+H/2 instead of +1/2), and (+3 instead of nothing). Machine-extracted
+    # PDF text shows: "Ck{B( 3B+2(H+1)) + H + ½}(1 - q)".
+    line2 = (C ** k) * (B * (3 * B + 2 * (H + 1)) + H + 0.5) * (1 - q)
 
     # Line 3:  − Q · {B(2(B+H) − 1) + H/2 + 3}
     line3 = -Q * (B * (2 * (B + H) - 1) + H / 2 + 3)
@@ -251,8 +259,11 @@ def calc_b2(
     )
 
     # Line 9:  + κ · {  (−1)^(1−q) · [7HB + 3(H+B) − 5/2 + (1−q){H(3B−4) + B+7/2}]·(k−1)
+    # Earlier had (-1)^q, which is the negation of the correct expression
+    # for q ∈ {0, 1, 2}. Now corrected to (-1)^(1−q).
+    qi = int(round(q))
     line9_a = (
-        ((-1) ** (1 - q if isinstance(q, int) else int(q)))
+        ((-1) ** (1 - qi))
         * (
             7 * H * B
             + 3 * (H + B)
@@ -262,15 +273,14 @@ def calc_b2(
         * (k - 1)
     )
 
-    # Line 10:  + Q(P,2) · { (2−q)(1+εq_x)·[B / (2(H+2) + 3/4)]
+    # Line 10:  + Q(P,2) · { (2−q)(1+εq_x)·[B/(2(H+2)) + 3/4]
     #                       + (5/2)·HB + 3H − (B+5)/(P+1) }   }
-    # Ambiguity in source: the bracket [B/{2(H+2) + 3/4}] could be either
-    #   B / (2(H+2) + 3/4)   (taken here)
-    # or
-    #   B / (2(H+2)) + 3/4   (alternative reading)
+    # Machine-extracted text confirms the bracket is [B/2(H+2) + ¾],
+    # i.e. B/(2(H+2)) PLUS 3/4 (not B over the whole "2(H+2) + 3/4").
+    # Earlier reading grouped 3/4 into the denominator — corrected.
     line9_b = (
         Q * P2 * (
-            (2 - q) * (1 + eps * q_x) * (B / (2 * (H + 2) + 0.75))
+            (2 - q) * (1 + eps * q_x) * (B / (2 * (H + 2)) + 0.75)
             + (5.0 / 2.0) * H * B
             + 3 * H
             - (B + 5) / (P + 1)
@@ -350,7 +360,10 @@ def calc_lifetime_seconds(
         * (1.0 - sqrt(eta12)) ** 2
     )
     sum_HQn = H + n[0] + n[1] + n[2] + n[3]
-    occupancy = n[0] + abs(n[1]) + abs(n[2]) * b0
+    # [B47]:  (n + m + p·β_0)  — note: NO absolute values around m, p.
+    # An earlier reading had |m|, |p|·β_0 (from a misread of the visual
+    # PDF rendering); the machine-extracted text confirms plain n + m + p·β_0.
+    occupancy = n[0] + n[1] + n[2] * b0
 
     if occupancy == 0.0:
         return float("inf")
