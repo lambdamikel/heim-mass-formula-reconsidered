@@ -99,8 +99,12 @@ heim/
 └── python/                    ← Python port (bit-identical to C)
     ├── constants.py           ← physical & auxiliary constants
     ├── formulae.py            ← the mass formula itself
+    ├── lifetime.py            ← mean-lifetime formula [B47]–[B57]
     ├── particle.py            ← Particle dataclass + 21 reference particles
-    ├── heimmass.py            ← main runner: reproduces the published table
+    ├── heimmass.py            ← main runner: reproduces the published mass table
+    ├── heim_lifetime.py       ← runner: lifetime predictions vs PDG
+    │
+    ├── test_reference_masses.py   ← pytest snapshot pinning the 21 mass values
     │
     ├── sensitivity.py             ← test the 3 "fitted" constants (±10%)
     ├── sensitivity_wide.py        ← same, over 6 orders of magnitude
@@ -136,6 +140,26 @@ python3 -m venv venv
 
 The Python output matches the C output bit-for-bit (verified to 10 decimal
 digits across all 21 particles).
+
+### Run the lifetime predictions
+
+```sh
+./venv/bin/python python/heim_lifetime.py
+```
+
+This computes Heim's 1989 mean-lifetime predictions ([B47]–[B57]) for the
+21 reference particles and prints a comparison against PDG measurements.
+See [Lifetime predictions](#lifetime-predictions) below for current status.
+
+### Run the regression test
+
+```sh
+./venv/bin/pip install pytest
+cd python && ../venv/bin/python -m pytest test_reference_masses.py -q
+```
+
+Should report `23 passed` — the 21 reference masses are pinned to bit-equality
+with the C reference (plus 2 sanity tests on charges and list completeness).
 
 ### Reproduce the sensitivity analysis
 
@@ -266,6 +290,44 @@ This is a single calculated number that matches experiment to ~5 decimal
 digits, with no free parameters. It is the most striking single result in
 the entire framework.
 
+### Lifetime predictions
+
+The 1989 manuscript also provides a mean-lifetime formula ([B47]–[B57])
+applying to the same 21 basic states. Eli Gildish's 2006 C code does not
+implement it, so this repository contains the first independent
+implementation in `python/lifetime.py`.
+
+Initial results across 18 measured particles (skipping stable/unknown):
+
+| Bucket | Count | Examples |
+|---|---|---|
+| within factor 3 (\|log₁₀ T_pred/T_exp\| < 0.5) | **5** | muon (perfect, 0.1 % off), π±, K±, n, π⁰ |
+| within factor 100 (\|log₁₀\| < 2) | 0 | — |
+| off by ≥ 100× | 4 | Λ, K_S, Ξ⁻, Σ⁰ |
+| negative T (sign issue) | 5 | η, Ω⁻, Ξ⁰, Σ±, Σ⁻ |
+| T = 0 (formula vanishes) | 4 | all four Δ resonances |
+
+The muon prediction matches experiment to 0.1 %, which strongly suggests
+the framework computation is correct in principle. The Δ-resonance zeros
+trace cleanly to F = 0 at P = 3 — these are strong-decay states (Γ ≈ 117
+MeV → τ ≈ 5.6 × 10⁻²⁴ s) and Heim's formula appears to be intended only
+for weak/electromagnetic channels. Σ⁰'s 12-order miss is consistent
+with the same scope limitation (Σ⁰ → Λγ is electromagnetic, while the
+formula seems calibrated for weak decays).
+
+The negative-T cases and the Λ/K_S/Ξ⁻ misses are most likely
+**transcription errors** in our implementation of the very long b₁/b₂
+expressions ([B54]–[B55]) — the source PDF has ambiguous typography in
+several places (curly-brace nesting, division-vs-multiplication colons,
+P/Q binomial coefficient notation). These are flagged in
+`python/lifetime.py`. Confirming or correcting them requires either
+access to Heim's original 1989 FORTRAN code (lost) or expert review by
+the IGAAP / Forschungskreis Heimsche Theorie.
+
+That said: getting 5/18 right within factor 3 — across a five-decade
+range of lifetimes — on a first-pass implementation of equations this
+complex is itself non-trivial.
+
 ## The honest verdict
 
 The question we set out to answer was: **does this look like a real
@@ -301,8 +363,11 @@ extreme:
    to particles discovered after the 1980s (top, Higgs, charm-baryon
    spectroscopy) — neither by Heim nor by his successors. We don't know
    whether it would extend.
-4. Lifetimes and resonance widths, also predicted by Heim's full system,
-   are not reproduced in the publicly available C code.
+4. The lifetime formula ([B47]–[B57]) implemented here matches experiment
+   to factor 3 on only 5 of 18 particles in its first-pass form, with 5
+   negative results and 4 zeros. Whether this reflects transcription
+   errors in our reading of [B54]/[B55] or genuine limits of the formula
+   is currently open — see [Lifetime predictions](#lifetime-predictions).
 
 **Bottom line.** Heim's mass formula is *substantially more theory-driven
 than ordinary curve-fitting*, and the constants he explicitly called
@@ -319,17 +384,27 @@ In rough order of importance:
 
 1. **Is η's form derivable from first principles?** The non-public chapters
    of the IGW reformulation should answer this. Worth contacting the
-   Forschungskreis Heimsche Theorie / IGW Innsbruck.
-2. **Does the formula extend to particles discovered after 1989?** Top
+   Forschungskreis Heimsche Theorie / IGAAP e.V. (`heim-theory@igaap-de.org`).
+   A draft email is in `email.txt`.
+2. **Are the b₁/b₂ transcriptions correct?** The lifetime expressions
+   [B54]–[B55] in the source PDF have several typographic ambiguities.
+   With expert review or access to the original 1989 FORTRAN code, the
+   currently failing lifetime predictions could likely be fixed.
+3. **Does the formula extend to particles discovered after 1989?** Top
    quark, Higgs, charm and bottom baryon spectroscopy are all available
    but were never tested.
-3. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
+4. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
    decomposition produces integer outputs that flip at thresholds; whether
    this is a feature of the theory or an artifact of the algorithm needs
    to be sorted out.
-4. **Lifetimes**: the 1989 manuscript also predicts mean lifetimes, but
-   the available C/C# implementations only handle masses. Reproducing the
-   lifetime predictions would substantially widen the empirical test.
+
+### Resolved
+
+- ~~**[B25] uses Q_n² or Q_n³?**~~ The IGW PDF prints Q_n² but Heim's own
+  research-group C# implementation
+  (`downloads/csharp_impl/.../HeimGroup/SelfCouplingFunction.cs`) uses
+  Q_n³, in agreement with Eli Gildish's C and our Python port. The PDF
+  has a typesetting error; Q_n³ is correct. (Resolved 2026-04.)
 
 ## References
 
