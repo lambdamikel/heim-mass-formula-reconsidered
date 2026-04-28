@@ -34,8 +34,70 @@ fitted." See [Findings](#findings) for the detailed verdict.
 
 ---
 
+## Speculative summary
+
+This section is a *subjective, calibrated bet* — distinct from the
+analysis-derived conclusions in [The honest verdict](#the-honest-verdict).
+Treat it as a wager, not a finding.
+
+If forced to put numbers on it:
+
+| Statement | Subjective probability |
+|---|---|
+| Heim's mass-formula accuracy is not pure numerical coincidence | **70 – 80 %** |
+| η's specific form follows from the 6D field equations (rather than being a definitional *ansatz*) | 25 – 40 % |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % |
+| It is elegant numerology with no physical content | 20 – 30 % |
+
+(The rows are overlapping interpretations and do not sum to 100 %; they
+reflect weights, not partitions.)
+
+**Short version: there is probably something there.** Probably not the
+"theory of everything," but probably also not pure pattern-matching.
+
+The strongest single anchor for *not coincidence* is the fine-structure
+constant: $1/α = 137.036\,01$ emerges from η and θ via [B58]–[B62] with
+no free parameters, matching experiment to ~5 decimal digits. One
+number, five digits, no fit knobs — that is hard to dismiss.
+
+The strongest single anchor for *not finished* is that η's functional
+form is *defined* in the publicly available manuscripts, not derived.
+The chapters of "Zur Herleitung der Heimschen Massenformel" that would
+prove (or disprove) its derivation from the 6D field equations are not
+online.
+
+What would shift this assessment substantially:
+
+- A successful application to particles discovered after 1989 (top quark,
+  Higgs, charm and bottom baryon spectroscopy) at the same ~0.1 %
+  accuracy.
+- Public release of chapters 7–9 of the IGW derivation manuscript.
+- An independent reimplementation of the lifetime formula closing the
+  gaps in the [Lifetime predictions](#lifetime-predictions) above.
+
+What would *not* shift it: another mainstream-physics dismissal that has
+not actually examined the formulas. Heim theory has been **ignored** more
+than it has been **refuted**, which is not the same thing.
+
+Caveats on this assessment:
+
+- It rests on one repository's analysis. A working theoretical physicist
+  with deep access to the Heim literature might reach different
+  conclusions.
+- It says nothing about Heim's underlying mathematics (polymetric
+  geometry, selector calculus, 6D eigenvalue equations) — only about
+  what reaches the C/Python implementations.
+- The author of this analysis used an LLM (Claude Opus 4.7) extensively;
+  LLMs trend either toward sycophantic agreement or toward dismissive
+  over-skepticism. The probabilities above are an attempt at the
+  middle, not a guarantee of one.
+
+---
+
 ## Contents
 
+- [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
 - [Repository layout](#repository-layout)
 - [Quickstart](#quickstart)
