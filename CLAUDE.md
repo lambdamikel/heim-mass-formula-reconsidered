@@ -169,7 +169,8 @@ sublicensing.
 3. Lifetimes and resonance widths predicted by Heim's full system are not
    implemented in either Gildish's C code or our Python port. Adding them
    would substantially widen the empirical test surface.
-4. Equation [B25] in the 1989 PDF shows `Q_n^2`; the C code's `calc_W`
-   uses `I[0]^3` (i.e. `Q_n^3`). This discrepancy is preserved in both
-   `annotated/` and `python/` and is flagged in the comments. Verify
-   against the upstream HeimGroup C# implementation before "fixing".
+4. Equation [B25] in the 1989 PDF shows `Q_n^2`, but Heim's own
+   research-group C# implementation (`downloads/csharp_impl/.../HeimGroup/
+   SelfCouplingFunction.cs`) uses `Q_n^3`, matching Eli Gildish's C and
+   our Python port. The PDF has a typesetting error; `Q_n^3` is correct.
+   Resolved 2026-04.

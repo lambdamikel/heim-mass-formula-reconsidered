@@ -1,0 +1,56 @@
+An:      heim-theory@igaap-de.org
+Betreff: Anfrage zur Heimschen Massenformel — Kapitel 7-9 der Herleitung
+
+
+Sehr geehrte Damen und Herren,
+
+ich wende mich an Sie mit einer Frage zum Manuskript „Zur Herleitung
+der Heimschen Massenformel" von Illobrand von Ludwiger und K. Grüner
+(IGW Innsbruck, 2003).
+
+In den letzten Wochen habe ich die Heimsche Massenformel von 1989
+anhand Ihrer englischen Zusammenfassung (F_1989_en.pdf) und der
+C-Implementierung von Eli Gildish (2006) im Detail nachvollzogen,
+nach Python portiert und einer Sensitivitätsanalyse unterzogen. Die
+gesamte Arbeit ist öffentlich dokumentiert unter:
+
+  https://github.com/lambdamikel/heim-mass-formula-reconsidered
+
+Ein für mich bemerkenswertes Ergebnis: Die drei Konstanten, die Heim
+ausdrücklich als „empirisch angepasst" bezeichnet — ⁴√2, (π/e)² und
+4π/⁴√2 —, sind in ihrer Auswirkung auf die Massenvorhersagen
+praktisch ohne Effekt. Selbst Skalierungen um drei Größenordnungen in
+beide Richtungen verändern die Loss-Funktion kaum. Die eigentliche
+Vorhersagekraft der Formel liegt offenbar in der Hilfsfunktion η(q,k)
+sowie in den ganzzahligen Strukturkonstanten Q_n … Q_σ.
+
+Damit wird die zentrale offene Frage für mich besonders dringlich:
+Wird die spezifische Form
+
+    η(q,k) = (π⁴ / (π⁴ + (4+k)·q⁴))^(1/4)
+
+aus den sechsdimensionalen Feldgleichungen hergeleitet — oder als
+Ansatz definiert?
+
+Diese Frage wird vermutlich in Kapitel 7 („Ermittlung der Summe der
+Partialmassen", S. 48-56) und Kapitel 9 („Grundzustände der
+Elementarteilchen") des genannten Manuskripts behandelt. Online
+verfügbar sind aber nur die ersten 10 Seiten (Kapitel 1 und Anfang 2).
+
+Meine Bitte:
+
+1. Sind die fehlenden Kapitel an anderer Stelle zugänglich — auch
+   als Scan oder Auszug?
+
+2. Falls nicht: Gibt es im Forschungskreis jemanden, mit dem ich
+   diese Frage technisch besprechen könnte? Mein Interesse ist
+   weder skeptisch noch apologetisch; ich versuche schlicht, die
+   Theorie so genau wie möglich zu verstehen.
+
+Über eine kurze Rückmeldung würde ich mich sehr freuen. Falls
+solche Diskussionen besser im Heim-Discord aufgehoben sind, bin ich
+auch dort gern erreichbar.
+
+Mit freundlichen Grüßen
+
+[Dein Name]

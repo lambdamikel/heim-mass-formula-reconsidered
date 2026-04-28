@@ -390,9 +390,11 @@ calc_W(int eps, int k, int P, int Q, int kap, real q_x, int *I)
 
     H   = I[1] + I[2] + I[3] + I[4];                          /* H [B24] */
 
-    /* g [B25] — uses I[1]^3 in this code where [B25] has Q_n^2; this looks
-     * like an upstream variation. Verify against the 1989 paper before
-     * treating as authoritative. */
+    /* g [B25] — uses I[1]^3 (Q_n^3). The IGW Innsbruck reformulation prints
+     * "Q_n^2" in [B25], but Heim's own research-group C# implementation
+     * (downloads/csharp_impl/.../HeimGroup/SelfCouplingFunction.cs) uses
+     * Q_n^3, in agreement with this code. The PDF has a typesetting error;
+     * Q_n^3 is correct. */
     g   = pow(I[1], 3.0) + pow(I[2], 2.0) + I[3] * exp(k - 1.0) / k +
         exp((1.0 - 2.0 * k) / 3.0) - (k - 1.0) * H;
 

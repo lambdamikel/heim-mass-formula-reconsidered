@@ -378,8 +378,10 @@ def calc_W(
 
     H = sum(I)                                             # H [B24]
 
-    # g [B25] — NB: code uses I[0]^3 (Q_n^3) where [B25] shows Q_n^2;
-    # this is an upstream variation — preserved verbatim for compatibility.
+    # g [B25] — uses I[0]^3 (Q_n^3). The IGW Innsbruck PDF prints "Q_n^2"
+    # in [B25], but Heim's own research-group C# code uses Q_n^3 (verified
+    # in downloads/csharp_impl/.../HeimGroup/SelfCouplingFunction.cs).
+    # The PDF has a typesetting error; Q_n^3 is the correct exponent.
     g = (
         I[0] ** 3.0
         + I[1] ** 2.0
