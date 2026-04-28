@@ -355,9 +355,31 @@ the entire framework.
 ### Lifetime predictions
 
 The 1989 manuscript also provides a mean-lifetime formula ([B47]–[B57])
-applying to the same 21 basic states. Eli Gildish's 2006 C code does not
-implement it, so this repository contains the first independent
-implementation in `python/lifetime.py`.
+applying to the same 21 basic states. As far as can be established from
+publicly accessible sources, **`python/lifetime.py` appears to be the
+first openly available reimplementation of this formula since Heim's
+own 1989 FORTRAN code (sent to MBB/DASA) was lost.**
+
+The trail in the public record:
+
+- **Heim, 1989** — implemented lifetimes in FORTRAN as part of his
+  manuscript to MBB/DASA. Per the IGW Innsbruck reformulation
+  (`F_1989_en.pdf`, p. 1): *"Unfortunately this later code could no more
+  be recovered today."*
+- **DESY, 1982** — the original mass-formula computation. Masses only.
+- **Heim Group reimplementation by Dr. A. Mueller (~2002)** — explicit on
+  the same page: *"The code covers the masses of basic states only and
+  no lifetimes."*
+- **Protosimplex** (Olaf Posdzech, late 1990s) — Excel, Pascal, C versions
+  of the mass formula. No lifetime implementation listed.
+- **Eli Gildish, 2006** (C and C#, the upstream of this repository) —
+  masses only.
+
+Caveats on the "first since 1989" claim: the search rests on what is
+public on the open web. Closed channels (the Heim-Discord, private
+notebooks, German-language forums) might contain unreleased work. An
+email to `heim-theory@igaap-de.org` (`email.txt`) asks among other things
+whether such work exists.
 
 Initial results across 18 measured particles (skipping stable/unknown):
 
