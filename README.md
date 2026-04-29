@@ -37,11 +37,13 @@ appears to be the **first publicly available reimplementation of Heim's
 1989 mean-lifetime formula** ([B47]–[B57]) since Heim's own FORTRAN code
 (sent to MBB/DASA in 1989) was lost. Every other public implementation
 on record — DESY 1982, Heim's UCSD-Pascal, Protosimplex (Posdzech),
-Heim Group / A. Mueller, Eli Gildish 2006 — covers masses only. The
-first-pass numerical results are **mixed** (5 of 18 measured particles
-within factor 3, including the muon to 0.1 %; the rest with sign
-problems or large discrepancies that suggest transcription errors in
-the long b₁/b₂ expressions). See [Lifetime predictions](#lifetime-predictions).
+Heim Group / A. Mueller, Eli Gildish 2006 — covers masses only. After
+two rounds of transcription corrections against the machine-extracted
+PDF, **7 of 18 measured particles match within factor 3** — the muon,
+K⁺, π±, and Ξ⁻ all to ~1 %, across lifetimes spanning four decades.
+Three particles still give negative T (probable further transcription
+errors in φ / U or b₁/b₂); four Δ resonances are structurally outside
+the formula's scope. See [Lifetime predictions](#lifetime-predictions).
 
 ---
 
@@ -392,36 +394,47 @@ notebooks, German-language forums) might contain unreleased work. An
 email to `heim-theory@igaap-de.org` (`email.txt`) asks among other things
 whether such work exists.
 
-Initial results across 18 measured particles (skipping stable/unknown):
+After two rounds of transcription corrections (informed by extracting
+the PDF as text and a careful visual re-read of pages 13, 16, 17),
+results across 18 measured particles:
 
 | Bucket | Count | Examples |
 |---|---|---|
-| within factor 3 (\|log₁₀ T_pred/T_exp\| < 0.5) | **5** | muon (perfect, 0.1 % off), π±, K±, n, π⁰ |
-| within factor 100 (\|log₁₀\| < 2) | 0 | — |
-| off by ≥ 100× | 4 | Λ, K_S, Ξ⁻, Σ⁰ |
-| negative T (sign issue) | 5 | η, Ω⁻, Ξ⁰, Σ±, Σ⁻ |
+| within factor 3 (\|log₁₀ T_pred/T_exp\| < 0.5) | **7** | muon, K⁺, π±, Ξ⁻ all essentially exact (≤1 % off); π⁰ and η within 30 %; neutron at factor 2.4 |
+| within factor 100 (\|log₁₀\| < 2) | 1 | Λ |
+| off by ≥ 100× | 3 | K_S, Ξ⁰, Σ⁰ |
+| negative T (sign issue) | 3 | Ω⁻, Σ⁺, Σ⁻ |
 | T = 0 (formula vanishes) | 4 | all four Δ resonances |
 
-The muon prediction matches experiment to 0.1 %, which strongly suggests
-the framework computation is correct in principle. The Δ-resonance zeros
-trace cleanly to F = 0 at P = 3 — these are strong-decay states (Γ ≈ 117
-MeV → τ ≈ 5.6 × 10⁻²⁴ s) and Heim's formula appears to be intended only
-for weak/electromagnetic channels. Σ⁰'s 12-order miss is consistent
-with the same scope limitation (Σ⁰ → Λγ is electromagnetic, while the
-formula seems calibrated for weak decays).
+Highlights:
 
-The negative-T cases and the Λ/K_S/Ξ⁻ misses are most likely
-**transcription errors** in our implementation of the very long b₁/b₂
-expressions ([B54]–[B55]) — the source PDF has ambiguous typography in
-several places (curly-brace nesting, division-vs-multiplication colons,
-P/Q binomial coefficient notation). These are flagged in
-`python/lifetime.py`. Confirming or correcting them requires either
-access to Heim's original 1989 FORTRAN code (lost) or expert review by
-the IGAAP / Forschungskreis Heimsche Theorie.
+- **Muon, K⁺, π±, Ξ⁻ are predicted to within ~1 %** of measured values
+  — across lifetimes ranging from 10⁻¹⁰ s (Ξ⁻) to 10⁻⁶ s (μ).
+- **The neutron** comes out at 361 s vs. measured 879 s — factor 2.4,
+  in scope.
+- **The Δ-resonance zeros** trace cleanly to F = 0 at P = 3. These are
+  strong-decay states (Γ ≈ 117 MeV → τ ≈ 5.6 × 10⁻²⁴ s) and the formula
+  appears intended for weak/electromagnetic channels only.
+- **Σ⁰** decays electromagnetically (Σ⁰ → Λγ) and is likewise out of scope.
 
-That said: getting 5/18 right within factor 3 — across a five-decade
-range of lifetimes — on a first-pass implementation of equations this
-complex is itself non-trivial.
+The remaining negative-T cases (Ω⁻, Σ⁺, Σ⁻) have negative *y*, not
+negative occupancy. For Ω⁻ specifically, y is dominated by the
+(P+1)·(Q,3)/α term in φ, giving y ≈ −1/α ≈ −137. This likely indicates
+further transcription errors in our reading of φ ([B49]) / U ([B50]) or
+of the b₁/b₂ expressions; access to Heim's original 1989 FORTRAN code
+(lost) or expert review from the IGAAP / Forschungskreis Heimsche
+Theorie would be the cleanest resolution.
+
+History of the iteration:
+
+| Iteration | Within ×3 | Within ×100 | ≥ ×100 | Negative | Zero |
+|---|---:|---:|---:|---:|---:|
+| Initial (image-based read) | 5 | 0 | 4 | 5 | 4 |
+| Six fixes from `pdftotext` | 6 | 2 | 3 | 4 | 4 |
+| + `|p|·β₀` in occupancy | **7** | 1 | 3 | 3 | 4 |
+
+Specific fixes versus the initial implementation are documented in the
+git log and inline in `python/lifetime.py`.
 
 ## The honest verdict
 
