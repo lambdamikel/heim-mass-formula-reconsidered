@@ -27,10 +27,14 @@ quoted accuracy. The accuracy comes instead from quantities that are
 *not* free to tune: the mass element μ (built only from G, ℏ, c), the
 integer "structure constants" Q_n…Q_σ derived from `z = 2^(k²)`, and a
 specific auxiliary function η whose four shape parameters all sit at
-simple integer values within ≤1% tolerance.
+simple integer values within ≤1 % tolerance — a function that **is
+derived** from physical principles in chapter 7 of the full Herleitung
+document (eqs. 7.47 → 7.51), not postulated. Combined with the
+fine-structure constant α emerging at 5-decimal accuracy from the same
+η, the predictive power of the framework appears to come from genuine
+geometric content rather than from parameter fitting.
 
-This is a more nuanced picture than either "fully derived" or "secretly
-fitted." See [Findings](#findings) for the detailed verdict.
+See [Findings](#findings) for the detailed verdict.
 
 **Headline finding (methodological).** This repository contains what
 appears to be the **first publicly available reimplementation of Heim's
@@ -53,41 +57,59 @@ This section is a *subjective, calibrated bet* — distinct from the
 analysis-derived conclusions in [The honest verdict](#the-honest-verdict).
 Treat it as a wager, not a finding.
 
+**This summary was substantially revised after access to the full 81-page
+"Zur Herleitung der Heimschen Massenformel" (the previous read was
+truncated to the first 10 pages by a `file`-command misreport).** The
+key revision: chapter 7 of that document explicitly *derives* η(q,k)
+from physical principles (eq. 7.47 → 7.51), so the central pre-revision
+caveat — "η's form is defined, not derived" — is now resolved in η's
+favour.
+
 If forced to put numbers on it:
 
-| Statement | Subjective probability |
-|---|---|
-| Heim's mass-formula accuracy is not pure numerical coincidence | **70 – 80 %** |
-| η's specific form follows from the 6D field equations (rather than being a definitional *ansatz*) | 25 – 40 % |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % |
-| It is elegant numerology with no physical content | 20 – 30 % |
+| Statement | Pre-revision | After full Herleitung |
+|---|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | **85 – 95 %** |
+| η's specific form follows from the 6D field equations (rather than being a definitional *ansatz*) | 25 – 40 % | **80 – 95 %** |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | **40 – 60 %** |
+| It is elegant numerology with no physical content | 20 – 30 % | **5 – 15 %** |
 
 (The rows are overlapping interpretations and do not sum to 100 %; they
 reflect weights, not partitions.)
 
-**Short version: there is probably something there.** Probably not the
-"theory of everything," but probably also not pure pattern-matching.
+**Short version: there is probably something real here.** The η
+derivation in chapter 7 turns the most serious "but is it really
+derived?" objection from open into resolved (in Heim's favour). What
+remains uncertain is mostly empirical reach (post-1989 particles,
+lifetime accuracy with corrected b₁/b₂) rather than the foundations.
 
-The strongest single anchor for *not coincidence* is the fine-structure
-constant: $1/α = 137.036\,01$ emerges from η and θ via [B58]–[B62] with
-no free parameters, matching experiment to ~5 decimal digits. One
-number, five digits, no fit knobs — that is hard to dismiss.
+The strongest two anchors for *not coincidence* are now:
 
-The strongest single anchor for *not finished* is that η's functional
-form is *defined* in the publicly available manuscripts, not derived.
-The chapters of "Zur Herleitung der Heimschen Massenformel" that would
-prove (or disprove) its derivation from the 6D field equations are not
-online.
+1. The **fine-structure constant**: $1/α = 137.036\,01$ emerges from η and
+   θ via [B58]–[B62] with no free parameters, matching experiment to ~5
+   decimal digits. One number, five digits, no fit knobs.
+2. The **η derivation**: η(q, k) = ⁴√(π⁴ / (π⁴ + (4+k)q⁴)) follows from
+   the metron-quantised geometry plus the renormalisation
+   ε'₀± = ε₀±·⁴√(1+k/4) of the elementary charge over k effective
+   dimensions. The (4+k) factor that we sensitivity-tested at 0.6 %
+   tolerance is not a fit; it falls out of L = 4 (number of dimensions
+   in R₃ + time) times Δε₀±⁴.
 
-What would shift this assessment substantially:
+What would still shift this assessment substantially:
 
 - A successful application to particles discovered after 1989 (top quark,
   Higgs, charm and bottom baryon spectroscopy) at the same ~0.1 %
   accuracy.
-- Public release of chapters 7–9 of the IGW derivation manuscript.
 - An independent reimplementation of the lifetime formula closing the
-  gaps in the [Lifetime predictions](#lifetime-predictions) above.
+  gaps in the [Lifetime predictions](#lifetime-predictions) above —
+  Heim's own 1989 numbers reportedly had 12 of 14 within experimental
+  error (per the Herleitung document, chapter 11), but the IGW group
+  itself never reprogrammed the lifetime formula and our implementation
+  reaches only 7/18 within factor 3.
+- A mathematical audit of the chapter 7 derivation by someone fluent in
+  Heim's polymetric formalism, to confirm that no circular reasoning
+  enters via the chain ε₀± → η.
 
 What would *not* shift it: another mainstream-physics dismissal that has
 not actually examined the formulas. Heim theory has been **ignored** more
@@ -95,12 +117,14 @@ than it has been **refuted**, which is not the same thing.
 
 Caveats on this assessment:
 
-- It rests on one repository's analysis. A working theoretical physicist
-  with deep access to the Heim literature might reach different
-  conclusions.
+- It rests on one repository's analysis and a non-mathematician's reading
+  of a 1989 manuscript. A working theoretical physicist with deeper
+  access might still reach different conclusions, particularly on the
+  rigour of the η derivation.
 - It says nothing about Heim's underlying mathematics (polymetric
   geometry, selector calculus, 6D eigenvalue equations) — only about
-  what reaches the C/Python implementations.
+  what reaches the C/Python implementations and what the Herleitung
+  document presents.
 - The author of this analysis used an LLM (Claude Opus 4.7) extensively;
   LLMs trend either toward sycophantic agreement or toward dismissive
   over-skepticism. The probabilities above are an attempt at the
@@ -341,14 +365,18 @@ loss by a factor of ≈50 000.
 | C (q exponent) | 4 | inside the 4-basin (loss landscape is jagged) | ±2.5 % up, ±11 % down |
 | D (outer exponent) | 1/4 | **0.2495** | ±1 % |
 
-Three of the four parameters land *exactly* on simple integer values and
-sit at sharp minima. The fourth (C) is in the right basin of attraction
-but the loss landscape is genuinely jagged due to integer transitions in
-the (n, m, p, σ) decomposition. This is consistent with η's form being
-non-arbitrary — but its derivation from the 6D field equations is *not
-present* in the publicly available portion of the 1989 manuscript
-(only chapters 1–2 of the 81-page derivation are online; chapters 7–9,
-which would contain the relevant proofs, are not).
+Three of the four parameters land *exactly* on simple integer values
+and sit at sharp minima; the fourth (C) is in the right basin of
+attraction with a genuinely jagged landscape due to integer transitions
+in the (n, m, p, σ) decomposition. **At the time we ran this analysis
+we believed η's form was undocumented; the full Herleitung manuscript
+(only the first 10 of 81 pages were initially available, due to a
+`file`-command misreport) actually derives all four shape parameters
+in chapter 7.** The (A=4, B=4, C=4, D=1/4) integer values are
+predictions of the derivation, not survivors of a sensitivity sweep.
+Hindsight: the sensitivity sweep is now best read as an empirical
+*verification* that η's derived form sits at a sharp minimum — which
+is exactly what one would expect if the derivation is correct.
 
 ### The fine-structure constant
 
@@ -446,36 +474,52 @@ extreme:
 
 **Pro (genuine derivation):**
 
-1. The constants Heim explicitly labels as "fitted" turn out to be
+1. **η(q, k) is derived from physical principles**, not postulated. Chapter
+   7 of the full Herleitung manuscript (eqs. 7.47 → 7.51) shows the
+   chain: metron-quantised geometry → theoretical elementary charge
+   ε₀± → renormalisation ε'₀± = ε₀±·⁴√(1+k/4) over L = 4 effective
+   dimensions → η(q, k). This was the central pre-revision question.
+2. The constants Heim explicitly labels as "fitted" turn out to be
    *immaterial*: any value of order unity would have produced
    indistinguishable predictions. So the formula is *not* succeeding
    because of a free-parameter sweep over those.
-2. The mass element μ is constructed purely from G, ℏ, c with no fitting.
-3. The structure constants Q_n, Q_m, Q_p, Q_σ are integer prescriptions —
+3. The mass element μ is constructed purely from G, ℏ, c with no fitting.
+4. The structure constants Q_n, Q_m, Q_p, Q_σ are integer prescriptions —
    not continuous knobs.
-4. Three of the four shape parameters of η lock onto simple integer values
-   (4, 4, 1/4) within <1% tolerance.
-5. The fine-structure constant is calculated, not measured, to ~5 digits.
+5. Three of the four shape parameters of η lock onto simple integer values
+   (4, 4, 1/4) within <1 % tolerance — and now we know *why*: those
+   values come from the derivation, not from a search.
+6. The fine-structure constant is calculated, not measured, to ~5 digits.
 
-**Caveats (incomplete derivation):**
+**Caveats (now fewer than before):**
 
-1. The functional form of η — the central auxiliary function from which
-   nearly everything else follows — is *defined* in the available
-   literature, not derived. The chapters that would contain its derivation
-   (chapters 7–9 of "Zur Herleitung der Heimschen Massenformel") are not
-   publicly accessible.
+1. ~~The functional form of η is *defined* in the available literature,
+   not derived.~~ **Resolved 2026-04-28**: chapter 7 of the full
+   Herleitung manuscript (eqs. 7.47 → 7.51) derives η(q, k) explicitly
+   from the metron geometry plus charge-field renormalisation. The
+   `(4+k)` factor is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
 2. The mass spectrum predicts more excitations than have been observed.
-   Heim attributes this to an "unknown selection rule." This is an
-   admitted incompleteness.
+   Heim attributes this to an "unknown selection rule" he was working on
+   when he fell ill in 1999. This remains an admitted incompleteness.
 3. The dataset is small (~20 particles). The framework was never applied
    to particles discovered after the 1980s (top, Higgs, charm-baryon
    spectroscopy) — neither by Heim nor by his successors. We don't know
    whether it would extend.
-4. The lifetime formula ([B47]–[B57]) implemented here matches experiment
-   to factor 3 on only 5 of 18 particles in its first-pass form, with 5
-   negative results and 4 zeros. Whether this reflects transcription
-   errors in our reading of [B54]/[B55] or genuine limits of the formula
-   is currently open — see [Lifetime predictions](#lifetime-predictions).
+4. The lifetime formula ([B47]–[B57]) as implemented here matches
+   experiment to factor 3 on 7 of 18 particles, with 3 negative T and 4
+   structurally-vanishing Δ resonances. Heim's own 1989 numbers
+   reportedly produced 12 of 14 within experimental error (per
+   Herleitung chapter 11), but the IGW group itself never reprogrammed
+   the lifetime formula, so the ground-truth FORTRAN-derived values are
+   the only available reference. Our gap therefore likely reflects
+   transcription errors in our reading of [B54]/[B55] that we cannot
+   currently audit.
+5. **Heim tuned the gravitational constant G** to the proton mass: with
+   his chosen G = 6.6732 × 10⁻¹¹, only 5 of 16 mass values fall within
+   experimental error; with a slightly different G, 8 of 16 do. The
+   "0.2 % RMS" headline accuracy thus partly reflects a single
+   parameter (G) being effectively tuned within its experimental
+   uncertainty band.
 
 **Bottom line.** Heim's mass formula is *substantially more theory-driven
 than ordinary curve-fitting*, and the constants he explicitly called
@@ -490,29 +534,51 @@ theoretical achievement or an elegant phenomenological scheme.
 
 In rough order of importance:
 
-1. **Is η's form derivable from first principles?** The non-public chapters
-   of the IGW reformulation should answer this. Worth contacting the
-   Forschungskreis Heimsche Theorie / IGAAP e.V. (`heim-theory@igaap-de.org`).
-   A draft email is in `email.txt`.
-2. **Are the b₁/b₂ transcriptions correct?** The lifetime expressions
+1. **Are the b₁/b₂ transcriptions correct?** The lifetime expressions
    [B54]–[B55] in the source PDF have several typographic ambiguities.
-   With expert review or access to the original 1989 FORTRAN code, the
-   currently failing lifetime predictions could likely be fixed.
-3. **Does the formula extend to particles discovered after 1989?** Top
+   The IGW group itself never reprogrammed the lifetime formula (per the
+   Herleitung document, chapter 11), so the currently failing lifetime
+   predictions cannot be cross-checked against an independent reference.
+   Heim's lost 1989 FORTRAN apparently produced 12 of 14 lifetimes within
+   experimental error; we manage 7/18 within factor 3. The gap likely
+   indicates further transcription errors in our reading.
+2. **Does the formula extend to particles discovered after 1989?** Top
    quark, Higgs, charm and bottom baryon spectroscopy are all available
-   but were never tested.
+   but were never tested by Heim or any successor.
+3. **Is the η derivation rigorous?** Chapter 7 (eqs. 7.47 → 7.51)
+   *derives* η(q,k) from physical principles, but the derivation passes
+   through Heim's polymetric formalism (selector calculus, condensor
+   flows) which is non-standard. A mathematical audit by someone fluent
+   in that formalism would confirm whether the chain
+   `G, ℏ, c → metron τ → ε₀± → η(q,k)` is free of hidden circularity.
 4. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
-   decomposition produces integer outputs that flip at thresholds; whether
-   this is a feature of the theory or an artifact of the algorithm needs
-   to be sorted out.
+   decomposition produces integer outputs that flip at thresholds;
+   whether this is a feature of the theory or an algorithmic artifact
+   needs to be sorted out.
 
 ### Resolved
 
-- ~~**[B25] uses Q_n² or Q_n³?**~~ The IGW PDF prints Q_n² but Heim's own
-  research-group C# implementation
+- ~~**Is η's form derivable from first principles?**~~ Yes — chapter 7 of
+  the full Herleitung document derives it explicitly. Equations 7.47 →
+  7.51 produce η(q, k) = ⁴√(π⁴ / (π⁴ + (4+k)q⁴)) from a metron-quantised
+  geometry plus the renormalisation ε'₀± = ε₀±·⁴√(1 + k/4) of the
+  elementary charge field over the L = 4 effective dimensions of
+  condensation. The (4+k) factor falls out of `L · Δε₀±⁴ = 4 · Δε₀±⁴`.
+  This was the central pre-revision open question. (Resolved 2026-04-28
+  upon access to the full 81-page derivation manuscript.)
+- ~~**[B25] uses Q_n² or Q_n³?**~~ The IGW reformulation PDF prints Q_n²
+  but Heim's own research-group C# implementation
   (`downloads/csharp_impl/.../HeimGroup/SelfCouplingFunction.cs`) uses
   Q_n³, in agreement with Eli Gildish's C and our Python port. The PDF
   has a typesetting error; Q_n³ is correct. (Resolved 2026-04.)
+- ~~**[B49] φ uses `+(P+1)(Q,3)/α` or `−(P+1)(Q,3)/α`?**~~ The IGW PDF
+  shows what visually appears to be a double-minus separator (`−−`). We
+  tested both signs; `+` produces masses that no longer bit-match the C
+  reference (Δs deviate by ~0.4 %) and gives no improvement to lifetime
+  predictions (Ω⁻ moves from "negative T" to "factor 4700 off"). The
+  `−` reading, used by both the C and C# implementations, is therefore
+  the correct one; the `−−` in the PDF is a typesetting artifact
+  (likely an em-dash). (Resolved 2026-04-28.)
 
 ## References
 

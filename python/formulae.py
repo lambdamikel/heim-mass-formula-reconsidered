@@ -517,6 +517,17 @@ def calc_phi(
     ) * 2.0 ** (k + P + Q + kap) / (eta_qk * eta_qk)
 
     # φ — three additive pieces of [B7]
+    # The (P+1)·(Q,3)/α term: the IGW Innsbruck PDF (page 14, [B49]) shows
+    # "(Q_m − Q_n) −− (P + 1)(Q,3)/α" with what visually looks like a
+    # double-minus (would imply +). We tested the "+" reading and found:
+    #   - Mass changes:  Ω⁻ +0.04%, Δs ~+0.2% (small but breaks bit-equality
+    #                    with the C / Heim Group reference implementations).
+    #   - Lifetimes:     Ω⁻ moves from "negative T" to "factor 4700 off" —
+    #                    no actual improvement, just a different failure mode.
+    # Conclusion: the "−−" is most likely a typesetting glitch (em-dash or
+    # extra spacing); the single minus is what Eli Gildish (2006) and Heim
+    # Group / Dr. A. Mueller (~2002) both implemented, and is what makes
+    # the masses bit-match the published Heim values. We keep the minus.
     return (
         (n[2] * n[2] * N[3])
         / (1.0 + n[2] * n[2])

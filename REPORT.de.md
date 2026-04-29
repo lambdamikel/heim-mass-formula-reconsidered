@@ -110,14 +110,18 @@ Die Konstanten, **die wirklich zählen**, sind:
 
 ## Mein Fazit, in einem Satz
 
-Heims Formel ist **deutlich theoriegetriebener als ein gewöhnliches
-Curve-Fitting**, aber **nicht so vollständig hergeleitet, wie er selbst
-behauptet hat**. Was er als „Fits" bezeichnet, sind in Wahrheit kosmetische
-Konstanten ohne Wirkung; der eigentliche Mut der Theorie steckt in der
-ganzzahligen Struktur und der η-Funktionalform — und genau Letzteres ist
-in den öffentlich zugänglichen Materialien nicht aus erster Prinzipien
-hergeleitet. Die Theorie verdient ernsthafte Auseinandersetzung, aber sie
-ist auch nicht „bewiesen".
+*Stand 2026-04-28 nach Zugang zum vollständigen 81-seitigen Herleitungs­dokument:*
+Heims Massenformel ist **deutlich theoriegetriebener als ich
+ursprünglich angenommen habe**. Die η-Funktion, die in der
+ursprünglichen Fassung dieses Berichts noch als „postuliert" markiert
+war, wird in Kapitel 7 (Gl. 7.47–7.51) tatsächlich aus erster
+physikalischer Prinzipien hergeleitet (Metronen-Geometrie plus
+Ladungsfeld-Renormalisierung). Die zentrale Schwachstelle, die ich
+früher gesehen hatte, existiert nicht. Was er als „Fits" bezeichnet,
+sind in der Tat kosmetisch — und der Rest folgt aus G, ℏ, c plus
+Geometrie. Bleibende Lücken: kein Test auf Post-1989-Teilchen, und die
+Lebenszeit-Vorhersagen (in unserer Implementierung 7/18 within Faktor 3)
+zeigen, dass es dort noch unaufgelöste Transkriptions­fragen gibt.
 
 ## Die Zahlen kompakt
 
@@ -168,11 +172,15 @@ heim/
 - **Wie die Plots aussehen** — `python/plots/sensitivity_structural.png`
   zeigt den entscheidenden Vergleich zwischen den scharfen Minima von
   η/μ/Q_i und der völligen Insensitivität der „gefitteten" Konstanten.
-- **Eine zentrale Lücke schließen** — die fehlenden Kapitel 7–9 von
-  `D_Herleitung.pdf` sind nur die ersten 10 von 81 Seiten online; der
-  Rest würde verraten, ob η aus den 6D-Feldgleichungen folgt oder
-  schlicht definiert wird. Adresse: IGW Innsbruck / Forschungskreis
-  Heimsche Theorie.
+- **Die zentrale Lücke ist inzwischen geschlossen** — am 2026-04-28
+  hat sich gezeigt, dass das `D_…pdf` (jetzt unter dem vollen Namen
+  `D_Zur_Herleitung_Der_Heimschen_Massenformel.pdf`) tatsächlich
+  alle 81 Seiten enthält. Mein erster `file`-Aufruf hatte fälschlich
+  „10 page(s)" gemeldet (PDF-Tooling-Fehler). **Kapitel 7 (Eqs. 7.47
+  → 7.51) leitet η(q,k) aus der Metronen-Geometrie und der Renormali-
+  sierung der Elementarladung ε'₀± = ε₀±·⁴√(1+k/4) über L = 4 effektive
+  Dimensionen her**. Damit ist die Hauptfrage „postuliert oder
+  hergeleitet?" zugunsten von „hergeleitet" beantwortet.
 
 ---
 

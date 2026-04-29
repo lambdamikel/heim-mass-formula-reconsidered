@@ -125,9 +125,14 @@ analysis scripts patch them via `setattr(formulae, ...)`.
 
 `[B##]` always refers to the IGW Innsbruck restatement
 (`downloads/pdfs/F_1989_en.pdf`). `1982 eq.(I)`, `eq.(IX)`, `eq.(X)` refer
-to Heim's 1982 paper (`downloads/pdfs/E_1982.pdf`). The full derivation
-chapters 7–9 are *not* publicly available — only the first 10 of 81 pages
-are in `D_Herleitung.pdf`.
+to Heim's 1982 paper (`downloads/pdfs/E_1982.pdf`). For full derivations
+(numbered eqs. like 2.47 or 7.50) see
+`downloads/pdfs/D_Zur_Herleitung_Der_Heimschen_Massenformel.pdf` (full
+81-page manuscript by I. von Ludwiger and K. Grüner, IGW Innsbruck 2003).
+Use `pdfinfo` rather than `file` to determine page counts — `file` gave
+"10 page(s)" for the 81-page document during the initial analysis,
+which led to several days of misimpression that the η derivation was
+unavailable. It was, in fact, in chapter 7 (eqs. 7.47 → 7.51).
 
 ## Working style for this repository
 
@@ -159,18 +164,31 @@ sublicensing.
 
 ## Known open questions (not blocking work — just context)
 
-1. The functional form of η is *defined*, not derived, in the publicly
-   available manuscripts. Whether it follows from the 6D field equations
-   is the central open question.
+1. The lifetime predictions [B47]–[B57] match experiment for only 7/18
+   particles within factor 3. The IGW group itself never reprogrammed
+   the lifetime formula (per Herleitung chapter 11), so we have no
+   independent reference; further transcription errors in our reading
+   of [B54]/[B55] are likely.
 2. The greedy decomposition in `calc_n` produces integer occupation
-   numbers that flip discontinuously with small perturbations of W, making
-   the loss landscape jagged. This is a feature of the algorithm, not a
-   numerical bug.
-3. Lifetimes and resonance widths predicted by Heim's full system are not
-   implemented in either Gildish's C code or our Python port. Adding them
-   would substantially widen the empirical test surface.
+   numbers that flip discontinuously with small perturbations of W,
+   making the loss landscape jagged. This is a feature of the algorithm,
+   not a numerical bug.
+3. The framework was never applied to particles discovered after 1989
+   (top quark, Higgs, charm/bottom baryons). A test on those would be
+   the cleanest empirical check.
 4. Equation [B25] in the 1989 PDF shows `Q_n^2`, but Heim's own
    research-group C# implementation (`downloads/csharp_impl/.../HeimGroup/
    SelfCouplingFunction.cs`) uses `Q_n^3`, matching Eli Gildish's C and
    our Python port. The PDF has a typesetting error; `Q_n^3` is correct.
    Resolved 2026-04.
+
+### Resolved during 2026-04-28 review of full Herleitung (chapters 7–11)
+
+- η(q,k) IS derived from physical principles. Chapter 7, eqs. 7.47 →
+  7.51, derive it from metron geometry plus charge-field renormalisation
+  ε'₀± = ε₀± · ⁴√(1+k/4) over L = 4 effective dimensions. This was the
+  central pre-revision open question and is now closed in η's favour.
+- The φ-formula's `(P+1)(Q,3)/α` term: visually appears as `−−` in the
+  PDF, but tested as either sign — `−` is correct. The C and C# both
+  use `−`; flipping to `+` breaks bit-equality with the reference and
+  doesn't help any lifetime prediction.
