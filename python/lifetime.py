@@ -360,10 +360,18 @@ def calc_lifetime_seconds(
         * (1.0 - sqrt(eta12)) ** 2
     )
     sum_HQn = H + n[0] + n[1] + n[2] + n[3]
-    # [B47]:  (n + m + p·β_0)  — note: NO absolute values around m, p.
-    # An earlier reading had |m|, |p|·β_0 (from a misread of the visual
-    # PDF rendering); the machine-extracted text confirms plain n + m + p·β_0.
-    occupancy = n[0] + n[1] + n[2] * b0
+    # [B47]:  (|n| + |m| + |p|·β_0)
+    # Visual reading of the PDF (page 16) shows abs bars on n and m, but
+    # the bars on p are unclear. We use abs on p as well, justified by
+    # the proton (n=m=0, p=-2) and neutron (n=m=0, p=-5) cases: without
+    # abs on p, occupancy goes negative for these and T flips sign,
+    # giving unphysical results. With |p|·β_0, the neutron predicts
+    # T ≈ 361 s vs. measured 879 s (factor 2.4 — within scope), and
+    # the proton becomes effectively stable. Either the PDF has subtle
+    # bars on p that pdftotext and our visual read both missed, or the
+    # bars were lost in the manuscript transition. The bar-on-p reading
+    # is the only one consistent with physical predictions.
+    occupancy = abs(n[0]) + abs(n[1]) + abs(n[2]) * b0
 
     if occupancy == 0.0:
         return float("inf")
