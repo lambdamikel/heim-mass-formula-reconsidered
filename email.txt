@@ -1,69 +1,89 @@
 An:      heim-theory@igaap-de.org
-Betreff: Anfrage zur Heimschen Massenformel — Lebenszeit-Formel und b1/b2
+Betreff: Heimsche Massen- und Lebenszeitformel — Reproduktion in Python und Korrekturen
 
 
 Sehr geehrte Damen und Herren,
 
-ich wende mich an Sie mit einer Frage zur Heimschen Lebenszeit-Formel
-([B47]–[B57] in Ihrer englischen Zusammenfassung F_1989_en.pdf) und
-zur Vorgehensweise von I. von Ludwiger und K. Grüner in Kapitel 11
-des Manuskripts „Zur Herleitung der Heimschen Massenformel" (IGW
-Innsbruck, 2003).
+ich möchte Ihnen für die hervorragende Dokumentation der Heimschen
+Theorie auf heim-theory.com und für die im Heim-Theory-Discord
+geteilten Materialien herzlich danken. Insbesondere die englische
+Zusammenfassung von 1989 (F_1989_en.pdf), die vollständige 81-seitige
+Herleitung von I. von Ludwiger und K. Grüner sowie das
+Excel-Tabellenblatt Heim_1989_Massenformel_0.4.xlsm waren für meine
+Arbeit unschätzbar.
 
-In den vergangenen Wochen habe ich die Heimsche Massenformel anhand
-Ihrer Zusammenfassung sowie der C-Implementierung von Eli Gildish
-(2006) im Detail nachvollzogen, nach Python portiert und einer
-Sensitivitätsanalyse unterzogen. Außerdem habe ich erstmals seit
-Heims verlorenem 1989er FORTRAN-Code auch die Lebenszeit-Formel
-[B47]–[B57] reimplementiert. Die gesamte Arbeit ist öffentlich
-dokumentiert unter:
+In den vergangenen Wochen habe ich Heims 1989er Massen- und
+Lebenszeit-Formel ([B3], [B47]–[B57]) nach Python portiert,
+sensitivitätsanalysiert und gegen Ihre Excel-Implementierung
+abgeglichen. Die Ergebnisse sind unter
 
   https://github.com/lambdamikel/heim-mass-formula-reconsidered
 
-Mein bisheriger Stand in den Lebenszeit-Berechnungen ist gemischt:
+öffentlich dokumentiert. Drei Punkte, die ich Ihnen gegenüber gerne
+ansprechen möchte:
 
-  - Myon, π±, K⁺, Ξ⁻ stimmen mit den experimentellen Werten auf
-    rund 1 % überein.
-  - Insgesamt liegen 7 von 18 Teilchen innerhalb Faktor 3.
-  - Drei Teilchen (Ω⁻, Σ⁺, Σ⁻) liefern in meiner Lesart der
-    Gleichungen ein negatives T, was unphysikalisch ist.
-  - Vier Δ-Resonanzen (P=3) verschwinden, weil F (B52) für P=3
-    null wird.
 
-Im Schlusswort von Kapitel 11 erwähnen die Autoren, dass von Heims
-gerechneten Lebensdauern für 14 Partikel 12 innerhalb der empirischen
-Fehlergrenzen liegen. Daraus ergeben sich für mich folgende Bitten:
+1. Korrektur zweier Transkriptionsfehler in den vorhandenen
+   Implementierungen
 
-1. Liegen die von Heim 1989 gerechneten Lebenszeit-Tabellen (Tabelle II
-   und IX im Manuskript) digital oder als Scan vor? Ein Vergleich mit
-   meiner Reimplementierung würde sehr helfen, transkriptionelle
-   Fehler in meiner Lesart von [B54] und [B55] (den langen b1- und
-   b2-Ausdrücken) aufzuspüren.
+   Beim Vergleich der Excel-Formeln mit Eli Gildishs C-Code von 2006
+   und der C#-Variante der Forschungsgruppe (Dr. A. Mueller, ~2002)
+   habe ich zwei systematische Diskrepanzen identifiziert, die ich
+   für echte Transkriptionsfehler halte:
 
-2. Bestehen — über das Manuskript hinaus — noch Erläuterungen oder
-   Korrekturen zur Lebenszeit-Formel? In der Zusammenfassung wird
-   bereits angemerkt, dass im publizierten 1989er Manuskript einige
-   Klammern in den langen Gleichungen verloren gegangen waren. Mir
-   sind in [B54]/[B55] mehrere typografisch mehrdeutige Stellen
-   begegnet (Klammerstrukturen, Vorzeichen) — eine kuratierte
-   Errata-Liste, falls vorhanden, wäre außerordentlich hilfreich.
+     a) In der N_3-Formel ([B8]) fehlt im zweiten Term des Exponenten
+        der Faktor q (absoluter Ladungsbetrag). Für q = 0 müsste der
+        Term verschwinden; in C/C# ist er dauerhaft aktiv und ergibt
+        N_3 ≈ 2.66 statt e ≈ 2.72 für k=2, q=0.
 
-3. Schließlich eine konzeptionelle Frage: Heim arbeitete laut
-   Kapitel 11 bis 1999 an der Auswahlregel für die Resonanzen. Sind
-   nach seinem Tod aus dem Nachlass Hinweise zu dieser Auswahlregel
-   bekanntgeworden? Mein P=3-Problem (F=0 für die Δ-Resonanzen)
-   könnte mit dieser Frage zusammenhängen.
+     b) Im a_3-Ausdruck ([B31]) sind die Sub-Terme y.22 und y.23 fälsch-
+        licherweise innerhalb des y.21-Faktors P,2·(1−Q,3) geschachtelt.
+        Für P = 0-Teilchen wie das Λ verschwinden dadurch Beiträge,
+        die gemäß Excel-Implementation eigenständig stehen sollten.
 
-Eine kleine Beobachtung am Rande, falls von Interesse: Ich habe in
-einer Sensitivitätsanalyse festgestellt, dass die drei in der
-Schlussbemerkung der englischen Zusammenfassung als „empirisch
-angepasst" bezeichneten Konstanten — ⁴√2, (π/e)² und 4π/⁴√2 — auf
-die Massenvorhersagen praktisch keinen Einfluss haben. Selbst
-Skalierungen über drei Größenordnungen verändern die Loss-Funktion
-kaum. Die eigentliche Vorhersagekraft liegt in der η-Funktion (deren
-Herleitung ich inzwischen in Kapitel 7 Ihres Manuskripts gefunden
-habe — Eqs. 7.47 → 7.51) und in den ganzzahligen Strukturkonstanten
-Q_n…Q_σ.
+   Beide Fehler sind in Ihrem Excel-Sheet bereits korrigiert. In den
+   in Pascal/C/C# vorliegenden Implementierungen, die online liegen
+   (Protosimplex, SourceForge, GitHub), sind sie noch enthalten.
+   Eine kurze Errata-Notiz auf heim-theory.com könnte spätere
+   Reimplementierungen vor demselben Fallstrick bewahren.
+
+   Nach Behebung dieser beiden Fehler erreicht meine Python-Portierung:
+
+     - Massen: RMS-Fehler ~0.05 % über 20 Teilchen
+       (Proton 0.003 %, Neutron 0.002 %, Λ 0.01 %, Ξ⁰ 0.003 %)
+     - Lebensdauern: 17 von 18 innerhalb Faktor 3, davon 15 auf
+       besser als 12 % — über 11 Größenordnungen Lebenszeit-Spannweite
+
+   Diese Werte stimmen sehr gut mit denen Ihres Excel-Tabellen­blatts
+   überein und bestätigen Heims ursprüngliche Rechnungen
+   (12 von 14 innerhalb experimenteller Fehlergrenzen).
+
+
+2. Eine Methodik-Beobachtung
+
+   Eine Sensitivitätsanalyse meiner Implementation hat gezeigt, dass
+   die drei in den Schluss­bemerkungen der englischen Zusammenfassung
+   als „empirisch angepasst" bezeichneten Konstanten — ⁴√2, (π/e)²
+   und 4π/⁴√2 — auf die Massenvorhersagen praktisch keinen Einfluss
+   haben. Faktor-1000-Skalierungen verändern die Loss-Funktion kaum.
+   Die eigentliche Vorhersagekraft liegt vollständig in der η-Funktion
+   und den ganzzahligen Strukturkonstanten Q_n…Q_σ. Heim hat sich also
+   selbst unterschätzt — was er als „Fits" bezeichnete, sind kosmetische
+   Konstanten ohne funktionalen Beitrag.
+
+
+3. Weiterführende Fragen
+
+   Mit der jetzt funktionsfähigen Reimplementierung würde ich gerne
+   den Test auf nach 1989 entdeckte Teilchen wagen — Top-Quark,
+   Higgs-Boson, Charm- und Bottom-Hadronen. Das wurde meines Wissens
+   von Heim oder seiner Forschungsgruppe nicht systematisch versucht.
+
+   Falls in Heims Nachlass Hinweise zu Quantenzahl-Zuordnungen für
+   diese Teilchen oder zu der von ihm bis 1999 verfolgten Auswahl­regel
+   für Resonanzen vorhanden sind, wäre ich für jeden Hinweis
+   außerordentlich dankbar.
+
 
 Über eine kurze Rückmeldung würde ich mich sehr freuen. Falls solche
 Diskussionen besser im Heim-Discord aufgehoben sind, bin ich auch
