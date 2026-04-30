@@ -48,39 +48,57 @@ does not accept it. This repository:
 3. Maps every line of code to its corresponding equation in the 1989 paper.
 4. Probes — by perturbing each ingredient — *which* parts of the formula are
    actually doing the work.
+5. Finds and corrects two transcription bugs in the upstream C/C# code that
+   had been there since 2002–2006.
+6. Tests the framework on particles discovered or characterised after 1989.
 
-**Headline finding (analytical).** Heim explicitly identified three
-constants (⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We
-find these constants are essentially **inert** — scaling any of them by
-a factor of 1000× changes the predictions by less than the formula's own
-quoted accuracy. The accuracy comes instead from quantities that are
-*not* free to tune: the mass element μ (built only from G, ℏ, c), the
-integer "structure constants" Q_n…Q_σ derived from `z = 2^(k²)`, and a
-specific auxiliary function η whose four shape parameters all sit at
-simple integer values within ≤1 % tolerance — a function that **is
-derived** from physical principles in chapter 7 of the full Herleitung
-document (eqs. 7.47 → 7.51), not postulated. Combined with the
-fine-structure constant α emerging at 5-decimal accuracy from the same
-η, the predictive power of the framework appears to come from genuine
-geometric content rather than from parameter fitting.
+## Four headline findings
 
-See [Findings](#findings) for the detailed verdict.
+> **1. The K\*⁰ meson — a new successful Heim prediction.** The K*⁰ meson
+> (892 MeV) was not in Heim's published 16-particle list. Our scan of his
+> quantum-number lattice locates a candidate at **867.58 MeV with the right
+> spin–isospin assignment** (P=1, Q=2, ε=+1, k=3, κ=1, x=2) — **2.7 % off
+> measurement**. To our knowledge this is the first new Heim-formula match
+> demonstrated for a particle outside Heim's original list. See
+> [Post-1989 particle predictions](#post-1989-particle-predictions).
 
-**Headline finding (methodological).** This repository contains the
-first publicly available **Python** reimplementation of Heim's 1989
-mean-lifetime formula ([B47]–[B57]). Cross-checked against an Excel
-reference (`Heim_1989_Massenformel_0.4.xlsm`, courtesy of the
-heim-theory.com community), **17 of 18 measured lifetimes now match
-within factor 3 of the experimental value** — and **15 of those
-match to better than 12 %**, across particles whose lifetimes span 11
-orders of magnitude (10⁻²⁴ s for the Δ resonances to 10⁻⁶ s for the
-muon). Only Σ⁰ remains far off (it decays electromagnetically; Heim's
-formula is calibrated for weak decays). The cross-check also located
-two transcription bugs that had been in every public C/C#
-implementation since 2002–2006; fixing them improved the *mass*
-predictions by 5–67× as well — the proton, neutron, Λ, Ξ⁰ now match
-measurement to better than 0.01 %. See [Lifetime
-predictions](#lifetime-predictions) and [Mass predictions](#mass-predictions).
+> **2. The Higgs is structurally absent from Heim's framework.** With
+> P=Q=0 (spin 0, isospin 0) and q=0, Heim's quantum-number lattice has only
+> two ground states: the η meson at 549 MeV (k=1) and an unobserved state at
+> 61 TeV (k=3). The 125 GeV Higgs region is **uninhabitable** — there is no
+> allowed Heim configuration. This is a *scope* finding rather than a
+> falsification: Heim's framework treats stable metron configurations,
+> while the Higgs is a quantum-field excitation of electroweak symmetry
+> breaking. The same applies to W±, Z⁰, J/ψ, and heavy-flavour hadrons:
+> all outside the framework's scope by construction. See
+> [Post-1989 particle predictions](#post-1989-particle-predictions).
+
+> **3. Two upstream-inherited transcription bugs corrected** in
+> Eli Gildish's 2006 C and Heim Group's 2002 C# implementations,
+> identified by cross-checking against the heim-theory.com Excel reference.
+> Mass predictions improved by 5–67×: proton, neutron, Λ, Ξ⁰ now match
+> measurement to **better than 0.01 %** (the proton specifically becomes
+> *stable*, as it should). Lifetime predictions went from 7/18 within
+> factor 3 to **17/18 within factor 3** — fifteen of those to better than
+> 12 %, across eleven orders of magnitude. See
+> [Mass predictions](#mass-predictions) and
+> [Lifetime predictions](#lifetime-predictions).
+
+> **4. The η-function is derived, not postulated.** The 81-page
+> "Zur Herleitung" manuscript (chapter 7, eqs. 7.47 → 7.51) explicitly
+> derives η(q, k) = ⁴√(π⁴ / (π⁴ + (4+k)q⁴)) from a metron-quantised
+> geometry plus the renormalisation ε'₀± = ε₀±·⁴√(1+k/4) of the
+> elementary charge field. The (4+k) factor that we sensitivity-tested at
+> 0.6 % tolerance is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
+> The central pre-revision objection — "η is just defined" — is resolved.
+
+**Underlying analytical observation.** Heim explicitly identified three
+constants (⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We find
+these constants are essentially **inert** — scaling any of them by a
+factor of 1000× changes the predictions by less than the formula's own
+quoted accuracy. The accuracy comes instead from η, μ, the integer Q_i,
+and the integer quantum numbers themselves — none of which are free to
+tune. See [Findings](#findings) for the detailed verdict.
 
 ---
 
@@ -193,12 +211,16 @@ Caveats on this assessment:
 
 ## Contents
 
+- [Four headline findings](#four-headline-findings) — top-line results
 - [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
 - [Repository layout](#repository-layout)
 - [Quickstart](#quickstart)
 - [Methodology](#methodology)
-- [Findings](#findings)
+- [Findings](#findings) — including
+  [Mass predictions](#mass-predictions),
+  [Post-1989 particle predictions](#post-1989-particle-predictions),
+  and [Lifetime predictions](#lifetime-predictions)
 - [The honest verdict](#the-honest-verdict)
 - [Open questions](#open-questions)
 - [References](#references)
