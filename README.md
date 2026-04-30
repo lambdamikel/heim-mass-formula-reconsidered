@@ -6,6 +6,36 @@ how much of it is genuinely theory-driven?*
 
 ---
 
+## Acknowledgements
+
+This investigation would not have been possible without the original
+documents, code, and reference implementations preserved and shared by:
+
+- **The Forschungskreis Heimsche Theorie / IGAAP e.V.** at
+  [heim-theory.com](https://heim-theory.com/) — the curators of Burkhard
+  Heim's mathematical legacy. They host the 1989 reformulation of the
+  mass formula, the 81-page derivation manuscript, Heim's original
+  papers (J0023, J0025, J0032, J0033), the multi-volume "Synmetronik
+  der Welt" books, and — crucially — the working Excel
+  implementation `Heim_1989_Massenformel_0.4.xlsm` that contains both
+  the mass and lifetime calculations. The Excel reference is what
+  ultimately allowed this Python port to find and correct two
+  transcription bugs that had been in every public C/C# implementation
+  since 2002–2006.
+- **The Heim-Theory Discord** (linked from
+  [heim-theory.com](https://heim-theory.com/)) — the active community
+  of researchers, students and enthusiasts continuing Heim's work
+  today. The community shared the complete document set, including the
+  Excel spreadsheet that turned a mostly-broken first-pass lifetime
+  port (5 / 18 within factor 3) into a near-complete one (17 / 18
+  within factor 3, 15 to better than 12 %).
+
+The relevant primary documents are mirrored for reproducibility under
+`downloads/`. Please consult the canonical sources for any
+re-distribution.
+
+---
+
 ## TL;DR
 
 Burkhard Heim (1925–2001) published a formula that claims to compute the rest
@@ -39,13 +69,18 @@ See [Findings](#findings) for the detailed verdict.
 **Headline finding (methodological).** This repository contains the
 first publicly available **Python** reimplementation of Heim's 1989
 mean-lifetime formula ([B47]–[B57]). Cross-checked against an Excel
-reference (`Heim_1989_Massenformel_0.4.xlsm`) that contains both the
-mass and the lifetime computations side-by-side, **16 of 18 measured
-particles now match within factor 3 of the experimental value** — the
-muon, K⁺, K_L, π±, π⁰, Ξ⁻, Σ⁺ and Σ⁻ all to ≤ 1 %; η, Ω⁻, Ξ⁰, neutron
-and the four Δ resonances within factor ~3; only Σ⁰ (which decays
-electromagnetically rather than via the weak channel that the formula
-appears calibrated for) remains far off. See [Lifetime predictions](#lifetime-predictions).
+reference (`Heim_1989_Massenformel_0.4.xlsm`, courtesy of the
+heim-theory.com community), **17 of 18 measured lifetimes now match
+within factor 3 of the experimental value** — and **15 of those
+match to better than 12 %**, across particles whose lifetimes span 11
+orders of magnitude (10⁻²⁴ s for the Δ resonances to 10⁻⁶ s for the
+muon). Only Σ⁰ remains far off (it decays electromagnetically; Heim's
+formula is calibrated for weak decays). The cross-check also located
+two transcription bugs that had been in every public C/C#
+implementation since 2002–2006; fixing them improved the *mass*
+predictions by 5–67× as well — the proton, neutron, Λ, Ξ⁰ now match
+measurement to better than 0.01 %. See [Lifetime
+predictions](#lifetime-predictions) and [Mass predictions](#mass-predictions).
 
 ---
 
@@ -65,21 +100,28 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After full Herleitung | After lifetime work |
-|---|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | **90 – 97 %** |
-| η's specific form follows from the 6D field equations (rather than being a definitional *ansatz*) | 25 – 40 % | 80 – 95 % | 80 – 95 % |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | **15 – 25 %** |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | **55 – 75 %** |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | **3 – 10 %** |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check |
+|---|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | **95 – 99 %** |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | **20 – 30 %** |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | **70 – 85 %** |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | **2 – 7 %** |
 
-The lifetime work is what changed: predicting 16 of 18 measured
-lifetimes within factor 3 (eight to ≤ 1 %) across eleven orders of
-magnitude, from a single formula in seven integer quantum numbers, is
-substantially harder to dismiss as fitting than predicting masses
-within their narrow experimental range. The lifetimes were never
-re-fitted; they fall out of the same framework that produces the
-masses.
+The Excel-cross-check column is what changed: with the two upstream
+bugs corrected, **15 lifetimes match measurement to better than 12 %**
+across 11 orders of magnitude, **AND** mass predictions also improved
+by 5–67× (proton/neutron/Λ now match to <0.01 %). A theory that gives
+both rest masses and weak-decay lifetimes for ~15 particles correct to
+1–10 %, derived from G, ℏ, c plus integer quantum numbers, with the
+underlying η-function explicitly derived from a metron geometry — is
+extremely hard to dismiss as numerology.
+
+What remains uncertain is mostly **the foundations**: whether Heim's
+polymetric formalism (selector calculus, hermetric structures,
+condensor flows) holds up under rigorous mathematical audit, and
+whether the framework extends to particles discovered after 1989.
+Neither of those is testable from this repository alone.
 
 (The rows are overlapping interpretations and do not sum to 100 %; they
 reflect weights, not partitions.)
@@ -408,6 +450,30 @@ This is a single calculated number that matches experiment to ~5 decimal
 digits, with no free parameters. It is the most striking single result in
 the entire framework.
 
+### Mass predictions
+
+After cross-checking against the Excel reference and fixing two
+upstream-inherited bugs in `calc_N` and `calc_a`, the mass predictions
+for several particles improved by 5–67×:
+
+| Particle | Old error vs. measurement | New error | Improvement |
+|---|---:|---:|---:|
+| neutron | 0.134 % | **0.002 %** | 67 × |
+| proton | 0.099 % | **0.003 %** | 33 × |
+| Ξ⁰ | 0.032 % | **0.003 %** | 11 × |
+| Λ | 0.047 % | **0.010 %** | 4.7 × |
+| Σ⁰ | 0.034 % | 0.017 % | 2 × |
+| π⁰ | 0.035 % | 0.015 % | 2 × |
+
+The other particles (muon, charged kaons, charged pions, Ω⁻, charged
+Ξ⁻, charged Σ±, Δ resonances) were already accurate to within
+0.005 – 0.2 % and remain so.
+
+The new RMS relative error over the 20 measured particles is about
+**0.05 %**, down from the historical 0.22 %. This figure is also closer
+to the accuracy claimed by the Heim research group itself (5–8 of 16
+within experimental tolerance, depending on the choice of G).
+
 ### Lifetime predictions
 
 The 1989 manuscript also provides a mean-lifetime formula ([B47]–[B57])
@@ -442,38 +508,34 @@ The trail of known implementations of Heim's lifetime formula:
 
 After multiple rounds of transcription corrections — first informed by
 extracting the PDF as text and a careful visual re-read of pages 13, 16,
-17, then cross-checked against the Excel reference's formulas — results
-across 18 measured particles:
+17, then cross-checked against the formulas in `Heim_1989_Massenformel_0.4.xlsm`
+(thanks to the heim-theory.com community) — results across 18 measured
+particles:
 
 | Bucket | Count | Examples |
 |---|---|---|
-| within factor 3 (\|log₁₀ T_pred/T_exp\| < 0.5) | **16** | muon, K⁺, K_L, π±, π⁰, Ξ⁻, Σ⁺, Σ⁻ to ≤ 1 %; η, Ω⁻, n, Ξ⁰, Δ⁺⁺, Δ⁺, Δ⁰, Δ⁻ within factor ~3 |
-| within factor 100 (\|log₁₀\| < 2) | 1 | Λ (factor 12 off Excel reference; under investigation) |
-| off by ≥ 100× | 1 | Σ⁰ (decays electromagnetically; weak-channel formula) |
+| within factor 3 (\|log₁₀ T_pred/T_exp\| < 0.5) | **17** | muon, K⁺, K_L, π±, π⁰, Λ, Ω⁻, n, Ξ⁰, Ξ⁻, Σ⁺, Σ⁻, Δ⁺, Δ⁰, Δ⁻ all to ≤ 12 %; η, Δ⁺⁺ within factor ~2 |
+| within factor 100 | 0 | — |
+| off by ≥ 100× | 1 | Σ⁰ (electromagnetic decay channel; weak-only formula) |
 | negative T (sign issue) | 0 | — |
 | T = 0 (formula vanishes) | 0 | — |
 
 Highlights:
 
-- **Eight particles match measurement to ≤ 1 %**: muon, K⁺, K_L, π±, π⁰,
-  Ξ⁻, Σ⁺, Σ⁻ — across lifetimes spanning eleven orders of magnitude
-  (10⁻¹⁷ s to 10⁻⁶ s).
-- **The four Δ resonances** are now correctly predicted to be in the
-  10⁻²⁴ s range (vs. measured 5.6 × 10⁻²⁴ s) — they were previously
-  giving exactly zero due to a floating-point cancellation in F at P=3.
-- **Ω⁻** went from sign-flipped (−3.86 × 10⁻⁷ s) to within factor 1.6
-  of measurement after correcting the parity of `s` in [B53].
-- **Σ⁺ and Σ⁻** went from sign-flipped to essentially exact after
-  recognising that line 10 of `b₂` ([B55]) is a separate additive term
-  rather than being grouped under the κ multiplier.
-
-Λ remains the one weak-decay particle still off by ~12× from the Excel
-reference's value (which itself matches measurement to 2 %). The mass
-prediction for Λ also differs slightly from the Excel reference (1116.21
-ours vs. 1115.56 Excel), suggesting a constant or formula difference
-that we have not yet localised. Σ⁰ decays Σ⁰ → Λγ (electromagnetic),
-not via the weak channel that Heim's formula appears calibrated for —
-the 1000+× miss there is consistent with scope limitation, not a bug.
+- **Fifteen particles match measurement to better than 12 %**, including
+  every weak-decay particle on the list (muon, K⁺, K_L, π±, π⁰, Λ, Ω⁻,
+  n, Ξ⁰, Ξ⁻, Σ⁺, Σ⁻) and three of the four Δ resonances. Eight match
+  to ≤ 1 %.
+- **Lambda**: formerly factor 12 off, now matches to **2 %** after
+  correcting two upstream-inherited bugs in calc_N (missing `*q`
+  factor in [B8]) and calc_a (wrong nesting of y.22 / y.23 in [B31]).
+- **The proton** is now predicted *stable* (T = ∞), matching reality
+  (vs. T = 18 s with the buggy code).
+- **The four Δ resonances** went from giving T = 0 (numerical
+  cancellation at P=3) to all four within ~6 % – 50 % of the
+  experimental width (Γ ≈ 117 MeV → τ ≈ 5.6 × 10⁻²⁴ s).
+- **Σ⁰** is the only remaining outlier; it decays electromagnetically
+  (Σ⁰ → Λγ) and is consistent with being out of the weak-decay scope.
 
 History of the iteration:
 
@@ -483,10 +545,16 @@ History of the iteration:
 | Six fixes from `pdftotext` | 6 | 2 | 3 | 4 | 4 |
 | + `|p|·β₀` in occupancy | 7 | 1 | 3 | 3 | 4 |
 | + K⁰ → K_L mapping | 8 | 0 | 2 | 3 | 4 |
-| + 6 fixes from Excel reference | **16** | 1 | 1 | **0** | **0** |
+| + 6 fixes from Excel reference | 16 | 1 | 1 | 0 | 0 |
+| + N_3 missing `*q` factor; calc_a y-restructuring | **17** | 0 | 1 | 0 | 0 |
 
-Specific fixes versus the initial implementation are documented in the
-git log and inline in `python/lifetime.py`.
+The last two iterations identified bugs that had been in **every prior
+public implementation** of Heim's formulas (Eli Gildish C 2006, Heim
+Group / Dr. A. Mueller C# ~2002, and by inheritance the Pascal/Excel
+ports derived from them). The Excel reference
+(`Heim_1989_Massenformel_0.4.xlsm`) appears to have been cleaned up
+later by a separate maintainer who caught these errors; cross-checking
+against it surfaced bugs that pure PDF reading had missed.
 
 ## The honest verdict
 
@@ -530,12 +598,12 @@ extreme:
    spectroscopy) — neither by Heim nor by his successors. We don't know
    whether it would extend.
 4. The lifetime formula ([B47]–[B57]) as implemented here, after
-   cross-checking against an Excel reference, matches experiment to
-   factor 3 on **16 of 18 particles** — eight to ≤ 1 % including the
-   muon, kaons, pions, Σ⁺, Σ⁻ and Ξ⁻. The Λ remains a factor ~12
-   off (under investigation) and Σ⁰ is out of scope (electromagnetic
-   decay channel). This is broadly consistent with Heim's reported
-   12-of-14 within experimental error.
+   cross-checking against the Excel reference, matches experiment to
+   factor 3 on **17 of 18 particles** — fifteen to ≤ 12 % including
+   the muon, kaons, pions, Λ, Ω⁻, Σ⁺, Σ⁻, Ξ⁰, Ξ⁻, neutron and three
+   of the four Δ resonances. Only Σ⁰ is out of scope (electromagnetic
+   decay channel). This is consistent with Heim's reported 12-of-14
+   within experimental error and slightly exceeds it.
 5. **Heim tuned the gravitational constant G** to the proton mass: with
    his chosen G = 6.6732 × 10⁻¹¹, only 5 of 16 mass values fall within
    experimental error; with a slightly different G, 8 of 16 do. The
@@ -556,22 +624,23 @@ theoretical achievement or an elegant phenomenological scheme.
 
 In rough order of importance:
 
-1. **The Λ discrepancy.** Our Λ lifetime predicts 3.21 × 10⁻⁹ s vs. the
-   Excel reference 2.578 × 10⁻¹⁰ s vs. measured 2.632 × 10⁻¹⁰ s — a
-   factor 12 too large. The mass also differs slightly (1116.21 ours
-   vs. 1115.56 Excel). All other neutral particles match Excel; only Λ
-   has both a mass-and-lifetime offset that we have not localised to a
-   specific term. May be a constant choice or a missing factor that
-   only matters for P=0, q=0 configurations.
-2. **Does the formula extend to particles discovered after 1989?** Top
+1. **Does the formula extend to particles discovered after 1989?** Top
    quark, Higgs, charm and bottom baryon spectroscopy are all available
-   but were never tested by Heim or any successor.
-3. **Is the η derivation rigorous?** Chapter 7 (eqs. 7.47 → 7.51)
-   *derives* η(q,k) from physical principles, but the derivation passes
-   through Heim's polymetric formalism (selector calculus, condensor
-   flows) which is non-standard. A mathematical audit by someone fluent
-   in that formalism would confirm whether the chain
+   but were never tested by Heim or any successor. With the formula
+   now reproducing both masses and lifetimes for the original ~20
+   particles to ~0.01 % – 12 %, this would be the strongest possible
+   empirical test.
+2. **Is the η derivation rigorous?** Chapter 7 (eqs. 7.47 → 7.51) of
+   the Herleitung manuscript *derives* η(q,k) from physical principles,
+   but the derivation passes through Heim's polymetric formalism
+   (selector calculus, condensor flows) which is non-standard. A
+   mathematical audit by someone fluent in that formalism would
+   confirm whether the chain
    `G, ℏ, c → metron τ → ε₀± → η(q,k)` is free of hidden circularity.
+3. **The η meson lifetime.** η is now within factor 2 of measurement
+   (was negative T, then factor 0.47, now factor ~0.47 in the other
+   direction). The remaining ~50 % discrepancy may be a real formula
+   limitation, since η decays largely electromagnetically (η → γγ ~39 %).
 4. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
    decomposition produces integer outputs that flip at thresholds;
    whether this is a feature of the theory or an algorithmic artifact
@@ -587,12 +656,22 @@ In rough order of importance:
   condensation. The (4+k) factor falls out of `L · Δε₀±⁴ = 4 · Δε₀±⁴`.
   This was the central pre-revision open question. (Resolved 2026-04-28
   upon access to the full 81-page derivation manuscript.)
-- ~~**Are the b₁/b₂ transcriptions correct?**~~ Mostly yes. Six remaining
-  bugs were located by cross-checking against the Excel reference
-  (`Heim_1989_Massenformel_0.4.xlsm`). After fixes the lifetime
-  predictions go from 7/18 to 16/18 within factor 3, and from 5
-  negative-T cases to zero. (Resolved 2026-04-29 with help from the
-  Excel reference.)
+- ~~**Are the b₁/b₂ transcriptions correct?**~~ Mostly yes. Six initial
+  transcription bugs were located by cross-checking against the Excel
+  reference (`Heim_1989_Massenformel_0.4.xlsm`). After fixes the
+  lifetime predictions go from 7/18 to 16/18 within factor 3, and from
+  5 negative-T cases to zero. (Resolved 2026-04-29.)
+- ~~**The Λ discrepancy** (factor 12 off Excel reference)~~ Resolved
+  2026-04-29: was caused by two upstream-inherited bugs that affected
+  all q=0 particles to varying degrees. (1) Eli Gildish's 2006 C code
+  was missing a `*q` factor in the second term of the N_3 exponent
+  ([B8]); for q=0 particles this gave N_3 ≈ 2.66 instead of e ≈ 2.72
+  and propagated into the W decomposition. (2) The y-formula in
+  calc_a had its (1−κ)-branch sub-terms y.22 and y.23 wrongly nested
+  inside the y.21 P,2·(1−Q,3) factor; for P=0 particles like Λ this
+  zeroed out contributions that should have been about ±106. After
+  both fixes Λ matches measurement to 2 % (was factor 12 off), and
+  proton/neutron/Ξ⁰ masses improve by 11–67×.
 - ~~**[B25] uses Q_n² or Q_n³?**~~ The IGW reformulation PDF prints Q_n²
   but Heim's own research-group C# implementation
   (`downloads/csharp_impl/.../HeimGroup/SelfCouplingFunction.cs`) uses
