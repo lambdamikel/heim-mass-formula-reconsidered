@@ -153,6 +153,15 @@ def calc_N(
     N2 = 2.0 / (3.0 * eta_qk)
 
     # N_3 — [B8]. N_3 = (2/k) · exp[…]
+    #
+    # CRITICAL FIX (2026-04-29): the second term in the exponent must be
+    # multiplied by `q` (absolute charge), so it vanishes for q=0
+    # particles. Eli Gildish's 2006 C code (and therefore our prior
+    # Python port) was missing this factor — for q=0 particles it
+    # subtracted a small amount from the exponent, giving N_3 ≈ 2.66
+    # instead of e ≈ 2.72 for k=2,q=0. Cross-checked against the Excel
+    # reference Heim_1989_Massenformel_0.4.xlsm row 68 (alf3 formula).
+    # This was the source of the Λ-discrepancy and affects all neutrals.
     N3 = exp(
         (k - 1.0)
         * (
@@ -169,6 +178,7 @@ def calc_N(
             / (3.0 * u)
             * (1.0 - sqrt(eta00)) ** 2
             * ((1.5 * u**2 / th) * (1.0 + sqrt(eta_q1)) / (1.0 - eta00) - 1.0)
+            * q   # <-- the missing factor!
         )
     ) * (2.0 / k)
 
@@ -288,62 +298,58 @@ def calc_a(
     )
 
     # Y — y'·2B inside [B31]
-    Y = (
-        kap
-        * (
-            (sqrt(eta00) / k)
-            * (
-                4.0 * (2.0 - sqrt(eta00))
-                - pi * _E_C * sqrt(eta00) * (1.0 - eta00)
+    #
+    # CRITICAL FIX (2026-04-29): the (1-κ) branch decomposes (per Excel
+    # reference rows 92-96) as FOUR additive sub-terms y.20, y.21, y.22,
+    # y.23. Previously the code had y.22 (the ((P-Q)(H+2) + P·...) term)
+    # and y.23 (the P,3·(2-q)·Q·{...} term) NESTED INSIDE the y.21
+    # P,2·(1-Q,3) factor. That made them vanish for P=0 particles like
+    # Λ, where all of y.21, y.22, y.23 should be zero individually but
+    # y.22 has a (1-P,2)·(1-Q,3) factor that should make it −106 for Λ.
+    # The Excel decomposition has them as separate additive terms,
+    # which gives Y=0 for Λ → a_3 = -1/(B+4) ≈ -0.033 (vs. mine 69.74).
+
+    # κ-branch — y.1
+    y1 = (
+        (sqrt(eta00) / k)
+        * (4.0 * (2.0 - sqrt(eta00)) - pi * _E_C * sqrt(eta00) * (1.0 - eta00))
+        * (k + _E_C * sqrt(eta00) * (k - 1.0))
+        + 5.0 * (1.0 - q) * (4.0 * B + P + Q) / (2.0 * k + (-1) ** k)
+    )
+
+    # (1-κ) branch — y.20 + y.21 + y.22 + y.23 (FOUR additive sub-terms)
+    y20 = (P - 1.0) * (P - 2.0) * (
+        2.0 / (k * k) * (H + 2.0) + 0.5 * (2.0 - k) / pi
+    )
+    y21 = P2 * (1.0 - Q3) * (
+        0.5 * q * B * (B + 2.0 * (P - Q))
+        + (k - 1) * (
+            P * (P + 2.0) * B
+            + (P + 1.0) ** 2
+            - q * (1.0 + eps * q_x) * (
+                k * (P * P + 1.0) * (B + 2.0)
+                + 0.25 * (P * P + P + 1.0)
             )
-            * (k + _E_C * sqrt(eta00) * (k - 1.0))
-            + 5.0 * (1.0 - q) * (4.0 * B + P + Q) / (2.0 * k + (-1) ** k)
-        )
-        + (1 - kap)
-        * (
-            (P - 1.0) * (P - 2.0) * (2.0 / (k * k) * (H + 2.0) + 0.5 * (2.0 - k) / pi)
-            + P2
-            * (1.0 - Q3)
-            * (
-                0.5 * q * B * (B + 2.0 * (P - Q))
-                + (k - 1)
-                * (
-                    P * (P + 2.0) * B
-                    + (P + 1.0) ** 2
-                    - q
-                    * (1.0 + eps * q_x)
-                    * (
-                        k * (P * P + 1.0) * (B + 2.0)
-                        + 0.25 * (P * P + P + 1.0)
-                    )
-                    - q * (1.0 - eps * q_x) * (B + P * P + 1.0)
-                )
-                + (
-                    (P - Q) * (H + 2.0)
-                    + P
-                    * (
-                        5.0 * B * (1.0 + q) * Q
-                        + k
-                        * (k - 1.0)
-                        * (
-                            k * (P + Q) ** 2 * (H + 3.0 * k + 1.0) * (1.0 - q)
-                            - 0.5 * (B + 6.0 * k)
-                        )
-                    )
-                )
-                * (1.0 - P2)
-                * (1.0 - Q3)
-                + P3
-                * (2.0 - q)
-                * Q
-                * (
-                    eps * q_x * (B + 2.0 * Q + 1.0)
-                    + (0.5 * q / k) * (1.0 - eps * q_x) * (2.0 * k + 1.0)
-                    + (1.0 - q) * (Q * Q + 2.0 * B + 1.0)
-                )
-            )
+            - q * (1.0 - eps * q_x) * (B + P * P + 1.0)
         )
     )
+    y22 = (
+        (P - Q) * (H + 2.0)
+        + P * (
+            5.0 * B * (1.0 + q) * Q
+            + k * (k - 1.0) * (
+                k * (P + Q) ** 2 * (H + 3.0 * k + 1.0) * (1.0 - q)
+                - 0.5 * (B + 6.0 * k)
+            )
+        )
+    ) * (1.0 - P2) * (1.0 - Q3)
+    y23 = P3 * (2.0 - q) * Q * (
+        eps * q_x * (B + 2.0 * Q + 1.0)
+        + (0.5 * q / k) * (1.0 - eps * q_x) * (2.0 * k + 1.0)
+        + (1.0 - q) * (Q * Q + 2.0 * B + 1.0)
+    )
+
+    Y = kap * y1 + (1 - kap) * (y20 + y21 + y22 + y23)
 
     Y = 0.5 * Y / B
 

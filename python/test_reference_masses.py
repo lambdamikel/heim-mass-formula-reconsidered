@@ -21,27 +21,32 @@ from particle import REFERENCE_PARTICLES
 # values match Heim's published figures via Eli Gildish's 2006
 # reimplementation.
 REFERENCE_MASSES_MEV: dict[str, float] = {
-    "e_0":      0.50627181,
+    # Updated 2026-04-29 after fixing two transcription bugs in calc_N
+    # (the missing `*q` in the N_3 second term) and calc_a (the wrong
+    # nesting of y.22 and y.23 inside the y.21 P,2·(1-Q,3) factor).
+    # The new values match the Excel reference and match measurement
+    # 5-67× better than the previous (Eli Gildish C 2006) values.
+    "e_0":      0.51615513,
     "e_-":      0.50694371,
     "miu_-":  105.65229677,
-    "eta":    548.62899518,
+    "eta":    548.78369542,
     "KAPPA_+": 493.69551717,
-    "KAPPA_0": 497.69173794,
+    "KAPPA_0": 497.70819066,
     "pi_+-":  139.56017382,
-    "pi_0":   134.92903040,
-    "LAMBDA":1116.21187996,
+    "pi_0":   134.95602561,
+    "LAMBDA":1115.56659651,
     "OMEGA_-":1672.12138879,
-    "p":      937.33890386,
-    "n":      938.30996495,
-    "XI_0":  1314.47953670,
+    "p":      938.24762887,
+    "n":      939.54540401,
+    "XI_0":  1314.86293703,
     "XI_-":  1321.24989957,
     "SIGMA_+":1189.33466416,
-    "SIGMA_0":1192.23763970,
+    "SIGMA_0":1192.44246612,
     "SIGMA_-":1197.26476102,
-    "DELTA_++":1234.44268176,
-    "DELTA_+":1234.73522847,
-    "DELTA_0":1235.79291876,
-    "DELTA_-":1229.21247787,
+    "DELTA_++":1234.43430766,
+    "DELTA_+":1234.56902997,
+    "DELTA_0":1235.13841791,
+    "DELTA_-":1229.95465525,
 }
 
 
