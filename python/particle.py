@@ -102,7 +102,7 @@ REFERENCE_PARTICLES: list[Particle] = [
     Particle("muon",             "miu_-",     1, 1, 1, 1, 1, 0,  105.65838900, 2.197e-6),
     Particle("eta",              "eta",       1, 1, 0, 0, 0, 0,  547.30000000, 5.0e-19),
     Particle("charged kaon",     "KAPPA_+",   1, 1, 1, 0, 1, 0,  493.67700000, 1.238e-8),
-    Particle("neutral kaon",     "KAPPA_0",   1, 1, 1, 0, 1, 1,  497.67200000, 8.954e-11),  # K_S
+    Particle("neutral kaon",     "KAPPA_0",   1, 1, 1, 0, 1, 1,  497.67200000, 5.116e-8),   # K_L (see lifetime.py docstring)
     Particle("charged pion",     "pi_+-",     1, 1, 2, 0, 0, 0,  139.57018000, 2.6033e-8),
     Particle("neutral pion",     "pi_0",      1, 1, 2, 0, 0, 1,  134.97660000, 8.43e-17),
     Particle("lambda",           "LAMBDA",    1, 2, 0, 1, 0, 0, 1115.68300000, 2.632e-10),

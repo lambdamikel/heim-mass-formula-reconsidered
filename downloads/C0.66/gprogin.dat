@@ -1,0 +1,70 @@
+'Gprog Input iprint= '  0
+'excitat.level inie= '  10      ! schulz : 112
+'reson.search iloop= '  20      ! schulz : 50000
+'particle/antip.   = '  1
+'datasets: from to : '  1    1                      
+'---pi+,pi0'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  2
+'2*Spin        QG  = '  0
+'Doublett    kappa = '  0       ! ENDE 
+'---e,e0'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  1
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0
+'---p,n'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  1
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0 
+'---mue-'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  1
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  1 
+'---K+,K0'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  1
+'2*Spin        QG  = '  0
+'Doublett    kappa = '  1 
+'---eta'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  0
+'2*Spin        QG  = '  0
+'Doublett    kappa = '  0 
+'---Lambda'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  0
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0 
+'---Sigma+,0,-'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  2
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0 
+'---Xi0, Xi-'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  1
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  1 
+'---Omega-'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  0
+'2*Spin        QG  = '  3
+'Doublett    kappa = '  0 
+'---o+,0,-,--'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  3
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0 
+'---Delta++,+,0,-'   
+'Baryon Number +1  = '  2
+'2*Isospin     PG  = '  3
+'2*Spin        QG  = '  3
+'Doublett    kappa = '  0 
+'---nue1'   
+'Baryon Number +1  = '  1
+'2*Isospin     PG  = '  0
+'2*Spin        QG  = '  1
+'Doublett    kappa = '  0 

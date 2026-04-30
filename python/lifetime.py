@@ -91,7 +91,9 @@ def calc_D(eps: int, P: int, q_x: float) -> float:
     b0 = beta_0()
 
     inv_factor = 1.0 + 4.0 * q * q * (q - 1) * (2.0 * q + 1.0)
-    p_exp = 2.0 + eps * q
+    # NB: Excel reference uses eps*q_x (signed charge), not eps*q.
+    # For negatively-charged particles this matters.
+    p_exp = 2.0 + eps * q_x
     pm1_exp = (q - 1) * q / 2.0
 
     # Handle P=0 with non-zero exponent gracefully (zero^0 = 1 by Python convention)
@@ -125,7 +127,14 @@ def calc_F(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
 
     # [B52]: F = 1 - (1/3)(1-q)(P-1)²(3-P)·(1 + P − Q − εCP/2)·(1 + β_0(−1)^k)
     #            − (P,3)(1 + D)
-    # NB: (1 + P − Q − εCP/2), with MINUS Q. Earlier had +Q from a misread.
+    #
+    # SPECIAL CASE: For P=3, the formula 1 - (P,3)·(1+D) = 1 - (1+D) = -D
+    # cannot be evaluated in floating point because 1+D ≈ 1 (D ~ 1e-18 for
+    # most particles). The Excel reference (Heim_1989_Massenformel_0.4.xlsm,
+    # row 190) uses an explicit IF(P=3, -D, …) branch. Without this fix the
+    # Δ resonances all give T=0 due to F=0.
+    if P == 3:
+        return -D
     return (
         1.0
         - (1.0 / 3.0)
@@ -144,18 +153,24 @@ def calc_F(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
 
 def calc_s(eps: int, k: int, P: int, Q: int, kap: int) -> float:
     """
-    s = 2 − k + εC + (2kQ − κP) + (Q,3)·(1/k)·(P−1)(P−2)(P−3)        [B53]
+    s = 2 − k + εC + (2kQ − κP) + (Q,3) + (1/k)(P−1)(P−2)(P−3)       [B53]
 
-    Note: only s mod 2 matters in [B48] (it appears as (−1)^s).
-    For our reference particles with P ≤ 3, the trailing
-    (P−1)(P−2)(P−3) factor is always zero.
+    NB: The PDF prints "(Q/3) : 1/k (P-1)(P-2)(P-3)" with a colon ":"
+    that I previously read as multiplication. The Excel reference
+    (Heim_1989_Massenformel_0.4.xlsm row 189) confirms the colon is a
+    layout separator and these are TWO ADDITIVE terms. This bug fix
+    flips the parity of s for several particles (notably Ω⁻), changing
+    (−1)^s and rescuing them from negative T.
+
+    Only s mod 2 matters in [B48] (it appears as (−1)^s).
     """
     C = calc_C(eps, k, P, Q, kap)
     return (
         2 - k
         + eps * C
         + (2 * k * Q - kap * P)
-        + comb(Q, 3) * (1.0 / k) * (P - 1) * (P - 2) * (P - 3)
+        + comb(Q, 3)
+        + (1.0 / k) * (P - 1) * (P - 2) * (P - 3)
     )
 
 
@@ -258,35 +273,29 @@ def calc_b2(
         * (k - 1)
     )
 
-    # Line 9:  + κ · {  (−1)^(1−q) · [7HB + 3(H+B) − 5/2 + (1−q){H(3B−4) + B+7/2}]·(k−1)
-    # Earlier had (-1)^q, which is the negation of the correct expression
-    # for q ∈ {0, 1, 2}. Now corrected to (-1)^(1−q).
+    # Line 9 (κ-part — multiplied by κ):
+    #   κ · ((-1)^(1-q)·(7HB + 3(H+B) - 5/2) + (1-q)·(H(3B-4) + B+7/2)) · (k-1)
+    #
+    # Line 10 (NOT multiplied by κ — separate additive term!):
+    #   + Q·(P,2) · ((2-q)·(1+εq_x)·((B/2)·(H+2) + 3/4) + (5/2)·HB + 3H - (B+5)/(P+1))
+    #
+    # CRITICAL FIX: I previously had line 10 under the κ multiplier,
+    # which made it vanish for κ=0 particles (Σ+, Σ-). The Excel
+    # reference (Heim_1989_Massenformel_0.4.xlsm row 187) shows them as
+    # two separate additive terms — no κ in front of line 10.
+    # Without this fix, Σ+ and Σ- come out with negative T.
     qi = int(round(q))
-    line9_a = (
-        ((-1) ** (1 - qi))
-        * (
-            7 * H * B
-            + 3 * (H + B)
-            - 5.0 / 2.0
-            + (1 - q) * (H * (3 * B - 4) + B + 3.5)
-        )
-        * (k - 1)
-    )
+    line9 = kap * (
+        ((-1) ** (1 - qi)) * (7 * H * B + 3 * (H + B) - 5.0 / 2.0)
+        + (1 - q) * (H * (3 * B - 4) + B + 3.5)
+    ) * (k - 1)
 
-    # Line 10:  + Q(P,2) · { (2−q)(1+εq_x)·[B/(2(H+2)) + 3/4]
-    #                       + (5/2)·HB + 3H − (B+5)/(P+1) }   }
-    # Machine-extracted text confirms the bracket is [B/2(H+2) + ¾],
-    # i.e. B/(2(H+2)) PLUS 3/4 (not B over the whole "2(H+2) + 3/4").
-    # Earlier reading grouped 3/4 into the denominator — corrected.
-    line9_b = (
-        Q * P2 * (
-            (2 - q) * (1 + eps * q_x) * (B / (2 * (H + 2)) + 0.75)
-            + (5.0 / 2.0) * H * B
-            + 3 * H
-            - (B + 5) / (P + 1)
-        )
+    line10 = Q * P2 * (
+        (2 - q) * (1 + eps * q_x) * ((B / 2) * (H + 2) + 0.75)
+        + (5.0 / 2.0) * H * B
+        + 3 * H
+        - (B + 5) / (P + 1)
     )
-    line9 = kap * (line9_a + line9_b)
 
     # Line 11:  − (5/2) · H² · (P,3) · {q · (1 + π/3 · (2−q) · η₂,₂)·B − (2−q)(1−q)}
     line11 = (
@@ -296,7 +305,7 @@ def calc_b2(
         * (q * (1.0 + pi / 3.0 * (2 - q) * eta22) * B - (2 - q) * (1 - q))
     )
 
-    return line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line11
+    return line1 + line2 + line3 + line4 + line5 + line6 + line7 + line8 + line9 + line10 + line11
 
 
 # ---------------------------------------------------------------------------

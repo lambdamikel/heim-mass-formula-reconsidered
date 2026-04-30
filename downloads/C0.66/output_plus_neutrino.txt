@@ -1,0 +1,962 @@
+ *****************************************************************
+ * Mass formula of elementary particles by B.Heim                *
+ * Program : H.D. Schulz, 26/07/82  DESY                         *
+ * C version 0.62 based on PASCAL from Olaf Posdzech, March 2006 *
+ *****************************************************************
+ 
+Initially, 25 reference particles in list
+ Used loop limits : 
+ ================== 
+  nend, maximum excitation level = 0
+  loop, resonance search         = 40000
+  ant,  particle/antiparticle    = 1
+ 
+Data input:
+----------------------
+ Pi                             =3.14159265358979e+00
+ base of natural logarithm: ebn =2.71828182845905e+00
+ plancks constant/2Pi:      hq  =1.05457159600000e-34 [Ws*s]
+ speed of light : c             =2.99792458000000e+08 [m/s]
+ gravitational constant: gam    =6.67331980000000e-11 [m**3/(kg*s*s)
+ Vacuum wave resistance:   Rg   =3.76730313461000e+02 [Ohm]
+ Fine structure constant: alfa  =7.29735253328589e-03
+ "strong" constant: beta        =9.99985890199089e-01
+                     1/ alfa    =1.37035999760000e+02
+                     1/beta     =1.00001411000000e+00
+ Conversion kg - MeV : fakMeV   =5.60958920000000e+29 [MeV/kg]
+ Length unit:s0                 =1.00000000000000e+00 [m]
+Derived constants:
+-----------------
+ Geometrical shortening: eta    =9.89989640819342e-01
+ Geometrical shortening: theta  =7.93991266691442e+00
+ Elementary charge: eq          =1.60216459374958e-19 [As]
+ Mass element amu               =2.25898458329390e-31 [kg]
+ Geometrical shortening: alfp   =1.83221150781647e-02
+ Geometrical shortening: alfm   =8.12834494462529e-03
+ Geometrical shortening: xi     =1.61803398874989e+00
+ 
+Data sets named: 1 to 200
+========================================================
+Starting computation of multiplet #1:
+'---pi+,pi0'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 2
+Q = 2* Spin           = 0
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 1, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1     1     0    1.39565808466381e+02 x=1  '---pi+,pi0'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   53    76   111   109  2578
+----------------------------------------------------
+    0     1     1     1     2    7.75580116076227e+02
+    0     1     1     1     3    9.51137478183832e+02
+    0     1     1     1     4    1.03302247946734e+03
+    0     1     1     1     5    1.18047358842354e+03
+    0     1     1     1     6    1.16420219307861e+03
+    0     1     1     1     7    1.23979594670040e+03
+    0     1     1     1     8    1.31843830011646e+03
+    0     1     1     1     9    1.39577393808809e+03
+    0     1     1     1    10    1.32568201021314e+03
+
+=========================================================
+Now calculating element of multiplet 1, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    1.34961535384859e+02 x=2  '---pi+,pi0'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   52    75   107   108   973
+----------------------------------------------------
+    0     0     1     0     2    7.76458387278371e+02
+    0     0     1     0     3    9.84814380448463e+02
+    0     0     1     0     4    1.06912263567459e+03
+    0     0     1     0     5    1.14484032733118e+03
+    0     0     1     0     6    1.22559162488474e+03
+    0     0     1     0     7    1.33795619637415e+03
+    0     0     1     0     8    1.32728532335643e+03
+    0     0     1     0     9    1.36842715753265e+03
+    0     0     1     0    10    1.42385254497367e+03
+
+=========================================================
+Now calculating element of multiplet 1, x = 3
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1    -1     0    1.39565808466381e+02 x=3  '---pi+,pi0'   
+
+----------------------------------------------------
+Resonance limit for element x=3:
+   L1    L2    L3    L4    Le
+   53    76   111   109  2578
+----------------------------------------------------
+    0     1     1    -1     2    7.75580116076227e+02
+    0     1     1    -1     3    9.51137478183832e+02
+    0     1     1    -1     4    1.03302247946734e+03
+    0     1     1    -1     5    1.18047358842354e+03
+    0     1     1    -1     6    1.16420219307861e+03
+    0     1     1    -1     7    1.23979594670040e+03
+    0     1     1    -1     8    1.31843830011646e+03
+    0     1     1    -1     9    1.39577393808809e+03
+    0     1     1    -1    10    1.32568201021314e+03
+========================================================
+Starting computation of multiplet #2:
+'---e,e0'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 1
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 2, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    5.06878771058145e-01 x=1  '---e,e0'   
+
+----------------------------------------------------
+
+=========================================================
+Now calculating element of multiplet 2, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1    -1     0    5.10998846703200e-01 x=2  '---e,e0'   
+
+----------------------------------------------------
+========================================================
+Starting computation of multiplet #3:
+'---p,n'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 1
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 3, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1     1     0    9.38272070126561e+02 x=1  '---p,n'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   43    64    84   138   351
+----------------------------------------------------
+    0     1     1     1     2    1.11999782766079e+03
+    0     1     1     1     3    1.27063848012303e+03
+    0     1     1     1     4    1.33499103803287e+03
+    0     1     1     1     5    1.47523866832415e+03
+    0     1     1     1     6    1.52633196263572e+03
+    0     1     1     1     7    1.62420841193730e+03
+    0     1     1     1     8    1.78976649303098e+03
+    0     1     1     1     9    1.77770061727643e+03
+    0     1     1     1    10    1.90039723540471e+03
+
+=========================================================
+Now calculating element of multiplet 3, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    9.39565492317092e+02 x=2  '---p,n'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   43    65    81   141   386
+----------------------------------------------------
+    0     0     1     0     2    1.11967720500903e+03
+    0     0     1     0     3    1.24577152307980e+03
+    0     0     1     0     4    1.45392482893915e+03
+    0     0     1     0     5    1.42466333269510e+03
+    0     0     1     0     6    1.58842243716041e+03
+    0     0     1     0     7    1.56799741357511e+03
+    0     0     1     0     8    1.69557785282014e+03
+    0     0     1     0     9    1.86439179556032e+03
+    0     0     1     0    10    1.80331889741985e+03
+========================================================
+Starting computation of multiplet #4:
+'---mue-'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 1
+Q = 2* Spin           = 1
+kappa = Doublett      = 1
+
+=========================================================
+Now calculating element of multiplet 4, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1    -1     0    1.05658535756002e+02 x=1  '---mue-'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   42    61    89    88  3252
+----------------------------------------------------
+    0     1     1    -1     2    1.78337722569815e+03
+    0     1     1    -1     3    2.34145749574289e+03
+    0     1     1    -1     4    2.67504519633507e+03
+    0     1     1    -1     5    2.77631158437764e+03
+    0     1     1    -1     6    3.14787138793475e+03
+    0     1     1    -1     7    3.05313606329745e+03
+    0     1     1    -1     8    3.24967091306206e+03
+    0     1     1    -1     9    3.44308879522074e+03
+    0     1     1    -1    10    3.29870400233124e+03
+
+=========================================================
+Now calculating element of multiplet 4, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1    -1     0    1.05658535756002e+02 x=2  '---mue-'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   42    61    89    88  3252
+----------------------------------------------------
+    0     1     1    -1     2    1.78337722569815e+03
+    0     1     1    -1     3    2.34145749574289e+03
+    0     1     1    -1     4    2.67504519633507e+03
+    0     1     1    -1     5    2.77631158437764e+03
+    0     1     1    -1     6    3.14787138793475e+03
+    0     1     1    -1     7    3.05313606329745e+03
+    0     1     1    -1     8    3.24967091306206e+03
+    0     1     1    -1     9    3.44308879522074e+03
+    0     1     1    -1    10    3.29870400233124e+03
+========================================================
+Starting computation of multiplet #5:
+'---K+,K0'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 1
+Q = 2* Spin           = 0
+kappa = Doublett      = 1
+
+=========================================================
+Now calculating element of multiplet 5, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   1     1     1     1     0    4.93677949370404e+02 x=1  '---K+,K0'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   72   104   151   148  6630
+----------------------------------------------------
+    1     1     1     1     2    8.92885712897823e+02
+    1     1     1     1     3    9.83824190323071e+02
+    1     1     1     1     4    1.07656999365598e+03
+    1     1     1     1     5    1.17237004322443e+03
+    1     1     1     1     6    1.14329609318318e+03
+    1     1     1     1     7    1.17195114615897e+03
+    1     1     1     1     8    1.20970213907973e+03
+    1     1     1     1     9    1.25627229840336e+03
+    1     1     1     1    10    1.28421906039670e+03
+
+=========================================================
+Now calculating element of multiplet 5, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   1     0     1     0     0    4.97669554457362e+02 x=2  '---K+,K0'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   72   104   148   149  7052
+----------------------------------------------------
+    1     0     1     0     2    8.91748888452749e+02
+    1     0     1     0     3    1.07596771976641e+03
+    1     0     1     0     4    1.04548747151215e+03
+    1     0     1     0     5    1.13807052905227e+03
+    1     0     1     0     6    1.20796521167309e+03
+    1     0     1     0     7    1.14834205695270e+03
+    1     0     1     0     8    1.17394657993777e+03
+    1     0     1     0     9    1.19736863542139e+03
+    1     0     1     0    10    1.22531350653566e+03
+========================================================
+Starting computation of multiplet #6:
+'---eta'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 0
+Q = 2* Spin           = 0
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 6, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    5.48802349204379e+02 x=1  '---eta'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   58    84   120   121  2488
+----------------------------------------------------
+    0     0     1     0     2    7.82363520242251e+02
+    0     0     1     0     3    9.13051531648069e+02
+    0     0     1     0     4    8.65770927180543e+02
+    0     0     1     0     5    9.10739044806110e+02
+    0     0     1     0     6    9.56812326826026e+02
+    0     0     1     0     7    9.99681560811903e+02
+    0     0     1     0     8    1.04169638198870e+03
+    0     0     1     0     9    9.81014498352715e+02
+    0     0     1     0    10    9.90190148954545e+02
+========================================================
+Starting computation of multiplet #7:
+'---Lambda'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 0
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 7, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -1     0     1     0     0    1.11559092754447e+03 x=1  '---Lambda'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   47    70    88   150  1095
+----------------------------------------------------
+   -1     0     1     0     2    1.39953898115714e+03
+   -1     0     1     0     3    1.40481255802981e+03
+   -1     0     1     0     4    1.52306585852831e+03
+   -1     0     1     0     5    1.63762448084672e+03
+   -1     0     1     0     6    1.55182739954034e+03
+   -1     0     1     0     7    1.60416096345451e+03
+   -1     0     1     0     8    1.67059699150783e+03
+   -1     0     1     0     9    1.74727881118244e+03
+   -1     0     1     0    10    1.82531757135050e+03
+========================================================
+Starting computation of multiplet #8:
+'---Sigma+,0,-'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 2
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 8, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -1     1     1     1     0    1.18935453829097e+03 x=1  '---Sigma+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   48    71    92   148  1005
+----------------------------------------------------
+   -1     1     1     1     2    1.38193646801442e+03
+   -1     1     1     1     3    1.55900205351955e+03
+   -1     1     1     1     4    1.53405524020874e+03
+   -1     1     1     1     5    1.59473573938520e+03
+   -1     1     1     1     6    1.67657750305279e+03
+   -1     1     1     1     7    1.77171217233632e+03
+   -1     1     1     1     8    1.86185727731955e+03
+   -1     1     1     1     9    1.76574105904287e+03
+   -1     1     1     1    10    1.80922268339593e+03
+
+=========================================================
+Now calculating element of multiplet 8, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -1     0     1     0     0    1.19242678604549e+03 x=2  '---Sigma+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   48    72    90   153  1109
+----------------------------------------------------
+   -1     0     1     0     2    1.38142421780205e+03
+   -1     0     1     0     3    1.54190072359853e+03
+   -1     0     1     0     4    1.53172837057630e+03
+   -1     0     1     0     5    1.57869817308332e+03
+   -1     0     1     0     6    1.64258909613754e+03
+   -1     0     1     0     7    1.72481699134332e+03
+   -1     0     1     0     8    1.80384433048439e+03
+   -1     0     1     0     9    1.89113269069610e+03
+   -1     0     1     0    10    1.77491894249448e+03
+
+=========================================================
+Now calculating element of multiplet 8, x = 3
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -1     1     1    -1     0    1.19727552328016e+03 x=3  '---Sigma+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=3:
+   L1    L2    L3    L4    Le
+   48    71    92   148  1001
+----------------------------------------------------
+   -1     1     1    -1     2    1.38739676550607e+03
+   -1     1     1    -1     3    1.56353904065885e+03
+   -1     1     1    -1     4    1.53729265155729e+03
+   -1     1     1    -1     5    1.59876159805997e+03
+   -1     1     1    -1     6    1.67874981179090e+03
+   -1     1     1    -1     7    1.76897692750921e+03
+   -1     1     1    -1     8    1.86664828033875e+03
+   -1     1     1    -1     9    1.76858222747024e+03
+   -1     1     1    -1    10    1.81314469936979e+03
+========================================================
+Starting computation of multiplet #9:
+'---Xi0, Xi-'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 1
+Q = 2* Spin           = 1
+kappa = Doublett      = 1
+
+=========================================================
+Now calculating element of multiplet 9, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     0     1     0     0    1.31477442764446e+03 x=1  '---Xi0, Xi-'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   51    76    95   160  6476
+----------------------------------------------------
+   -2     0     1     0     2    1.53183302303717e+03
+   -2     0     1     0     3    1.59591044888161e+03
+   -2     0     1     0     4    1.66862222534153e+03
+   -2     0     1     0     5    1.72714314724623e+03
+   -2     0     1     0     6    1.78885940613456e+03
+   -2     0     1     0     7    1.82955952285259e+03
+   -2     0     1     0     8    1.87469593103150e+03
+   -2     0     1     0     9    1.75743011978959e+03
+   -2     0     1     0    10    1.76433742279642e+03
+
+=========================================================
+Now calculating element of multiplet 9, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     1     1    -1     0    1.32130610342411e+03 x=2  '---Xi0, Xi-'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   51    75    97   155  7145
+----------------------------------------------------
+   -2     1     1    -1     2    1.53536021270311e+03
+   -2     1     1    -1     3    1.61494197504890e+03
+   -2     1     1    -1     4    1.69101874301570e+03
+   -2     1     1    -1     5    1.75620792115392e+03
+   -2     1     1    -1     6    1.81574924706902e+03
+   -2     1     1    -1     7    1.86266148996082e+03
+   -2     1     1    -1     8    1.75127413329791e+03
+   -2     1     1    -1     9    1.76006455865392e+03
+   -2     1     1    -1    10    1.77146401520907e+03
+========================================================
+Starting computation of multiplet #10:
+'---Omega-'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 0
+Q = 2* Spin           = 3
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 10, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -3     1     1    -1     0    1.67220204593635e+03 x=1  '---Omega-'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   57    84   109   170  2357
+----------------------------------------------------
+   -3     1     1    -1     2    2.13260752994411e+03
+   -3     1     1    -1     3    2.09282639822546e+03
+   -3     1     1    -1     4    2.21385881784724e+03
+   -3     1     1    -1     5    2.34135869547077e+03
+   -3     1     1    -1     6    2.44716414170406e+03
+   -3     1     1    -1     7    2.29820579899634e+03
+   -3     1     1    -1     8    2.34159377643006e+03
+   -3     1     1    -1     9    2.38968375485180e+03
+   -3     1     1    -1    10    2.44302397133656e+03
+========================================================
+Starting computation of multiplet #11:
+'---o+,0,-,--'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 3
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 11, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     1     1     1     0    1.53995155817567e+03 x=1  '---o+,0,-,--'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   55    81   105   165   927
+----------------------------------------------------
+   -2     1     1     1     2    1.75737702797586e+03
+   -2     1     1     1     3    1.93345808070635e+03
+   -2     1     1     1     4    2.11233259332032e+03
+   -2     1     1     1     5    2.04040697774424e+03
+   -2     1     1     1     6    2.13725968396672e+03
+   -2     1     1     1     7    2.26392607887001e+03
+   -2     1     1     1     8    2.39328334931247e+03
+   -2     1     1     1     9    2.29496878414098e+03
+   -2     1     1     1    10    2.36639347696436e+03
+
+=========================================================
+Now calculating element of multiplet 11, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     0     1     0     0    1.54913353835332e+03 x=2  '---o+,0,-,--'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   55    82   102   169  1023
+----------------------------------------------------
+   -2     0     1     0     2    1.76194368199592e+03
+   -2     0     1     0     3    1.92076126728677e+03
+   -2     0     1     0     4    2.08596597220129e+03
+   -2     0     1     0     5    2.02400922764193e+03
+   -2     0     1     0     6    2.09763870049367e+03
+   -2     0     1     0     7    2.19890429255109e+03
+   -2     0     1     0     8    2.31739738304800e+03
+   -2     0     1     0     9    2.43950682673861e+03
+   -2     0     1     0    10    2.31332884599732e+03
+
+=========================================================
+Now calculating element of multiplet 11, x = 3
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     1     1    -1     0    1.53097070931755e+03 x=3  '---o+,0,-,--'   
+
+----------------------------------------------------
+Resonance limit for element x=3:
+   L1    L2    L3    L4    Le
+   55    81   105   165   933
+----------------------------------------------------
+   -2     1     1    -1     2    1.88766770040613e+03
+   -2     1     1    -1     3    1.89579406804417e+03
+   -2     1     1    -1     4    2.07039931420702e+03
+   -2     1     1    -1     5    2.01710823840766e+03
+   -2     1     1    -1     6    2.10084993349311e+03
+   -2     1     1    -1     7    2.21160764217164e+03
+   -2     1     1    -1     8    2.34186475364797e+03
+   -2     1     1    -1     9    2.27779926247602e+03
+   -2     1     1    -1    10    2.33056236904669e+03
+
+=========================================================
+Now calculating element of multiplet 11, x = 4
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#  -2     2     1    -2     0    1.53409247310162e+03 x=4  '---o+,0,-,--'   
+
+----------------------------------------------------
+Resonance limit for element x=4:
+   L1    L2    L3    L4    Le
+   56    75   128   147   860
+----------------------------------------------------
+   -2     2     1    -2     2    1.72942672076499e+03
+   -2     2     1    -2     3    1.94240966598417e+03
+   -2     2     1    -2     4    1.94887158118159e+03
+   -2     2     1    -2     5    2.04489151666103e+03
+   -2     2     1    -2     6    2.16072828876564e+03
+   -2     2     1    -2     7    2.29732894552789e+03
+   -2     2     1    -2     8    2.22966026587311e+03
+   -2     2     1    -2     9    2.30655711813813e+03
+   -2     2     1    -2    10    2.41892391768968e+03
+========================================================
+Starting computation of multiplet #12:
+'---Delta++,+,0,-'   
+k = Baryon number + 1 = 2
+P = 2* Isospin        = 3
+Q = 2* Spin           = 3
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 12, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     2     1     2     0    1.23025499594999e+03 x=1  '---Delta++,+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=1:
+   L1    L2    L3    L4    Le
+   50    67   116   135  1147
+----------------------------------------------------
+    0     2     1     2     2    1.39241767543206e+03
+    0     2     1     2     3    1.56087514775533e+03
+    0     2     1     2     4    1.50995384632967e+03
+    0     2     1     2     5    1.57876373307397e+03
+    0     2     1     2     6    1.65603074909776e+03
+    0     2     1     2     7    1.73495700301642e+03
+    0     2     1     2     8    1.68910893302524e+03
+    0     2     1     2     9    1.72332970184351e+03
+    0     2     1     2    10    1.76797673417929e+03
+
+=========================================================
+Now calculating element of multiplet 12, x = 2
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1     1     0    1.22977607579311e+03 x=2  '---Delta++,+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=2:
+   L1    L2    L3    L4    Le
+   49    73    95   152  1229
+----------------------------------------------------
+    0     1     1     1     2    1.38746680418538e+03
+    0     1     1     1     3    1.53473709495606e+03
+    0     1     1     1     4    1.65918531611697e+03
+    0     1     1     1     5    1.56327598419842e+03
+    0     1     1     1     6    1.61758026224515e+03
+    0     1     1     1     7    1.68518138570568e+03
+    0     1     1     1     8    1.75887785027194e+03
+    0     1     1     1     9    1.84421095266543e+03
+    0     1     1     1    10    1.75304823012932e+03
+
+=========================================================
+Now calculating element of multiplet 12, x = 3
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    1.23112766117859e+03 x=3  '---Delta++,+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=3:
+   L1    L2    L3    L4    Le
+   49    73    91   154  1361
+----------------------------------------------------
+    0     0     1     0     2    1.37879667228315e+03
+    0     0     1     0     3    1.51091070776839e+03
+    0     0     1     0     4    1.61936796308776e+03
+    0     0     1     0     5    1.54317662954787e+03
+    0     0     1     0     6    1.58579854949308e+03
+    0     0     1     0     7    1.63835012809582e+03
+    0     0     1     0     8    1.69923700990478e+03
+    0     0     1     0     9    1.77028492119448e+03
+    0     0     1     0    10    1.83679148835736e+03
+
+=========================================================
+Now calculating element of multiplet 12, x = 4
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     1     1    -1     0    1.23566980458760e+03 x=4  '---Delta++,+,0,-'   
+
+----------------------------------------------------
+Resonance limit for element x=4:
+   L1    L2    L3    L4    Le
+   49    73    95   152  1227
+----------------------------------------------------
+    0     1     1    -1     2    1.38748253550016e+03
+    0     1     1    -1     3    1.53183627570353e+03
+    0     1     1    -1     4    1.65815607598916e+03
+    0     1     1    -1     5    1.55746689408468e+03
+    0     1     1    -1     6    1.61673040989068e+03
+    0     1     1    -1     7    1.67830093758752e+03
+    0     1     1    -1     8    1.75054365705723e+03
+    0     1     1    -1     9    1.82761402752612e+03
+    0     1     1    -1    10    1.75169745160043e+03
+========================================================
+Starting computation of multiplet #13:
+'---nue1'   
+k = Baryon number + 1 = 1
+P = 2* Isospin        = 0
+Q = 2* Spin           = 1
+kappa = Doublett      = 0
+
+=========================================================
+Now calculating element of multiplet 13, x = 1
+=========================================================
+Terms:
+  Cs = Strangeness quantum number
+  kq = |qx| (amount of charges)
+  eps= Particle (1) / Antiparticle (-1)
+  qx = Charge quantum number
+  N  = Resonance
+  am = Mass of particle
+  Remaining values are natural integer constants.
+
+   Cs    kq   eps    qx     N    am [MeV]  particleName
+#   0     0     1     0     0    5.01517572757361e-01 x=1  '---nue1'   
+
+----------------------------------------------------
+***************************************************
+ Particle | description   |  reference mass |   computed mass     | diff[%]
+   name   | kPQkap#x,qx,cs|                 |                     |    
+---------------------------------------------------------------------------------------
+      eta =     1000#100 = ref=       547.75 comp=    548.8023492 = diff[%]=     0.192%
+       e- =    1110#2-10 = ref=   0.51099892 comp=   0.5109988467 = diff[%]=  1.43e-05%
+       mu =    1111#1-10 = ref=   105.658369 comp=    105.6585358 = diff[%]=  0.000158%
+      K+- =     1101#111 = ref=      493.677 comp=    493.6779494 = diff[%]=  0.000192%
+       K0 =     1101#201 = ref=      497.648 comp=    497.6695545 = diff[%]=   0.00433%
+      pi0 =     1200#200 = ref=     134.9766 comp=    134.9615354 = diff[%]=    0.0112%
+     pi+- =     1200#110 = ref=    139.57018 comp=    139.5658085 = diff[%]=   0.00313%
+   lambda =    2010#10-1 = ref=     1115.683 comp=    1115.590928 = diff[%]=   0.00825%
+    omega =   2030#1-1-3 = ref=      1672.45 comp=    1672.202046 = diff[%]=    0.0148%
+        p =     2110#110 = ref=    938.27203 comp=    938.2720701 = diff[%]=  4.28e-06%
+        n =     2110#200 = ref=    939.56536 comp=    939.5654923 = diff[%]=  1.41e-05%
+      xi0 =    2111#10-2 = ref=      1314.82 comp=    1314.774428 = diff[%]=   0.00347%
+      xi- =   2111#2-1-2 = ref=      1321.31 comp=    1321.306103 = diff[%]=  0.000295%
+     sig+ =    2210#11-1 = ref=      1189.37 comp=    1189.354538 = diff[%]=    0.0013%
+     sig0 =    2210#20-1 = ref=     1192.642 comp=    1192.426786 = diff[%]=     0.018%
+     sig- =   2210#3-1-1 = ref=     1197.449 comp=    1197.275523 = diff[%]=    0.0145%
+  delta++ =     2330#120 = ref=         1232 comp=    1230.254996 = diff[%]=     0.142%
+   delta+ =     2330#210 = ref=         1232 comp=    1229.776076 = diff[%]=     0.181%
+   delta0 =     2330#300 = ref=         1232 comp=    1231.127661 = diff[%]=    0.0708%
+   delta- =    2330#4-10 = ref=         1232 comp=    1235.669805 = diff[%]=     0.298%
+neutrino1 =   1010#100#1 = ref=           -1 comp= 1.440221201e-05 = diff[%]=        -1%
+neutrino2 =   1110#100#1 = ref=           -1 comp= 0.005375600513 = diff[%]=        -1%
+neutrino3 =   1200#200#1 = ref=           -1 comp= 0.001459933654 = diff[%]=        -1%
+neutrino4 =   2110#200#1 = ref=           -1 comp=   0.0306332214 = diff[%]=        -1%
+neutrino5 =  2111#10-2#1 = ref=           -1 comp=  0.09800052843 = diff[%]=        -1%
+--------------------------------------------------------------------------------------
+NrParticles with reference mass= 20, avg. diff[%]=  0.048131735 %
+--------------------------------------------------------------------------------------
