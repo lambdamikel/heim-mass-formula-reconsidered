@@ -31,6 +31,7 @@ own terms so the reader can judge.
 
 ## Table of Contents
 
+0. [Burkhard Heim — Life and Work](#chapter-0-burkhard-heim--life-and-work)
 1. [The Question Heim Was Trying to Answer](#chapter-1-the-question-heim-was-trying-to-answer)
 2. [The Six-Dimensional Space](#chapter-2-the-six-dimensional-space)
 3. [The Metron — Spacetime is Quantised](#chapter-3-the-metron--spacetime-is-quantised)
@@ -42,6 +43,244 @@ own terms so the reader can judge.
 9. [The Lifetime Formula](#chapter-9-the-lifetime-formula)
 10. [Predictions and Limits](#chapter-10-predictions-and-limits)
 11. [Where Heim Theory Stands Today](#chapter-11-where-heim-theory-stands-today)
+
+---
+
+## Chapter 0: Burkhard Heim — Life and Work
+
+### For Beginners
+
+Burkhard Heim's life is one of the most extraordinary stories in 20th
+century physics. He was born on 9 February 1925 in Potsdam and died
+on 14 January 2001 in Northeim. Between those dates, he produced one
+of the most ambitious unified field theories ever attempted —
+**without the use of his hands, with severely impaired sight, and
+with hearing loss so profound that for most of his career he could
+follow conversations only with great difficulty**.
+
+The catastrophe that defined his life happened in 1944, when Heim was
+19. He had managed to avoid being drafted into the German Air Force
+by working in a chemical-explosives laboratory. An explosion caused
+by mishandled compounds tore off both his hands, blinded him almost
+completely, and left him nearly deaf. He underwent the Krukenberg
+procedure, in which the bones of the forearm are surgically separated
+to produce a primitive pincer-like grip — restoring some basic motor
+function but no fine manipulation. He could not write, type, or read
+ordinary print again.
+
+Despite this, after the war, Heim registered at the University of
+Göttingen to study physics. He produced his theoretical work over
+the following five decades by *dictating equations to his wife
+Gerda* — a former Prague concert singer he married in 1950 — who
+typed them up. Heim developed an *eidetic acoustic memory*: he could
+hear a formula recited once and recall it perfectly afterwards, and
+he could pick up new languages in days. He never published a paper in
+a peer-reviewed mainstream journal. He gave a small number of public
+lectures and circulated his manuscripts privately.
+
+In 1952, at the age of 27, Heim spoke at a Stuttgart congress about
+the possibility of a "field drive" — a propulsion mechanism based on
+manipulation of the gravitational field. The lecture made
+international news and Heim was briefly courted by the German
+aerospace industry. From that point until his death, he worked
+quietly on the mathematical foundations of his theory, producing a
+private monograph (*Elementarstrukturen der Materie*, 1980), an
+extended edition (1984), the 1989 mass-formula report sent to
+MBB/DASA, and a final volume *Synmetronik der Welt* (in three
+volumes, ~700 pages total) only published posthumously.
+
+### For Intermediate
+
+A more detailed timeline:
+
+- **1925.** Born 9 February in Potsdam, Germany. As a child reportedly
+  designed rockets at age 6 and synthesised nitroglycerin at 13.
+- **1944.** Aged 19, working as an explosives technician (to avoid
+  Air Force conscription). Laboratory accident from mishandled
+  compounds. Loses both hands, near-total sight, near-total hearing.
+- **1945–1948.** Recovery and Krukenberg procedure. Begins to develop
+  the eidetic acoustic memory that will be the foundation of his
+  later working method.
+- **1948.** Begins physics studies at the University of Göttingen,
+  one of the most important post-war physics centres in Germany.
+  Studies under **Carl Friedrich von Weizsäcker** — a leading
+  German theoretical physicist, philosopher of science, and member
+  of the Werner-Heisenberg–era nuclear research community.
+- **1950.** Marries Gerda, a former concert singer from Prague.
+  Gerda becomes his amanuensis — typing every formula and every
+  manuscript that Heim dictates. This collaborative arrangement
+  continues for over fifty years.
+- **1952.** Speaks at a Stuttgart aerospace congress about a possible
+  *Feldantrieb* (field drive) for spacecraft, based on
+  gravity-electromagnetism coupling that he had derived in his early
+  unified-field-theory work. Lecture is widely covered, including
+  international press. Briefly courted by German aerospace firms.
+- **1954.** Leaves the Max-Planck-Institut (where he had been
+  working on Einstein's unified field theory) to pursue his own
+  research independently. His doctoral thesis on field theory had
+  been rejected — partly because he disregarded standard formal
+  conventions, partly because no university faculty member was
+  willing to act as competent reviewer for the very non-standard
+  mathematics he had developed.
+- **1957.** First public formulation of *Heim theory* as a unified
+  field theory aiming at the masses of all elementary particles.
+- **1959.** First mass-formula computation in private circulation.
+- **1976.** Detailed lecture at MBB Ottobrunn (Messerschmitt-Bölkow-
+  Blohm, German aerospace) on the unified theory and its
+  applications.
+- **1980.** Publishes (privately) *Elementarstrukturen der Materie*,
+  Volume I — his main monograph on the physics. In German, around
+  600 pages, very dense, with idiosyncratic notation.
+- **1982.** Mass formula programmed at DESY (Deutsches Elektronen-
+  Synchrotron) in Hamburg by H. D. Schulz, with Heim's collaboration.
+  Predicts ~16 particle masses to ~0.1 % accuracy.
+- **1984.** Expanded edition of *Elementarstrukturen der Materie*.
+- **1989.** Sends a 57-page report containing the extended mass
+  formula and lifetime calculations to MBB/DASA. The accompanying
+  FORTRAN code is later lost.
+- **1996.** Collaborates with **Walter Dröscher** on the extension
+  of Heim theory to 8 dimensions (the start of what is now called
+  *Heim–Dröscher theory* or *Extended Heim Theory*).
+- **1999.** Heim falls ill. Working until then on a still-incomplete
+  *selection rule for resonances* and on magnetic moments of
+  elementary particles.
+- **2001.** Dies on 14 January in Northeim, aged 75. The successor
+  community (Forschungskreis Heimsche Theorie / IGW Innsbruck and
+  later IGAAP e.V.) takes over the curation of his manuscripts and
+  the development of the surviving body of work.
+
+The biography by **Illobrand von Ludwiger** — *Burkhard Heim: Das
+Leben eines vergessenen Genies* (Scorpio Verlag, Munich/Berlin, 2010,
+ISBN 978-3-942166-09-6) — is the most comprehensive account.
+Von Ludwiger (born 1937) is an astrophysicist and aerospace systems
+analyst who knew Heim personally for many years and inherited his
+estate of unpublished notes; the biography draws extensively on this
+material.
+
+### For Experts
+
+The scientific lineage and reception of Heim's work are worth tracing
+carefully, because they shape how the theory should be evaluated.
+
+**Lineage.**
+
+Heim worked in the *Göttinger Tradition* of theoretical physics —
+Heisenberg, Born, Jordan, von Weizsäcker, et al. — but on its
+fringe. Carl Friedrich von Weizsäcker was his nominal advisor. More
+substantively, Heim corresponded with **Pascual Jordan** (one of the
+founders of quantum mechanics, the J in BJ–OW commutators) on the
+gravitational interpretation of his theory; Jordan reportedly
+encouraged Heim's work on geometrising the energy-momentum tensor.
+Heim also briefly intersected with **Werner Heisenberg**'s late
+unified-field-theory program, though Heim's polymetric approach
+diverged sharply from Heisenberg's nonlinear-spinor approach.
+
+The 1952 Stuttgart lecture is documented in the contemporary
+aerospace press; Heim presented it as an *application* (field drive)
+of his still-developing theoretical framework, and it was taken
+seriously enough that the Federal Ministry of Defence funded a
+preliminary investigation. The investigation was discontinued
+because Heim refused to disclose details until he had completed the
+full theoretical foundations — a pattern that recurs throughout his
+career.
+
+**Method.**
+
+Heim's working method — dictation, mental computation, eidetic recall —
+is unusual enough to merit comment. He computed all his formal
+results *in his head*, dictated them to Gerda, who typed them up;
+then he listened back as she read the typescript aloud, made
+corrections, and proceeded. The selector calculus, the polymetric
+geometry, the entire mass formula apparatus, and the lifetime
+formula were all developed this way. The 1982 DESY computer
+implementation was the first time any of the formula apparatus had
+been instantiated as numerical code rather than as
+formal-mathematical typescripts.
+
+This working method also explains the dense, idiosyncratic style of
+the manuscripts: every term has to be locally self-explanatory
+because Heim could not flip back to earlier pages. Variables are
+named with elaborate sub- and superscripts that try to encode their
+meaning structurally.
+
+**Reception.**
+
+Mainstream physics never engaged with Heim's full system. The
+reasons, in roughly decreasing order of importance:
+
+1. *Notation barrier.* Heim's selector calculus and hermetric forms
+   were mathematical inventions that did not connect to existing
+   bodies of mathematics. There was no established literature against
+   which a peer reviewer could check the work.
+2. *Publication discipline.* Heim published nearly nothing in
+   peer-reviewed venues. His main exposition (*Elementarstrukturen*)
+   was a privately printed book.
+3. *Independence.* Heim refused to follow doctoral conventions and
+   never held a university position. He had no PhD students and no
+   institutional momentum behind his work.
+4. *Adjacency to UFO research.* Through Illobrand von Ludwiger and
+   the Mutual UFO Network – Central European Section (MUFON–CES),
+   Heim's work attracted attention from communities that mainstream
+   physics found embarrassing. This was guilt-by-association, but the
+   association affected reception.
+5. *The Higgs gap.* Heim's theory predicted neither a Higgs nor any
+   electroweak gauge bosons. Whether one reads this as "outside
+   intended scope" (Chapter 10) or as an empirical limitation, it
+   meant Heim's theory could not capture the post-1980 successes of
+   the Standard Model.
+
+The 1982 DESY computation was the closest the theory ever got to
+mainstream attention. The numerical accuracy — 0.1 % on 16 particle
+masses — was striking, but the underlying mathematical foundation
+remained in private circulation.
+
+**Continuing community.**
+
+After Heim's death in 2001, several individuals took up the
+preservation and (selective) continuation of the work:
+
+- **Illobrand von Ludwiger** (1937–~2020s) — astrophysicist, friend,
+  biographer, and steward of Heim's estate. Co-author with K. Grüner
+  of *Zur Herleitung der Heimschen Massenformel* (IGW Innsbruck, 2003).
+  Now deceased.
+- **Walter Dröscher** (1937–) — physicist who collaborated with
+  Heim from the mid-1990s and extended the theory to 8 dimensions
+  (Heim–Dröscher theory) and 12 dimensions, including a derivation
+  of the gravitational constant *G* itself.
+- **Jochem Häuser** (Hochschule Salzgitter) — physicist working on
+  the propulsion-applications side of extended Heim theory; published
+  on the so-called *gravitophoton* hypothesis with Dröscher.
+- **Olaf Posdzech** (Protosimplex archive) — software engineer who
+  in 2006 reimplemented the 1982 DESY formula in Pascal and C; the
+  core of `downloads/C0.66/` and `downloads/Pascal 0.62/`.
+- **Eli Gildish** (2006) — independent reimplementation in C/C# (the
+  upstream of `downloads/c_impl/` and `downloads/csharp_impl/`).
+- **Dr. A. Mueller** (~2002) — reprogrammed parts of the 1989 formula
+  in C# for the *Heim Group* (also in `downloads/csharp_impl/`).
+- **Joel Michalowitz / IGAAP e.V.** (Hungen, Germany) — current
+  custodian of [heim-theory.com](https://heim-theory.com/), maintains
+  the document archive, the Excel reference implementation
+  (`Heim_1989_Massenformel_0.4.xlsm`), and the Heim-Theory Discord
+  community.
+
+The most recent sustained mathematical-modernisation effort is the
+2025 manuscript *A Modernized Syntrometric Logic: Foundations and
+Applications* (in `downloads/Syntrometry_Heim's.pdf`), which
+reformulates Heim's *Syntrometrie* — the philosophical and
+logical-foundational layer of his work — in modern type-theoretic and
+modal-logic terms.
+
+**Sources.**
+
+- Wikipedia: [Burkhard Heim](https://en.wikipedia.org/wiki/Burkhard_Heim)
+- Illobrand von Ludwiger, *Burkhard Heim: Das Leben eines vergessenen
+  Genies*, Scorpio Verlag, Munich/Berlin, 2010.
+- *Zur Herleitung der Heimschen Massenformel*, I. von Ludwiger and
+  K. Grüner, IGW Innsbruck, 2003 (in `downloads/pdfs/`).
+- Heim's primary works: *Elementarstrukturen der Materie* I (1980),
+  *Elementarstrukturen der Materie* II (1984), and the three-volume
+  *Synmetronik der Welt* (in `downloads/`).
+- Forschungskreis Heimsche Theorie / IGAAP e.V., heim-theory.com.
 
 ---
 
