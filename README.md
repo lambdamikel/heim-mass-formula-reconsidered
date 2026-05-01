@@ -31,8 +31,12 @@ documents, code, and reference implementations preserved and shared by:
   within factor 3, 15 to better than 12 %).
 
 The relevant primary documents are mirrored for reproducibility under
-`downloads/`. Please consult the canonical sources for any
-re-distribution.
+`downloads/`. The Heim community works in an **open-science** spirit:
+the documents and reference implementations are freely available for
+use, modification, and redistribution. A citation back to
+[heim-theory.com](https://heim-theory.com/) is appreciated — mainly
+so other readers can find the original sources and the broader
+ecosystem of Heim-theory work.
 
 ---
 
@@ -482,6 +486,29 @@ Heim's framework derives α from η, θ, π:
 This is a single calculated number that matches experiment to ~5 decimal
 digits, with no free parameters. It is the most striking single result in
 the entire framework.
+
+### Choice of physical constants
+
+The code supports two interchangeable constants modes:
+
+- `legacy_2006` (default) — values frozen at the levels used by Eli
+  Gildish's 2006 C reference. `G = 6.6742 × 10⁻¹¹`, `h = 6.6260693 × 10⁻³⁴`.
+  This preserves bit-equality with the C output and the Heim
+  numerical canon.
+- `codata_2022` — current NIST best values. `G = 6.67430(15) × 10⁻¹¹`
+  (uncertainty 22 ppm), and the SI-2019 exact values
+  `h = 6.62607015 × 10⁻³⁴` and `e = 1.602176634 × 10⁻¹⁹`.
+
+Switch with `constants.set_constants_mode("codata_2022")` before
+running calculations. Empirically, the two modes give predictions
+that agree to ~5 decimal places — for example, the proton mass is
+938.247629 MeV in `legacy_2006` and 938.245386 MeV in `codata_2022`.
+The RMS relative error over 20 measured particles is **0.2097 % in
+both modes**. The mass element μ scales as `G^(−1/6)`, so a 22 ppm
+shift in *G* translates to a 3.6 ppm shift in masses — far below the
+0.2 % accuracy of the formula itself. The Discord-suggested test
+("does accuracy improve with a better G?") therefore answers in the
+negative: the formula's accuracy bottleneck is not the input constants.
 
 ### Mass predictions
 

@@ -15,23 +15,98 @@ from __future__ import annotations
 from math import e, pi, sqrt
 
 # ---------------------------------------------------------------------------
-# Physical constants — CODATA values frozen to match the C reference.
-# (Modern values differ by < 1 ppm; we keep the 2006 numbers so output is
-#  bit-identical to the C version.)
+# Physical constants — switchable mode
 # ---------------------------------------------------------------------------
+#
+# Two modes are supported:
+#
+#   "legacy_2006"  (default)  CODATA-2006-era values, matching the
+#                             C reference implementation by Eli Gildish.
+#                             Use this for bit-identical reproduction.
+#
+#   "codata_2022"             Current CODATA values (NIST 2022 edition,
+#                             which is identical to the post-2019 SI
+#                             redefinition for h, e, c, k_B, N_A — those
+#                             are now defined exact).
+#
+# Switch modes with `set_constants_mode("codata_2022")` BEFORE constructing
+# Particle objects or running the formula. Re-importing the module is not
+# required.
+#
+# Numerical effect: masses change by O(10⁻⁵) — i.e., much smaller than
+# Heim's quoted accuracy. The two modes therefore give predictions that
+# agree to ~5 decimal places. This is the right behaviour: the formula's
+# essential content lives in geometry, not in tiny constant updates.
 
-C_LIGHT: float = 299_792_458.0          # m / s          — defined exact
-G: float = 6.6742e-11                   # N·m² / kg²     — gravitational
-ELEMENTARY_CHARGE: float = 1.60217653e-19  # C
-H_PLANCK: float = 6.6260693e-34         # J·s
-H_BAR: float = 0.5 * H_PLANCK / pi      # ℏ
-MU_0: float = 4.0e-7 * pi               # N / A²         — magnetic constant
-EPS_0: float = 1.0 / MU_0 / (C_LIGHT * C_LIGHT)  # F / m
+_CONSTANT_MODES = {
+    "legacy_2006": {
+        # Values frozen at the C-reference implementation (Eli Gildish 2006)
+        "C_LIGHT":           299_792_458.0,         # m/s, defined exact
+        "G":                 6.6742e-11,            # m³·kg⁻¹·s⁻²
+        "ELEMENTARY_CHARGE": 1.60217653e-19,        # C
+        "H_PLANCK":          6.6260693e-34,         # J·s
+        "KG_TO_MEV":         5.609588357e+29,       # kg → MeV/c²
+    },
+    "codata_2022": {
+        # Current best NIST CODATA values. Note: c, h, e, k_B, N_A are
+        # exact since the 2019 SI redefinition; G has 22 ppm uncertainty.
+        "C_LIGHT":           299_792_458.0,         # m/s, defined exact
+        "G":                 6.67430e-11,           # m³·kg⁻¹·s⁻² (uncertainty 0.00015e-11)
+        "ELEMENTARY_CHARGE": 1.602176634e-19,       # C, defined exact
+        "H_PLANCK":          6.62607015e-34,        # J·s, defined exact
+        "KG_TO_MEV":         1.0 / 1.78266192e-30,  # exact derived: 1/(MeV/c² in kg)
+    },
+}
 
-S_0: float = 1.0                        # m              — gauge length
+C_LIGHT: float
+G: float
+ELEMENTARY_CHARGE: float
+H_PLANCK: float
+H_BAR: float
+KG_TO_MEV: float
 
-# Conversion: 1 kg → MeV/c²
-KG_TO_MEV: float = 5.609588357e+29
+MU_0: float
+EPS_0: float
+
+_active_mode = "legacy_2006"
+
+
+def set_constants_mode(mode: str) -> None:
+    """
+    Set the physical-constant set used by the Heim mass and lifetime
+    formulas. Must be called before computing any particle properties
+    (or call it and then re-evaluate as needed; constants are read at
+    call time, not at import time).
+    """
+    global C_LIGHT, G, ELEMENTARY_CHARGE, H_PLANCK, H_BAR, KG_TO_MEV
+    global MU_0, EPS_0, _active_mode
+
+    if mode not in _CONSTANT_MODES:
+        raise ValueError(
+            f"Unknown constants mode: {mode!r}. "
+            f"Available: {list(_CONSTANT_MODES)}"
+        )
+    vals = _CONSTANT_MODES[mode]
+    C_LIGHT           = vals["C_LIGHT"]
+    G                 = vals["G"]
+    ELEMENTARY_CHARGE = vals["ELEMENTARY_CHARGE"]
+    H_PLANCK          = vals["H_PLANCK"]
+    KG_TO_MEV         = vals["KG_TO_MEV"]
+    H_BAR             = 0.5 * H_PLANCK / pi
+    MU_0              = 4.0e-7 * pi
+    EPS_0             = 1.0 / MU_0 / (C_LIGHT * C_LIGHT)
+    _active_mode      = mode
+
+
+def get_constants_mode() -> str:
+    """Return the currently active constants mode."""
+    return _active_mode
+
+
+# Initialise to legacy_2006 (preserves bit-equality with the C reference).
+set_constants_mode("legacy_2006")
+
+S_0: float = 1.0                        # m, gauge length
 
 
 # ---------------------------------------------------------------------------
@@ -154,6 +229,7 @@ query_miu = mass_element
 __all__ = [
     "C_LIGHT", "G", "ELEMENTARY_CHARGE", "H_PLANCK", "H_BAR",
     "MU_0", "EPS_0", "S_0", "KG_TO_MEV",
+    "set_constants_mode", "get_constants_mode",
     "eta", "theta", "alpha_plus", "alpha_minus",
     "alpha_fine_structure", "mass_element",
     "query_eta", "query_tet", "query_alp_p", "query_alp_n",
