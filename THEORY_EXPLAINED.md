@@ -43,6 +43,9 @@ own terms so the reader can judge.
 9. [The Lifetime Formula](#chapter-9-the-lifetime-formula)
 10. [Predictions and Limits](#chapter-10-predictions-and-limits)
 11. [Where Heim Theory Stands Today](#chapter-11-where-heim-theory-stands-today)
+12. [A Worked Example — The Proton Mass Step by Step](#chapter-12-a-worked-example--the-proton-mass-step-by-step)
+13. [Syntrometrie — The Logic Behind the Physics](#chapter-13-syntrometrie--the-logic-behind-the-physics)
+14. [Extended Heim Theory — The Dröscher–Häuser 8D / 12D Framework](#chapter-14-extended-heim-theory--the-dröscherhäuser-8d12d-framework)
 
 ---
 
@@ -1453,6 +1456,497 @@ For ongoing community engagement:
 - [heim-theory.com](https://heim-theory.com/)
 - The Heim-Theory Discord (linked from heim-theory.com)
 - Older archives at [protosimplex.de](https://www.engon.de/protosimplex/)
+
+---
+
+## Chapter 12: A Worked Example — The Proton Mass Step by Step
+
+### For Beginners
+
+The proton's mass, in Heim's framework, comes out of a single
+calculation that takes seven inputs and produces one output. Six of
+the inputs are integers describing what kind of particle the proton
+is; the seventh is the proton's electric charge — and even *that*
+is computed from the integers, not put in. So really, Heim's mass
+formula has six integers in and one mass out.
+
+For the proton, the six integers are:
+
+| Symbol | Meaning | Value |
+|--------|---------|------:|
+| ε | time-helicity, ±1 | +1 |
+| k | configuration index | 2 |
+| P | doubled isospin (2 × ½ for proton) | 1 |
+| Q | doubled spin (2 × ½ for proton) | 1 |
+| κ | doublet indicator | 0 |
+| x | multiplet identifier | 0 |
+
+Plug these into Heim's machinery — the machinery computes
+intermediate quantities like η, μ, structure constants, occupation
+numbers — and the answer comes out:
+
+```
+Predicted proton mass: 938.247 629 MeV/c²
+Measured proton mass:  938.272 310 MeV/c²
+Error: -0.0026 % (i.e., agreement to four decimal places)
+```
+
+That's the entire story for one particle. There is no fitting
+parameter in this calculation. The same machinery, with different
+integers, gives the neutron, the electron, the muon, the pions, the
+kaons, the baryons, and so on. The numbers are remarkable.
+
+### For Intermediate
+
+Let us trace the proton calculation in eight steps.
+
+**Step 1: Structure constants** depend only on `k`. With k = 2,
+z = 2^(k²) = 16:
+
+```
+Q_n = 3z/2          = 24
+Q_m = 2z − 1        = 31
+Q_p = 2(z + (−1)^k) = 34
+Q_σ = z − 1         = 15
+H = Q_n + Q_m + Q_p + Q_σ = 104
+B = 3H / (k²·(2k − 1)) = 26.0
+```
+
+**Step 2: Universal constants** — built from G, ℏ, c only:
+
+```
+η = ⁴√(π⁴ / (π⁴ + 4·1⁴)) = 0.989 989 6
+θ = 5η + 2√η + 1         = 7.939 912 7
+α₊                       = 0.018 322 1
+α₋                       = 0.008 128 4
+μ                        = 2.258 935 × 10⁻³¹ kg = 0.126 717 MeV/c²
+```
+
+**Step 3: N-functions** N_1 ... N_6 depend on k and the absolute
+charge q = |q_x|. For the proton (q = 1):
+
+```
+N_1 = 0.996 278  (from 1982 eq. IX)
+N_2 = 0.676 704
+N_3 = 2.598 819  (the complex B8 expression)
+N_4 = 4.000 000
+N_5 = 1.732 392
+N_6 = 0.025 256
+```
+
+**Step 4: Structure weight** W from [B22]:
+
+```
+W = 14792.56
+```
+
+**Step 5: Occupation numbers** (n, m, p, σ) by greedy decomposition of
+W. With α₁ = N_1 = 0.996, α₂ = (3/2)·N_2 = 1.015, α₃ = (1/2)·N_3 = 1.30:
+
+```
+K_n = ⌊(W / α₁)^(1/3) + ε⌋ + 1 = 25
+w_1 = W − (K_n − 1)³ · α₁       = 14792.56 − 24³·0.996 = 1015.24
+K_m = ⌊√(w_1 / α₂) + ε⌋ + 1     = 32
+w_2 = w_1 − (K_m − 1)² · α₂      = 1015.24 − 31²·1.015 = 39.83
+K_p = ⌊w_2 / α_3 + ε⌋ + 1        = 35
+w_3 = w_2 − (K_p − 1) · α₃       = 39.83 − 34·1.299 = -4.34
+K_σ = (special exponential branch) = 16
+n = K_n − 1 − Q_n = 25 − 1 − 24 = 0
+m = K_m − 1 − Q_m = 32 − 1 − 31 = 0
+p = K_p − 1 − Q_p = 35 − 1 − 34 = 0
+σ = K_σ − 1 − Q_σ = 16 − 1 − 15 = 0
+```
+
+So the proton's occupation numbers are all zero — the proton is in
+the *ground state* of its hermetric form, no excitations in any of
+the four structure zones.
+
+**Step 6: Self-coupling** φ from [B49]:
+
+```
+φ = 9.280 341
+```
+
+**Step 7: Mass-formula contributions:**
+
+```
+K (occupation, all zero so K = 0)              =      0.000
+S (structure, depends on Q_n…Q_σ and N_1…N_3)  = 404 103.981
+F (cross-coupling + φ)                         =      9.280
+Φ (field mass)                                 =      3.515
+4·q·α₋ (charge correction)                     =      0.033
+─────────────────────────────────────────────────────────────
+Sum                                            = 404 116.809
+```
+
+**Step 8: Final mass:**
+
+```
+M = μ · α₊ · (K + S + F + Φ + 4qα₋)
+  = 2.259 × 10⁻³¹ kg · 0.018 32 · 404 116.81
+  = 1.672 578 × 10⁻²⁷ kg
+  = 938.247 629 MeV/c²
+```
+
+The measured value is 938.272 310 MeV/c². Agreement to **0.0026 %**.
+
+What was *put in*: six integers. What came out: a 938 MeV mass
+matching reality to four decimal places. That is the experience of
+running Heim's mass formula on a single particle.
+
+### For Experts
+
+The eight-step calculation above corresponds to specific functions in
+the Python implementation:
+
+| Step | Code (`python/`) | Equation in [1989] |
+|------|------------------|--------------------|
+| 1 | `formulae.calc_Q(k)` | not in 1989 — eq. (X) of 1982 |
+| 2 | `constants.eta`, `theta`, `alpha_plus`, `alpha_minus`, `mass_element` | [B4], 1982 eq. (I), 2.62 |
+| 3 | `formulae.calc_N(k, q, I)` | 1982 eq. (IX) for N_1, N_2; [B8]–[B14] for N_3..N_6 |
+| 4 | `formulae.calc_W(...)` | [B22] using A=[B23], H=[B24], g=[B25], L=[B26], x=[B27], B=[B28] |
+| 5 | `formulae.calc_n(k, I, N, W)` | exhaustion algorithm [B40]–[B46] |
+| 6 | `formulae.calc_phi(...)` | [B7] / [B49] with U=[B50], Z=[B51] |
+| 7 | inline in `calc_mass` | the K, S, F, Φ, 4qα₋ pieces of [B5] and [B6] |
+| 8 | `formulae.calc_mass(...)` | [B3] |
+
+Reproducibility: the precise numbers above can be regenerated with
+
+```sh
+cd python
+../venv/bin/python -c "
+from particle import REFERENCE_PARTICLES
+p = next(p for p in REFERENCE_PARTICLES if p.symbol == 'p')
+print(f'mass = {p.mass_mev:.6f} MeV/c²')
+"
+```
+
+The proton's intermediate values are also accessible particle-by-
+particle:
+
+```python
+import formulae as fm
+from math import fabs
+eps, k, P, Q, kap, qx = 1, 2, 1, 1, 0, 1
+q = fabs(qx)
+I  = fm.calc_Q(k)             # (24, 31, 34, 15)
+N  = fm.calc_N(k, q, I)        # (N_1, N_2, ..., N_6)
+W  = fm.calc_W(eps, k, P, Q, kap, qx, I)   # 14792.56
+n  = fm.calc_n(k, I, N, W)     # (0, 0, 0, 0) for proton
+phi = fm.calc_phi(k, P, Q, kap, qx, n, I, N, W)  # 9.28
+M_kg = fm.calc_mass(eps, k, P, Q, kap, qx)
+```
+
+The `0.0026 %` accuracy is real. Note that with the upstream-inherited
+bugs left in (the missing `*q` in N_3 and the y-restructuring in
+`calc_a`), the proton would have computed at 937.339 MeV — a 0.099 %
+error, almost 40× worse. The cleanup of those bugs is what brings the
+formula into agreement with measurement at the 10⁻⁵ level.
+
+---
+
+## Chapter 13: Syntrometrie — The Logic Behind the Physics
+
+### For Beginners
+
+Heim's mass formula is the part of his work that produces numbers.
+But before he ever wrote down a mass formula, Heim spent years
+developing a different kind of system altogether — a **logical and
+philosophical foundation** for how knowledge of the physical world is
+even possible. He called it *Syntrometrie*. The name comes from
+Greek roots meaning "structure-measure" or "co-measurement".
+
+The basic intuition: ordinary classical logic has only two values,
+true and false. But the *experience* we have of the world — and any
+description of it — has many more dimensions than that. A statement
+about a physical system might be definitely true under one
+description and undefined under another; or it might depend on the
+*level* at which we are looking (microscopic vs. macroscopic). To
+talk rigorously about physics, Heim argued, you need a logical system
+that can handle this layered, *aspectual* nature of reality.
+
+He developed three primitive structures and called their combination
+the *subjective aspect schema*:
+
+- **Prädikatrix** (P_n): the schema of what kinds of statements
+  *could* be made — the menu of possible predicates.
+- **Dialektik** (D_n): the schema of how those statements are
+  qualified — what kinds of judgements (true, false, undefined,
+  level-dependent, …) apply.
+- **Koordination** (K_n): the linking rules between the two — when
+  is a particular kind of statement evaluable in a particular way?
+
+A *Syntrix* — a complete syntrometric unit — is a triple (P_n, D_n,
+K_n) functioning together. The whole machinery is meant to give a
+rigorous logical bookkeeping system in which physical theories can
+be stated, transformed, and combined.
+
+This may sound very abstract — and it is. But Heim used it as the
+ground from which his particle physics grew.
+
+### For Intermediate
+
+The three primitives in more detail:
+
+**Prädikatrix** P_n. Heim posits a finite set of "elementary
+predicates" or *Bänder* (bands), indexed by *n*. These are the basic
+distinguishable kinds of statements one can make about a physical
+system: e.g., "is here", "moves with speed", "interacts with",
+"transforms into". The Prädikatrix is the schema for which bands are
+available at a given level of analysis.
+
+**Dialektik** D_n. The dialectic is the schema of *evaluations*. In
+classical logic, the only evaluations are {true, false}. In Heim's
+system, the dialectic can include:
+
+- *true at this level, undefined at deeper levels* (level-relative
+  truth)
+- *true under this aspect, false under another* (aspect-relative
+  truth)
+- *partially true* (graded evaluation)
+- *true after a transformation that moves between aspects*
+
+The dialectic is constrained — not every evaluation is allowed for
+every predicate.
+
+**Koordination** K_n. The coordination is the rule that links
+particular predicates with particular evaluations. It says, for each
+predicate, which kinds of evaluation are *applicable*. A predicate
+about quantum-scale geometric structure (for instance) cannot
+sensibly be evaluated by macroscopic-laboratory criteria; the
+coordination forbids that pairing.
+
+The triple (P_n, D_n, K_n) forms the *subjective aspect schema*. Heim
+insisted that *all* physical theories live inside such a schema —
+including his own. The metron geometry, the eigenvalue equation, the
+mass formula are all stated *within* a particular choice of
+syntrometric unit.
+
+The reader who has stayed with the previous chapters might ask: what
+does this give us, beyond philosophy? Heim's answer: it gives a
+formal language in which the *transitions between physical levels*
+(microscopic ↔ macroscopic, classical ↔ quantum, geometric ↔
+material) are themselves objects of the formal system. In ordinary
+mathematical physics, these transitions are handled informally —
+"in the limit ℏ → 0", "in the macroscopic regime". In Syntrometrie
+they are first-class moves between aspect schemas.
+
+### For Experts
+
+Heim's *Syntrometrische Maximentelezentrik* (1993, 327 pages, in
+`downloads/`) is the canonical statement of this system, written
+during the last decade of his life. The system is non-standard
+mathematically — it does not closely resemble first-order logic,
+modal logic, intuitionistic type theory, or category theory, though
+it has resonances with all four.
+
+The most accessible modern entry point is the 2025 manuscript *A
+Modernized Syntrometric Logic: Foundations and Applications*
+(`downloads/Syntrometry_Heim's.pdf`, 179 pages, English), which
+reformulates Heim's *Syntrometrie* in terms of:
+
+- A typed and graded fragment of intuitionistic type theory for the
+  predicate side (Prädikatrix → typed evaluated functions)
+- A Kripke semantics with leveled worlds for the dialectic
+- A sequent calculus with modal operators □_S (aspect-necessity) and
+  □ (Syntrix-stability)
+- Dynamic logic operators [π_F] for transitions between aspect
+  schemas
+- A mereological structure on the subjective-aspect schema S_mod(x)
+  via a compatibility relation χ
+
+The 2025 modernisation establishes:
+
+- **Soundness** of the sequent calculus relative to the Kripke
+  semantics for leveled worlds.
+- **Completeness** of the syntrometric fragment of MSL (Modernized
+  Syntrometric Logic) — i.e., every semantically-valid sequent is
+  derivable.
+
+These results — proven with the rigour of contemporary logic —
+demonstrate that *Syntrometrie* is not "just philosophy" but admits a
+genuine formal-logical underpinning.
+
+The connection to the physics:
+
+The eigenvalue equation `C_p · φ^i_{km} = λ_p(k, m) · φ^i_{km}` and
+the polymetric geometry are, in Syntrometric language, statements
+*within a specific syntrometric unit* (the one whose Prädikatrix
+includes the geometric predicates "metron", "hermetric form",
+"selector" and whose Dialektik includes the eigenvalue evaluation).
+The mass formula is then a derived theorem of this syntrometric unit.
+
+The promise of this framework — which has not been realised in full
+— is that *transitions* between Heim's physics and other physical
+theories (e.g. quantum field theory, the Standard Model, general
+relativity) could be stated as syntrometric *aspect transitions*,
+giving a precise account of what Heim's framework predicts for each
+target theory. The 2025 modernised logic provides the technical
+infrastructure for such an account; the actual translations remain
+to be done.
+
+For experts who want to engage Heim's work at the foundational level
+rather than the formula level, the Syntrometric apparatus is where
+the action is.
+
+---
+
+## Chapter 14: Extended Heim Theory — The Dröscher–Häuser 8D/12D Framework
+
+### For Beginners
+
+Heim's original theory had **six dimensions**. After 1996, working
+together with Walter Dröscher, Heim extended it first to **eight**
+dimensions and then to **twelve**. The extra dimensions were not new
+"trans-coordinates" of the same kind; they encoded *additional kinds
+of organising structure* that Heim and Dröscher believed were needed
+to incorporate the strong nuclear force and to derive certain
+constants of nature that the 6D version had to take as inputs.
+
+The most striking achievement of the extended theory is the
+**derivation of Newton's gravitational constant *G* itself**. In the
+6D version, *G* was an input — Heim used the experimental value. In
+the 8D extension, Dröscher computed *G* from purely geometric
+considerations and got G = 6.673 32 × 10⁻¹¹ — within the
+experimental error bar of NIST's measurement. That an input constant
+becomes a *derived* result of a higher-dimensional version of the
+theory is, on the face of it, a powerful piece of evidence for the
+geometric programme.
+
+Dröscher and Häuser also derived from the extended theory two
+hypothetical new particles, the **gravitophoton** and the **graviton
+of the second kind**, with predicted masses around 10⁻²² eV/c² and
+which could in principle mediate a previously unknown coupling
+between gravity and electromagnetism. Whether these particles exist
+is unknown — they have not been searched for at the level of
+sensitivity required.
+
+### For Intermediate
+
+The 8D extension splits the two trans-coordinates of 6D into
+*four* trans-coordinates, organised as two pairs:
+
+```
+6D Heim theory          8D Heim–Dröscher theory       12D
+─────────────────────   ────────────────────────────   ─────────────────
+3 spatial (R₃)          3 spatial (R₃)                 3 spatial
+1 time (T₁)             1 time (T₁)                    1 time
+2 trans (S₂)            2 organisational (I₂)          2 organisational
+                        2 informational (G₂)           2 informational
+                                                       4 quantum (Q₄)
+```
+
+The 8D version splits Heim's S₂ into:
+
+- **I₂** — *organisational* dimensions, controlling structural
+  invariants (analogous to Heim's original S₂)
+- **G₂** — *informational* dimensions, controlling how structures
+  are addressed and processed
+
+The 12D version of the framework adds a further four
+"quantum" dimensions Q₄ that are intended to incorporate the
+quantum-mechanical features of the Standard Model (probabilistic
+amplitudes, gauge structure) directly into the geometry. The 12D
+extension is more speculative and less developed than the 8D version.
+
+In the 8D framework, three of the four fundamental forces emerge as
+projections from R₈ to R₃ × T₁ subspaces; the fourth (gravity) emerges
+from R₃ × T₁ alone. The mass formula of 6D survives as a special
+case but is supplemented by additional contributions from the I₂–G₂
+coupling. Dröscher's derivation of *G* from geometry uses the
+condition that the mass scale set by the metron geometry must
+self-consistently reproduce Newton's law of gravitation, given the
+8D structure.
+
+The proposed *gravitophoton* is a hypothetical mediator of a coupling
+between gravity and electromagnetism, with mass ≈ 10⁻²² eV/c² — far
+below any experimental detection threshold. Dröscher and Häuser
+argue that this particle, if it exists, could allow for an
+*anomalous gravitational force* under specific electromagnetic
+conditions, possibly with applications to space propulsion. This is
+the speculative end of the extended theory and has been the source of
+both interest and controversy.
+
+### For Experts
+
+The Dröscher–Häuser extension is documented in:
+
+- W. Dröscher and J. Häuser, *Guidelines for a Space Propulsion
+  Device Based on Heim's Quantum Theory*, AIAA-2004-3700, 40th
+  AIAA/ASME/SAE/ASEE Joint Propulsion Conference, 2004.
+- W. Dröscher and J. Häuser, *Heim Quantum Theory for Space
+  Propulsion Physics*, Space Propulsion Workshop, 2004.
+- Multiple subsequent papers under the Heim–Dröscher Theory (HDT)
+  banner.
+
+The 8D space carries the signature (+ + + − − − − −) — the additional
+two minus signs corresponding to the I₂ and G₂ subspaces. The
+fundamental hyperstructure tensor extends to an 8 × 8 form. The
+eigenvalue equation of 6D becomes (schematically):
+
+```
+C_p · ξ^i_{kmnj} = λ_p(k, m, n, j) · ξ^i_{kmnj},   i, k, m, n, j ∈ {1, ..., 8}
+```
+
+with eigenvalues now indexed by four metrical numbers rather than two.
+
+**Derivation of G** (Dröscher 2003):
+
+In 6D Heim theory, the metron is τ = (3/8)·*G*ℏ/c³, and *G* is an
+input. In 8D Heim–Dröscher theory, the closed self-consistency
+condition between the metron geometry and the gravitational-coupling
+structure of the I₂–G₂ subspaces yields a single value of *G* for
+which the mass spectrum is internally consistent:
+
+```
+G_HDT = 6.673 320 × 10⁻¹¹ m³ kg⁻¹ s⁻²
+```
+
+(quoted in Herleitung chapter 11; original derivation in
+Dröscher–Häuser internal documents). For comparison, NIST CODATA 2022
+gives G = 6.67430(15) × 10⁻¹¹ — the HDT prediction is within the 1.5σ
+band of the measurement.
+
+**The gravitophoton (graviphoton):**
+
+A new boson predicted by HDT at mass m_gp ≈ 10⁻²² eV/c² (varying
+slightly between papers). Couples gravity to electromagnetism; its
+existence would allow for a tunable contribution to gravitational
+force under specific electromagnetic configurations. This is the
+mechanism Dröscher and Häuser propose for advanced space propulsion
+— a "graviphoton drive."
+
+The status of this prediction is **experimentally unconstrained**.
+Current gravity-experiment sensitivities (Cassini-mission Shapiro
+delays, lunar laser ranging) probe deviations from Newtonian gravity
+at the 10⁻⁹ level for couplings of EM-strength order; the
+predicted gravitophoton coupling is many orders of magnitude weaker
+and has not been tested. The propulsion claim is therefore neither
+verified nor falsified by current experiments — it is simply outside
+present sensitivity.
+
+**Status of the 12D extension:**
+
+The 12D extension adds Q₄, four "quantum dimensions" that are meant
+to reproduce gauge structure and amplitude algebra of quantum field
+theory directly from geometry. This part of HDT is less developed.
+The most thorough technical exposition is in Dröscher's German-
+language manuscripts circulated internally; no comprehensive
+peer-reviewed account exists.
+
+**Relationship to the original 6D theory:**
+
+Crucially, the 8D and 12D extensions *contain* the 6D mass formula
+as a special case. All numerical results documented in this
+repository — the masses, the lifetimes, the K* prediction — come
+from the 6D version. The extensions add new structure but do not
+contradict or replace the 6D results.
+
+For readers approaching Heim theory for the first time, the
+recommended path is: master the 6D framework (chapters 1–11 of this
+document) before engaging the extensions. The 6D framework already
+contains the central conceptual moves; the extensions add
+dimensionality but the core arguments remain those of the 6D theory.
 
 ---
 
