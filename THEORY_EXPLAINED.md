@@ -469,9 +469,9 @@ than energetic — character.
 
 Coordinate groupings:
 ```
-s₃ = (x₁, x₂, x₃)              # spatial unit
-s₂ = (x₄)                       # time unit
-s₁ = (x₅, x₆)                   # trans unit
+s₃ = (x₁, x₂, x₃)  # spatial unit
+s₂ = (x₄)          # time unit
+s₁ = (x₅, x₆)      # trans unit
 ```
 
 A *hermetric form* is a non-trivial coupling of these subspaces.
