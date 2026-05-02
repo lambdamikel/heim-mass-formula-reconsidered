@@ -115,18 +115,25 @@ S_0: float = 1.0                        # m, gauge length
 
 def eta(q: float, k: int) -> float:
     """
-    η(q, k) — auxiliary function from 1982 eq. (I).
+    η(q, k) — auxiliary function derived in chapter 7 of "Zur Herleitung
+    der Heimschen Massenformel" (von Ludwiger & Grüner, IGW Innsbruck 2003),
+    eqs. 7.47 → 7.51, from a metron-quantised geometry plus the
+    renormalisation ε'₀± = ε₀±·⁴√(1 + k/4) of the elementary charge field
+    over the L = 4 effective dimensions of charge condensation.
 
         η(q, k) = ⁴√(π⁴ / (π⁴ + (4 + k)·q⁴))
 
-    Properties:
+    The (4 + k) factor falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴, where L = 4
+    is the number of dimensions in R₃ + T₁ that participate in the
+    charge-condensation calculation. The quartic q-dependence comes from
+    the q² coupling appearing twice (once in U_max, once in the field-
+    energy ratio) — see [B44]–[B48] of the 1989 reformulation.
+
+    Numerical properties:
       • η(0, k) = 1                           (zero-charge limit)
       • η(1, 0) ≈ 0.98999  (the canonical "η")
       • η(1, 1) ≈ 0.98770
       • η(1, 2) ≈ 0.98519
-
-    The (4 + k) coefficient and the quartic q-dependence are not derived
-    in any publicly available Heim manuscript — they appear as a definition.
     """
     return (pi**4 / (pi**4 + (4.0 + k) * q**4)) ** 0.25
 

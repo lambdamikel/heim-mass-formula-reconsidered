@@ -56,7 +56,6 @@ There is no automated test suite yet — adding one (pytest snapshot of the
 
 ```
 README.md                          Public-facing report (English)
-REPORT.de.md                       Companion narrative (German)
 LICENSE                            Non-commercial; inherits Eli Gildish's terms
 
 downloads/c_impl/                  Upstream C, untouched

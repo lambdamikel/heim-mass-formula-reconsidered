@@ -76,9 +76,13 @@
  *                   • η(1, 1) ≈ 0.98770
  *                   • η(1, 2) ≈ 0.98519
  *
- *                 The (4 + k) coefficient — and the *quartic* dependence on
- *                 q — are not derived in any publicly-available Heim
- *                 manuscript. They appear as a definition.
+ *                 The (4 + k) coefficient and the *quartic* q-dependence
+ *                 are derived in chapter 7 of "Zur Herleitung der Heimschen
+ *                 Massenformel" (eqs. 7.47 → 7.51), from a metron-quantised
+ *                 geometry plus the renormalisation ε'₀± = ε₀±·⁴√(1+k/4) of
+ *                 the elementary charge field. The (4+k) factor falls out
+ *                 of L·Δε₀±⁴ = 4·Δε₀±⁴, with L = 4 the dimensions
+ *                 participating in charge condensation.
  *
  * Arguments     : real      - the amount of electric charge quantum value
  *                 int       - the configuration number ( metrical index )

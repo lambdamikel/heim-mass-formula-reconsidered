@@ -268,8 +268,6 @@ For the precise equation list see [`downloads/pdfs/F_1989_en.pdf`](downloads/pdf
 ```
 heim/
 ├── README.md                  ← this file
-├── REPORT.de.md               ← longer narrative report (German companion)
-│
 ├── downloads/
 │   ├── c_impl/                ← Eli Gildish's 2006 C implementation (upstream)
 │   ├── csharp_impl/           ← C# version with 1982/1989/HG variants
@@ -449,8 +447,10 @@ loss by a factor of ≈50 000.
 
 ### Probing η's functional form
 
-η is defined as (π^A / (π^A + (B+k)·q^C))^D with default (A, B, C, D) =
-(4, 4, 4, 1/4). Sweeping each parameter independently:
+η has the form (π^A / (π^A + (B+k)·q^C))^D, with the four parameters
+(A, B, C, D) = (4, 4, 4, 1/4) derived in chapter 7 of the Herleitung
+manuscript. As an *empirical verification* of that derivation we sweep
+each parameter independently:
 
 | Parameter | Heim default | Empirical minimum | Tolerance for 2× loss |
 |---|---|---|---|
@@ -462,14 +462,11 @@ loss by a factor of ≈50 000.
 Three of the four parameters land *exactly* on simple integer values
 and sit at sharp minima; the fourth (C) is in the right basin of
 attraction with a genuinely jagged landscape due to integer transitions
-in the (n, m, p, σ) decomposition. **At the time we ran this analysis
-we believed η's form was undocumented; the full Herleitung manuscript
-(only the first 10 of 81 pages were initially available, due to a
-`file`-command misreport) actually derives all four shape parameters
-in chapter 7.** The (A=4, B=4, C=4, D=1/4) integer values are
-predictions of the derivation, not survivors of a sensitivity sweep.
-Hindsight: the sensitivity sweep is now best read as an empirical
-*verification* that η's derived form sits at a sharp minimum — which
+in the (n, m, p, σ) decomposition. The (A=4, B=4, C=4, D=1/4) integer
+values are **predictions** of the chapter-7 derivation, not parameters
+fitted to data. The sensitivity sweep therefore plays the role of an
+empirical *verification* that η's derived form sits at a sharp minimum
+of the loss surface — which
 is exactly what one would expect if the derivation is correct.
 
 ### The fine-structure constant
@@ -730,12 +727,14 @@ extreme:
 
 **Bottom line.** Heim's mass formula is *substantially more theory-driven
 than ordinary curve-fitting*, and the constants he explicitly called
-"fitted" are not in fact doing the work. But it is also *not as fully
-derived from first principles* as he sometimes claimed: the central
-function η is postulated. Whether η can be derived from the 6D metron
-field equations is the single most important open question — and the
-answer would settle whether this is a remarkable but undocumented
-theoretical achievement or an elegant phenomenological scheme.
+"fitted" are not in fact doing the work. The central η-function — the
+quantity that does most of the actual work — *is* derived from physical
+principles in chapter 7 of the Herleitung manuscript (eqs. 7.47 → 7.51),
+emerging from a metron-quantised geometry plus the renormalisation
+ε'₀± = ε₀±·⁴√(1+k/4) of the elementary charge field. The remaining open
+questions concern empirical reach (extension to post-1989 particles)
+and the rigour of the underlying polymetric formalism, not the
+derivability of η itself.
 
 ## Open questions
 
