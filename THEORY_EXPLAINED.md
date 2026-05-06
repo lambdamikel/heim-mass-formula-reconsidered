@@ -1255,27 +1255,22 @@ masses) very accurately, and falls silent on a *wider* problem
 The empirical reach of Heim's framework, as established in this
 investigation:
 
-```
-                       formula's   measured
-particle               prediction  value      agreement   notes
-─────────────────────────────────────────────────────────────────────
-electron        e⁻       0.5069     0.5110      99.2 %
-muon            μ⁻     105.652    105.658      99.9 %
-pion ±          π±     139.560    139.570      99.99 %
-kaon +          K⁺     493.696    493.677      99.99 %
-kaon (long)     K_L    549. (?)   549. (?)      ✓ (if K_L)
-Λ baryon        Λ      1115.57    1115.68     99.99 %
-Σ⁺ baryon       Σ⁺     1189.33    1189.37     99.99 %
-proton          p       938.25     938.27     99.99 %
-neutron         n       939.55     939.57     99.99 %
-…                                           …
-K*⁰ meson       K*⁰      867.6      891.7     97.3 %      NEW prediction
-…
-Higgs H⁰        125 GeV   no candidate         outside scope
-W± gauge bosons 80 GeV    no candidate         outside scope
-Z⁰ gauge boson  91 GeV    no candidate         outside scope
-J/ψ, D, B, Λ_c …          no candidate         outside scope (heavy flavor)
-```
+| Particle | Symbol | Predicted (MeV) | Measured (MeV) | Agreement | Notes |
+|---|---|---:|---:|---:|---|
+| electron | e⁻ | 0.5069 | 0.5110 | 99.2 % | |
+| muon | μ⁻ | 105.652 | 105.658 | 99.99 % | |
+| charged pion | π± | 139.560 | 139.570 | 99.99 % | |
+| charged kaon | K⁺ | 493.696 | 493.677 | 99.99 % | |
+| neutral kaon | K_L | ~549 | ~549 | ✓ | identified as K_L |
+| Λ baryon | Λ | 1 115.57 | 1 115.68 | 99.99 % | |
+| Σ⁺ baryon | Σ⁺ | 1 189.33 | 1 189.37 | 99.99 % | |
+| proton | p | 938.25 | 938.27 | 99.99 % | |
+| neutron | n | 939.55 | 939.57 | 99.99 % | |
+| K*⁰ meson | K*⁰ | 867.6 | 891.7 | 97.3 % | **new** match (not in Heim's list) |
+| Higgs H⁰ | H⁰ | (none) | 125 250 | — | outside scope (electroweak) |
+| W± boson | W± | (none) | 80 369 | — | outside scope (electroweak) |
+| Z⁰ boson | Z⁰ | (none) | 91 188 | — | outside scope (electroweak) |
+| J/ψ, D, B, Λ_c … | — | (none) | — | — | outside scope (heavy flavour) |
 
 The Higgs case is structurally interesting. The (P=0, Q=0, q=0)
 neutral spin-0 isospin-0 sector of Heim's lattice has the following
@@ -1544,17 +1539,18 @@ W = 14792.56
 W. With α₁ = N_1 = 0.996, α₂ = (3/2)·N_2 = 1.015, α₃ = (1/2)·N_3 = 1.30:
 
 ```
-K_n = ⌊(W / α₁)^(1/3) + ε⌋ + 1 = 25
-w_1 = W − (K_n − 1)³ · α₁       = 14792.56 − 24³·0.996 = 1015.24
-K_m = ⌊√(w_1 / α₂) + ε⌋ + 1     = 32
-w_2 = w_1 − (K_m − 1)² · α₂      = 1015.24 − 31²·1.015 = 39.83
-K_p = ⌊w_2 / α_3 + ε⌋ + 1        = 35
-w_3 = w_2 − (K_p − 1) · α₃       = 39.83 − 34·1.299 = -4.34
+K_n = ⌊(W / α₁)^(1/3) + ε⌋ + 1     = 25
+w_1 = W − (K_n − 1)³ · α₁          = 1015.24
+K_m = ⌊√(w_1 / α₂) + ε⌋ + 1        = 32
+w_2 = w_1 − (K_m − 1)² · α₂        = 39.83
+K_p = ⌊w_2 / α₃ + ε⌋ + 1           = 35
+w_3 = w_2 − (K_p − 1) · α₃         = −4.34
 K_σ = (special exponential branch) = 16
-n = K_n − 1 − Q_n = 25 − 1 − 24 = 0
-m = K_m − 1 − Q_m = 32 − 1 − 31 = 0
-p = K_p − 1 − Q_p = 35 − 1 − 34 = 0
-σ = K_σ − 1 − Q_σ = 16 − 1 − 15 = 0
+
+n = K_n − 1 − Q_n  =  25 − 1 − 24  = 0
+m = K_m − 1 − Q_m  =  32 − 1 − 31  = 0
+p = K_p − 1 − Q_p  =  35 − 1 − 34  = 0
+σ = K_σ − 1 − Q_σ  =  16 − 1 − 15  = 0
 ```
 
 So the proton's occupation numbers are all zero — the proton is in
@@ -1627,13 +1623,14 @@ particle:
 ```python
 import formulae as fm
 from math import fabs
+
 eps, k, P, Q, kap, qx = 1, 2, 1, 1, 0, 1
-q = fabs(qx)
-I  = fm.calc_Q(k)             # (24, 31, 34, 15)
-N  = fm.calc_N(k, q, I)        # (N_1, N_2, ..., N_6)
-W  = fm.calc_W(eps, k, P, Q, kap, qx, I)   # 14792.56
-n  = fm.calc_n(k, I, N, W)     # (0, 0, 0, 0) for proton
-phi = fm.calc_phi(k, P, Q, kap, qx, n, I, N, W)  # 9.28
+q    = fabs(qx)
+I    = fm.calc_Q(k)                                # (24, 31, 34, 15)
+N    = fm.calc_N(k, q, I)                          # (N_1, ..., N_6)
+W    = fm.calc_W(eps, k, P, Q, kap, qx, I)         # 14792.56
+n    = fm.calc_n(k, I, N, W)                       # (0, 0, 0, 0) for proton
+phi  = fm.calc_phi(k, P, Q, kap, qx, n, I, N, W)   # 9.28
 M_kg = fm.calc_mass(eps, k, P, Q, kap, qx)
 ```
 
