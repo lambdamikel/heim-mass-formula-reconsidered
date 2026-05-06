@@ -4,6 +4,14 @@
 formula: how does it work, where does its accuracy actually come from, and
 how much of it is genuinely theory-driven?*
 
+> 📖 **New to Heim theory?** Read **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)**
+> first — a 15-chapter, three-level (Beginner / Intermediate / Expert)
+> walk-through of the framework: Burkhard Heim's biography, the 6D
+> geometry, the metron, the mass formula step by step, a worked proton
+> example, Syntrometrie, and the Extended (8D / 12D) Heim–Dröscher
+> theory. The README that follows is the analysis report; the
+> companion document is the conceptual guide.
+
 ---
 
 ## Acknowledgements
@@ -215,6 +223,9 @@ Caveats on this assessment:
 
 ## Contents
 
+- **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)** — companion document:
+  conceptual three-level walk-through of Heim theory (start here if
+  you are new to the framework)
 - [Four headline findings](#four-headline-findings) — top-line results
 - [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
