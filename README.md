@@ -411,8 +411,16 @@ This matches the literature.
 The 21st particle in Heim's reference list — `e₀`, the *neutral electron* —
 is not in this average because it has no measured mass: it is **Heim's
 prediction of a previously unknown neutral lepton**, with calculated mass
-0.50627 MeV (about 0.94 % below the electron). To date no such particle
-has been observed; it remains a standing prediction of the framework.
+**0.5162 MeV** (about 1.0 % above the measured electron mass) and Heim's
+lifetime formula declaring it **stable**. To date no such particle has
+been observed; it remains a standing prediction of the framework. See
+[`python/e0_search.py`](python/e0_search.py) for a detailed comparison
+against precision-β-decay, supernova-cooling, BBN and cosmological-relic
+bounds: a charged-current-active sterile-neutrino reading of e₀ is
+excluded by ≥ 7 orders of magnitude, but a Heim-internal / purely
+gravitationally coupled reading is consistent with all current
+experimental data — at the cost of being unfalsifiable from outside
+the framework until Heim's coupling structure of e₀ is specified.
 
 ### The "fitted" constants
 
