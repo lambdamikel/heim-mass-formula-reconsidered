@@ -114,6 +114,19 @@ does not accept it. This repository:
 > 0.6 % tolerance is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
 > The central pre-revision objection — "η is just defined" — is resolved.
 
+> **5. The same η drives Heim's *magnetic-moment* formula.** Synmetronik
+> Band III (1980), Eq. 186, gives the electron magnetic moment as
+> μ_e/μ_B = (e_w/e_±)·(1 − e·K/(6·√η)) with the *same* η-function that
+> appears in the mass formula and in the α-derivation. Reverse-engineering
+> the internal ratio K = m_s/m_r from the measured (g-2)/2 anomaly gives
+> K ≈ 2.547·10⁻³, which agrees with the QED-Schwinger expression
+> 6·√η·α/(2π·e) = 2.551·10⁻³ to **0.15 %**. So Heim's structural formula
+> is *consistent* with leading-order QED for the electron g-factor.
+> Caveat: a true *prediction* (K computed from first principles via
+> Heim's β_s·β_d apparatus) requires the protosimplex/synmetronic side
+> of the framework that is not in our Python port. See
+> [`python/magnetic_moment.py`](python/magnetic_moment.py).
+
 **Underlying analytical observation.** Heim explicitly identified three
 constants (⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We find
 these constants are essentially **inert** — scaling any of them by a
@@ -237,6 +250,7 @@ Caveats on this assessment:
   conceptual three-level walk-through of Heim theory (start here if
   you are new to the framework)
 - [Four headline findings](#four-headline-findings) — top-line results
+  (now five — magnetic moment added)
 - [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
 - [Repository layout](#repository-layout)
