@@ -153,34 +153,63 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check |
-|---|---:|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | **95 – 99 %** |
-| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | **20 – 30 %** |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | **70 – 85 %** |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | **2 – 7 %** |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role + ρ/ω/φ gap |
+|---|---:|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | **97 – 99 %** ↑ |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | **85 – 95 %** ↑ |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | **18 – 28 %** ↓ slightly |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | **75 – 88 %** ↑ |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | **1 – 5 %** ↓ |
 
-The Excel-cross-check column is what changed: with the two upstream
-bugs corrected, **15 lifetimes match measurement to better than 12 %**
-across 11 orders of magnitude, **AND** mass predictions also improved
-by 5–67× (proton/neutron/Λ now match to <0.01 %). A theory that gives
-both rest masses and weak-decay lifetimes for ~15 particles correct to
-1–10 %, derived from G, ℏ, c plus integer quantum numbers, with the
-underlying η-function explicitly derived from a metron geometry — is
-extremely hard to dismiss as numerology.
+The most recent column is driven by two findings pulling in
+**opposite** directions:
+
+- **Up for "captures something real"**: the same η-function now
+  appears in *three structurally independent* calculations — the
+  mass formula, the fine-structure constant α, and Heim's electron
+  magnetic-moment Eq. 186 from Synmetronik III (1980). Reverse-
+  engineering the unknown internal ratio K = m_s/m_r from the
+  measured (g-2)/2 anomaly produces K ≈ 2.547·10⁻³, which agrees
+  with the QED-Schwinger expression 6·√η·α/(2π·e) = 2.551·10⁻³ to
+  **0.15 %**. Heim wrote Eq. 186 in 1980; nobody could test it
+  this way until QED computations and η-from-derivation lined up
+  decades later. A non-trivial structural prediction reproducing
+  leading-order QED is genuinely hard to dismiss as numerology.
+  In addition, the excited-state scan found a second post-list
+  match — Λ(1690) at 1666 MeV (-1.4 %) at the correct (P, Q, q)
+  — joining K*(892) as a now-second example of Heim-formula
+  reach beyond his original 16-21.
+
+- **Down for "complete unified theory"**: the same excited-state
+  scan revealed a structural gap. The light vector mesons ρ(770),
+  ω(782), and φ(1020) have *no* Heim candidate within ±10 % at
+  the correct (P=2/0/0, Q=2, q). The framework doesn't produce
+  these particles in the right sector at all — it isn't off by a
+  few percent on their masses, it lacks the states entirely.
+  Either Heim treats them as non-stationary (their hadronic widths
+  Γ ~ 5-150 MeV are orders of magnitude larger than those of the
+  pseudoscalar mesons he *does* include — π/K/η, Γ < 10 eV) or
+  the framework is genuinely silent on vector mesons. Combined
+  with the still-unspecified couplings of e₀ (Heim's standing
+  neutral-electron prediction — see `python/e0_search.py`), the
+  framework remains under-determined in ways that prevent
+  declaring it a complete unified theory.
+
+In short: structural coherence is the stronger story; complete
+predictive coverage is the weaker one. Both are real, and they
+pull in opposite directions.
 
 The post-1989 test (`python/higgs_search.py`) gives a partial answer
 on the second uncertainty: the framework correctly predicts the K*⁰
-meson (892 MeV) at 867 MeV (2.7 % off) with the right quantum numbers,
-which is a genuine new match. But it does not predict the Higgs, W±,
-Z⁰, J/ψ, or any of the heavy-flavour mesons and baryons. The Higgs
-specifically falls in a structural gap of Heim's quantum-number
-lattice — Heim doesn't have a 125 GeV scalar at all. This is best read
-as a **scope** finding rather than a falsification: Heim's framework
-treats stable metron configurations of light flavours; field
-excitations (Higgs) and quark-content heavy states (charm, bottom,
-top hadrons) are outside its scope by construction.
+meson (892 MeV) at 867 MeV (2.7 % off) with the right quantum numbers
+— and now also Λ(1690) at -1.4 % — but does not predict the Higgs,
+W±, Z⁰, J/ψ, or any of the heavy-flavour mesons and baryons. The
+Higgs specifically falls in a structural gap of Heim's quantum-number
+lattice — Heim doesn't have a 125 GeV scalar at all. This is best
+read as a **scope** finding rather than a falsification: Heim's
+framework treats stable metron configurations of light flavours;
+field excitations (Higgs) and quark-content heavy states (charm,
+bottom, top hadrons) are outside its scope by construction.
 
 What remains uncertain is **the mathematical rigour of the
 foundations**: whether Heim's polymetric formalism (selector calculus,
@@ -196,7 +225,7 @@ derived?" objection from open into resolved (in Heim's favour). What
 remains uncertain is mostly empirical reach (post-1989 particles,
 lifetime accuracy with corrected b₁/b₂) rather than the foundations.
 
-The strongest two anchors for *not coincidence* are now:
+The strongest three anchors for *not coincidence* are now:
 
 1. The **fine-structure constant**: $1/α = 137.036\,01$ emerges from η and
    θ via [B58]–[B62] with no free parameters, matching experiment to ~5
@@ -207,6 +236,12 @@ The strongest two anchors for *not coincidence* are now:
    dimensions. The (4+k) factor that we sensitivity-tested at 0.6 %
    tolerance is not a fit; it falls out of L = 4 (number of dimensions
    in R₃ + time) times Δε₀±⁴.
+3. The **electron magnetic moment**: Heim's Synmetronik III Eq. 186
+   (1980) gives μ_e/μ_B in terms of the *same* η. Reverse-engineering
+   the unknown internal ratio K from measured (g-2)/2 yields a value
+   that matches the QED-Schwinger expression 6·√η·α/(2π·e) to 0.15 %.
+   The structural shape Heim wrote in 1980 is consistent with leading-
+   order QED — a third independent role for η.
 
 What would still shift this assessment substantially:
 
