@@ -64,7 +64,7 @@ does not accept it. This repository:
    had been there since 2002–2006.
 6. Tests the framework on particles discovered or characterised after 1989.
 
-## Four headline findings
+## Five headline findings
 
 > **1. Two new successful Heim predictions outside his published list.**
 > Heim's published reference list contained 16 (or 21 with the Δ split and
@@ -249,8 +249,7 @@ Caveats on this assessment:
 - **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)** — companion document:
   conceptual three-level walk-through of Heim theory (start here if
   you are new to the framework)
-- [Four headline findings](#four-headline-findings) — top-line results
-  (now five — magnetic moment added)
+- [Five headline findings](#five-headline-findings) — top-line results
 - [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
 - [Repository layout](#repository-layout)
