@@ -426,14 +426,37 @@ sign in the metric. The split into "spatial", "time", and
 "trans-" is not arbitrary; it reflects how Heim's eigenvalue
 equations couple the coordinates.
 
-Now comes the key feature. The eigenvalue equation
-*C_p* · φ^i_{km} = λ · φ^i_{km} runs through three indices *i*, *k*,
-*m*, each from 1 to 6. There are 6 × 6 × 6 = 216 components, but the
-*p*-index is just a tag, leaving 6 × 6 = 36 distinct equations. Of
-these, 28 vanish (because of the partial-derivative identities), and
-12 more vanish (for the special case *k = p*). What remains is **16
-non-trivial equations** — geometric "modes" — and these are reduced
-further to four classes by Heim's symmetry arguments.
+Now comes the key feature. (A small notational note first: the
+indices *i*, *k*, *m*, *p* below are **coordinate indices** in the
+Riemann-tensor convention `R^i_{kmp}` — *i* is **not** the imaginary
+unit, it is the contravariant upper index.)
+
+Heim starts in *R*₄ with the eigenvalue equation in three indices
+(*p*, *k*, *m*), each running 1…4:
+
+```
+C_(p) · φ^(p)_{km} = λ_(p)(k,m) · φ^(p)_{km},     p, k, m ∈ {1, …, 4}
+```
+
+This gives 4 × 4 × 4 = **64 eigenvalue spectra**. The partial-derivative
+identity at *m = p* makes 2 · 4 · 4 − 4 = **28 of them vanish**,
+leaving 64 − 28 = **36 surviving spectra**. Heim then *arranges* those
+36 components as a 6 × 6 tensor — and that is where *R*₆ comes from in
+the first place. The carrier space *R*₆ is not put in by hand; it is
+the smallest manifold large enough to host the 36 surviving
+energy-density modes as a 6-rank tensor.
+
+In *R*₆ the eigenvalue equation (Herleitung eq. 1.8) becomes
+
+```
+C_p · φ^i_{km} = λ_p(k, m) · φ^i_{km},     i, k, m, p ∈ {1, …, 6}
+```
+
+with *i* a fourth (contravariant) index and *p* labelling the
+operator. A further 12 eigenvalues vanish in the special case *k = p*.
+What remains, after the symmetry/antisymmetry arguments, is **16
+non-trivial geometric modes**, reduced further to four classes by
+Heim's symmetry analysis.
 
 The four classes are called the four **hermetric forms** (chapter 4).
 Each one corresponds to a different kind of *physical phenomenon*:
