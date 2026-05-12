@@ -66,13 +66,23 @@ does not accept it. This repository:
 
 ## Four headline findings
 
-> **1. The K\*⁰ meson — a new successful Heim prediction.** The K*⁰ meson
-> (892 MeV) was not in Heim's published 16-particle list. Our scan of his
-> quantum-number lattice locates a candidate at **867.58 MeV with the right
-> spin–isospin assignment** (P=1, Q=2, ε=+1, k=3, κ=1, x=2) — **2.7 % off
-> measurement**. To our knowledge this is the first new Heim-formula match
-> demonstrated for a particle outside Heim's original list. See
-> [Post-1989 particle predictions](#post-1989-particle-predictions).
+> **1. Two new successful Heim predictions outside his published list.**
+> Heim's published reference list contained 16 (or 21 with the Δ split and
+> e₀) basic states. We located *two* additional resonances at the correct
+> spin–isospin assignment within ±3 %:
+>
+>   - **K\*(892) meson**: 867.6 MeV (-2.7 %) at (P=1, Q=2, ε=+1, k=3, κ=1, x=2)
+>   - **Λ(1690) baryon**: 1666 MeV (-1.4 %) at (P=0, Q=3, ε=-1, k=2, κ=0, x=1)
+>
+> To our knowledge these are the first new Heim-formula matches
+> demonstrated for particles outside Heim's original list. The same scan
+> uncovers additional ±3-10 % candidates (N(1720), Δ(1600), Δ(1700), …)
+> and reveals two structural features: Heim's lattice systematically
+> *clusters* multiple PDG resonances onto a single state (e.g. N(1520)
+> and N(1720) both land at the same Heim state at 1671 MeV), and it
+> entirely *misses* the light vector mesons ρ, ω, φ. See
+> [Post-1989 particle predictions](#post-1989-particle-predictions) and
+> [`python/excited_state_search.py`](python/excited_state_search.py).
 
 > **2. The Higgs is structurally absent from Heim's framework.** With
 > P=Q=0 (spin 0, isospin 0) and q=0, Heim's quantum-number lattice has only
