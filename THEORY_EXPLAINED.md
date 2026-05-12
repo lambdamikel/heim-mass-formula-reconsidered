@@ -1268,7 +1268,8 @@ takes as the reference:
 
 Empirically, the Standard Model is the one that has integrated 50
 years of accelerator data without breaking. Heim's framework has not
-been tested in 35 years on new particles. The honest assessment is
+been seriously applied to new particles in the ~37 years since his
+1989 manuscript. The honest assessment is
 that Heim's framework solves a *narrower* problem (light hadron
 masses) very accurately, and falls silent on a *wider* problem
 (the full Standard Model spectrum) without being able to extend.
