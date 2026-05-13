@@ -64,68 +64,129 @@ does not accept it. This repository:
    had been there since 2002–2006.
 6. Tests the framework on particles discovered or characterised after 1989.
 
-## Five headline findings
+## Scope of this repository
 
-> **1. Two new successful Heim predictions outside his published list.**
-> Heim's published reference list contained 16 (or 21 with the Δ split and
-> e₀) basic states. We located *two* additional resonances at the correct
-> spin–isospin assignment within ±3 %:
->
->   - **K\*(892) meson**: 867.6 MeV (-2.7 %) at (P=1, Q=2, ε=+1, k=3, κ=1, x=2)
->   - **Λ(1690) baryon**: 1666 MeV (-1.4 %) at (P=0, Q=3, ε=-1, k=2, κ=0, x=1)
->
-> To our knowledge these are the first new Heim-formula matches
-> demonstrated for particles outside Heim's original list. The same scan
-> uncovers additional ±3-10 % candidates (N(1720), Δ(1600), Δ(1700), …)
-> and reveals two structural features: Heim's lattice systematically
-> *clusters* multiple PDG resonances onto a single state (e.g. N(1520)
-> and N(1720) both land at the same Heim state at 1671 MeV), and it
-> entirely *misses* the light vector mesons ρ, ω, φ. See
-> [Post-1989 particle predictions](#post-1989-particle-predictions) and
-> [`python/excited_state_search.py`](python/excited_state_search.py).
+*This statement was substantially rewritten following an extended review
+exchange with Joel from the Heim-Theory Discord in May 2026.*
 
-> **2. The Higgs is structurally absent from Heim's framework.** With
-> P=Q=0 (spin 0, isospin 0) and q=0, Heim's quantum-number lattice has only
-> two ground states: the η meson at 549 MeV (k=1) and an unobserved state at
-> 61 TeV (k=3). The 125 GeV Higgs region is **uninhabitable** — there is no
-> allowed Heim configuration. This is a *scope* finding rather than a
-> falsification: Heim's framework treats stable metron configurations,
-> while the Higgs is a quantum-field excitation of electroweak symmetry
-> breaking. The same applies to W±, Z⁰, J/ψ, and heavy-flavour hadrons:
-> all outside the framework's scope by construction. See
-> [Post-1989 particle predictions](#post-1989-particle-predictions).
+> The chain `Heim Theory ≠ Syntrometrie ≠ Synmetronik ≠ Elementarstrukturen
+> der Materie ≠ Mass Formula A/B ≠ Python code` is real and important.
+> This repository implements a reconstructed reading of the **computationally
+> transmitted mass-formula layer** (the terminal projection). It does not
+> implement Heim Theory as a whole, does not implement Syntrometrie as a
+> complete formal system, and does not reconstruct the full derivation from
+> Syntrometrie down to the executable formula.
 
-> **3. Two upstream-inherited transcription bugs corrected** in
+A historical transmission was made available by the Heim-Theory Discord
+community in May 2026 (`downloads/A_…` through `downloads/H_…`).
+The relevant source layering, which the repo now adopts:
+
+| Layer | Meaning | File(s) |
+|---|---|---|
+| A / 1982 source | Ground-pattern / original mass-formula source. Defines `k ∈ {1, 2}` for ponderable particles, P, Q, κ, q_x, C = strangeness, etc. | `downloads/A_Massenformel_Kurzfassung.pdf`, `downloads/E_Massenformel_nach_B_Heim_1982.pdf` |
+| B / 1989 extension | Extends formula to excited states (N > 0), lifetimes, neutrino masses, fine-structure constant. Lost code, source-critical reconstruction. | `downloads/F_Erweiterte_Massenformel_nach_Heim 1989.pdf` |
+| G / selected results | Numerical-output tables: ground states, theoretical/experimental data, **approximate meson resonances (k=1)**, **approximate baryon resonances (k=2)**, lifetimes, Heim's own 1989 predictions for 23 mesons + 50+ baryons. | `downloads/G_Ausgewaehlte_Ergebnisse.pdf` |
+| Old programs | DESY / Pascal / C / C# / Excel transmission chain. | `downloads/c_impl/`, `downloads/csharp_impl/`, `downloads/Pascal 0.62/`, `downloads/C0.66/`, `downloads/Heim_1989_Massenformel_0.4.xlsm` |
+| Current repo | Modern Python reconstructed implementation. | `python/` |
+| Modern PDG | External empirical reference; not identical with Heim ontology. | — |
+
+The intended domain of the formula must be reconstructed from
+A + B + G together, not inferred from any one source alone.
+
+## Headline findings
+
+> **1. The mass-formula layer carries non-trivial numerical structure.**
+> Sensitivity analysis shows three of Heim's *self-described* "fitted"
+> constants (⁴√2, (π/e)², 4π/⁴√2) are essentially inert — changing them
+> by factors of 1000× has effects below the formula's own quoted accuracy.
+> The accuracy lives instead in η(q, k), the mass element μ, the integer
+> structure constants Q_i, and the integer quantum numbers, none of which
+> are free parameters. This is the central positive result: the formula
+> is not succeeding through hidden tunable knobs.
+
+> **2. The η-function is derived from physical principles, not postulated.**
+> The 81-page "Zur Herleitung" manuscript (chapter 7, eqs. 7.47 → 7.51)
+> derives η(q, k) = ⁴√(π⁴ / (π⁴ + (4+k)q⁴)) from a metron-quantised
+> geometry plus the renormalisation ε'₀± = ε₀±·⁴√(1+k/4) of the elementary
+> charge field. The (4+k) factor — sensitivity-tested at 0.6 % tolerance
+> — is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
+
+> **3. The same η drives Heim's *magnetic-moment* formula.** Synmetronik
+> Band III (1980), Eq. 186, gives the electron magnetic moment as
+> μ_e/μ_B = (e_w/e_±)·(1 − e·K/(6·√η)) with the *same* η-function that
+> appears in the mass formula and α-derivation. Reverse-engineering K
+> from the measured (g-2)/2 anomaly produces K ≈ 2.547·10⁻³, which
+> agrees with the QED-Schwinger expression 6·√η·α/(2π·e) = 2.551·10⁻³
+> to **0.15 %**. Heim's structural formula from 1980 is consistent with
+> leading-order QED. Caveat: a from-first-principles prediction requires
+> the protosimplex/synmetronic side of the framework, not in our port.
+
+> **4. Two upstream-inherited transcription bugs corrected** in
 > Eli Gildish's 2006 C and Heim Group's 2002 C# implementations,
 > identified by cross-checking against the heim-theory.com Excel reference.
 > Mass predictions improved by 5–67×: proton, neutron, Λ, Ξ⁰ now match
 > measurement to **better than 0.01 %** (the proton specifically becomes
 > *stable*, as it should). Lifetime predictions went from 7/18 within
-> factor 3 to **17/18 within factor 3** — fifteen of those to better than
-> 12 %, across eleven orders of magnitude. See
-> [Mass predictions](#mass-predictions) and
-> [Lifetime predictions](#lifetime-predictions).
+> factor 3 to **17/18 within factor 3** — fifteen of those to better
+> than 12 %, across eleven orders of magnitude. The 1989 source itself
+> notes that "in the manuscript some brackets in very long equations were
+> lost during the process of writing; this had to be corrected at best
+> estimate" — our independent fixes are consistent with this known
+> transmission failure mode.
 
-> **4. The η-function is derived, not postulated.** The 81-page
-> "Zur Herleitung" manuscript (chapter 7, eqs. 7.47 → 7.51) explicitly
-> derives η(q, k) = ⁴√(π⁴ / (π⁴ + (4+k)q⁴)) from a metron-quantised
-> geometry plus the renormalisation ε'₀± = ε₀±·⁴√(1+k/4) of the
-> elementary charge field. The (4+k) factor that we sensitivity-tested at
-> 0.6 % tolerance is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
-> The central pre-revision objection — "η is just defined" — is resolved.
+> **5. Heim's 1989 framework predicts five neutrinos with specific masses.**
+> G-Tabelle II ("Theoretical Data of Elementary Particles… Calculated
+> by B. Heim 1989") lists masses for **five** neutrino species, two
+> beyond the Standard Model's three:
+>
+> | Species | Heim 1989 mass | Status |
+> |---|---|---|
+> | ν_e | 0.00381 × 10⁻⁶ MeV ≈ **3.81 meV** | below KATRIN upper bound 0.45 eV ✓ |
+> | ν_μ | 0.00537 MeV ≈ **5.37 keV** | ruled out as active mixing eigenstate by cosmological Σm_ν < 0.12 eV; viable only as sterile / non-mixing |
+> | ν_τ | 0.010752 MeV ≈ **10.75 keV** | same — only viable as sterile |
+> | **ν_4** | 0.021059 MeV ≈ **21.06 keV** | **fourth-generation prediction** (sterile interpretation) |
+> | **ν_5** | 0.207001 MeV ≈ **207 keV** | **fifth-generation, heavy-neutral-lepton regime** |
+>
+> This is a genuine tension between Heim 1989 and modern cosmology if
+> ν_μ / ν_τ are identified with the SM mass eigenstates (which are
+> bounded to ≪ 1 eV by oscillations + KATRIN + cosmology). Three
+> possible resolutions: (a) Heim's "ν_μ" / "ν_τ" labels denote sterile
+> states distinct from the SM ν_μ / ν_τ; (b) the values are wrong;
+> (c) the SM mass eigenstates are emergent / mixing effects beyond
+> Heim's bare framework. Falsification handle: ν_5 at 207 keV is
+> within PIENU / NA62 heavy-neutral-lepton sensitivity. See
+> [`python/heim_neutrinos.py`](python/heim_neutrinos.py).
 
-> **5. The same η drives Heim's *magnetic-moment* formula.** Synmetronik
-> Band III (1980), Eq. 186, gives the electron magnetic moment as
-> μ_e/μ_B = (e_w/e_±)·(1 − e·K/(6·√η)) with the *same* η-function that
-> appears in the mass formula and in the α-derivation. Reverse-engineering
-> the internal ratio K = m_s/m_r from the measured (g-2)/2 anomaly gives
-> K ≈ 2.547·10⁻³, which agrees with the QED-Schwinger expression
-> 6·√η·α/(2π·e) = 2.551·10⁻³ to **0.15 %**. So Heim's structural formula
-> is *consistent* with leading-order QED for the electron g-factor.
-> Caveat: a true *prediction* (K computed from first principles via
-> Heim's β_s·β_d apparatus) requires the protosimplex/synmetronic side
-> of the framework that is not in our Python port. See
-> [`python/magnetic_moment.py`](python/magnetic_moment.py).
+### Findings that were retracted or sharpened after the source audit
+
+> **The "K\*(892) / Λ(1690) as new Heim predictions" claim** has been
+> retracted. Both particles are explicitly in Heim's G-Tabelle IV / Va
+> as approximated resonances (K\*(892) at theoretical 891.20 / 892.22 MeV;
+> Λ(1690) at theoretical 1693.28 MeV). Our excited-state scan at k=3
+> found K\* at 867.6 MeV (2.7 % below Heim's own published table value);
+> Heim's k=1 resonance procedure (using P, N, K_B parameters separate
+> from the (ε, k, P, Q, κ, x) ground-state scheme) is *not implemented*
+> in our port. The correct framing: this is a reconstruction gap, not
+> a new prediction. See
+> [Post-1989 particle predictions](#post-1989-particle-predictions).
+
+> **The "Higgs is structurally absent from Heim" framing** has been
+> sharpened. The empirical core is narrower than "we observed the Higgs
+> field": ATLAS / CMS observed a 125 GeV scalar-like resonance whose
+> production and decay channels are *broadly consistent* with the
+> Standard Model Higgs. The full Higgs-sector picture — scalar
+> potential, self-coupling, elementary-vs-composite character, deeper
+> origin of parameters — remains open even within the Standard Model.
+> Heim's framework proposes its own geometric mass mechanism and does
+> not need a Higgs field as a primitive. A complete Heim-compatible
+> theory must therefore account for the *observed* 125 GeV resonance
+> phenomenology, but it may interpret it as an effective excitation
+> of deeper geometric dynamics rather than as the fundamental origin
+> of mass. The same logic applies to W±, Z⁰: their observed
+> phenomenology must eventually be recovered, but neither needs to
+> appear as primitive Heim ontology. See
+> [Post-1989 particle predictions](#post-1989-particle-predictions).
+
 
 **Underlying analytical observation.** Heim explicitly identified three
 constants (⁴√2, (π/e)², 4π/⁴√2) as "fitted to empirical facts." We find
@@ -153,63 +214,50 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role + ρ/ω/φ gap |
-|---|---:|---:|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | **97 – 99 %** ↑ |
-| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | **85 – 95 %** ↑ |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | **18 – 28 %** ↓ slightly |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | **75 – 88 %** ↑ |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | **1 – 5 %** ↓ |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G source audit |
+|---|---:|---:|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | **97 – 99 %** ✓ |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | **18 – 30 %** ↑ slightly |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | **78 – 90 %** ↑ |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | **1 – 4 %** ↓ |
+| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | **60 – 75 %** ↓↓ |
 
-The most recent column is driven by two findings pulling in
-**opposite** directions:
+The most recent column reflects a deep source audit using the
+historical A / B / G transmission set provided by the Heim-Theory
+Discord community in May 2026:
 
-- **Up for "captures something real"**: the same η-function now
-  appears in *three structurally independent* calculations — the
-  mass formula, the fine-structure constant α, and Heim's electron
-  magnetic-moment Eq. 186 from Synmetronik III (1980). Reverse-
-  engineering the unknown internal ratio K = m_s/m_r from the
-  measured (g-2)/2 anomaly produces K ≈ 2.547·10⁻³, which agrees
-  with the QED-Schwinger expression 6·√η·α/(2π·e) = 2.551·10⁻³ to
-  **0.15 %**. Heim wrote Eq. 186 in 1980; nobody could test it
-  this way until QED computations and η-from-derivation lined up
-  decades later. A non-trivial structural prediction reproducing
-  leading-order QED is genuinely hard to dismiss as numerology.
-  In addition, the excited-state scan found a second post-list
-  match — Λ(1690) at 1666 MeV (-1.4 %) at the correct (P, Q, q)
-  — joining K*(892) as a now-second example of Heim-formula
-  reach beyond his original 16-21.
+- **Up** for "captures something real" and "unified field theory": the
+  G-Tabelle IV / Va contain explicit theoretical mass predictions by
+  Heim for 23 mesonic resonances (including ρ, ω, φ, K*, η', f, A1,
+  …) and >50 baryonic resonances (Λ, Σ, Ξ, Δ, N* families) at
+  agreement levels of ≈ 0.05–1 % with PDG. The earlier "structural
+  gap for vector mesons" was an artifact of our limited
+  excited-state-scan procedure — not a feature of Heim's framework.
+  Heim's framework is empirically broader than our port currently
+  exposes. Additionally, G-Tabelle II lists masses for **five
+  neutrino species** (3.81 meV, 5.37 meV, 10.75 meV, 21.06 meV,
+  207 MeV) — concrete falsifiable post-Standard-Model predictions
+  this repo had not previously documented.
 
-- **Down for "complete unified theory"**: the same excited-state
-  scan revealed a structural gap. The light vector mesons ρ(770),
-  ω(782), and φ(1020) have *no* Heim candidate within ±10 % at
-  the correct (P=2/0/0, Q=2, q). The framework doesn't produce
-  these particles in the right sector at all — it isn't off by a
-  few percent on their masses, it lacks the states entirely.
-  Either Heim treats them as non-stationary (their hadronic widths
-  Γ ~ 5-150 MeV are orders of magnitude larger than those of the
-  pseudoscalar mesons he *does* include — π/K/η, Γ < 10 eV) or
-  the framework is genuinely silent on vector mesons. Combined
-  with the still-unspecified couplings of e₀ (Heim's standing
-  neutral-electron prediction — see `python/e0_search.py`), the
-  framework remains under-determined in ways that prevent
-  declaring it a complete unified theory.
+- **Down** for "current Python port reproduces Heim's intended
+  results": Heim's 1989 Tabelle II gives an electron mass of
+  0.51100343 MeV (matching PDG to 5 decimal digits). Our port
+  computes 0.50694 MeV — **0.79 % off**. This is a remaining
+  transcription discrepancy specific to the electron configuration
+  (k=1, P=1, Q=1, κ=0, x=1) that we have not yet identified.
+  Additionally, our excited-state scan found K\*(892) at 867.6 MeV
+  in a k=3 sector, whereas Heim's G-Tabelle IV places K\* at
+  k=1 with theoretical 891.20 / 892.22 MeV — so our scan is *not
+  reproducing the historical resonance procedure*. These are
+  open reconstruction tasks, not foundational issues.
 
-In short: structural coherence is the stronger story; complete
-predictive coverage is the weaker one. Both are real, and they
-pull in opposite directions.
-
-The post-1989 test (`python/higgs_search.py`) gives a partial answer
-on the second uncertainty: the framework correctly predicts the K*⁰
-meson (892 MeV) at 867 MeV (2.7 % off) with the right quantum numbers
-— and now also Λ(1690) at -1.4 % — but does not predict the Higgs,
-W±, Z⁰, J/ψ, or any of the heavy-flavour mesons and baryons. The
-Higgs specifically falls in a structural gap of Heim's quantum-number
-lattice — Heim doesn't have a 125 GeV scalar at all. This is best
-read as a **scope** finding rather than a falsification: Heim's
-framework treats stable metron configurations of light flavours;
-field excitations (Higgs) and quark-content heavy states (charm,
-bottom, top hadrons) are outside its scope by construction.
+In short: the source audit *strengthens* the case for Heim's
+framework substantively (because G now provides concrete
+ground-truth predictions to compare against, and Heim's
+empirical reach is broader than we had reported) while
+*weakening* our claim that the current port faithfully reproduces
+Heim's intended computation.
 
 What remains uncertain is **the mathematical rigour of the
 foundations**: whether Heim's polymetric formalism (selector calculus,
@@ -245,18 +293,24 @@ The strongest three anchors for *not coincidence* are now:
 
 What would still shift this assessment substantially:
 
-- A successful application to particles discovered after 1989 (top quark,
-  Higgs, charm and bottom baryon spectroscopy) at the same ~0.1 %
-  accuracy.
-- An independent reimplementation of the lifetime formula closing the
-  gaps in the [Lifetime predictions](#lifetime-predictions) above —
-  Heim's own 1989 numbers reportedly had 12 of 14 within experimental
-  error (per the Herleitung document, chapter 11), but the IGW group
-  itself never reprogrammed the lifetime formula and our implementation
-  reaches only 7/18 within factor 3.
-- A mathematical audit of the chapter 7 derivation by someone fluent in
-  Heim's polymetric formalism, to confirm that no circular reasoning
-  enters via the chain ε₀± → η.
+- **Reproducing Heim's G-Tabellen IV / V exactly.** Heim's own 1989
+  framework lists theoretical masses for 23 mesonic resonances (including
+  ρ, ω, φ, K* via their k=1 P-N-K_B parametrisation) and >50 baryonic
+  resonances at ≤ 1 % from PDG. If a clean modern implementation can
+  reproduce these G-table values from first principles using only Heim's
+  documented quantum-number structure, the framework moves from
+  "interesting structure" to "well-defined and reproducible".
+- **Resolving the 0.79 % electron-mass discrepancy** between Heim's
+  1989 Tabelle II (0.51100343 MeV) and our port (0.50694 MeV). This is
+  a localised transcription / convention issue, not a foundational one,
+  but every other particle in our port matches Heim's table to ≤ 0.01 %.
+- **Confirming or refuting Heim's five-neutrino prediction.** The
+  ν_5 at 207 MeV in particular is in a range where laboratory bounds
+  on heavy neutral leptons / sterile neutrinos already exist. A
+  detailed comparison would be a clean falsification test.
+- **A mathematical audit of the chapter 7 η-derivation** by someone
+  fluent in Heim's polymetric formalism, to confirm that no circular
+  reasoning enters via the chain ε₀± → η.
 
 What would *not* shift it: another mainstream-physics dismissal that has
 not actually examined the formulas. Heim theory has been **ignored** more
@@ -284,7 +338,8 @@ Caveats on this assessment:
 - **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)** — companion document:
   conceptual three-level walk-through of Heim theory (start here if
   you are new to the framework)
-- [Five headline findings](#five-headline-findings) — top-line results
+- [Scope of this repository](#scope-of-this-repository) — what is actually implemented
+- [Headline findings](#headline-findings) — top-line results
 - [Speculative summary](#speculative-summary) — subjective probability bet
 - [Background](#background)
 - [Repository layout](#repository-layout)
@@ -339,18 +394,37 @@ For the precise equation list see [`downloads/pdfs/F_1989_en.pdf`](downloads/pdf
 heim/
 ├── README.md                  ← this file
 ├── downloads/
+│   ├── A_Massenformel_Kurzfassung.pdf      ← A: 1982 source / Kurzfassung
+│   ├── B_Bemerkungen_ueber_Heim.pdf        ← editorial notes
+│   ├── C_Zum_Stand_der_Elementarteilchenphysik.pdf   ← context
+│   ├── D_Zur_Herleitung_Der_Heimschen_Massenformel.pdf  ← 81-page derivation
+│   ├── E_Massenformel_nach_B_Heim_1982.pdf ← A: Heim's own 1982 source
+│   │                                          (signed Northeim 25.2.1982)
+│   ├── F_Erweiterte_Massenformel_nach_Heim 1989.pdf   ← B: 1989 extension
+│   │                                          (excited states, lifetimes,
+│   │                                           neutrinos, α)
+│   ├── G_Ausgewaehlte_Ergebnisse.pdf       ← G: SELECTED RESULTS — ground
+│   │                                          states (Tabelle I/II/III),
+│   │                                          meson resonances k=1 (IV),
+│   │                                          baryon resonances k=2 (V),
+│   │                                          numerical evaluations
+│   ├── H_Literaturverzeichnis.pdf          ← bibliography
+│   │
 │   ├── c_impl/                ← Eli Gildish's 2006 C implementation (upstream)
 │   ├── csharp_impl/           ← C# version with 1982/1989/HG variants
 │   ├── C0.66/                 ← DESY 1982 FORTRAN transcribed to Pascal/C
 │   ├── Pascal 0.62/           ← Olaf Posdzech's Pascal version
-│   ├── pdfs/                  ← Heim 1982 and 1989 formula reformulations
+│   ├── pdfs/                  ← earlier copies of D/E/F (pre-A-H archive)
 │   ├── J0023, J0025, J0032, J0033 — Heim's original published papers
 │   ├── Heim-Teil-C_Synmetronik_der_Welt-Band-{I,II,III}.pdf — Heim's books
 │   ├── Burkhard Heim - 2000 - Syntrometrische Maximentelezentrik.pdf
-│   └── Heim_1989_Massenformel_0.4.xlsm  ← THE crucial cross-reference:
-│                                          mass and lifetime formulas with
-│                                          a Vergleich sheet of predicted
-│                                          vs. measured values
+│   ├── Feldtheorie-Heim-Prinzip-Kontrabarie-IvL-IGAAP-2017-2-seitig.pdf
+│   │                                       ← von Ludwiger 2017 reconstruction
+│   │                                          of Heim's contrabaric / field
+│   │                                          drive claims
+│   └── Heim_1989_Massenformel_0.4.xlsm  ← Excel cross-reference: mass and
+│                                          lifetime formulas with Vergleich
+│                                          sheet of predicted vs. measured
 │
 ├── annotated/
 │   └── src/                   ← C source with one-to-one cross-references
@@ -374,14 +448,18 @@ heim/
     ├── sensitivity_eta_form.py    ← probe η's functional form
     │
     ├── higgs_search.py            ← post-1989 particle scan (Higgs, W, Z, …)
-    ├── excited_state_search.py    ← scan for baryon/meson resonances
-    │                                 (Λ(1690) ±1.4 % match, ρ/ω/φ gap)
+    ├── excited_state_search.py    ← exploratory non-canonical scan for
+    │                                 baryon/meson resonances (k > 2;
+    │                                 distinct from Heim's G-table k=1 / k=2
+    │                                 resonance procedure)
     ├── e0_search.py               ← experimental bounds on Heim's neutral
     │                                 electron prediction (0.5162 MeV)
     ├── magnetic_moment.py         ← Synmetronik III Eq. 186 — Heim's
     │                                 electron g-factor formula
     ├── kontrabarie_design.py      ← modern-apparatus thrust prediction
     │                                 for Heim's 1959 field-drive claim
+    ├── heim_neutrinos.py          ← Heim's 5-neutrino prediction
+    │                                 (G-Tabelle II) vs current bounds
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -620,62 +698,86 @@ The new RMS relative error over the 20 measured particles is about
 to the accuracy claimed by the Heim research group itself (5–8 of 16
 within experimental tolerance, depending on the choice of G).
 
+**Open electron-mass discrepancy.** Heim's own 1989 Tabelle II
+(`downloads/G_Ausgewaehlte_Ergebnisse.pdf`, p. 3) lists the electron
+theoretical mass as **0.51100343 MeV** — matching the measured PDG
+value 0.51099907 MeV to **5 decimal digits** (+0.0009 %). Our current
+Python port (and the upstream Eli-Gildish 2006 C from which it
+descends) computes **0.50694371 MeV** for the same configuration
+(k=1, P=1, Q=1, κ=0, x=1, ε=+1), which is **−0.79 % off** the
+measurement *and* off Heim's own published value. Every other
+particle in our port matches Heim's 1989 Tabelle II to ≤ 0.01 %.
+This is therefore a localised transcription / convention bug
+specific to the electron sector that we have not yet identified —
+a third upstream-inherited bug beyond the two already corrected.
+Until it is found and fixed, the electron line in the
+Python output should be read as carrying a known offset.
+
 ### Post-1989 particle predictions
 
-With the formula reproducing both masses and lifetimes of the original
-~20 particles to ≤ 0.05 % / ≤ 12 %, the obvious next test is on
-particles discovered or characterised after Heim's last work. We tested
-13 such particles by scanning Heim's quantum-number lattice
-(`python/higgs_search.py`):
+*This section was substantially rewritten in May 2026 after access to
+Heim's selected-result tables in `downloads/G_Ausgewaehlte_Ergebnisse.pdf`.*
 
-**One credible new match:**
+Following Joel's source-critical audit (Heim-Theory Discord, May 2026),
+results in this section are now reported in **three distinct
+categories**, which the repo previously conflated:
 
-- **K*⁰ meson (892 MeV)**: predicted 867.58 MeV (2.7 % off), with
-  exactly the spin–isospin assignment (P=1, Q=2) at ε=+1, k=3, κ=1, x=2.
-  K* was *not* in Heim's published 16-particle list — this is a new
-  successful Heim prediction.
+1. **Reproduction of Heim/Arbeitskreis selected results in G**.
+   Does the current Python port compute the same theoretical masses
+   that Heim's 1989 G-tables list? *Status: partially.* Ground states
+   match Heim's Tabelle II to better than 0.01 % for 20 of 21 particles
+   — but the electron is **0.79 % off** (Heim: 0.51100343 MeV; port:
+   0.50694 MeV). For excited states, our current scan does **not**
+   implement Heim's resonance procedure (which uses k=1 / k=2
+   parametrisation in (P, N, K_B), separate from the (ε, k, P, Q, κ, x)
+   ground-state procedure); a clean reproduction of G-Tabelle IV / Va
+   from the formula is an open reconstruction task.
 
-**No match (within ±10 %):**
+2. **Comparison of Heim's selected results to modern PDG values**.
+   Heim's G-table predictions, *as he published them*, are mostly
+   excellent. Examples:
+   - ω(783) Heim 783.90 MeV vs PDG 782.65 MeV (0.16 %)
+   - Φ(1019) Heim 1019.63 MeV vs PDG 1019.46 MeV (0.02 %)
+   - K*(892) Heim 891.20 MeV vs PDG 892 MeV (0.09 %)
+   - ρ(770) Heim 769.98 / 769.31 MeV vs PDG ≈ 775 MeV (0.7 %)
+   - Λ(1690) Heim 1693.28 MeV vs PDG 1690 MeV (0.19 %)
+   - over 70 resonances total to ≤ 1 % typical agreement
+   
+   So the *historical* Heim/Arbeitskreis predictions for these particles
+   exist and are good. Our previous claim that ρ / ω / φ were
+   "structurally absent from Heim's lattice" was an artifact of our
+   limited scan — **retracted**.
 
-| Particle | PDG mass | Outcome |
-|---|---:|---|
-| Higgs H⁰ | 125.25 GeV | structural gap (see below) |
-| Z⁰ boson | 91.19 GeV | no candidate at right (P,Q,q) |
-| W± boson | 80.37 GeV | closest 76.0 GeV (5.4 % off, but wrong P, Q) |
-| J/ψ meson | 3.10 GeV | no candidate |
-| D⁰ meson | 1.87 GeV | no candidate |
-| B⁰ meson | 5.28 GeV | no candidate |
-| Λ_c baryon | 2.29 GeV | no candidate |
-| Λ_b baryon | 5.62 GeV | no candidate |
-| Σ_c baryon | 2.45 GeV | no candidate |
-| τ lepton | 1.78 GeV | closest 1.67 GeV (5.9 % off, wrong P, Q) |
-| ρ⁰ meson | 0.78 GeV | closest 0.84 GeV (8.7 % off, wrong P, Q) |
-| φ meson | 1.02 GeV | closest 0.94 GeV (7.8 % off, wrong P, Q) |
+3. **Genuinely new post-G exploratory scans**. Our `excited_state_search.py`
+   ran at k ≤ 5, which goes beyond Heim's own A-source constraint
+   ("for ponderable corpuscles only k = 1 and k = 2 are possible,
+   not k > 2"). The "K\*(892) at 867.6 MeV in our k=3 scan" was
+   therefore *not* the same object as Heim's k=1 K\*; it was a
+   numerical coincidence in a non-canonical scan region. **The
+   earlier claim of two new Heim-formula matches outside Heim's
+   published list (K\*, Λ(1690)) is retracted.** Both are explicitly
+   present in G-Tabelle IV / Va with theoretical masses already
+   stated; our scan simply didn't reproduce them.
 
-**Higgs-specific structural finding:** the Heim-allowed P = Q = 0,
-q_x = 0 lattice has a gap. The natural neutral spin-0 isospin-0 ground
-states sit at 416 MeV and 549 MeV (k = 1) and then jump to 61 TeV
-(k = 3, κ = 0) and 166 TeV (k = 3, κ = 1). The 125 GeV Higgs region
-is uninhabitable by Heim's lattice — there is no `(eps, k, κ, x)` that
-produces a P = Q = 0, q_x = 0 candidate near 125 GeV.
+**Standard Model phenomena not currently mapped into Heim:**
 
-**Interpretation.** Heim's 1989 framework treats only stable metron
-configurations: stationary, self-consistent geometric structures. The
-Higgs is a field excitation associated with electroweak symmetry
-breaking — a phenomenon that does not exist in Heim's geometric
-formulation, since masses there come directly from the metron
-geometry, not from a Higgs-style vacuum expectation. The framework
-is therefore neither *falsified* by the Higgs discovery (it would only
-be falsified if it predicted a 125 GeV scalar that didn't exist) nor
-*confirmed* by it. The Higgs simply isn't a Heim basic state. Same
-goes for W±, Z⁰, J/ψ, and the heavy-flavour mesons and baryons —
-quark-content particles (charm, bottom, top, B-hadrons, Λ_c, Σ_c) are
-likewise outside the framework's scope, since Heim treats free
-particles and quarks are confined.
+| Particle / phenomenon | Status |
+|---|---|
+| Higgs H⁰ (125 GeV resonance) | Observed; Heim has its own mass mechanism (geometric, not Yukawa), so a Higgs field is not a primitive. A complete Heim-compatible theory must still account for the observed 125 GeV scalar phenomenology. |
+| Z⁰ / W± gauge bosons | Observed; must be recoverable as effective phenomena. Not mass-formula-A/B input ontology. |
+| J/ψ, D, B mesons | Heavy-flavour; Heim's hadronic framework treats free particles and "quark content" is not a Heim primitive. Internal/effective structure correspondence is open. |
+| Λ_c, Λ_b, Σ_c baryons | Same as above. |
+| τ lepton | Heim's table II lists only e, e₀, μ (plus 5 neutrinos). τ is not in Heim's basic-state list. Reconstruction needed. |
 
-The K* match suggests Heim's framework does extend to *some* post-1989
-particles — those that are "stable enough" stationary states in the
-sense Heim required. The framework's reach is real but bounded.
+**Reframing.** The right question is not *"does Heim reproduce every
+Standard Model entity as a primitive?"* — that's a category mistake.
+Heim is a structural-geometric theory, not the Standard Model rewritten
+in different notation. The right question is: *"does Heim reproduce
+the empirical phenomena that the Standard Model describes, possibly
+through a deeper structural language?"* For the empirical phenomena
+that G-Tabelle IV / V cover, the answer is broadly *yes*. For W / Z /
+Higgs / heavy-flavour, the answer is *currently unknown — needs
+reconstruction work*, not a falsification.
 
 ### Lifetime predictions
 
@@ -865,10 +967,16 @@ extreme:
 2. The mass spectrum predicts more excitations than have been observed.
    Heim attributes this to an "unknown selection rule" he was working on
    when he fell ill in 1999. This remains an admitted incompleteness.
-3. The dataset is small (~20 particles). The framework was never applied
-   to particles discovered after the 1980s (top, Higgs, charm-baryon
-   spectroscopy) — neither by Heim nor by his successors. We don't know
-   whether it would extend.
+3. **The dataset is wider than we initially reported.** Heim's
+   G-Tabelle IV / V (`downloads/G_Ausgewaehlte_Ergebnisse.pdf`, pp.
+   5-8) contains theoretical mass predictions for 23 mesonic and
+   50+ baryonic resonances at typically ≤ 1 % agreement with PDG.
+   The historical Heim framework therefore *does* extend significantly
+   beyond the 21-particle ground-state set; our previous "limited
+   dataset" framing was an artefact of looking only at Tabelle II
+   ground states. The framework's coverage of W / Z / Higgs /
+   heavy-flavour, however, remains genuinely open and is not addressed
+   by G.
 4. The lifetime formula ([B47]–[B57]) as implemented here, after
    cross-checking against the Excel reference, matches experiment to
    factor 3 on **17 of 18 particles** — fifteen to ≤ 12 % including
@@ -894,31 +1002,60 @@ questions concern empirical reach (extension to post-1989 particles)
 and the rigour of the underlying polymetric formalism, not the
 derivability of η itself.
 
+> **In Joel's phrasing (Heim-Theory Discord, May 2026):**
+> *Interesting structure, limited scope, open derivation.*
+
 ## Open questions
 
-In rough order of importance:
+In rough order of importance (revised May 2026 after A/B/G source audit):
 
-1. **Does the formula extend to particles discovered after 1989?**
-   Partially. The K*⁰ meson (892 MeV, 1989-pre but not in Heim's list)
-   is predicted at 867 MeV (2.7 % off) with the right quantum numbers,
-   suggesting the framework does cover at least some post-1989 hadrons.
-   But the Higgs, W±, Z⁰, J/ψ, D⁰, B⁰, Λ_c, Λ_b, and Σ_c are NOT
-   predicted by the framework — neither at the right mass nor at the
-   right quantum-number signature. Quark-flavour states (charm, bottom,
-   top hadrons) appear outside Heim's scope, as do electroweak gauge
-   bosons. See [Post-1989 particle predictions](#post-1989-particle-predictions).
-2. **Is the η derivation rigorous?** Chapter 7 (eqs. 7.47 → 7.51) of
-   the Herleitung manuscript *derives* η(q,k) from physical principles,
+1. **The 0.79 % electron-mass discrepancy.** Heim's 1989 Tabelle II
+   (G, p. 3) lists the electron at 0.51100343 MeV; our port computes
+   0.50694 MeV. Every other particle matches Heim's table to ≤ 0.01 %.
+   This is a localised transcription / convention bug specific to the
+   (k=1, P=1, Q=1, κ=0, x=1) configuration — a third upstream-inherited
+   bug not yet found. Highest-priority engineering task.
+
+2. **Reproduction of Heim's G-Tabelle IV / V resonance procedure.**
+   Heim's k=1 / k=2 resonance scheme is parametrised by (P, N, K_B),
+   distinct from the ground-state (ε, k, P, Q, κ, x) scheme our port
+   implements. Reproducing G-Tabelle IV (23 mesonic resonances) and
+   V (50+ baryonic resonances) from first principles would close the
+   biggest "reconstruction problem" identified by the source audit
+   and is needed before any post-PDG scan can be properly interpreted.
+
+3. **Heim's five-neutrino prediction (G-Tabelle II).** Heim 1989
+   predicts ν_e at 3.81 meV (consistent with KATRIN); ν_μ at 5.37 keV;
+   ν_τ at 10.75 keV; and two additional generations ν_4 at 21.06 keV
+   and ν_5 at 207 keV. The 5.37 keV / 10.75 keV values for ν_μ / ν_τ
+   would violate cosmological Σm_ν < 0.12 eV by 4-5 orders of magnitude
+   *if* they describe the active mass eigenstates; they are tenable only
+   if Heim's labels denote sterile, non-mixing states. The framework
+   does not specify the mixing structure. See `python/heim_neutrinos.py`.
+
+4. **Is the η derivation rigorous?** Chapter 7 (eqs. 7.47 → 7.51) of
+   the Herleitung manuscript *derives* η(q, k) from physical principles,
    but the derivation passes through Heim's polymetric formalism
    (selector calculus, condensor flows) which is non-standard. A
    mathematical audit by someone fluent in that formalism would
    confirm whether the chain
    `G, ℏ, c → metron τ → ε₀± → η(q,k)` is free of hidden circularity.
-3. **The η meson lifetime.** η is now within factor 2 of measurement
+
+5. **How does Heim's framework recover SM phenomenology for W / Z /
+   Higgs / heavy-flavour states?** None of these appear as primitives
+   in Heim's A/B framework, but a complete Heim-compatible theory
+   would still need to explain why the Standard Model works as an
+   effective theory in those sectors. This is the largest open
+   conceptual question; it is *not* automatically a falsification
+   (per Joel's reframing), but it needs positive resolution rather
+   than dismissal.
+
+6. **The η meson lifetime.** η is now within factor 2 of measurement
    (was negative T, then factor 0.47, now factor ~0.47 in the other
    direction). The remaining ~50 % discrepancy may be a real formula
    limitation, since η decays largely electromagnetically (η → γγ ~39 %).
-4. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
+
+7. **Why is the (n, m, p, σ) loss landscape jagged?** The greedy
    decomposition produces integer outputs that flip at thresholds;
    whether this is a feature of the theory or an algorithmic artifact
    needs to be sorted out.

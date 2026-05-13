@@ -29,6 +29,95 @@ own terms so the reader can judge.
 
 ---
 
+## Scope: where this document and this repository sit in Heim's framework
+
+*The following layering was clarified by Joel from the Heim-Theory
+Discord during a May 2026 review exchange, and the repo adopted it
+as the central scope statement.*
+
+Heim's body of work is **layered**.  Different layers have different
+scope, different formality, and different verifiability:
+
+```
+   ╔═════════════════════════════════════════════════════════════════╗
+   ║   Syntrometrie                                                   ║
+   ║   — Heim's foundational formal/methodological framework:         ║
+   ║     aspect-relativity, predicate systems, Syntrix structures,    ║
+   ║     dialectics, coordination, selectors, semantic iterators.     ║
+   ║     A formal logic beyond ordinary anthropomorphic logic.        ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │  produces a "Quantitätsaspekt"
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Quantitätssyntrix                                              ║
+   ║   — the quantitative aspect of Syntrometrie, where syntrometric  ║
+   ║     structures specialise into quantitative formal systems.      ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │  produces metronic / cisfinite analysis
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Selector & hyperstructure theory                               ║
+   ║   — selector calculus, condensor flows, eigenvalue equations     ║
+   ║     in 6D polymetric form.  Where the non-linear operator C_p    ║
+   ║     and the field functions φ^i_{km} live.                       ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Synmetronik / physical condensations                           ║
+   ║   — metronic structures, hermetric-form classification (a/b/c/d  ║
+   ║     for gravitons / photons / neutral / charged particles),      ║
+   ║     condensor fields.  Heim's "Synmetronik der Welt" volumes.    ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Particle eigenvalue structure / Elementarstrukturen der Materie║
+   ║   — R6, metrons, eigenvalue equations on hermetric forms,        ║
+   ║     polymetric field equations applied to particle rest masses.  ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │  terminal projection
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Mass Formula A / B                                             ║
+   ║   — the quantitative endpoint of the chain above.                ║
+   ║   A: 1982 ground-pattern / multiplet definition                  ║
+   ║      (k = 1 mesons, k = 2 baryons, only these for ponderable     ║
+   ║       corpuscles per Heim's own A-source).                       ║
+   ║   B: 1989 extension to excited states, lifetimes, neutrino       ║
+   ║      masses, and the fine-structure constant α.                  ║
+   ╚══════════════════╤══════════════════════════════════════════════╝
+                       │
+                       ▼
+   ╔══════════════════════════════════════════════════════════════════╗
+   ║   Executable code (this repository)                              ║
+   ║   — bit-identical Python port of the C reconstruction by         ║
+   ║     Eli Gildish (2006), plus sensitivity analysis, post-1989     ║
+   ║     scans, and three derived analyses (e_0 bounds, magnetic      ║
+   ║     moment, kontrabarie design).                                 ║
+   ╚══════════════════════════════════════════════════════════════════╝
+```
+
+**This document explains the chain from the top, and is most accurate
+about the bottom.**  Chapters 1–11 cover the eigenvalue / metron /
+hermetric-form / mass-formula layers in detail.  Chapter 13 sketches
+Syntrometrie but does *not* implement it.  Chapter 15 covers Heim's
+own 1959 propulsion claim, which lives outside the mass-formula
+chain altogether.
+
+**The repository implements only the bottom-most layer.**  A
+successful run of `python/heimmass.py` says nothing — by itself —
+about whether Syntrometrie, Quantitätssyntrix, or selector calculus
+are coherent or correct.  It says only that the *terminal projection*
+of those layers reproduces the published numerical predictions.
+
+The historical source layering — what counts as "A" vs "B" vs "G"
+material in the German-language Heim transmission — is documented in
+the [README](README.md#scope-of-this-repository) and corresponds
+to files `downloads/A_…` through `downloads/H_…`.
+
+---
+
 ## Table of Contents
 
 0. [Burkhard Heim — Life and Work](#chapter-0-burkhard-heim--life-and-work)

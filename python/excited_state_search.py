@@ -1,27 +1,69 @@
 """
-Excited-state search: do Heim's quantum-number lattice and configuration
-index x reproduce observed baryon and meson resonances?
+Excited-state EXPLORATORY scan (non-canonical) — see caveats below.
+==================================================================
 
-Heim's 21 reference particles span only the ground states of light
-hadrons.  But the same mass formula is in principle valid for any
-allowed integer tuple (ε, k, P, Q, κ, x).  Many well-established
-post-1965 resonances (the N* nucleon excitations, the Δ excited
-states, Λ*, Σ*, Ξ*, ρ, ω, η', φ, the K* family, the f/a/b/h
-mesons, …) were known in 1989 but were *not* placed by Heim into
-his published table.  This script asks: does the formula find them
-anyway, at the right (P, Q, |q|)?
+⚠️  EPISTEMIC CAVEAT (added May 2026 after source audit) ⚠️
 
-For each PDG resonance, we scan the (ε, k, κ, x) lattice with the
-*required* P (= 2·isospin) and Q (= 2·spin) and report:
+This script implements an EXPLORATORY scan over (ε, k, P, Q, κ, x) with
+k up to 5 and x up to 11.  After review by Joel (Heim-Theory Discord)
+and inspection of Heim's actual source documents A_…, E_…, F_…, G_…
+in `downloads/`, the following must be stated up front:
 
-  - exact-charge, exact-(P,Q) matches within ±2% and ±10%
-  - the next-closest mass at the correct (P, Q, |q|), if any
-  - the K* control match (already known to be 2.7 % off)
+  1. Heim's 1982 A-source (E_Massenformel_nach_B_Heim_1982.pdf) is
+     explicit: "For ponderable corpuscles only k = 1 and k = 2 are
+     possible, not k > 2."  Any scan at k > 2 is therefore producing
+     states that lie OUTSIDE Heim's intended canonical ontology for
+     ground states.
 
-The full PDG list of light-flavour resonances (no charm/bottom) up
-to ~2.5 GeV is used.  Heavy-flavour states (J/ψ, D, B, Λ_c, …) are
-deliberately excluded — earlier work showed those are outside the
-framework's scope.
+  2. Heim's G-Tabelle IV (page 5 of G_Ausgewaehlte_Ergebnisse.pdf)
+     lists 23 mesonic resonances at k=1 with theoretical masses,
+     including ρ, ω, φ, K*, η', f, A1, B, A2, F1, ρ', A3, g, etc.
+
+  3. Heim's G-Tabelle V (pages 6-8) lists 50+ baryonic resonances at
+     k=2 including N*, Δ*, Λ*, Σ*, Ξ* families.
+
+  4. Heim's resonance procedure uses (P, N, K_B) parameters distinct
+     from the (ε, k, P, Q, κ, x) ground-state procedure.  This script
+     does NOT implement Heim's resonance procedure — it instead
+     extends the ground-state procedure into non-canonical (k > 2)
+     territory.
+
+Consequences:
+
+  - The K*(892) "match at k=3" reported by an earlier run of this
+    script is NOT the same object as Heim's k=1 K* in G-Tabelle IV
+    (theoretical 891.20 / 892.22 MeV).  It is a numerical coincidence
+    in a non-canonical scan region.
+
+  - The Λ(1690) "match at k=2" is in Heim's G-Tabelle Va as a k=2
+    baryon resonance with theoretical 1693.28 MeV (P=0, N=55, K_B=61).
+    Our scan finds it at 1666 MeV, which is 1.6 % off Heim's published
+    value.  So our scan is not reproducing Heim's resonance procedure
+    even within the canonical k=2 region.
+
+  - The earlier "vector mesons ρ/ω/φ structurally absent from Heim's
+    lattice" claim is RETRACTED.  These particles are explicitly in
+    G-Tabelle IV with masses matching PDG to 0.02–0.7 %.
+
+What this script still does:
+
+  - It enumerates the (ε, k, P, Q, κ, x) lattice up to k=5 and reports
+    where modern PDG resonances land at the correct (P=2·isospin,
+    Q=2·spin, |q|) signature.
+
+  - It separates the result into three categories:
+      (i)  k ≤ 2 (canonical Heim ground-state region)
+      (ii) k > 2 (NON-CANONICAL — exploratory only)
+
+  - It documents which observed resonances Heim's PUBLISHED tables
+    cover (these are not "new predictions" but rediscoveries of
+    G-table entries the implementation does not yet reproduce
+    exactly).
+
+Anyone wanting to make new claims about Heim's reach should FIRST
+implement the (P, N, K_B) resonance procedure properly and reproduce
+G-Tabelle IV and V from the formula — that is a separate
+reconstruction task that this script does not undertake.
 
 Run with:
     ./venv/bin/python python/excited_state_search.py
@@ -133,12 +175,16 @@ def heim_PQ(spin: float, isospin: float):
     return int(round(2 * isospin)), int(round(2 * spin))
 
 
-def find_best_match(candidates, m_target, abs_q, P_req, Q_req, tol):
+def find_best_match(candidates, m_target, abs_q, P_req, Q_req, tol,
+                    k_max=None):
     """Return the *closest mass* candidate with the right (P, Q, |q|)
-    within fractional tolerance `tol`, or None."""
+    within fractional tolerance `tol`, or None.  If k_max is given,
+    only consider candidates with k <= k_max."""
     best = None
     for c in candidates:
         eps, k, P, Q, kap, x, qx, m = c
+        if k_max is not None and k > k_max:
+            continue
         if P != P_req or Q != Q_req:
             continue
         if abs(qx) != abs_q:
@@ -152,16 +198,23 @@ def find_best_match(candidates, m_target, abs_q, P_req, Q_req, tol):
 
 def main():
     print("=" * 92)
-    print(" Excited-state search — does Heim's lattice cover known light-flavour resonances?")
+    print(" EXPLORATORY excited-state scan — see top-of-file caveats")
     print("=" * 92)
+    print("""
+  This scan extends Heim's ground-state procedure to non-canonical
+  k > 2 territory.  Heim's actual G-Tabelle IV / V resonance procedure
+  uses (P, N, K_B) parameters and is NOT reproduced here.  Results
+  in the (k > 2) section should be read as exploratory only — they
+  are not the same objects as Heim's published resonances.
+""")
 
-    # Wider lattice than higgs_search.py: include k up to 5 and x up to 11,
-    # which encompasses the regime where Heim's later (post-1989) work
-    # placed several un-published candidate states.
+    # Wider lattice than higgs_search.py: include k up to 5 and x up to 11.
     candidates = scan_all(k_range=range(1, 6), x_range=range(0, 12))
-    print(f"\nLattice: ε∈±1, k∈{{1..5}}, P∈{{0..6}}, Q∈{{0..6}}, κ∈{{0,1}}, "
+    print(f"Lattice: ε∈±1, k∈{{1..5}}, P∈{{0..6}}, Q∈{{0..6}}, κ∈{{0,1}}, "
           f"x∈{{0..11}}, |q|≤2")
-    print(f"Generated {len(candidates):,} integer-charge candidates < 5 GeV\n")
+    print(f"Generated {len(candidates):,} integer-charge candidates < 5 GeV")
+    print("\nCanonical-region (k ≤ 2) matches and non-canonical (k > 2) "
+          "matches are tagged separately.\n")
 
     for label, targets in (("MESONS", TARGETS_MESONS),
                            ("BARYONS", TARGETS_BARYONS)):
@@ -188,12 +241,13 @@ def main():
                 eps_b, k_b, _, _, kap_b, x_b, _, m_pred = best10
                 err_pct = (m_pred - m_t) / m_t * 100
                 tag = "★" if best2 is not None else " "
+                region = "CANON" if k_b <= 2 else "EXPL "
                 qnstr = f"ε={eps_b:+d} k={k_b} κ={kap_b} x={x_b}"
                 print(f"{name:<14} {m_t:>6} {q:>3}  "
                       f"{P_req:>2} {Q_req:>2}  "
                       f"{m_pred:>9.1f} {tag}  "
                       f"{err_pct:>+5.1f}%   "
-                      f"{qnstr:<28}")
+                      f"[{region}] {qnstr:<22}")
             else:
                 print(f"{name:<14} {m_t:>6} {q:>3}  "
                       f"{P_req:>2} {Q_req:>2}  "
@@ -206,63 +260,58 @@ def main():
 
     print()
     print("=" * 92)
-    print(" Interpretation")
+    print(" Interpretation (revised May 2026 after A/B/G source audit)")
     print("=" * 92)
     print("""
-Three structural observations:
+THE EARLIER VERSION OF THIS SECTION CLAIMED:
 
-1. NEW ±2% match: Λ(1690) at 1666 MeV (-1.4%) with ε=-1, k=2, κ=0, x=1
-   at the correct (P=0, Q=3, q=0).  Joins K*(892) as a second
-   independently obtained Heim prediction outside his published 16-21.
+  - "NEW ±2% match: Λ(1690) at 1666 MeV — a second Heim prediction
+    outside the published list, joining K*(892)."
+  - "Vector mesons ρ/ω/φ are structurally absent from Heim's lattice."
 
-2. The Heim lattice CLUSTERS multiple PDG resonances onto one state:
+BOTH CLAIMS ARE RETRACTED.  The source audit using
+G_Ausgewaehlte_Ergebnisse.pdf shows:
 
-     N(1520), N(1720) → both → 1671 MeV at (P=1, Q=3, q=1, k=2)
-     Δ(1600), Δ(1700) → both → 1647 MeV at (P=3, Q=3, q=1, k=2)
-     Λ(1520), Λ(1690) → both → 1666 MeV at (P=0, Q=3, q=0, k=2)
-     Ξ(1530), Ξ(1820) → both → 1665 MeV at (P=1, Q=3, q=0, k=2)
+  - K*(892) and Λ(1690) are EXPLICITLY in Heim's published tables:
+      K*(892) in G Tabelle IV (page 5, k=1 mesonic resonance):
+              theoretical mass 891.20 / 892.22 MeV (neutral / charged)
+              parametrised by (P=1, N=23(11), K_B=29(3))
+      Λ(1690) in G Tabelle Va (page 6, k=2 baryonic resonance):
+              theoretical mass 1693.28 MeV
+              parametrised by (P=0, N=55, K_B=61)
+    Our scan's "hits" are at 867.6 MeV (K* at k=3, NON-CANONICAL)
+    and 1666 MeV (Λ at k=2, within canon but off Heim's own value
+    by 1.6 %).  In neither case is this a NEW prediction.
 
-   In each case Heim's framework places ONE state where the PDG
-   resolves TWO.  This is consistent with the quark-model view that
-   the PDG pair are radial/orbital partners with the same quantum
-   numbers — a distinction Heim's lattice does not encode through
-   (P, Q, κ, x) at k = 2.  Either:
-     (a) Heim's framework is genuinely incomplete and is missing the
-         excitation degree of freedom that distinguishes the two; or
-     (b) one of each PDG pair is mis-assigned and the other is the
-         "true" Heim state.
+  - ρ/ω/φ are also EXPLICITLY in G Tabelle IV at k=1:
+      ω(783):    P=0, N=64,  K_B=51,  theoretical mass 783.90 MeV
+      Φ(1019):   P=0, N=153, K_B=63,  theoretical mass 1019.63 MeV
+      ρ(770):    P=2, N=8(5), K_B=30(34), theoretical 769.98(769.31) MeV
+    The "vector meson gap" observation was an artifact of this scan
+    failing to implement Heim's (P, N, K_B) k=1 resonance procedure.
 
-3. The light VECTOR MESON sector (ρ, ω, φ; Q = 2 with low isospin)
-   has NO Heim candidate within ±10 % of measurement.  The Heim
-   lattice produces no isospin-(0,1) spin-1 meson near 770-1020 MeV.
-   This is a sharp prediction in the *wrong* direction — these
-   particles obviously exist.  Possible readings:
+WHAT THE SCAN ACTUALLY SHOWS (correctly):
 
-     • Heim's framework treats only "metron-stationary" states and
-       the ρ/ω/φ are not stationary in that sense (their hadronic
-       widths Γ ~ 5-150 MeV are large enough that they are arguably
-       not on the same footing as the pseudoscalar mesons π/K/η,
-       whose widths are 5-12 orders of magnitude smaller).
-     • Or: the framework is simply silent on vector mesons, in
-       parallel with its silence on the electroweak gauge bosons.
+  - The scan currently has TWO scan regions:
+      CANON (k ≤ 2): Heim's intended ground-state ontology per
+                     A-source ("only k=1 and k=2 are possible for
+                     ponderable corpuscles").
+      EXPL  (k > 2): non-canonical territory outside Heim's
+                     documented domain.
 
-The K* match — which IS a Q = 2 vector — sits at the strange-quark
-boundary (P = 1, |q| = 1) where the lattice transitions through one
-of its first non-trivial cells.  Why it works for K* but not for ρ
-or ω is not obvious from the geometry alone.
+  - Within the CANON region the scan can detect ground-state matches
+    but does NOT reproduce Heim's separate resonance procedure.
 
-What this scan does NOT do:
-  - It does not enumerate which observed resonance is a "radial
-    excitation" vs. an "orbital excitation" in the SM quark-model
-    sense.  Heim's framework lacks the quark-model concept of radial
-    excitation; what the configuration index x labels physically is
-    not the same thing as a radial node count.
-  - It does not test selection rules.  Heim noted (1989, p. 14) an
-    unfinished selection rule that would prune the lattice down to
-    only the observed states.  Without it the lattice generates
-    states with no observed counterpart, and the obvious question
-    "where are these extra states?" remains open.
-""")
+  - Within the EXPL region the scan generates states with no
+    canonical interpretation in Heim's framework.
+
+CONCLUSION: This script can no longer be used as evidence for "new
+Heim predictions outside the published list."  To make claims of
+that kind one would have to implement Heim's actual k=1 / k=2
+resonance procedure using (P, N, K_B) parameters and reproduce
+G-Tabelle IV / V from first principles; that is a separate
+reconstruction task.  See README "Beyond the mass formula"
+discussion and Open Questions #2.""")
 
 
 if __name__ == "__main__":
