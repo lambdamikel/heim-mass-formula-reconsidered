@@ -46,6 +46,7 @@ own terms so the reader can judge.
 12. [A Worked Example — The Proton Mass Step by Step](#chapter-12-a-worked-example--the-proton-mass-step-by-step)
 13. [Syntrometrie — The Logic Behind the Physics](#chapter-13-syntrometrie--the-logic-behind-the-physics)
 14. [Extended Heim Theory — The Dröscher–Häuser 8D / 12D Framework](#chapter-14-extended-heim-theory--the-dröscherhäuser-8d12d-framework)
+15. [Kontrabarie — Heim's Own Field-Drive Claim](#chapter-15-kontrabarie--heims-own-field-drive-claim)
 
 ---
 
@@ -1968,6 +1969,315 @@ recommended path is: master the 6D framework (chapters 1–11 of this
 document) before engaging the extensions. The 6D framework already
 contains the central conceptual moves; the extensions add
 dimensionality but the core arguments remain those of the 6D theory.
+
+---
+
+## Chapter 15: Kontrabarie — Heim's Own Field-Drive Claim
+
+### For Beginners
+
+Before Dröscher and Häuser wrote their 2004 AIAA papers about
+extending Heim theory to 8 / 12 dimensions for propulsion (chapter 14),
+Heim himself had a much earlier — and far more concrete — claim about
+**a propulsion mechanism that does not eject reaction mass**. He
+called the underlying effect **Kontrabarie** (the *contrabaric*
+effect): the artificial creation of a force on a body using only
+electromagnetic radiation manipulated by a specific geometric
+structure.
+
+The history is sobering and worth knowing:
+
+- **1952 — Stuttgart**: Heim talked at the 3rd International
+  Astronautical Congress about a unified field theory. No manuscript
+  exists (his physical disability meant he spoke freely from notes).
+  Hermann Oberth, Eugen Sänger, Karl Schütte and Pascual Jordan
+  were sympathetic; Max Born and Werner Heisenberg considered the
+  whole field of astronautics nonsense.
+- **1955 — Copenhagen**: Heim attended the 6th International
+  Astronautical Congress and met the Soviet rocket specialist
+  Leonid Sedov.
+- **26 October 1957 — Frankfurt**: Heim gave his most extensive
+  public talk at the German Society for Rocket Technology and Space
+  Research (DGRR), reporting on his **own experiments** intending
+  to detect the contrabaric effect. A tape recording was made.
+  The transcript was never published; the tape itself is now lost.
+- **June–October 1959 — *Flugkörper* magazine**: Heim published a
+  four-part series, "Das Prinzip der Dynamischen Kontrabarie"
+  ([Flugkörper](https://en.wikipedia.org/wiki/Flugk%C3%B6rper),
+  issues 4, 6, 7, 8). He gave formulas without derivations or
+  operator definitions — most readers (engineers and physicists)
+  could not understand the theory but were highly interested in
+  the propulsion implications.
+- **1985 — MBB / DASA (today AIRBUS)**: Auerbach, Harasim, Kroy and
+  von Ludwiger published "Laboratory Experiment for Testing the
+  Gravito-Magnetic Hypothesis with SQUID Magnetometers" (in
+  Springer's *Superconducting Quantum Interference Devices and
+  their Applications*). MBB intended to test whether a rotating
+  mass produces a weak magnetic field analogous to the way
+  electric charges do. **The experiment could not be funded
+  through to completion.**
+- **1990s onward**: The proposal was kept alive by the IGW Innsbruck
+  / heim-theory.com community, but no decisive replication has been
+  attempted since.
+
+Heim built a prototype "Kontrabator" in his Northeim apartment in
+1957. Photos (in von Ludwiger's biography and the 2017 paper)
+show large rings ~17 cm in diameter, assembled by hand from many
+small hollow-waveguide segments. Heim ran conductivity tests on
+these rings at Göttingen University. **The result was negative**:
+the efficiency of the components and the input radar-radiation
+intensity were too low to produce acoustic oscillations detectable
+even by the most sensitive seismometers of the day.
+
+The honest current status: the contrabaric effect is **neither
+confirmed nor refuted**. It has simply not been re-tested with
+modern apparatus.
+
+### For Intermediate
+
+The mathematical content of Heim's 1959 articles, reconstructed by
+Illobrand von Ludwiger in 2017 ("Die Einheitliche Feldtheorie und
+das Prinzip der Kontrabarie", IGAAP), is the following.
+
+**Heim treats gravity like Maxwell electromagnetism.** Where
+Einstein's GR makes gravity a geometric property (spacetime
+curvature), Heim writes a phenomenological field theory with a
+gravitational field strength `Γ⃗` and — its partner — a
+*mesofield* `μ⃗`. The pair satisfies Maxwell-like equations:
+
+```
+div Γ⃗  = σ̃ / α              rot μ⃗ = α · ∂Γ⃗/∂t
+rot Γ⃗  = −β · ∂μ⃗/∂t         div μ⃗ = c · (σ₀ − σ̃)
+```
+
+with `α = 1/(4πγ)` (γ = gravitational constant) and a corresponding
+β fixing the wave speed:
+
+```
+v = 1/√(α·β) = c   (speed of gravitational waves)
+```
+
+So **gravitational disturbances propagate at the speed of light** —
+the same conclusion LIGO's 2017 GW170817 measurement reached
+empirically. (Heim's *original* 1959 articles gave 4/3·c; von
+Ludwiger 2017 traced this to a calculation error in Heim's Poisson
+derivation, where he had `div grad(m/r) = (∂²/∂r² + (2/r)∂/∂r + 1/r²)·(m/r)`
+with the `1/r²` term not zero. With the correct Poisson equation,
+α = 1/(4πγ) and v = c.)
+
+The field has its own **field-mass** μ_g (an inertial mass
+associated with the gravitational field itself, distinct from the
+source mass). For a point source m₀ at radius r₀, the
+location-dependent total mass at radius r is
+
+```
+m(r) = (r / (2a)) · (1 − √(1 − 4·a·A/r))
+```
+
+where a = γ/c² and A = m₀(1 − a·m₀/r₀) is a constant of the
+configuration. Heim's similar (but slightly different) expression
+was independently obtained by Arnowitt, Deser and Misner in 1962
+in the standard GR Hamiltonian formulation.
+
+**The contrabaric equation** — Heim's *empirically testable*
+prediction — is this. Define the EM Poynting-like flux vector
+F = E⃗ × H⃗. Then a *temporal change of the ponderomotive force
+density* ξ̇ satisfies
+
+```
+ξ̇ = ∇ · div (E⃗ × H⃗) = (√b / (4π γ²)) · (d/dt) · ∇ ( (1/r²) · (Φ + r·Φ') )
+```
+
+with Φ = √φ_g (the gravitational potential) and b a constant of
+the configuration.
+
+Heim's preferred operator form was:
+
+```
+K · F = G + Γ
+```
+
+with K = grad div − rot rot + div grad (the standard vector
+Laplacian) and G, Γ specific gradient operators. In the second
+1959 article Heim gave the **empirically testable** rearrangement
+
+```
+ξ̇ = rot (Y; E⃗ × H⃗)         with Y = rot rot.
+```
+
+**Interpretation.** If E⃗ × H⃗ can be forced into a closed circular
+motion by a material structure — so that its rotational divergence
+no longer vanishes — a mesofield vector μ⃗ perpendicular to the
+circle plane is induced, and the system experiences a real
+ponderomotive force in that direction. **This force does not have
+an electromagnetic recoil partner** (the EM radiation is consumed
+by the closed loop, not radiated away) — it appears to act on the
+apparatus from outside it. That is Heim's "field drive".
+
+The catch: the apparatus must (a) contain the EM radiation in a
+closed loop with extremely low loss, (b) use specifically
+crafted crystalline / cyclic-polymer structures as the "cycle
+former", and (c) operate at high frequency (Heim suggested
+centimeter-wave radar power for the prototype, optical
+frequencies for a real engine). Heim's 1957 prototype failed
+exactly at (a) — the components had too much loss.
+
+### For Experts
+
+The propagation chain in detail:
+
+1. Heim's eigenvalue reformulation of the Riemann curvature tensor
+   (`C_p · φ^i_{km} = λ_p(k,m) · φ^i_{km}` — chapter 2 of this
+   document) yields **six** different covariant derivative operators
+   `Γ^(i)_{(±)}` for i = 1…6, corresponding to the six dimensions
+   and the two sign conventions for contravariant vs. covariant
+   action.
+
+2. The energy-density tensor decomposes into **four** physically
+   distinguishable components:
+
+   ```
+   m = 1:  electromagnetic                (E_i, H_i)
+   m = 2:  gravito-electric (mixed)       (p_i, E_i)
+   m = 3:  gravito-magnetic (mixed)       (p_i, H_i)
+   m = 4:  pure gravitational             (p_i = Γ_i·√α + μ_i·√β)
+   ```
+
+   It is the **two cross-terms** m=2 and m=3 that carry the
+   gravito-EM coupling and produce all of Heim's predicted
+   propulsion-relevant effects. They are exactly the kind of
+   gravito-EM mixing terms Einstein's GR does *not* admit at the
+   classical level (in standard GR, EM is a stress-energy source
+   for gravity but EM-coupled-to-gravito-magnetism is a separate
+   "gravito-magnetic" frame-dragging effect, much weaker).
+
+3. The Heim eigenvalue equation in this 4-component form is
+
+   ```
+   sp C_(m); φ = λ_(m) · φ           (m = 1..4)
+   ```
+
+   The eigenvalues λ_(m) form a discrete point spectrum. So the
+   EM/gravito-magnetic/gravitational field strengths are *quantised*
+   in Heim's theory — the analogue of Planck's quantisation, but
+   geometric.
+
+4. For two material-gravitative systems a, ã in mutual correlation
+   (the "transformer" of the Kontrabator), the total energy density
+   acquires cross-terms
+
+   ```
+   Q^{ik} = T_{(a,a)} + T_{(a,ã)} + T_{(ã,a)} + T_{(ã,ã)}
+   ```
+
+   and the operators `M̃_(+)` = sp Γ^(1)_(+); sp Γ^(ε,κ)_(-)/2 and
+   `M̃_(-)` = analogous, applied to Q^{ik}, deliver the
+   ponderomotive force-density vectors ξ_{e,c} and ξ_{c,e}. These
+   are the **net forces between the two systems** beyond ordinary
+   gravity and EM.
+
+5. The **electric charge** is then derived from the field-mass:
+
+   ```
+   e = ± √(r · (b·m + k))
+   ```
+
+   with b = e₀²/(4π·ε₀·r₀) − m₀·c² and k an integration constant.
+   For k = 0 this reduces to e = (√b/γ²)·r·√φ_g — connecting the
+   elementary charge to the gravitational potential of the field-mass.
+   Charge density η = de/dV then satisfies
+
+   ```
+   η = (√b / (4π·γ²)) · (1/r²) · (Φ + r·Φ')
+   ```
+
+   with Φ = √φ_g. Combining this with the EM Poynting relation
+   `ξ⃗ = (1/2)·(d/dt)(ε₀E² + μ₀H²) = −div(E⃗ × H⃗)` yields the
+   contrabaric equation in its testable form.
+
+6. **The dynamical solution for the acceleration field b(x)** in
+   the steady state of the contrabator is
+
+   ```
+   b(x) = C · ( e^(-x) − e^(x/2) · (cos(x·√3) − (1/2)·√3·sin(x·√3)) )
+   ```
+
+   with `x = ∛λ'`, `λ' = 2π·r·L / (m₀·V')·ε`, where L = L_T/ε is
+   the input power, L_T is the power actually transformed, ε is
+   the efficiency of the transformer model, and V' is the volume
+   of the transformer elements in which transformation occurs.
+
+   The acceleration b(x) is what the prototype was supposed to
+   produce; its magnitude scales linearly with input power times
+   efficiency factor ε, divided by the transformer mass and volume.
+
+**Experimental record.**
+
+| Year | Experimenter | Test | Outcome |
+|---|---|---|---|
+| 1957 | Heim (Northeim apartment) | 17 cm hollow-ring kontrabator at radar frequencies | Negative — efficiency of components too low, no acoustic signal seen even with sensitive seismometers |
+| 1985 | Auerbach, Harasim, Kroy, von Ludwiger (MBB) | SQUID magnetometer detection of B-field from rotating mass | Apparatus built, experiment not run to completion (funding shortfall) |
+| 1992-1996 | Podkletnov (Tampere) | "Gravitational shielding" via rotating superconductor in EM field | Initial positive claim; subsequent independent replications negative; consensus: artifact |
+| 2002-2008 | Tajmar et al. (ARC Seibersdorf) | Gravito-magnetic effect of rotating superconductor on gyroscopes | Initial 10⁻⁸ effect reported; later experiments ruled out as systematic artifacts |
+| 1990s? | Ning Li (Forschungszentrum Jülich, then USA) | Reported (rumour) ponderomotive forces from laser-irradiated crystals | Never independently confirmed; Li went on to classified DoD propulsion research |
+| Mid-2000s | Dröscher / Häuser (AIAA) | Theoretical extension of Heim → 8D / 12D + gravitophoton coupling | Theoretical claim; no experimental test attempted |
+
+**Status per Millis & Davis ("Frontiers of Propulsion Science",
+AIAA, 2003)**: Heim's prototype design specifications "remain
+promising". The proposed experiment has not been definitively
+performed.
+
+**Honest caveats:**
+
+1. **No definitive replication.** Heim's effect has neither been
+   observed in a properly designed modern experiment nor
+   convincingly ruled out. The few related claims (Podkletnov,
+   Brown, Tajmar) that *did* attract serious replication have all
+   been refuted as artifacts; but the contrabaric effect *per se*
+   has not been tested at modern sensitivity.
+
+2. **The mathematics is not GR-consistent.** Heim's gravito-EM
+   cross-terms violate the standard GR principle that EM is a
+   *source* for gravity, not an entity coupled to gravity in a
+   way that produces direct mechanical forces. If Heim's framework
+   is correct, GR is an incomplete description even in regimes
+   where it has been precisely tested.
+
+3. **The wave-speed correction is genuine.** Heim's published
+   1959 4/3·c value was a calc error. The corrected theory has
+   gravitational waves at c, consistent with LIGO. So at least the
+   *general framework* is post-2017 GR-compatible at this point.
+
+4. **No first-principles K calculation exists in our Python port
+   either.** Just as with the electron magnetic moment (chapter
+   "Magnetic Moments"), the contrabaric prediction depends on
+   protosimplex / synmetronic structure quantities (V', ε, L_T,
+   etc.) that derive from Heim's polymetric formalism — these
+   are NOT in any modern open-source implementation.
+
+The takeaway for someone evaluating Heim's claims: **the
+contrabaric effect is the part of Heim's framework most likely
+to be either spectacularly right or spectacularly wrong**. It is
+also the part with the lowest credibility currently — the kind of
+prediction that gets a theory dismissed without examination — but
+also the most experimentally accessible one if the apparatus
+specifications could be funded and built at modern precision. The
+1957 prototype's failure was a failure of *engineering*, not of
+*theory*: Heim could not afford the necessary low-loss waveguide
+components and high-power radar source. Sixty-eight years later
+those components exist in standard laboratory equipment. The
+experiment has simply not been done.
+
+**Reference.** This chapter follows the reconstruction in
+Illobrand von Ludwiger, "Die Einheitliche Feldtheorie und das
+Prinzip der Kontrabarie — Ergänzungen, Klarstellungen und
+Korrekturen zu Burkhard Heims frühen Aufsätzen" (IGAAP, 2017),
+mirrored in this repository as
+`downloads/Feldtheorie-Heim-Prinzip-Kontrabarie-IvL-IGAAP-2017-2-seitig.pdf`.
+Heim's original four-part series in *Flugkörper* (1959, issues
+4, 6, 7, 8) is the primary source; this 19-page IvL paper is
+the cleanest available reconstruction with the corrections
+needed to make Heim's formulas self-consistent and GR-compatible.
 
 ---
 
