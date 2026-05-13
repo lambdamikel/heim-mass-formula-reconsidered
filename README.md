@@ -371,6 +371,17 @@ heim/
     ├── sensitivity_diagnostic.py  ← per-particle sensitivity breakdown
     ├── sensitivity_structural.py  ← test μ, η, θ, Q_i
     ├── sensitivity_eta_form.py    ← probe η's functional form
+    │
+    ├── higgs_search.py            ← post-1989 particle scan (Higgs, W, Z, …)
+    ├── excited_state_search.py    ← scan for baryon/meson resonances
+    │                                 (Λ(1690) ±1.4 % match, ρ/ω/φ gap)
+    ├── e0_search.py               ← experimental bounds on Heim's neutral
+    │                                 electron prediction (0.5162 MeV)
+    ├── magnetic_moment.py         ← Synmetronik III Eq. 186 — Heim's
+    │                                 electron g-factor formula
+    ├── kontrabarie_design.py      ← modern-apparatus thrust prediction
+    │                                 for Heim's 1959 field-drive claim
+    │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
 
