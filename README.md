@@ -293,7 +293,8 @@ Caveats on this assessment:
 - [Findings](#findings) — including
   [Mass predictions](#mass-predictions),
   [Post-1989 particle predictions](#post-1989-particle-predictions),
-  and [Lifetime predictions](#lifetime-predictions)
+  [Lifetime predictions](#lifetime-predictions),
+  and [Beyond the mass formula — Kontrabarie](#beyond-the-mass-formula--kontrabarie)
 - [The honest verdict](#the-honest-verdict)
 - [Open questions](#open-questions)
 - [References](#references)
@@ -757,6 +758,75 @@ ports derived from them). The Excel reference
 (`Heim_1989_Massenformel_0.4.xlsm`) appears to have been cleaned up
 later by a separate maintainer who caught these errors; cross-checking
 against it surfaced bugs that pure PDF reading had missed.
+
+### Beyond the mass formula — Kontrabarie
+
+*This subsection is epistemically distinct from the rest of Findings:
+the mass and lifetime results above are verified against measurement;
+the material below is from the most speculative part of Heim's
+framework and has no positive experimental confirmation.*
+
+Heim's mass formula is the part of his work that this repository's
+analysis has *verified*. But Heim also published, in the late 1950s,
+a propulsion claim: that EM radiation forced into a closed circular
+motion by a suitable material structure should produce a real
+ponderomotive force on the apparatus, with no electromagnetic
+recoil partner — a *field drive* or **Kontrabarie effect**.
+
+The historical record (von Ludwiger 2017, in
+`downloads/Feldtheorie-Heim-Prinzip-Kontrabarie-IvL-IGAAP-2017-2-seitig.pdf`)
+is sobering. Heim built a prototype "Kontrabator" from hand-soldered
+hollow-waveguide rings in his Northeim apartment in 1957; the
+device's losses were too high to detect the predicted effect even
+with the most sensitive seismometers available. A 1985 follow-up
+proposal at MBB / DASA (Auerbach, Harasim, Kroy, von Ludwiger)
+designed a SQUID magnetometer experiment to test the related
+gravito-magnetic hypothesis; it was published in Springer's
+*Superconducting Quantum Interference Devices and their Applications*
+but never funded to completion. No definitive replication has been
+attempted with modern apparatus since.
+
+`python/kontrabarie_design.py` does what can be computed from the
+published formulas: implements Heim's steady-state acceleration
+field `b(x) = C · (e^(-x) - e^(x/2) · (cos(x√3) - ½√3·sin(x√3)))`
+(IvL 2017 p. 237), finds its first positive maximum
+(`x ≈ 1.54, shape ≈ 2.99`), and brackets the thrust for a lab-scale
+modern apparatus (30 cm SCRF toroid, 100 kW gyrotron at 30 GHz,
+50 % efficiency, 15 kg apparatus, 5 L cycle-former volume) under
+several hypotheses for Heim's unknown overall coupling C:
+
+| C [m/s²] | Interpretation | Thrust [N] | Thrust/Power |
+|---:|---|---:|---:|
+| 7.4·10⁻⁶ | matched to photon-rocket limit | 3.3·10⁻⁴ | trivially small |
+| 1·10⁻³ | Heim's 1957 detection floor | **0.045** | 0.45 mN/kW |
+| 9.8·10⁻³ | 0.1 % of standard gravity | 0.44 | 4.4 mN/kW |
+| 9.81 | full antigravity (popular-press version) | 440 | 4.4 N/kW |
+
+The popular-press "antigravity" hypothesis (C = g, last row) would
+have been *spectacularly* detected in 1957 already and was not — so
+either Heim's apparatus was so inefficient that detection was
+missed by a margin of ≥1000 × (which is plausible given the negative
+result on seismometers), or C ≪ g. The interesting region is the
+middle two rows: C ~ 10⁻³ m/s² gives 45-440 mN of thrust on 100 kW
+of input, well within the resolution of modern thrust stands
+(µN-class, e.g. NASA Eagleworks, Tajmar 2017). A successful
+detection there would be a Nobel-prize-level result; a robust null
+result would constrain Heim's Kontrabarie at the level his 1957
+prototype could not reach.
+
+**The decisive test, if anyone wanted to run it:** vary input
+power L over 2-3 decades and check whether thrust scales as Heim's
+`λ' = 2π·r·L·ε/(m₀·V')`. A real Kontrabarie effect *must* follow
+this scaling. A constant offset (thermal artifact, RF leakage,
+electrostatic systematic) will not. Total apparatus cost:
+~$2-5 M plus ~1 person-year for the cycle-former metamaterial design.
+That's roughly an order of magnitude less than a typical mid-sized
+physics experiment. The reason it hasn't been done is not cost —
+it is that mainstream physics views the entire premise as not
+worth checking.
+
+For the full technical treatment, see
+[Chapter 15 of THEORY_EXPLAINED.md](THEORY_EXPLAINED.md#chapter-15-kontrabarie--heims-own-field-drive-claim).
 
 ## The honest verdict
 
