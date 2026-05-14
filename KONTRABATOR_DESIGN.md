@@ -44,29 +44,42 @@ The apparatus must satisfy three criteria, in order of importance:
 ## 2. System architecture
 
 ```
-                                                                ┌──────────────┐
-   ┌──────────────────┐    ┌────────────────┐    ┌────────────┐ │   Cycle      │
-   │  30 GHz gyrotron │ ─► │  HE11 corrugated│ ─► │ SCRF       │ │   Former     │
-   │  100 kW CW       │    │  transmission   │    │ Niobium    │►│   toroidal   │
-   │  (CPI VGT-8030)  │    │  line  (15 m)   │    │ cavity     │ │   ring,      │
-   └──────────────────┘    └────────────────┘    │ Q > 10⁹    │ │   gyrotropic │
-                                                  └─────┬──────┘ │   metamaterial│
-                                                        │        │   inner liner │
-                                                        ▼        └──────┬───────┘
-                                                  ┌────────────┐         │
-                                                  │ He cryostat│         ▼
-                                                  │ 2 K        │   ┌──────────────┐
-                                                  └────────────┘   │ Torsion-     │
-                                                                   │ pendulum     │
-                                                                   │ thrust stand │
-                                                                   │ µN sensitive │
-                                                                   └──────┬───────┘
-                                                                          │
-                                                                          ▼
-   ┌─────────────────────────────────────────────────────────────────────────────┐
-   │  Vacuum chamber 10⁻⁷ Torr, 2.5 m × 1.5 m × 1.5 m, Pfeiffer turbomolecular   │
-   │  pumping station                                                            │
-   └─────────────────────────────────────────────────────────────────────────────┘
+   ┌──────────────────────────────────────────────────────┐
+   │ RF source                                            │
+   │ 30 GHz / 100 kW CW gyrotron (CPI VGT-8030)           │
+   │ with 60 kV HV supply and 1 T NbTi solenoid           │
+   └───────────────────────────┬──────────────────────────┘
+                               │  HE₁₁ corrugated waveguide, 15 m, < 0.1 dB/m
+                               ▼
+   ┌──────────────────────────────────────────────────────┐
+   │ Vacuum window + isolator                             │
+   │ CVD-diamond window, ferrite isolator > 30 dB         │
+   └───────────────────────────┬──────────────────────────┘
+                               │  UHV transition, 10⁻⁷ Torr
+                               ▼
+   ┌──────────────────────────────────────────────────────┐
+   │ SCRF niobium cavity @ 2 K                            │
+   │ 9-cell scaled-ILC, Q₀ > 10⁹                          │
+   │ cooled by Cryomech He cryostat (separate loop)       │
+   └───────────────────────────┬──────────────────────────┘
+                               │  evanescent coupling into cycle former
+                               ▼
+   ┌──────────────────────────────────────────────────────┐
+   │ Cycle former (toroidal)                              │
+   │ major radius 50 cm, minor 5 cm                       │
+   │ gyrotropic-metamaterial inner liner                  │
+   │ (YIG / SRR / chiral — see open questions)            │
+   └───────────────────────────┬──────────────────────────┘
+                               │  ponderomotive force coupling — if effect exists
+                               ▼
+   ┌──────────────────────────────────────────────────────┐
+   │ Torsion-pendulum thrust stand                        │
+   │ NASA-Eagleworks pattern, 1 µN resolution             │
+   │ laser interferometer readout, 1 nm displacement      │
+   └──────────────────────────────────────────────────────┘
+
+   All of the above sits inside a vacuum chamber
+   (2.5 m × 1.5 m × 1.5 m, 10⁻⁷ Torr base, Pfeiffer pumping).
 ```
 
 Five distinct subsystems:
