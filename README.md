@@ -93,6 +93,52 @@ The relevant source layering, which the repo now adopts:
 The intended domain of the formula must be reconstructed from
 A + B + G together, not inferred from any one source alone.
 
+### Sector-by-sector source status
+
+Which Heim sources actually cover which physical sector — the
+question that determines whether a given Standard Model phenomenon is
+"outside Heim" or just "outside what the current Python port has
+reproduced". Adapted from Joel's May 2026 review:
+
+| Sector | Source status |
+|---|---|
+| Ground-state leptons | Explicit in A and G (Tabelle I/II); reproduced by current port to ≤ 0.01 %, except for a 0.79 % electron discrepancy (open issue). |
+| Ground-state mesons | Explicit in A and G; reproduced to ≤ 0.01 %. |
+| Ground-state baryons | Explicit in A and G; reproduced to ≤ 0.01 %. |
+| Neutrino masses | Explicit in B and G (Tabelle II, 5 species). Not reproduced from formula by current port; status only by direct comparison to G values (see `python/heim_neutrinos.py`). |
+| Lifetimes of ground states | Explicit in B and G; reconstruction-sensitive (Arbeitskreis bracket warning applies). Current port matches measurement to factor 3 for 17 of 18 particles. |
+| Meson resonances (k=1) | Explicit in G (Tabelle IV, 23 entries: ρ, ω, φ, K*, η', f-family, A-family, B(1235), F1, ρ', A3, g, …). **Needs audit** — current port does not implement Heim's (P, N, K_B) resonance procedure. |
+| Baryon resonances (k=2) | Explicit in G (Tabellen V_a–V_c, 50+ entries: N*, Δ*, Λ*, Σ*, Ξ* families). **Needs audit** — same as above. |
+| Light vector mesons (ρ, ω, φ) | Present in G with theoretical masses matching PDG to 0.02-0.7 %. Earlier "structural gap" claim retracted; the gap was the un-implemented resonance procedure, not the framework. |
+| Heavy-flavour states (J/ψ, D, B, Λ_c, Σ_c, Λ_b, …) | Unclear / probably not historically central to Heim's work. No A/B/G entries known. Open: how (or whether) a complete Heim-compatible theory recovers their phenomenology. |
+| Free quarks | Not in Heim's ontology. At most an effective internal-structure description of hadronic sub-content. |
+| W / Z gauge bosons | Not A/B/G mass-formula input. Empirical phenomenology must still be recovered by any complete Heim-compatible theory. |
+| 125 GeV scalar (Higgs) | Not A/B/G mass-formula input. Heim's mass mechanism is geometric, not Yukawa; the observed scalar resonance must be accommodated as an effective excitation, not as a primitive. |
+
+### Audit-priority order (recommended)
+
+Six-step roadmap for any team picking up the framework after this
+repository:
+
+1. **Reproduce A/G ground states.** *Status: mostly done.* 20 of 21
+   ground-state particles match Heim's Tabelle II to ≤ 0.01 %. The
+   electron is 0.79 % off; that's a localised bug to find.
+2. **Reproduce G Tabelle IV meson resonances (k=1)** from first
+   principles using Heim's (P, N, K_B) parameters. *Status: open.*
+   This is the largest single reconstruction task remaining.
+3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
+   *Status: open.*
+4. **Compare the resulting code's output to modern PDG values** —
+   only *after* steps 2 and 3 are clean. *Status: premature without
+   them.*
+5. **Label non-canonical extrapolations (k > 2) explicitly as
+   exploratory.** *Status: done* in `python/excited_state_search.py`
+   after the May 2026 revision.
+6. **Address empirical phenomena outside A/B/G** (W, Z, Higgs,
+   heavy-flavour). The question is not "are they Heim primitives?"
+   (no, by construction) but "can a complete Heim-compatible theory
+   recover their phenomenology?" *Status: open.*
+
 ## Headline findings
 
 > **1. The mass-formula layer carries non-trivial numerical structure.**

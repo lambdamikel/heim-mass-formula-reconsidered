@@ -1419,6 +1419,11 @@ particles.
 
 ## Chapter 11: Where Heim Theory Stands Today
 
+*Substantially revised May 2026 after the A/B/G source audit
+(see [Scope](#scope-where-this-document-and-this-repository-sit-in-heims-framework)
+at the top of this document and the [README's discussion](README.md)
+of the same review.)*
+
 ### For Beginners
 
 Heim's theory is **not** part of mainstream physics. It is not taught
@@ -1427,11 +1432,15 @@ that physics graduate students learn. In that sense, it is a fringe
 theory.
 
 But it is a fringe theory *with a tightly closed accounting* of its
-own predictions. Heim does not claim to predict everything — he claims
-to predict the masses of about 20 particles, plus their lifetimes,
-plus the fine-structure constant, plus a few related quantities. And
-when those predictions are checked carefully (as they are in this
-repository), most of them are right to remarkable accuracy.
+own predictions, on its own ground. Heim's mass-formula layer claims
+to predict the rest masses of about 20 ground-state particles, plus
+their lifetimes, plus the masses of an additional 70+ approximated
+mesonic and baryonic resonances (G-Tabelle IV / V), plus the
+fine-structure constant α, plus the electron magnetic moment, plus
+five neutrino masses including two beyond the Standard Model. When
+those predictions are checked carefully, *most* of them are right —
+when one stays within the empirical phenomena the framework
+addresses.
 
 The honest reasons mainstream physics has not engaged:
 
@@ -1445,25 +1454,67 @@ The honest reasons mainstream physics has not engaged:
    privately, publishing rarely. Most of his manuscripts were typed
    by his wife from his dictation. His main book *Elementarstrukturen
    der Materie* was published privately.
-3. **The theory was never extended past 1989.** New particles
-   discovered since (Higgs, charm, bottom, top hadrons) have not been
-   tested. This is not a refutation, but it is a sign of inactivity.
-4. **The Higgs discovery (2012)** does not fit Heim's framework, but
-   neither does it falsify it (Heim's framework doesn't predict any
-   125 GeV scalar; nor does it predict its absence — Heim's framework
-   is silent on electroweak physics). For a Standard-Model-trained
-   physicist, this silence is itself a problem.
+3. **The theory was never extended past 1989.** Particles discovered
+   since (Higgs, top quark, charm and bottom hadron spectroscopy) have
+   not been mapped into Heim's framework. This is not a refutation,
+   but it is a sign of inactivity.
+4. **The Higgs discovery (2012)** is often described, including in
+   earlier versions of this document, as something Heim's framework
+   "is silent on" — which is partly correct but easily misread. The
+   correct statement (sharpened by Joel's May 2026 review) is:
+
+   - What is observed: a 125 GeV scalar resonance whose production
+     and decay channels are *broadly consistent* with the Standard
+     Model Higgs.
+   - What is *interpreted*: that this particle is the excitation of
+     a Higgs field whose vacuum expectation value breaks electroweak
+     symmetry and gives mass to W, Z, and the fermions via Yukawa
+     couplings.
+   - What remains *open even within the Standard Model*: the scalar
+     potential, the Higgs self-coupling, whether the Higgs is
+     elementary or composite, and how its parameters arise from any
+     deeper theory.
+
+   Only the first item is purely experimental. Heim proposes his own
+   mass mechanism (geometric, not Yukawa), and so does not need a
+   Higgs field as a primitive. The empirical obligation is therefore
+   narrower than "Heim must contain the Higgs": a complete
+   Heim-compatible theory must account for the observed 125 GeV
+   scalar resonance and its SM-like phenomenology, but it may
+   interpret it as an effective excitation, resonance, or emergent
+   field-theoretic description of deeper geometric dynamics rather
+   than as the fundamental origin of mass. The same applies to the
+   W and Z gauge bosons.
+
+5. **The dataset is wider than initially reported in this repository.**
+   Earlier passages of this document characterised Heim as having
+   "20 reference particles". This was wrong: Heim's G-Tabelle IV / V
+   list theoretical masses for 70+ resonances at typical agreement
+   ≤ 1 % with PDG. The wider empirical reach is real, but
+   reproducing it in code is a separate reconstruction task that
+   the current Python port has not undertaken.
 
 ### For Intermediate
 
 What would change the situation?
 
-1. **A successful extension to post-1989 particles** (top quark mass,
-   any charm-baryon mass, any bottom-baryon mass) at the same 0.05 %
-   accuracy. To date no such extension exists. The K* match (Chapter
-   10) is a small step; a top-quark match would be a giant one.
+1. **Reproduce Heim's G-Tabelle IV and V exactly.** Joel's May 2026
+   review (Heim-Theory Discord) identified that the current code has
+   not reproduced Heim's own resonance procedure: G-Tabelle IV
+   parametrises 23 k=1 mesonic resonances by (P, N, K_B) coordinates,
+   and G-Tabelle V parametrises 50+ k=2 baryonic resonances similarly.
+   This is distinct from the (ε, k, P, Q, κ, x) ground-state
+   procedure the port implements. Reproducing G-Tabelle IV/V from
+   first principles would settle whether the Heim framework's
+   *internal* numerical consistency holds at the resonance level.
 
-2. **A mathematical audit of the polymetric formalism.** Heim's
+2. **Resolve the 0.79 % electron-mass discrepancy** between Heim's
+   1989 Tabelle II (0.51100343 MeV) and the current port (0.50694 MeV).
+   Every other particle in the port matches Heim's table to ≤ 0.01 %.
+   This is a localised transcription / convention issue, not a
+   foundational one, but it indicates a third unfound upstream bug.
+
+3. **A mathematical audit of the polymetric formalism.** Heim's
    selector calculus, hermetric forms, and condensor flows are
    non-standard mathematical constructions. Whether they form a
    self-consistent algebraic system, and whether the chain
@@ -1471,18 +1522,18 @@ What would change the situation?
    free of hidden circularity, has never been verified by an outside
    mathematician. This is the deepest open question.
 
-3. **Reproduction of the lifetime formula by an independent group.**
-   This repository's Python port reproduces Heim's lifetime numbers
-   within 1–10 % across 11 orders of magnitude. The Excel
-   `Heim_1989_Massenformel_0.4.xlsm` is the only other known modern
-   reproduction. If a third independent reproduction (e.g., starting
-   from the German source documents and building a fresh
-   implementation) confirms the same accuracy, the empirical case
-   becomes much harder to dismiss.
+4. **Independent verification of Heim's 5-neutrino prediction**
+   (G-Tabelle II): ν_e at 3.81 meV, ν_μ at 5.37 keV, ν_τ at 10.75 keV,
+   and two additional generations ν_4 at 21.06 keV and ν_5 at 207 keV.
+   The keV-scale values for ν_μ, ν_τ are inconsistent with cosmology
+   if those labels denote the active SM mass eigenstates; they are
+   tenable only if Heim's labels denote sterile, non-mixing states.
+   The framework does not specify the mixing structure — a positive
+   resolution is needed.
 
-4. **Engagement by a working physicist.** None of the above three
+5. **Engagement by a working physicist.** None of the above four
    require Heim to be ultimately correct — they require only that the
-   theory be properly evaluated. As of 2026, no experimental or
+   framework be properly evaluated. As of 2026, no experimental or
    theoretical physicist with a public profile has engaged with
    Heim's full system at the level needed.
 
@@ -1500,8 +1551,16 @@ investigation, is genuinely difficult to dismiss as numerology:
 - The fine-structure constant α = 1/137.03601 emerging at 5-decimal
   agreement with measurement from the same η, θ, π without any
   parameter-fit input.
-- One *new* successful prediction (the K*⁰ meson at 2.7 % accuracy)
-  for a particle that was not in Heim's published 16-particle list.
+- The electron magnetic moment: Heim's 1980 Synmetronik III Eq. 186
+  uses the same η-function, and reverse-engineering its K parameter
+  from the measured anomaly gives agreement with QED Schwinger
+  6·√η·α/(2π·e) to 0.15 %.
+- Heim's own G-Tabelle IV / V list theoretical masses for 23 mesonic
+  and 50+ baryonic resonances at typical 0.02-1 % agreement with PDG,
+  including ρ(770), ω(782), Φ(1019), K*(892), η'(958), the f / A / B
+  meson families, the N* nucleon excitations, Δ resonances, Λ*, Σ*,
+  Ξ* families — empirically far wider than the 21-particle
+  ground-state set this repository originally focused on.
 
 The honest mathematical status, however, is that Heim's polymetric
 formalism has not been peer-reviewed. The chain G → τ → μ → η, and
@@ -1509,33 +1568,53 @@ the eigenvalue-spectrum structure that produces the (n, m, p, σ)
 greedy decomposition, have been documented by Heim, by von Ludwiger
 & Grüner, and by this repository's annotations — but never
 mathematically audited. Until that audit happens, the framework's
-status remains: empirically remarkable, theoretically untested.
+status remains: empirically remarkable, theoretically untested,
+internally not-yet-fully-reproduced.
 
-The two paths forward are clear:
+The audit-priority order, after the May 2026 source review, is:
 
-1. **Mathematical audit** — by a mathematical physicist fluent enough
-   in Heim's own formalism to verify the consistency of the polymetric
-   geometry. The full 81-page *Herleitung* manuscript (chapters 1–11)
-   is the entry point. Engagement would have to start there.
+1. **Reproduce A/G ground states.** This is mostly done — 20 of 21
+   particles match Heim's Tabelle II to ≤ 0.01 %; the electron is
+   0.79 % off and needs the unidentified bug fixed.
 
-2. **Experimental extension** — applying Heim's quantum-number
-   classification to particles discovered after 1989. The current
-   `python/higgs_search.py` shows the framework is silent on Higgs and
-   heavy-flavour states; whether it has anything to say about, e.g.,
-   charm-strange mesons (D_s, D_s*) remains untested.
+2. **Reproduce G Tabelle IV meson resonances (k=1)** in a clean
+   implementation of Heim's (P, N, K_B) resonance procedure. This
+   has not been done by the current repository.
 
-Both paths require engagement that has not yet happened. The Heim
-community at heim-theory.com / IGAAP e.V. continues to maintain the
-manuscripts and reference implementations, but has not sought
-mainstream reception. This repository's contribution — beyond
-correcting the upstream transcription bugs — is to make the
-infrastructure for either path sufficient: anyone who wishes to
+3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
+
+4. **Compare the same machinery to modern PDG values** to assess
+   how Heim's published numbers stand against post-1989 measurements.
+
+5. **Label non-canonical extrapolations (k > 2) explicitly as
+   exploratory.** The current `python/excited_state_search.py` does
+   this after the May 2026 revision, but it is not a substitute for
+   steps 2-3.
+
+6. **Address the empirical phenomena that lie outside Heim's
+   selected-result tables** — W / Z / Higgs / J/ψ / D / B /
+   heavy-flavour baryons. The right question, per Joel's reframing,
+   is not "does Heim's mass formula contain these as primitives?"
+   (no, by construction) but *"does a complete Heim-compatible
+   theory recover the observed phenomenology of these states?"*
+   That question is currently open.
+
+7. **Mathematical audit of the polymetric formalism** by a
+   mathematical physicist fluent in selector calculus and condensor
+   geometry. The full 81-page *Herleitung* manuscript (chapters
+   1–11) is the entry point. This is the deepest open question.
+
+This repository's contribution — beyond correcting two upstream
+transcription bugs and producing a Python port — is to make the
+infrastructure for the above audit sufficient: anyone who wishes to
 engage with Heim's framework now has reproducible, annotated,
-cross-checked code, a clear verdict on what the framework predicts
-correctly, and a clear delineation of where it falls silent.
+cross-checked code, the complete A-H source bundle, a clear
+delineation of what the implemented mass-formula layer reproduces
+and what it does not.
 
-What Heim theory needs now is not advocacy and not dismissal. It
-needs *engagement*.
+What Heim theory needs now, in Joel's phrasing: *interesting
+structure, limited scope, open derivation* — not advocacy and not
+dismissal, but engagement.
 
 ---
 
@@ -1757,6 +1836,19 @@ formula into agreement with measurement at the 10⁻⁵ level.
 ---
 
 ## Chapter 13: Syntrometrie — The Logic Behind the Physics
+
+> **Important scope note (sharpened May 2026 after Joel's review).**
+> Syntrometrie is the *foundational* layer of Heim's framework. The
+> [scope diagram](#scope-where-this-document-and-this-repository-sit-in-heims-framework)
+> at the top of this document shows where it sits relative to the
+> mass-formula layer the repository actually implements: at the very
+> top. **Nothing in `python/` implements Syntrometrie itself.** This
+> chapter explains what it is and how it relates to the rest, but
+> none of the chapter's content is testable from the code in this
+> repository, and a successful run of `heimmass.py` says nothing
+> directly about whether Syntrometrie is coherent or correct. The
+> chapter is included for completeness and conceptual orientation,
+> not as a verifiable part of the implemented framework.
 
 ### For Beginners
 
