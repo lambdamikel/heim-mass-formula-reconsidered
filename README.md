@@ -125,9 +125,15 @@ repository:
    electron is 0.79 % off; that's a localised bug to find.
 2. **Reproduce G Tabelle IV meson resonances (k=1)** from first
    principles using Heim's (P, N, K_B) parameters. *Status: open.*
-   This is the largest single reconstruction task remaining.
+   This is the largest single reconstruction task remaining. The 23
+   target entries are stored in `python/g_tables.py` as ground truth
+   (ω(783), Φ(1019), K*(892), ρ(770), η'(958), f(1270), D(1285),
+   E(1420), f'(1514), ω(1675), K*(1420), K_A(1240), L(1770), δ(970),
+   A1(1100), B(1235), A2(1310), F1(1540), ρ'(1600), A3(1640),
+   g(1680), S*(993), ε).
 3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
-   *Status: open.*
+   *Status: open.* The 76 target entries are stored in
+   `python/g_tables.py` (20 N\*, 16 Λ\*, 7 Ξ\*, 12 Δ\*, 21 Σ\*).
 4. **Compare the resulting code's output to modern PDG values** —
    only *after* steps 2 and 3 are clean. *Status: premature without
    them.*
@@ -178,7 +184,12 @@ repository:
 > notes that "in the manuscript some brackets in very long equations were
 > lost during the process of writing; this had to be corrected at best
 > estimate" — our independent fixes are consistent with this known
-> transmission failure mode.
+> transmission failure mode. **Caveat (per Joel's review):** the
+> Arbeitskreis source provides only this general warning, not a
+> bracket-by-bracket correction list. Our two bug fixes should not be
+> identified with the Arbeitskreis corrections unless a detailed
+> correction list is located; the safe statement is that both arise
+> from the same known transmission problem.
 
 > **5. Heim's 1989 framework predicts five neutrinos with specific masses.**
 > G-Tabelle II ("Theoretical Data of Elementary Particles… Calculated
@@ -218,17 +229,39 @@ repository:
 
 > **The "Higgs is structurally absent from Heim" framing** has been
 > sharpened. The empirical core is narrower than "we observed the Higgs
-> field": ATLAS / CMS observed a 125 GeV scalar-like resonance whose
-> production and decay channels are *broadly consistent* with the
-> Standard Model Higgs. The full Higgs-sector picture — scalar
-> potential, self-coupling, elementary-vs-composite character, deeper
-> origin of parameters — remains open even within the Standard Model.
-> Heim's framework proposes its own geometric mass mechanism and does
-> not need a Higgs field as a primitive. A complete Heim-compatible
-> theory must therefore account for the *observed* 125 GeV resonance
-> phenomenology, but it may interpret it as an effective excitation
+> field". In high-energy-physics terms, what ATLAS / CMS established
+> is a *statistically reproducible, localised excess* in collision-event
+> distributions near 125 GeV, with consistent mass, production rates,
+> decay channels (γγ, ZZ⁎, WW⁎, bb̄, ττ), and quantum-number tests
+> (J^P = 0⁺). This is solid evidence for a real particle-like
+> resonance — but "particle" here is the technical sense (a peak in
+> invariant-mass distributions with consistent quantum numbers), not a
+> physical object directly photographed in a detector. Three logically
+> distinct claims are usually conflated:
+>
+> 1. **Observed data**: a 125 GeV scalar-like resonance, with the
+>    above production and decay pattern, *broadly consistent* with
+>    the Standard Model Higgs.
+> 2. **Standard Model interpretation**: this particle is the
+>    excitation of the Higgs field, whose vacuum expectation value
+>    breaks electroweak symmetry and gives mass to W / Z and fermions
+>    through Yukawa couplings.
+> 3. **Full Higgs-sector completion**: direct knowledge of the scalar
+>    potential, Higgs self-coupling, whether the Higgs is elementary
+>    or composite, whether it is alone or part of a larger scalar
+>    sector, and how its parameters arise from deeper theory.
+>
+> Only (1) is directly experimental. (2) is the highly successful
+> Standard Model interpretation. (3) is still open *even within* the
+> Standard Model. Heim's framework proposes its own geometric mass
+> mechanism (mass and inertia arising from internal metronic /
+> structural geometry, not Yukawa couplings) and so does not need a
+> Higgs field as a primitive. A complete Heim-compatible theory must
+> therefore account for the *observed* 125 GeV resonance phenomenology
+> at level (1), but it may interpret this resonance as an effective
+> excitation, a composite, or an emergent field-theoretic description
 > of deeper geometric dynamics rather than as the fundamental origin
-> of mass. The same logic applies to W±, Z⁰: their observed
+> of mass. The same logic applies to W± and Z⁰: their observed
 > phenomenology must eventually be recovered, but neither needs to
 > appear as primitive Heim ontology. See
 > [Post-1989 particle predictions](#post-1989-particle-predictions).
@@ -506,6 +539,12 @@ heim/
     │                                 for Heim's 1959 field-drive claim
     ├── heim_neutrinos.py          ← Heim's 5-neutrino prediction
     │                                 (G-Tabelle II) vs current bounds
+    ├── g_tables.py                ← Heim's G-Tabellen II / IV / V_{a,b,c}
+    │                                 as structured Python data: 23 mesonic
+    │                                 + 76 baryonic resonance entries with
+    │                                 (P, N, K_B, theoretical mass) plus 28
+    │                                 ground-state entries. Reference target
+    │                                 for the audit-priority steps 2 and 3.
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
