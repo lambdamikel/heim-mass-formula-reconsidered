@@ -45,20 +45,20 @@ Heim's body of work is **layered**.  Different layers have different
 scope, different formality, and different verifiability:
 
 ```
-   ╔═════════════════════════════════════════════════════════════════╗
+   ╔══════════════════════════════════════════════════════════════════╗
    ║   Syntrometrie                                                   ║
    ║   — Heim's foundational formal/methodological framework:         ║
    ║     aspect-relativity, predicate systems, Syntrix structures,    ║
    ║     dialectics, coordination, selectors, semantic iterators.     ║
    ║     A formal logic beyond ordinary anthropomorphic logic.        ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │  produces a "Quantitätsaspekt"
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
    ║   Quantitätssyntrix                                              ║
    ║   — the quantitative aspect of Syntrometrie, where syntrometric  ║
    ║     structures specialise into quantitative formal systems.      ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │  produces metronic / cisfinite analysis
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
@@ -66,7 +66,7 @@ scope, different formality, and different verifiability:
    ║   — selector calculus, condensor flows, eigenvalue equations     ║
    ║     in 6D polymetric form.  Where the non-linear operator C_p    ║
    ║     and the field functions φ^i_{km} live.                       ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
@@ -74,14 +74,14 @@ scope, different formality, and different verifiability:
    ║   — metronic structures, hermetric-form classification (a/b/c/d  ║
    ║     for gravitons / photons / neutral / charged particles),      ║
    ║     condensor fields.  Heim's "Synmetronik der Welt" volumes.    ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
    ║   Particle eigenvalue structure / Elementarstrukturen der Materie║
    ║   — R6, metrons, eigenvalue equations on hermetric forms,        ║
    ║     polymetric field equations applied to particle rest masses.  ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │  terminal projection
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
@@ -92,7 +92,7 @@ scope, different formality, and different verifiability:
    ║       corpuscles per Heim's own A-source).                       ║
    ║   B: 1989 extension to excited states, lifetimes, neutrino       ║
    ║      masses, and the fine-structure constant α.                  ║
-   ╚══════════════════╤══════════════════════════════════════════════╝
+   ╚═══════════════════╤══════════════════════════════════════════════╝
                        │
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
