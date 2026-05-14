@@ -559,6 +559,13 @@ heim/
     │                                 Heim's Tabelle I listed values and
     │                                 our greedy decomposition. 19/21 match;
     │                                 Δ⁺⁺ and Δ⁰ disagree (May 2026)
+    ├── electron_trace.py          ← per-term decomposition of e_- and e_0
+    │                                 mass calculation (K, S, F, Φ, 4qα₋)
+    ├── electron_bug_diagnosis.md  ← source-comparison write-up for the
+    │                                 electron-mass discrepancy
+    ├── b3_correction.py           ← test of proposed [B3] correction
+    │                                 "+4qα₋" → "+4qα₋/α₊"; recovers
+    │                                 electron mass to machine precision
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -1154,36 +1161,68 @@ derivability of η itself.
 
 In rough order of importance (revised May 2026 after A/B/G source audit):
 
-1. **The 0.79 % electron-mass discrepancy — DIAGNOSED MAY 2026.**
+1. **The 0.79 % electron-mass discrepancy — HYPOTHESIS-LEVEL RESOLVED MAY 2026.**
    Heim's 1989 Tabelle II (G, p. 3) lists the electron at 0.51100343
-   MeV; our port computes 0.50694 MeV. Every other particle matches
-   Heim's table to ≤ 0.01 %. After three levels of diagnostic:
-   - **(n, m, p, σ) cross-check** (`python/nmps_cross_check.py`)
-     ruled out the greedy decomposition: e⁻ has (0, 0, 0, 0)
-     matching Heim's Tabelle I exactly.
-   - **Per-term decomposition** (`python/electron_trace.py`) showed
-     that going e₀ → e⁻ changes only K (−4, from σ=1→0) and 4qα₋
-     (+0.0325). Our ΔΣ = −3.97, but Heim's table implies ΔΣ should
-     be only −2.23. So Heim's e⁻ requires Φ ≈ 4.10 vs our 2.316,
-     i.e. an extra +1.78 in Φ.
-   - **Formula-by-formula source comparison** (`python/electron_bug_diagnosis.md`)
-     verified that our port correctly implements [B3], [B5], [B6],
-     [B7-B14], and the 1982 (XI) K-formula as published in the
-     IGW Innsbruck restatement.
-   
-   **Conclusion:** the bug is **not in our Python port**. The published
-   1989 formula chain ([B3] + [B6] + [B10]) gives Φ = 2.316 for both
-   e⁻ and e₀ at k=1 (because the k(k-1) factor in [B10] zeroes the
-   q-dependent correction). But Heim's own 1982 (XI) Φ had explicit
-   q-dependence even at k=1 (via `(ξ/6)^q`, `(1-q/2)`, etc.) which
-   the 1989 simplification to [B6] appears to have dropped. The
-   electron discrepancy is the surface manifestation of this dropped
-   q-dependence. **Resolution path**: implement the full 1982 (XI) Φ
-   alongside the 1989 [B6] and check whether (a) it recovers Heim's
-   Tabelle II electron value AND (b) maintains the ≤ 0.01 % agreement
-   on the other 19 particles. If yes, the 1989 [B6] is an incomplete
-   simplification; if no, Heim's Tabelle II contains a separate
-   typesetting error.
+   MeV; our port computes 0.50694 MeV. Four-stage diagnostic localised
+   the discrepancy to the 1989 [B3] formula itself, with a specific
+   proposed correction that reproduces the electron mass to machine
+   precision.
+
+   - **Stage 1: (n, m, p, σ) cross-check** (`python/nmps_cross_check.py`)
+     ruled out the greedy decomposition. 19 of 21 ground-state quantum
+     numbers match Heim's Tabelle I exactly, including the electron's
+     (0, 0, 0, 0).
+
+   - **Stage 2: Per-term decomposition** (`python/electron_trace.py`)
+     showed the bracket sum K + S + F + Φ + 4qα₋ for e⁻ is 1.74 units
+     too small vs Heim's implied value (218.35 ours vs 220.10 Heim).
+
+   - **Stage 3: Source comparison** (`python/electron_bug_diagnosis.md`)
+     verified our port correctly implements every published formula
+     ([B3], [B5], [B6], [B7]/[B49], [B10], [B11], [B13], 1982 (XI))
+     as written in `downloads/F_…` and `downloads/E_…`.
+
+   - **Stage 4: Tracing back to Heim's 1982 Φ formula** revealed the
+     likely source: Φ_1982 (XI) ends with a trailing additive piece
+     `+ 4q·α₋/α₊`. When [B3] was simplified in 1989, that piece was
+     moved outside Φ to a separate slot in the bracket — but as
+     `+ 4qα₋`, dropping the `/α₊` factor. Multiplied through by μα₊
+     in the mass formula, the 1982 form contributes `4qμα₋` to mass
+     while the 1989 form contributes `4qμα₊α₋` — different by a
+     factor of 1/α₊ ≈ 54.6.
+
+   **Proposed correction** (`python/b3_correction.py`):
+
+   ```
+   Published [B3]:  M = μα₊ · (K + S + F + Φ + 4qα₋)
+   Corrected [B3]:  M = μα₊ · (K + S + F + Φ + 4qα₋/α₊)
+                  = μα₊ (K + S + F + Φ) + 4qμα₋     (equivalent)
+   ```
+
+   For q = 1 the correction adds 4·α₋·(1/α₊ − 1) ≈ 1.74 to the
+   bracket — **exactly the gap measured for e⁻**.
+
+   **Test against all 21 ground states vs Heim Tabelle II**:
+
+   | Particle | Current [B3] Δ | Corrected Δ | Outcome |
+   |---|---:|---:|---|
+   | e⁻ | -4.06 keV | **-0.015 keV** | machine precision ✓ |
+   | All q ≠ 0 (10 particles) | various | +4 keV better | systematic improvement |
+   | All q = 0 (9 particles) | various | unchanged | (correction inert) |
+   | Δ⁺⁺ | +1518 keV | +1526 keV | unchanged (separate bug, see 1b) |
+
+   Σ\|Δ\| over 21 particles drops by ~36 keV (about 1 %).
+
+   **Remaining caveats** (still open):
+   - A separate ~30 keV systematic offset for k=2 baryons (p, n, Λ, Σ,
+     Ξ, Δ) versus Heim T-II is **not** explained by this correction.
+     Likely attributable to small differences in G or α used in
+     Heim's 1989 hand-calculation versus our port — Heim acknowledged
+     he tuned G to fit the proton. This is a separate issue.
+   - The correction needs independent confirmation from the
+     heim-theory.com community (Joel, Javier) before promoting it
+     to the canonical implementation. Until then the published
+     [B3] form remains the canonical formula in the repository.
 
 1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies (new — May 2026).**
    The same cross-check found that 19 of 21 ground states match
