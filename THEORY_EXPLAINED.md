@@ -67,7 +67,7 @@ scope, different formality, and different verifiability:
    ║     in 6D polymetric form.  Where the non-linear operator C_p    ║
    ║     and the field functions φ^i_{km} live.                       ║
    ╚═══════════════════╤══════════════════════════════════════════════╝
-                       │
+                       │  applied to physical condensations
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
    ║   Synmetronik / physical condensations                           ║
@@ -75,7 +75,7 @@ scope, different formality, and different verifiability:
    ║     for gravitons / photons / neutral / charged particles),      ║
    ║     condensor fields.  Heim's "Synmetronik der Welt" volumes.    ║
    ╚═══════════════════╤══════════════════════════════════════════════╝
-                       │
+                       │  specialised to elementary particles
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
    ║   Particle eigenvalue structure / Elementarstrukturen der Materie║
@@ -93,7 +93,7 @@ scope, different formality, and different verifiability:
    ║   B: 1989 extension to excited states, lifetimes, neutrino       ║
    ║      masses, and the fine-structure constant α.                  ║
    ╚═══════════════════╤══════════════════════════════════════════════╝
-                       │
+                       │  numerical implementation
                        ▼
    ╔══════════════════════════════════════════════════════════════════╗
    ║   Executable code (this repository)                              ║
