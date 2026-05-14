@@ -555,6 +555,10 @@ heim/
     │                                 prediction: the 13 charge-doublet
     │                                 mass splittings from G-Tabelle IV
     │                                 vs PDG-2024 measurements
+    ├── nmps_cross_check.py        ← (n, m, p, σ) cross-check between
+    │                                 Heim's Tabelle I listed values and
+    │                                 our greedy decomposition. 19/21 match;
+    │                                 Δ⁺⁺ and Δ⁰ disagree (May 2026)
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -1153,9 +1157,29 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
 1. **The 0.79 % electron-mass discrepancy.** Heim's 1989 Tabelle II
    (G, p. 3) lists the electron at 0.51100343 MeV; our port computes
    0.50694 MeV. Every other particle matches Heim's table to ≤ 0.01 %.
-   This is a localised transcription / convention bug specific to the
-   (k=1, P=1, Q=1, κ=0, x=1) configuration — a third upstream-inherited
-   bug not yet found. Highest-priority engineering task.
+   The May 2026 (n, m, p, σ) cross-check
+   (`python/nmps_cross_check.py`) ruled out the greedy decomposition
+   as the source: the electron's (n, m, p, σ) = (0, 0, 0, 0) match
+   Heim's Tabelle I listing exactly. So the bug must be in `calc_W`,
+   `calc_phi`, or the final mass-assembly
+   `M = μ · α₊ · (K + S + F + Φ + 4qα₋)`. Still the highest-priority
+   engineering task; the search space is now narrowed.
+
+1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies (new — May 2026).**
+   The same cross-check found that 19 of 21 ground states match
+   Heim's Tabelle I exactly, *but* the (p, σ) values for Δ⁺⁺ and Δ⁰
+   disagree:
+   - Δ⁺⁺ (q=+2): Heim (n=2, m=1, **p=9, σ=4**) vs ours (2, 1, **11, -6**)
+   - Δ⁰  (q=0):  Heim (2, -1, **-10, 2**) vs ours (2, -1, **-5, -1**)
+   - Δ⁺  (q=+1) and Δ⁻ (q=-1) match exactly.
+
+   The (p, σ) mismatches propagate to a **1.5–1.9 MeV mass discrepancy**
+   versus Heim's Tabelle II for these two particles only. The pattern
+   (q = ±1 match; q = +2 and q = 0 disagree) suggests either a
+   charge-dependent issue in `calc_W` (which depends on q via W's
+   construction in [B22]) or that Heim's procedure for the σ-step
+   of the greedy decomposition at (P=3, Q=3, k=2) uses a different
+   branch than [B40]–[B46] specify.
 
 2. **Reproduction of Heim's G-Tabelle IV / V resonance procedure.**
    Heim's k=1 / k=2 resonance scheme is parametrised by (P, N, K_B),

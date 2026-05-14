@@ -103,6 +103,60 @@ TABLE_II_BARYONS: list[TableII] = [
 
 
 # ----------------------------------------------------------------------
+# Table I: Quantum numbers of ground states N = 0  (page 2 of G)
+# ----------------------------------------------------------------------
+# Per particle: (k, n, m, p, σ, P, Q, εq_x, εC, ℜ)
+#   ℜ in Heim's column == κ (kap) in our (eps, k, P, Q, kap, x) scheme.
+#   εC == ε · strangeness (NOT in our scheme).
+#   εq_x is the signed integer charge of the particle.
+#
+# Heim's (n, m, p, σ) are listed *as input quantum numbers*.  In our
+# Python port they are *computed* from W via the greedy decomposition
+# in formulae.calc_n.  Cross-checking the two against each other
+# verifies whether the greedy algorithm correctly reproduces Heim's
+# intended decomposition.
+
+class TableI(NamedTuple):
+    symbol: str            # Heim's particle label (charge-class first)
+    k: int
+    n: int
+    m: int
+    p: int
+    sigma: int             # written σ in Heim's table
+    P: int
+    Q: int
+    eq_x: int              # ε · q_x  (signed integer charge for ε=+1)
+    eC: int                # ε · C    (signed strangeness)
+    R: int                 # ℜ  (= our kap)
+
+
+TABLE_I_GROUND_STATES: list[TableI] = [
+    #            sym       k  n   m   p   σ    P  Q  εq_x εC ℜ
+    TableI("e⁻,e̅⁺",       1,  0,  0,  0,   0,  1, 1,  -1,  0, 0),
+    TableI("e_0,e̅_0",     1,  0,  0,  0,   1,  1, 1,   0,  0, 0),
+    TableI("μ⁻,μ̅⁺",       1, 11,  6, 11,   6,  1, 1,  -1,  0, 1),
+    TableI("η,η̅",          1, 18, 22, 17,  14,  0, 0,   0,  0, 0),
+    TableI("K⁺,K̅⁻",        1, 17, 26, 30,  28,  1, 0,   1,  1, 1),
+    TableI("K⁰,K̅⁰",        1, 18,  5,  5,   2,  1, 0,   0,  1, 1),
+    TableI("π±,π̅∓",        1, 12,  9,  2,   3,  2, 0,   1,  0, 0),  # ±1 in source
+    TableI("π⁰,π̅⁰",        1, 12,  3,  6,   4,  2, 0,   0,  0, 0),
+    TableI("Λ,Λ̅",          2,  1,  3,  0, -11,  0, 1,   0, -1, 0),
+    TableI("Ω⁻,Ω̅⁺",        2,  4,  4, -1, -15,  0, 3,  -1, -3, 0),
+    TableI("p,p̅",          2,  0,  0,  0,   0,  1, 1,   1,  0, 0),
+    TableI("n,n̅",          2,  0,  0, -2,  17,  1, 1,   0,  0, 0),
+    TableI("Ξ⁻,Ξ̅⁺",        2,  2,  7,-17,   2,  1, 1,  -1, -2, 1),
+    TableI("Ξ⁰,Ξ̅⁰",        2,  2,  6, -1,   6,  1, 1,   0, -2, 1),
+    TableI("Σ⁺,Σ̅⁻",        2,  2, -7,-12,  10,  2, 1,   1, -1, 0),
+    TableI("Σ⁰,Σ̅⁰",        2,  2, -7,-14,  -2,  2, 1,   0, -1, 0),
+    TableI("Σ⁻,Σ̅⁺",        2,  2, -6, -5,  -8,  2, 1,  -1, -1, 0),
+    TableI("o⁺⁺,o̅⁻⁻",      2,  2,  1,  9,   4,  3, 3,   2,  0, 0),
+    TableI("o⁺,o̅⁻",        2,  2, -1, -1,  -6,  3, 3,   1,  0, 0),
+    TableI("o⁰,o̅⁰",        2,  2, -1,-10,   2,  3, 3,   0,  0, 0),
+    TableI("o⁻,o̅⁺",        2,  2, -1,-16, -15,  3, 3,  -1,  0, 0),
+]
+
+
+# ----------------------------------------------------------------------
 # Table IV: Approximate meson resonances (k = 1)
 # ----------------------------------------------------------------------
 # Page 5 of G.  Format per row:
