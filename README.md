@@ -551,6 +551,10 @@ heim/
     │                                 (P, N, K_B, theoretical mass) plus 28
     │                                 ground-state entries. Reference target
     │                                 for the audit-priority steps 2 and 3.
+    ├── doublet_splittings.py      ← previously-unextracted joint Heim
+    │                                 prediction: the 13 charge-doublet
+    │                                 mass splittings from G-Tabelle IV
+    │                                 vs PDG-2024 measurements
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -869,6 +873,49 @@ through a deeper structural language?"* For the empirical phenomena
 that G-Tabelle IV / V cover, the answer is broadly *yes*. For W / Z /
 Higgs / heavy-flavour, the answer is *currently unknown — needs
 reconstruction work*, not a falsification.
+
+### Charge-doublet mass splittings (new — extracted from G-Tabelle IV)
+
+*This is a previously-unextracted joint Heim prediction. See
+`python/doublet_splittings.py`.*
+
+G-Tabelle IV lists 13 meson resonances at k=1 as charge doublets,
+each with *two* values for (N, K_B, mass). The mass splittings
+within each doublet range from 0.2 to 10 MeV. Crucially: the
+naive `4·q·α₋` charge-correction in Heim's mass formula contributes
+only ~0.15 keV — so the MeV-scale splittings come *entirely* from
+Heim's choice of *different* (N, K_B) values for the two members of
+each doublet. This is a structural feature of Heim's procedure that
+has, to our knowledge, never been systematically tested.
+
+Comparison against PDG-2024 charge-doublet mass differences for
+the 9 cases where modern PDG values are unambiguous:
+
+| Heim entry | PDG label | \|Δm\|_Heim [MeV] | \|Δm\|_PDG [MeV] | Ratio |
+|---|---|---:|---:|---:|
+| K*(892) | K*(892) | 1.03 | 3.88 | 0.26 |
+| K_A(1240) | K₁(1270) | 1.14 | ≈ 0 | overpredicts |
+| K*(1420) | K*₂(1430) | 5.73 | 5.10 | **1.12** ✓ |
+| L(1770) | K₂(1770) | 10.23 | ≈ 0 | overpredicts |
+| ρ(770) | ρ(770) | 0.67 | 0.15 | 4.49 |
+| δ(970) | a₀(980) | 2.82 | ≈ 0 | overpredicts |
+| A1(1100) | a₁(1260) | 0.23 | ≈ 0 | overpredicts |
+| B(1235) | b₁(1235) | 0.33 | ≈ 0 | overpredicts |
+| A2(1310) | a₂(1320) | 0.80 | ≈ 0 | overpredicts |
+
+Across the 9 comparable doublets: Σ\|Δm_Heim\| ≈ 23 MeV vs
+Σ\|Δm_PDG\| ≈ 9 MeV. **Heim systematically overpredicts the
+splittings by factor ≈ 2.5.** The single sharp success is
+K*(1420)/K*₂(1430) at 12% accuracy; the single sharpest miss is
+L(1770)/K₂(1770) at 10 MeV predicted vs ≈ 0 measured.
+
+This is the *first* time the 13-entry doublet-splitting pattern has
+been treated as a joint Heim prediction with associated
+falsifiability — a contribution surfaced by the May 2026 source audit.
+A clean falsification test requires first resolving Heim's charge
+convention (which member of each doublet is neutral vs charged),
+which is not explicit in the IGW Innsbruck materials and represents
+an open question for the Heim-theory community.
 
 ### Lifetime predictions
 
