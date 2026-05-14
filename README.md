@@ -1154,16 +1154,36 @@ derivability of η itself.
 
 In rough order of importance (revised May 2026 after A/B/G source audit):
 
-1. **The 0.79 % electron-mass discrepancy.** Heim's 1989 Tabelle II
-   (G, p. 3) lists the electron at 0.51100343 MeV; our port computes
-   0.50694 MeV. Every other particle matches Heim's table to ≤ 0.01 %.
-   The May 2026 (n, m, p, σ) cross-check
-   (`python/nmps_cross_check.py`) ruled out the greedy decomposition
-   as the source: the electron's (n, m, p, σ) = (0, 0, 0, 0) match
-   Heim's Tabelle I listing exactly. So the bug must be in `calc_W`,
-   `calc_phi`, or the final mass-assembly
-   `M = μ · α₊ · (K + S + F + Φ + 4qα₋)`. Still the highest-priority
-   engineering task; the search space is now narrowed.
+1. **The 0.79 % electron-mass discrepancy — DIAGNOSED MAY 2026.**
+   Heim's 1989 Tabelle II (G, p. 3) lists the electron at 0.51100343
+   MeV; our port computes 0.50694 MeV. Every other particle matches
+   Heim's table to ≤ 0.01 %. After three levels of diagnostic:
+   - **(n, m, p, σ) cross-check** (`python/nmps_cross_check.py`)
+     ruled out the greedy decomposition: e⁻ has (0, 0, 0, 0)
+     matching Heim's Tabelle I exactly.
+   - **Per-term decomposition** (`python/electron_trace.py`) showed
+     that going e₀ → e⁻ changes only K (−4, from σ=1→0) and 4qα₋
+     (+0.0325). Our ΔΣ = −3.97, but Heim's table implies ΔΣ should
+     be only −2.23. So Heim's e⁻ requires Φ ≈ 4.10 vs our 2.316,
+     i.e. an extra +1.78 in Φ.
+   - **Formula-by-formula source comparison** (`python/electron_bug_diagnosis.md`)
+     verified that our port correctly implements [B3], [B5], [B6],
+     [B7-B14], and the 1982 (XI) K-formula as published in the
+     IGW Innsbruck restatement.
+   
+   **Conclusion:** the bug is **not in our Python port**. The published
+   1989 formula chain ([B3] + [B6] + [B10]) gives Φ = 2.316 for both
+   e⁻ and e₀ at k=1 (because the k(k-1) factor in [B10] zeroes the
+   q-dependent correction). But Heim's own 1982 (XI) Φ had explicit
+   q-dependence even at k=1 (via `(ξ/6)^q`, `(1-q/2)`, etc.) which
+   the 1989 simplification to [B6] appears to have dropped. The
+   electron discrepancy is the surface manifestation of this dropped
+   q-dependence. **Resolution path**: implement the full 1982 (XI) Φ
+   alongside the 1989 [B6] and check whether (a) it recovers Heim's
+   Tabelle II electron value AND (b) maintains the ≤ 0.01 % agreement
+   on the other 19 particles. If yes, the 1989 [B6] is an incomplete
+   simplification; if no, Heim's Tabelle II contains a separate
+   typesetting error.
 
 1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies (new — May 2026).**
    The same cross-check found that 19 of 21 ground states match
