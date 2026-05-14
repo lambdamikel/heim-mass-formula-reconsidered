@@ -3,6 +3,12 @@
 *Burkhard Heim's 1989 mass formula and the ideas behind it,
 explained in three layers per chapter — from intuitive to rigorous.*
 
+<p align="center">
+  <img src="images/heim_1957_northeim.jpg" alt="Burkhard Heim at his Kontrabator apparatus in his Northeim apartment, 1957" width="500"><br>
+  <em>Burkhard Heim at his self-built Kontrabator apparatus, Northeim, 1957.<br>
+  (From the IvL/IGAAP 2017 reconstruction; original photo from von Ludwiger 2010.)</em>
+</p>
+
 ---
 
 ## How to read this document
@@ -2209,6 +2215,16 @@ these rings at Göttingen University. **The result was negative**:
 the efficiency of the components and the input radar-radiation
 intensity were too low to produce acoustic oscillations detectable
 even by the most sensitive seismometers of the day.
+
+<p align="center">
+  <img src="images/kontrabator_construction_1957.jpg" alt="Hand-assembly of Kontrabator hollow-ring waveguides in the 1950s" width="500"><br>
+  <em>Hand-assembly of Heim's Kontrabator in the 1950s: small hollow
+  waveguide rings being soldered into large 17-cm circular waveguide
+  rings, which would in turn be stacked into the toroidal "cycle
+  former" inside which radar-frequency E × H radiation would
+  circulate. The work was done by Heim's relatives and friends
+  according to his instructions. (Photos: von Ludwiger 2010.)</em>
+</p>
 
 The honest current status: the contrabaric effect is **neither
 confirmed nor refuted**. It has simply not been re-tested with

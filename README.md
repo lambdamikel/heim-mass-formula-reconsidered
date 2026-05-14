@@ -4,6 +4,12 @@
 formula: how does it work, where does its accuracy actually come from, and
 how much of it is genuinely theory-driven?*
 
+<p align="center">
+  <img src="images/heim_1957_northeim.jpg" alt="Burkhard Heim at his Kontrabator apparatus in his Northeim apartment, 1957" width="500"><br>
+  <em>Burkhard Heim at his self-built Kontrabator apparatus, Northeim, 1957.<br>
+  (From the IvL/IGAAP 2017 reconstruction; original photo from von Ludwiger 2010.)</em>
+</p>
+
 > 📖 **New to Heim theory?** Read **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)**
 > first — a 15-chapter, three-level (Beginner / Intermediate / Expert)
 > walk-through of the framework: Burkhard Heim's biography, the 6D
