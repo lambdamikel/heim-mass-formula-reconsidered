@@ -2465,6 +2465,18 @@ components and high-power radar source. Sixty-eight years later
 those components exist in standard laboratory equipment. The
 experiment has simply not been done.
 
+A concrete buildable engineering specification — 30 GHz / 100 kW
+gyrotron source, superconducting niobium toroidal cavity at 2 K,
+gyrotropic-metamaterial cycle former, NASA-Eagleworks-class
+torsion thrust stand with µN resolution, four-run falsification
+protocol — is documented in
+[KONTRABATOR_DESIGN.md](KONTRABATOR_DESIGN.md) at the repository
+root. Total hardware cost ≈ USD 4 M; total project cost (12-18
+months, 3 FTE) ≈ USD 5 M. That is at the *bottom* of the
+mid-range of experimental physics — small for HEP, modest for
+condensed-matter — and well within reach of any university with
+an existing accelerator-physics or plasma-physics group.
+
 **Reference.** This chapter follows the reconstruction in
 Illobrand von Ludwiger, "Die Einheitliche Feldtheorie und das
 Prinzip der Kontrabarie — Ergänzungen, Klarstellungen und

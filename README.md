@@ -1020,6 +1020,9 @@ worth checking.
 
 For the full technical treatment, see
 [Chapter 15 of THEORY_EXPLAINED.md](THEORY_EXPLAINED.md#chapter-15-kontrabarie--heims-own-field-drive-claim).
+A concrete buildable engineering specification (modern components,
+bill of materials, falsification protocol, ~USD 5 M total cost) is
+in [KONTRABATOR_DESIGN.md](KONTRABATOR_DESIGN.md).
 
 ## The honest verdict
 
