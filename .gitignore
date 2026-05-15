@@ -27,3 +27,6 @@ downloads/c_impl/mkdepend
 
 # Local Claude/CLI state — do not publish
 .claude/
+
+# Local pickle caches from resonance scans (regenerable, ~50 KB)
+python/baryon_candidates_cache.pkl

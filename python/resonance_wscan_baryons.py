@@ -152,6 +152,50 @@ def expand_to_states(entries):
     return out
 
 
+def scan_all_candidates(states, K_n_max=50, K_m_max=70, K_p_max=100,
+                          K_sig_max=50, W0_max=1e8):
+    """Like scan_all, but returns ALL Q-candidates per state, not just
+    the best.  Returned dict maps label → list of dicts (one per Q)."""
+    Q_candidates = [1, 3, 5, 7, 9]
+    I = fm.calc_Q(2)
+    by_sector = defaultdict(list)
+    for s in states:
+        label, P, qx, M_t, KB_t = s
+        by_sector[(P, qx)].append((label, M_t, KB_t))
+
+    results = defaultdict(list)
+    for (P, qx), tgts in sorted(by_sector.items()):
+        for Q in Q_candidates:
+            W0_min_kap = 0
+            valids = [fm.calc_W(1, 2, P, Q, kap, qx, I) for kap in (0, 1)]
+            valids = [w for w in valids if w > 0]
+            if not valids:
+                continue
+            W0_min_kap = min(valids)
+            if W0_min_kap > W0_max:
+                continue
+            targets = [(label, M_t, KB_t) for (label, M_t, KB_t) in tgts]
+            print(f"  P={P} q={qx:+d} Q={Q}: {len(targets)} targets "
+                  f"(W_0 = {W0_min_kap:.2e})", flush=True)
+            m = match_sector_k2(P, Q, qx, targets, K_n_max=K_n_max,
+                                K_m_max=K_m_max, K_p_max=K_p_max,
+                                K_sig_max=K_sig_max)
+            for label, mtch in m.items():
+                if mtch is None:
+                    continue
+                M_t, KB_t = next(
+                    (M, K) for (lbl, M, K) in tgts if lbl == label)
+                dM = abs(mtch["M_MeV"] - M_t)
+                dKB = abs(mtch["K_B"] - KB_t)
+                score = dM + 100 * max(0, dKB - 0.5)
+                results[label].append({
+                    **mtch, "Q": Q, "score": score,
+                    "P": P, "qx": qx, "M_t": M_t, "KB_t": KB_t,
+                    "dM": dM, "dKB": dKB,
+                })
+    return dict(results)
+
+
 def scan_all(states, K_n_max=50, K_m_max=70, K_p_max=100, K_sig_max=50,
               W0_max=1e8):
     """For each state (label, P, q_x, M_t, KB_t), scan Q ∈ {1,3,5,7,9}
