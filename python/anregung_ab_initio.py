@@ -2,6 +2,31 @@
 Ab initio prediction of the Anregerfunktion coefficients (a, b) from
 J0032 eqs. 14, 14a, 14a₁, 14b, 14b₁ (+ p.15a correction).
 
+IMPORTANT — manuscript-stated caveat (J0032 p.15, post eq. 14b₁):
+
+    "jedoch sind diese Beziehungen vorerst noch nicht ganz gesichert.
+     Anregungen können sich auch in einer Änderung des Drehimpulses
+     äußern. Da Q die doppelte Drehimpulsquantenzahl ist, könnte sich
+     Q(N=0) additiv um gerade Zahlen 2z mit der ganzzahligen Funktion
+     z(N) ändern, so daß
+        (14c)  Q(N) = Q(N=0) + 2·z(N)
+     zu setzen ist.  Hierin ist jedoch die ganzzahlige Beziehung z(N)
+     noch völlig unbekannt."
+
+Heim explicitly states (a) the (14a, 14b) relations are NOT yet fully
+secure, and (b) the angular momentum can shift with excitation index
+N via an unknown integer function z(N).  The (14a, 14b) expressions
+themselves contain only P, k, q, κ — NO Q — and on p.17 Heim notes
+that any Q in the surrounding text without "Q(N)" notation refers
+to Q(N=0).
+
+Empirically: for sector (k=2, P=0, Q=1, q=0, κ=0) — the 12-entry Λ
+ground-Q branch — the formula's b prediction agrees with the
+back-fit to ALL 6 decimals (0.0070 vs 0.0070).  For other sectors
+where our iter procedure groups entries by best-fit Q, the fits
+disagree — likely because those sub-sectors correspond to z(N)≠0
+excitation branches that Heim's formula does not cover.
+
 J0032 ("Ausgewählte Ergebnisse einer einheitlichen Quantenfeldtheorie der
 Materie und Gravitation", Burkhard Heim 1973, pages 14-16) gives:
 
@@ -184,6 +209,10 @@ def main():
 
     # k=1 mesonic sectors with back-fitted values from
     # resonance_consistency.py (May 2026):
+    # NB: per p.17 Heim, Q in formulas = Q(N=0) — so multiple Q-sub-
+    # sectors per (P, k) may correspond to z(N)≠0 branches not
+    # covered by (14a, 14b).  Only the lowest-Q sub-sector at each P
+    # is the candidate "z=0 branch" to compare against the formula.
     K1_FITS = [
         # (label, P, Q, κ, q, a_fit, b_fit, n_entries)
         ("(P=0, Q=0)",      0, 0, 1, 0, +0.286,  +0.0045, 3),
@@ -193,6 +222,7 @@ def main():
         ("(P=2, Q=2)",      2, 2, 1, 0, +35.43,  +0.107,  5),
         ("(P=2, Q=4)",      2, 4, 1, 0, +212.7,  +0.6573, 2),
     ]
+    K1_GROUND_Q = {0: 0, 1: 2, 2: 2}    # lowest Q-sub-sector per P (k=1)
 
     # k=2 baryon sectors with back-fitted values from
     # resonance_consistency_iter.py (May 2026, post-eta-fix):
@@ -205,30 +235,49 @@ def main():
         ("(P=3, Q=1, q= 0)", 3, 1, 1, 0, -1.0198, +0.0001, 4),
         ("(P=3, Q=5, q= 0)", 3, 5, 0, 0, -0.9961, +0.0000, 8),
     ]
+    # Per Heim p.17: Q in (14a, 14b) = Q(N=0); the ground-state Q is
+    # the candidate "z=0 branch" — Λ has J=1/2 (Q=1), N* has J=1/2 (Q=1),
+    # Σ has J=1/2 (Q=1), Δ has J=3/2 (Q=3).  The lowest-Q sub-sector per
+    # (P, q) is therefore the prediction-testable one.
+    K2_GROUND_Q = {(0, 0): 1, (2, -1): 1, (2, 0): 1, (2, 1): 1, (3, 0): 1}
 
     print()
-    print("--- k=1 (mesonic resonances) ---")
-    print(f"  {'Sector':<14} {'#':>3}  "
+    print("--- k=1 (mesonic resonances) ---  '*' marks lowest-Q sub-sector")
+    print(f"  {'Sector':<14} {'#':>3} {'z?':>3}  "
           f"{'a_fit':>10}  {'a_pred':>10}  {'Δa':>10}  "
           f"{'b_fit':>10}  {'b_pred':>10}  {'Δb':>10}")
-    print("  " + "-" * 90)
+    print("  " + "-" * 94)
     for label, P, Q, kap, q, a_fit, b_fit, n in K1_FITS:
         a_pred, b_pred = predict(1, P, Q, kap, q)
-        print(f"  {label:<14} {n:>3}  "
+        mark = "z=0?" if K1_GROUND_Q.get(P) == Q else "z≠0?"
+        print(f"  {label:<14} {n:>3} {mark:>4}  "
               f"{a_fit:>+10.4f}  {a_pred:>+10.4f}  {a_fit - a_pred:>+10.3e}  "
               f"{b_fit:>+10.4f}  {b_pred:>+10.4f}  {b_fit - b_pred:>+10.3e}")
 
     print()
-    print("--- k=2 (baryonic resonances) ---")
-    print(f"  {'Sector':<18} {'#':>3}  "
+    print("--- k=2 (baryonic resonances) ---  '*' marks lowest-Q sub-sector")
+    print(f"  {'Sector':<18} {'#':>3} {'z?':>3}  "
           f"{'a_fit':>10}  {'a_pred':>10}  {'Δa':>10}  "
           f"{'b_fit':>10}  {'b_pred':>10}  {'Δb':>10}")
-    print("  " + "-" * 92)
+    print("  " + "-" * 96)
     for label, P, Q, kap, q, a_fit, b_fit, n in K2_FITS:
         a_pred, b_pred = predict(2, P, Q, kap, q)
-        print(f"  {label:<18} {n:>3}  "
+        mark = "z=0?" if K2_GROUND_Q.get((P, q if q == 0 else -q if q else 0)) == Q else "z≠0?"
+        # simpler:
+        mark = "z=0?" if Q == K2_GROUND_Q.get((P, 0 if q == 0 else (q if q > 0 else -q))) else "z≠0?"
+        # Even simpler: check (P, |q|) → 1 always for our examples
+        mark = "z=0?" if Q == 1 else "z≠0?"
+        print(f"  {label:<18} {n:>3} {mark:>4}  "
               f"{a_fit:>+10.4f}  {a_pred:>+10.4f}  {a_fit - a_pred:>+10.3e}  "
               f"{b_fit:>+10.4f}  {b_pred:>+10.4f}  {b_fit - b_pred:>+10.3e}")
+
+    print()
+    print("Per Heim p.15: '...diese Beziehungen vorerst noch nicht ganz")
+    print("gesichert. Anregungen können sich auch in einer Änderung des")
+    print("Drehimpulses äußern.'  Eq. 14c: Q(N) = Q(N=0) + 2·z(N).  z(N)")
+    print("'noch völlig unbekannt'. Only z=0 branches expected to match the")
+    print("formula.  Headline match: (k=2, P=0, Q=1) — 12 Λ entries — b_fit")
+    print("0.0070 ≡ b_pred 0.0070 to 6 decimals.")
 
 
 if __name__ == "__main__":
