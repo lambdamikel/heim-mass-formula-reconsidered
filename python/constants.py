@@ -56,6 +56,23 @@ _CONSTANT_MODES = {
         "H_PLANCK":          6.62607015e-34,        # J·s, defined exact
         "KG_TO_MEV":         1.0 / 1.78266192e-30,  # exact derived: 1/(MeV/c² in kg)
     },
+    "heim_1989": {
+        # Heim's own 1989 constants for historical reproduction of his
+        # printed Tabelle II / Chapter G values.  Per the README's
+        # Honest Verdict caveat #5, Heim tuned G to fit the proton at
+        # G = 6.6732 × 10⁻¹¹.  For h, e we use CODATA-1986 values
+        # (current at the time of the 1989 manuscript).
+        #
+        # This mode is for HISTORICAL REPRODUCTION ONLY.  For physical
+        # testing against modern PDG data, use 'legacy_2006' or
+        # 'codata_2022'.  See full_reproduction.py and modes_table.py
+        # for the four-mode comparison.
+        "C_LIGHT":           299_792_458.0,         # m/s, defined exact
+        "G":                 6.6732e-11,            # m³·kg⁻¹·s⁻² (Heim 1989)
+        "ELEMENTARY_CHARGE": 1.60217733e-19,        # C (CODATA 1986)
+        "H_PLANCK":          6.6260755e-34,         # J·s (CODATA 1986)
+        "KG_TO_MEV":         1.0 / 1.78266270e-30,  # derived from e/c² CODATA-1986
+    },
 }
 
 C_LIGHT: float
