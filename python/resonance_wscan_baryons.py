@@ -28,6 +28,8 @@ from __future__ import annotations
 from collections import defaultdict
 from math import fabs
 
+import numpy as np
+
 import formulae as fm
 from constants import (KG_TO_MEV, alpha_minus, alpha_plus, eta, mass_element,
                        theta)
@@ -61,8 +63,17 @@ def match_sector_k2(P, Q, q_x, targets,
          + 4 * I[3])
     PHI = P * (-1)**(P+Q) * (P+Q) * N[4] + Q * (P+1) * N[5]
 
-    best = {tid: None for tid, _, _ in targets}
-    best_score = {tid: (1e18,) for tid, _, _ in targets}
+    n_targets = len(targets)
+    target_M = np.array([t[1] for t in targets], dtype=float)
+    target_KB = np.array([t[2] for t in targets], dtype=float)
+
+    best_score = np.full(n_targets, 1e18, dtype=float)
+    best = [None] * n_targets
+
+    # Pre-compute K_sig array contributions (vectorised over K_sig)
+    K_sig_arr = np.arange(1, K_sig_max + 1)
+    sig_arr = K_sig_arr - 1 - Q_sig
+    sig_contrib = 4.0 * sig_arr           # contributes to K_mass
 
     for K_n in range(1, K_n_max + 1):
         n_ = K_n - 1 - Q_n
@@ -89,96 +100,154 @@ def match_sector_k2(P, Q, q_x, targets,
                 L_sigma = 0.5 * N[2] * (p_ + I[2]) - I[3]
                 bracket_no_sig = (K_piece_n + K_piece_m + K_piece_p + S
                                    + F_piece_n + F_piece_m + F_piece_p + PHI)
-                for K_sig in range(1, K_sig_max + 1):
-                    sig_ = K_sig - 1 - Q_sig
-                    bracket = bracket_no_sig + 4 * sig_
-                    M_MeV = mu_ap_MeV * bracket + qterm_MeV
-                    K_B = L_sigma - sig_
-                    for tid, M_t, KB_t in targets:
-                        dM = abs(M_MeV - M_t)
-                        dKB = abs(K_B - KB_t)
-                        # Combined score: prefer small dM, penalize dKB > 1
-                        score = (dM + 100 * max(0, dKB - 0.5),)
-                        if score < best_score[tid]:
-                            best_score[tid] = score
-                            best[tid] = {
-                                "K": (K_n, K_m, K_p, K_sig),
-                                "nmps": (n_, m_, p_, sig_),
-                                "M_MeV": M_MeV,
-                                "K_B": K_B,
-                                "Q": Q,
-                            }
-    return best
+                bracket_arr = bracket_no_sig + sig_contrib    # (K_sig_max,)
+                M_arr = mu_ap_MeV * bracket_arr + qterm_MeV
+                KB_arr = L_sigma - sig_arr
+                # Vectorise over (targets × K_sig): shape (T, K_sig_max)
+                dM_grid = np.abs(M_arr[None, :] - target_M[:, None])
+                dKB_grid = np.abs(KB_arr[None, :] - target_KB[:, None])
+                score_grid = dM_grid + 100.0 * np.maximum(0.0, dKB_grid - 0.5)
+                argmin = np.argmin(score_grid, axis=1)
+                best_score_this = score_grid[np.arange(n_targets), argmin]
+                better = best_score_this < best_score
+                for ti in np.nonzero(better)[0]:
+                    s_idx = int(argmin[ti])
+                    K_sig = int(K_sig_arr[s_idx])
+                    sig_ = int(sig_arr[s_idx])
+                    M_MeV = float(M_arr[s_idx])
+                    K_B = float(KB_arr[s_idx])
+                    best_score[ti] = best_score_this[ti]
+                    best[ti] = {
+                        "K": (K_n, K_m, K_p, K_sig),
+                        "nmps": (n_, m_, p_, sig_),
+                        "M_MeV": M_MeV,
+                        "K_B": K_B,
+                        "Q": Q,
+                    }
+    # Convert back to dict keyed by target id
+    return {targets[i][0]: best[i] for i in range(n_targets)}
+
+
+def expand_to_states(entries):
+    """Expand each entry (singlet, doublet, triplet) into (label, P, q_x,
+    M_target, KB_target) tuples."""
+    out = []
+    for r in entries:
+        sym = r.symbol
+        P = r.P
+        if isinstance(r.mass_MeV, tuple):
+            ncols = len(r.mass_MeV)
+            if ncols == 2:
+                q_xs = [0, 1]
+                labels = [f"{sym}⁰", f"{sym}±"]
+            elif ncols == 3:
+                q_xs = [-1, 0, +1]
+                labels = [f"{sym}⁻", f"{sym}⁰", f"{sym}⁺"]
+            else:
+                continue
+            for i, qx in enumerate(q_xs):
+                out.append((labels[i], P, qx, r.mass_MeV[i], r.K_B[i]))
+        else:
+            out.append((sym, P, 0, r.mass_MeV, r.K_B))
+    return out
+
+
+def scan_all(states, K_n_max=50, K_m_max=70, K_p_max=100, K_sig_max=50):
+    """For each state (label, P, q_x, M_t, KB_t), scan Q ∈ {1,3,5,7,9,11}
+    and find best match."""
+    # Group by (P, q_x) so we share enumeration across states in the same sector
+    Q_candidates = [1, 3, 5, 7, 9, 11]
+    by_sector = defaultdict(list)
+    for s in states:
+        label, P, qx, M_t, KB_t = s
+        by_sector[(P, qx)].append((label, M_t, KB_t))
+
+    results = {}   # label → (Q_best, dict)
+    for (P, qx), tgts in sorted(by_sector.items()):
+        for Q in Q_candidates:
+            targets = [(label, M_t, KB_t) for (label, M_t, KB_t) in tgts]
+            print(f"  Sector P={P} q={qx:+d} Q={Q}: {len(targets)} targets",
+                  flush=True)
+            m = match_sector_k2(P, Q, qx, targets, K_n_max=K_n_max,
+                                K_m_max=K_m_max, K_p_max=K_p_max,
+                                K_sig_max=K_sig_max)
+            for label, mtch in m.items():
+                if mtch is None:
+                    continue
+                # Find target
+                M_t, KB_t = next(
+                    (M, K) for (lbl, M, K) in tgts if lbl == label)
+                dM = abs(mtch["M_MeV"] - M_t)
+                dKB = abs(mtch["K_B"] - KB_t)
+                score = dM + 100 * max(0, dKB - 0.5)
+                if (label not in results
+                        or results[label][1] > score):
+                    results[label] = (mtch, score, Q, M_t, KB_t)
+    return results
 
 
 def main():
-    print("=" * 92)
-    print(" G-Tabellen V_a-V_c reproduction (k=2) — Λ* singlets first pass")
-    print("=" * 92)
+    print("=" * 100)
+    print(" G-Tabellen V_a-V_c reproduction (k=2) — all baryonic resonances")
+    print("=" * 100)
     print()
 
-    # All Λ* entries (P=0, isospin singlet, q=0).  16 entries total
-    # (7 in V_a + 9 in V_b).
-    lambda_entries = [
-        r for r in TABLE_V_a_BARYONS_K2 if r.symbol.startswith("Λ")
-    ] + [
-        r for r in TABLE_V_b_BARYONS_K2 if r.symbol.startswith("Λ")
-    ]
-    print(f"  {len(lambda_entries)} Λ* entries (P=0, q=0)")
-
-    # Per-entry: try Q ∈ {1, 3, 5, 7, 9, 11} (J ∈ {1/2, 3/2, 5/2, 7/2, 9/2, 11/2})
-    Q_candidates = [1, 3, 5, 7, 9, 11]
-    P_, q_x = 0, 0
+    # All entries from V_a, V_b, V_c
+    all_states = (expand_to_states(TABLE_V_a_BARYONS_K2)
+                   + expand_to_states(TABLE_V_b_BARYONS_K2)
+                   + expand_to_states(TABLE_V_c_BARYONS_K2_SIGMA))
+    # Group by family for reporting
+    families = defaultdict(list)
+    for s in all_states:
+        label = s[0]
+        if label.startswith("N"):
+            fam = "N*"
+        elif label.startswith("Λ"):
+            fam = "Λ*"
+        elif label.startswith("Ξ"):
+            fam = "Ξ*"
+        elif label.startswith("Δ"):
+            fam = "Δ*"
+        elif label.startswith("Σ"):
+            fam = "Σ*"
+        else:
+            fam = "?"
+        families[fam].append(s)
+    for fam, fs in sorted(families.items()):
+        print(f"  {fam}: {len(fs)} states")
+    print(f"  TOTAL: {len(all_states)} baryonic resonance states")
     print()
 
-    all_results = []
-    for Q_try in Q_candidates:
-        print(f"  Scanning Q={Q_try}...", flush=True)
-        targets = [(r.symbol, r.mass_MeV, r.K_B) for r in lambda_entries]
-        matches = match_sector_k2(P_, Q_try, q_x, targets,
-                                   K_n_max=50, K_m_max=70,
-                                   K_p_max=100, K_sig_max=50)
-        for sym, m in matches.items():
-            if m is None:
+    results = scan_all(all_states)
+
+    # Report per family
+    for fam in ("Λ*", "N*", "Ξ*", "Δ*", "Σ*"):
+        fs = families[fam]
+        print()
+        print(f"--- {fam} family ({len(fs)} states) ---")
+        print(f"  {'Symbol':<12} {'P':>2} {'q_x':>4} {'M_heim':>10} {'K_B':>6}  "
+              f"{'Q':>3}  {'(n,m,p,σ)':<22}  {'Δ_M':>9}  {'Δ_KB':>6}")
+        n_kb05 = 0
+        n_m05 = 0
+        n_m2 = 0
+        for (label, P, qx, M_t, KB_t) in fs:
+            if label not in results:
+                print(f"  {label:<12} {P:>2} {qx:>+4d} {M_t:>10.4f} {KB_t:>6}  (none)")
                 continue
-            r = next(rr for rr in lambda_entries if rr.symbol == sym)
-            all_results.append((sym, r, m))
-
-    # For each symbol, pick best Q match (combined score)
-    best_per_sym = {}
-    for sym, r, m in all_results:
-        dM = abs(m["M_MeV"] - r.mass_MeV)
-        dKB = abs(m["K_B"] - r.K_B)
-        score = dM + 100 * max(0, dKB - 0.5)
-        if sym not in best_per_sym or score < best_per_sym[sym][3]:
-            best_per_sym[sym] = (r, m, m["Q"], score)
-
-    print()
-    print(f"  {'Symbol':<12} {'M_heim':>10} {'N':>5} {'K_B':>5}  "
-          f"{'best Q':>6}  {'(n,m,p,σ)':<22}  {'Δ_M':>9}  {'Δ_KB':>5}")
-    print("  " + "-" * 90)
-    n_kb_exact = 0
-    n_mass_05 = 0
-    n_mass_2 = 0
-    for r in lambda_entries:
-        if r.symbol not in best_per_sym:
-            print(f"  {r.symbol:<12} {r.mass_MeV:>10.4f} {r.N!s:>5} {r.K_B!s:>5}  (no match)")
-            continue
-        _, m, Q_b, _ = best_per_sym[r.symbol]
-        dM = m["M_MeV"] - r.mass_MeV
-        dKB = round(m["K_B"]) - r.K_B
-        if dKB == 0:
-            n_kb_exact += 1
-        if abs(dM) < 0.5:
-            n_mass_05 += 1
-        if abs(dM) < 2.0:
-            n_mass_2 += 1
-        print(f"  {r.symbol:<12} {r.mass_MeV:>10.4f} {r.N!s:>5} {r.K_B!s:>5}  "
-              f"{Q_b:>6}  {str(m['nmps']):<22}  {dM:>+9.4f}  {dKB:>+5d}")
-    print()
-    print(f"  K_B exact: {n_kb_exact}/{len(lambda_entries)}")
-    print(f"  Mass within 0.5 MeV: {n_mass_05}/{len(lambda_entries)}")
-    print(f"  Mass within 2.0 MeV: {n_mass_2}/{len(lambda_entries)}")
+            mtch, _, Q_b, _, _ = results[label]
+            dM = mtch["M_MeV"] - M_t
+            dKB = mtch["K_B"] - KB_t
+            if abs(dKB) < 0.5:
+                n_kb05 += 1
+            if abs(dM) < 0.5:
+                n_m05 += 1
+            if abs(dM) < 2.0:
+                n_m2 += 1
+            print(f"  {label:<12} {P:>2} {qx:>+4d} {M_t:>10.4f} {KB_t:>6}  "
+                  f"{Q_b:>3}  {str(mtch['nmps']):<22}  "
+                  f"{dM:>+9.4f}  {dKB:>+6.2f}")
+        print(f"  Summary {fam}: K_B≈exact {n_kb05}/{len(fs)}, "
+              f"Δ_M<0.5 MeV {n_m05}/{len(fs)}, Δ_M<2 MeV {n_m2}/{len(fs)}")
 
 
 if __name__ == "__main__":
