@@ -1107,10 +1107,11 @@ framework — there is no separate "input charge"; charge is a
 
 ### For Beginners
 
-The mass of any of Heim's basic particles is given by:
+The mass of any of Heim's basic particles is given (in the
+manuscript-corrected form, May 2026) by:
 
 ```
-M = μ · α₊ · (G + S + F + Φ + 4 q α₋)
+M = μ · α₊ · (K + S + F + Φ) + 4 q μ · α₋
 ```
 
 where:
@@ -1118,22 +1119,32 @@ where:
 - *μ* is the mass element (Chapter 5) — built from *G*, *ℏ*, *c*.
 - α₊ and α₋ are two "structure constants" — built from η and θ
   (which are built from *G*, *ℏ*, *c* via Chapter 6).
-- *G*, *S*, *F*, *Φ* are dimensionless quantities computed from the
+- *K*, *S*, *F*, *Φ* are dimensionless quantities computed from the
   particle's six integer quantum numbers and four *occupation
   numbers* (n, m, p, σ) that come out of a recursive integer
   decomposition.
 - *q* is the particle's electric charge.
 
 So the structure is: a fixed mass scale (*μ* α₊), times an
-integer-valued "structure number" (*G*+*S*+*F*+*Φ*), plus a small
-correction for charged particles (4 *q* α₋). All the inputs are either
-universal constants or integers.
+integer-valued "structure number" (*K*+*S*+*F*+*Φ*), plus a small
+correction for charged particles (4 *q* μ α₋ — *outside* the
+α₊ multiplication). All the inputs are either universal constants
+or integers.
 
-The mass of the proton, for example, comes out at 938.25 MeV by this
+This corrected form derives directly from Heim's primary manuscript
+J0060 (Synmetronik Band IV) eq. 192 + p.709. The 2003 IGW-Innsbruck
+restatement had the `4qα₋` term inside the α₊ multiplication
+(missing a `/α₊` factor); the canonical port adopted J0060's form
+in May 2026 and now reproduces the electron mass to 0.002 %
+(was 0.79 % off under the published form).
+
+The mass of the proton, for example, comes out at 938.26 MeV by this
 formula. The measured value is 938.27 MeV — agreement to better than
 0.01 %. The neutron, the Λ-baryon, the Ξ baryons, the Σ baryons, all
 the kaons, pions, the muon, and the electron all match measurement to
-similar accuracy.
+similar accuracy. With Heim's own 1989 constants, all 19
+well-behaved ground states match Heim's Tabelle II to ≤ 2 eV — at
+Heim's own printing precision.
 
 ### For Intermediate
 
@@ -1170,11 +1181,22 @@ numbers are too.
 
 ### For Experts
 
-The formula in full:
+The formula in full (J0060-corrected form, canonical since May 2026):
 
 ```
-M = μ · α₊ · (G + S + F + Φ + 4 q α₋)            [B3]
+M = μ · α₊ · (K + S + F + Φ) + 4 q μ · α₋          (J0060 eq. 192 + p.709)
+  = μ · α₊ · (K + S + F + Φ + 4 q α₋/α₊)           (equivalent)
 ```
+
+The published IGW-Innsbruck 2003 [B3] form was
+
+```
+M = μ · α₊ · (G + S + F + Φ + 4 q α₋)              [B3, published]
+```
+
+— the `+4qα₋` term was missing a `/α₊` factor that the J0060
+manuscript shows belongs there.  Set `LEGACY_B3_FORM = True` in
+`formulae.py` to recover bit-equivalence with the published form.
 
 where:
 
@@ -1446,13 +1468,16 @@ theory.
 But it is a fringe theory *with a tightly closed accounting* of its
 own predictions, on its own ground. Heim's mass-formula layer claims
 to predict the rest masses of about 20 ground-state particles, plus
-their lifetimes, plus the masses of an additional 70+ approximated
-mesonic and baryonic resonances (G-Tabelle IV / V), plus the
-fine-structure constant α, plus the electron magnetic moment, plus
-five neutrino masses including two beyond the Standard Model. When
-those predictions are checked carefully, *most* of them are right —
-when one stays within the empirical phenomena the framework
-addresses.
+their lifetimes, plus the masses of an additional 99 approximated
+mesonic and baryonic resonances (23 in G-Tabelle IV at k=1, 76 in
+G-Tabellen V_{a,b,c} at k=2), plus the fine-structure constant α,
+plus the electron magnetic moment, plus five neutrino masses
+including two beyond the Standard Model. When those predictions are
+checked carefully, *most* of them are right — when one stays within
+the empirical phenomena the framework addresses.  The May 2026
+reproduction in this repository verifies all 23 mesons and 144/145
+baryon charge-states from the J0032 exhaustion procedure, with
+ab-initio Anregerkurve agreement for the z=0 branches.
 
 The honest reasons mainstream physics has not engaged:
 
@@ -1510,36 +1535,68 @@ The honest reasons mainstream physics has not engaged:
 
 What would change the situation?
 
-1. **Reproduce Heim's G-Tabelle IV and V exactly.** Joel's May 2026
-   review (Heim-Theory Discord) identified that the current code has
-   not reproduced Heim's own resonance procedure: G-Tabelle IV
+1. **Reproduce Heim's G-Tabelle IV and V exactly.** *Done — May 2026.*
+   Joel's May 2026 review (Heim-Theory Discord) identified that the
+   code had not reproduced Heim's own resonance procedure: G-Tabelle IV
    parametrises 23 k=1 mesonic resonances by (P, N, K_B) coordinates,
-   and G-Tabelle V parametrises 50+ k=2 baryonic resonances similarly.
-   This is distinct from the (ε, k, P, Q, κ, x) ground-state
-   procedure the port implements. Reproducing G-Tabelle IV/V from
-   first principles would settle whether the Heim framework's
-   *internal* numerical consistency holds at the resonance level.
+   and G-Tabellen V_{a,b,c} parametrise 76 k=2 baryonic resonances
+   (= 145 charge-state entries) similarly.  This is distinct from the
+   (ε, k, P, Q, κ, x) ground-state procedure.  The J0032 exhaustion
+   procedure (`python/resonance_wscan.py` and
+   `python/resonance_wscan_baryons.py`) reproduces all 23 mesons
+   (K_B exact, Δ_M < 0.2 MeV) and 144/145 baryons (K_B exact within
+   ±0.5).  Anregerkurve coefficients (a, b) of the Anregerfunktion
+   are reproduced *ab initio* from J0032 eqs. 14a-14b₁ for the z=0
+   branch — the 12-Λ sector achieves 6-decimal agreement on b
+   (`python/anregung_ab_initio.py`).  Verified independently against
+   Heim's Anhang B canonical tables (η, θ, α, Q_i, B, H, A, N_i,
+   W_{N=0}) — 70/74 of those tabulated values match to 7+ decimals.
 
 2. **Confirm the proposed [B3] typo correction (diagnosed May 2026).**
-   The 0.79 % electron-mass discrepancy between Heim's 1989 Tabelle II
-   (0.51100343 MeV) and the canonical port (0.50694 MeV) was traced
-   to a likely typo in [B3]: the charge term `+4qα₋` appears to be
-   missing a `/α₊` factor that was present in the 1982 (XI) Φ
-   formula. With the proposed correction `+4qα₋/α₊` and Heim's 1989
-   constants, all 19 well-behaved particles match Heim Tabelle II to
-   **≤ 2 eV** — at Heim's own printing precision. The corrected form
-   is implemented in `python/b3_correction.py` and
-   `python/full_reproduction.py` as a tested hypothesis; community
-   confirmation from heim-theory.com is the remaining step before
-   promoting the correction to canonical.
+   *Done.* The 0.79 % electron-mass discrepancy between Heim's 1989
+   Tabelle II (0.51100343 MeV) and the original port (0.50694 MeV) was
+   traced to a likely typo in [B3]: the charge term `+4qα₋` appears
+   to be missing a `/α₊` factor that was present in the 1982 (XI) Φ
+   formula.  Javier Mazzone's J0060 manuscript pointer (Synmetronik
+   Band IV, eq. 192 + p. 709) provided manuscript evidence: Heim
+   writes the charge-field partial mass as `M_q = q · μ_- = 4qμα_-`,
+   *outside* the μα_+ multiplication.  The corrected form is now the
+   canonical port behaviour (`LEGACY_B3_FORM = False` in
+   `formulae.py`).  Electron: 0.51098822 MeV vs measured 0.51100407
+   MeV (−0.002 %).
 
-3. **A mathematical audit of the polymetric formalism.** Heim's
+3. **Open Question 1b — Δ⁺⁺/Δ⁰ family discrepancy.** *Root cause
+   identified May 2026.*  The two Δ⁺⁺ / Δ⁰ ground states are off by
+   1.5–1.9 MeV from Heim's Tabelle II.  The 15 May Anhang B cross-
+   check (`python/verify_anhang_b.py`) traced this to a specific bug
+   in `calc_a` (formulae.py): per-particle a_1, a_2 values for the
+   o-family (Δ) differ from Heim's published table at q = +2 and
+   q = −1.  Our `calc_a` uses `fabs(q_x)` whereas Heim's formula in
+   eqs. 13c–13e₁ apparently uses signed εq_x.  Same diagnostic also
+   explains the small N_3(2,2) ≠ 2.1219 discrepancy and the
+   6.85 W_{N=0} mismatch for o⁰.  Production code is unchanged
+   pending a clean replacement at q = +2.
+
+4. **A mathematical audit of the polymetric formalism.** Heim's
    selector calculus, hermetric forms, and condensor flows are
    non-standard mathematical constructions. Whether they form a
    self-consistent algebraic system, and whether the chain
    "metron geometry → mass element → η-function → mass formula" is
    free of hidden circularity, has never been verified by an outside
    mathematician. This is the deepest open question.
+
+5. **The z(N) integer function — Heim's own open question.** J0032
+   eq. (14c) introduces Q(N) = Q(N=0) + 2·z(N) where z(N) is a
+   non-negative integer function of the excitation index N.  Heim
+   himself writes (J0033 p.36): "Tatsächlich ist z nicht gegeben."
+   His Tabellen IV/V were assembled under z(N) = 0 for all entries
+   (approximation error < 0.1 MeV per his statement) — the 12-Λ
+   sector and 5 mesonic z=0 entries verify within that bound
+   (`python/resonance_z0_classify.py`); the remaining ~150 entries
+   sit on z≠0 ladders for which Heim has no closed-form prediction.
+   Empirical extraction from PDG-J (`python/z_function_analysis.py`)
+   confirms z(N) is not a simple function of N alone — its
+   determination is the natural next step in the framework.
 
 4. **Independent verification of Heim's 5-neutrino prediction**
    (G-Tabelle II): ν_e at 3.81 meV, ν_μ at 5.37 keV, ν_τ at 10.75 keV,
@@ -1575,11 +1632,16 @@ investigation, is genuinely difficult to dismiss as numerology:
   from the measured anomaly gives agreement with QED Schwinger
   6·√η·α/(2π·e) to 0.15 %.
 - Heim's own G-Tabelle IV / V list theoretical masses for 23 mesonic
-  and 50+ baryonic resonances at typical 0.02-1 % agreement with PDG,
-  including ρ(770), ω(782), Φ(1019), K*(892), η'(958), the f / A / B
-  meson families, the N* nucleon excitations, Δ resonances, Λ*, Σ*,
-  Ξ* families — empirically far wider than the 21-particle
-  ground-state set this repository originally focused on.
+  and 76 baryonic resonances (= 145 charge-state entries) at typical
+  0.02-1 % agreement with PDG, including ρ(770), ω(782), Φ(1019),
+  K*(892), η'(958), the f / A / B meson families, the N* nucleon
+  excitations, Δ resonances, Λ*, Σ*, Ξ* families — empirically far
+  wider than the 21-particle ground-state set this repository
+  originally focused on.  The May 2026 reproduction work
+  (`python/resonance_wscan*.py`) verifies all 23 mesons and 144/145
+  baryons to within Heim's stated 2 MeV approximation, with the
+  Anregerkurve coefficient b for the 12-Λ z=0 sector reproduced
+  ab initio from J0032 eqs. 14a-14b₁ to 6 decimals.
 
 The honest mathematical status, however, is that Heim's polymetric
 formalism has not been peer-reviewed. The chain G → τ → μ → η, and
