@@ -152,7 +152,7 @@ def calc_N(
     # N_2 — 1982 eq.(IX):  2 / (3·η_qk)
     N2 = 2.0 / (3.0 * eta_qk)
 
-    # N_3 — [B8]. N_3 = (2/k) · exp[…]
+    # N_3 — [B8].  N_3 = (2/k) · exp[…]
     #
     # CRITICAL FIX (2026-04-29): the second term in the exponent must be
     # multiplied by `q` (absolute charge), so it vanishes for q=0
@@ -162,6 +162,17 @@ def calc_N(
     # instead of e ≈ 2.72 for k=2,q=0. Cross-checked against the Excel
     # reference Heim_1989_Massenformel_0.4.xlsm row 68 (alf3 formula).
     # This was the source of the Λ-discrepancy and affects all neutrals.
+    #
+    # OUTSTANDING DISCREPANCY (2026-05-15): for k=q=2 (Δ⁺⁺ family),
+    # this formula gives N_3 = 2.0168 while Heim's Anhang B (J0032 p.42)
+    # tabulates N_3(2,2) = 2.12190443.  Four reading-variants tested
+    # in python/verify_anhang_b.py (eta_q1 → eta_q2 in last term,
+    # dropping *q factor, etc.) — none recover Heim's value.  The
+    # discrepancy is consistent only at q=k=2; q ∈ {0, 1} for both
+    # k=1 and k=2 match Heim's table to 5+ decimals.  Likely either
+    # a typo in our manuscript-image transcription or a special-case
+    # correction Heim documents elsewhere (not yet found).  Mass
+    # impact for Δ⁺⁺ resonances: < 0.05 MeV.
     N3 = exp(
         (k - 1.0)
         * (
@@ -228,6 +239,22 @@ def calc_a(
         a_2 = [B29]
         a_3 = [B31]
     "Y" below is the y'·2B bracket inside [B31].
+
+    OPEN QUESTION (2026-05-15, from Anhang B cross-check):
+    For the Δ family (P=3, Q=3, k=2), Heim's published a_1, a_2 values
+    (J0032 p.43) differ from what this function returns:
+
+      Particle  Heim a_1  ours a_1  Heim a_2  ours a_2
+      o⁺⁺ (q=+2)    23       21        27        27
+      o⁺  (q=+1)    23       23        22        27
+      o⁰  (q= 0)    23       23        39        41
+      o⁻  (q=-1)    21       23        27        22
+
+    The pattern suggests Heim's formula uses εq_x (SIGNED) where our
+    code uses fabs(q_x).  Test variants and corrections in
+    python/verify_anhang_b.py.  This is the root cause of Open
+    Question 1b — the 1.5–1.9 MeV mass discrepancy for Δ⁺⁺/Δ⁰
+    and the 6.85 W_{N=0} discrepancy for o⁰.
     """
     q = fabs(q_x)
     eta00 = _eta(1, 0)
