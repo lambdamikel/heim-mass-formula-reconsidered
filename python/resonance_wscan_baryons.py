@@ -38,16 +38,13 @@ from g_tables import (TABLE_V_a_BARYONS_K2, TABLE_V_b_BARYONS_K2,
 
 
 def match_sector_k2(P, Q, q_x, targets,
-                     K_n_max=60, K_m_max=70, K_p_max=70, K_sig_max=40):
-    """Stream-enumerate reachable (K_n,K_m,K_p,K_σ) configs at k=2.
-    Match each target (id, M_t, KB_t) by smallest (dKB, dM) tuple."""
+                     K_n_max=60, K_m_max=70, K_p_max=70, K_sig_max=40,
+                     k=2):
+    """Stream-enumerate reachable (K_n,K_m,K_p,K_σ) configs at given k.
+    Match each target (id, M_t, KB_t) by smallest (dKB, dM) tuple.
+    Default k=2 retained for back-compat; pass k=1 for mesons."""
     q = fabs(q_x)
     # Canonical η_{1,0} ≈ 0.990, same as calc_mass uses for α_+, α_-.
-    # The earlier `eta(2, q)` call here was a bug — it gave η ≈ 0.881 and
-    # α_+ ≈ 0.198 (vs canonical α_+ ≈ 0.018), making the bracket size
-    # roughly 10× too small.  The matched (n, m, p, σ) under that bug
-    # were self-consistent in mass + K_B but NOT Heim's actual
-    # decompositions.
     eta00 = eta(1, 0)
     th = theta(eta00)
     a_p = alpha_plus(eta00, th)
@@ -56,8 +53,8 @@ def match_sector_k2(P, Q, q_x, targets,
     mu_ap_MeV = mu * a_p * KG_TO_MEV
     qterm_MeV = 4 * q * mu * a_m * KG_TO_MEV
 
-    I = fm.calc_Q(2)
-    N = fm.calc_N(2, q, I)
+    I = fm.calc_Q(k)
+    N = fm.calc_N(k, q, I)
     a1 = N[0]
     a2 = 1.5 * N[1]
     a3 = 0.5 * N[2]

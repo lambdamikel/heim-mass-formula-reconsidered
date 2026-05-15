@@ -30,3 +30,4 @@ downloads/c_impl/mkdepend
 
 # Local pickle caches from resonance scans (regenerable, ~50 KB)
 python/baryon_candidates_cache.pkl
+python/meson_candidates_cache.pkl
