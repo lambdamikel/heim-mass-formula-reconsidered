@@ -1,0 +1,161 @@
+================================================================================
+ Empirical z(N) per Heim family
+================================================================================
+
+
+--- ? (2 entries) ---
+      N     z  symbol          conf
+    161    +2  L(1770)         approx
+    182    +1  F1(1540)        approx
+
+--- A/B mesons (4 entries) ---
+      N     z  symbol          conf
+     76    +1  A1(1100)        PDG
+     93    +1  B(1235)         PDG
+    127    +2  A2(1310)        PDG
+    221    +2  A3(1640)        approx
+
+--- K* (3 entries) ---
+      N     z  symbol          conf
+     23    +1  K*(892)         PDG
+     83    +1  K_A(1240)       PDG
+     98    +2  K*(1420)        PDG
+
+--- N* (20 entries) ---
+      N     z  symbol          conf
+     13    +0  N(1470)         PDG
+     14    +1  N(1520)         PDG
+     18    +0  N(1535)         PDG
+     23    +0  N(1670)         PDG
+     24    +2  N(1688)         PDG
+     25    +1  N(1700)         PDG
+     26    +0  N(1770)         PDG
+     31    +1  N(1780)         PDG
+     32    +0  N(1810)         approx
+     37    +3  N(1990)         PDG
+     40    +0  N(2100)         PDG
+     42    +2  N(2000)         approx
+     44    +1  N(2040)         approx
+     49    +3  N(2190)         PDG
+     50    +4  N(2220)         PDG
+     73     —  N(2650)         guess
+     90     —  N(3030)         none
+     95     —  N(3245)         none
+    113     —  N(3755)         none
+    119     —  N(3690)         none
+
+--- Δ* (12 entries) ---
+      N     z  symbol          conf
+     44    -1  Δ(1650)         PDG
+     48    +0  Δ(1670)         PDG
+     71     —  Δ(1690)         guess
+    124    +1  Δ(1890)         PDG
+    125    -1  Δ(1900)         PDG
+    129    +1  Δ(1910)         PDG
+    134    +2  Δ(1950)         PDG
+    137     —  Δ(1960)         guess
+    211     —  Δ(2160)         guess
+    302    +4  Δ(2420)         PDG
+    419     —  Δ(2850)         none
+    572     —  Δ(3230)         none
+
+--- Λ* (16 entries) ---
+      N     z  symbol          conf
+     22    +0  Λ(1405)         PDG
+     25     —  Λ(1330)         none
+     37    +1  Λ(1520)         PDG
+     54    +0  Λ(1670)         PDG
+     55    +1  Λ(1690)         PDG
+     58    +0  Λ(1750)         approx
+     70    +2  Λ(1815)         PDG
+     71    +2  Λ(1830)         PDG
+     73    +1  Λ(1860)         approx
+     74    +0  Λ(1870)         approx
+     84    +2  Λ(2110)         PDG
+     87     —  Λ(2010)         none
+     88    +3  Λ(2020)         approx
+     94    +3  Λ(2100)         PDG
+    116    +4  Λ(2350)         PDG
+    136     —  Λ(2585)         guess
+
+--- Ξ* (7 entries) ---
+      N     z  symbol          conf
+      4    +1  Ξ(1530)         PDG
+      7     —  Ξ(1630)         guess
+     16    +1  Ξ(1820)         PDG
+     19     —  Ξ(1940)         guess
+     25    +2  Ξ(2030)         approx
+     31     —  Ξ(2250)         guess
+     42     —  Ξ(2500)         guess
+
+--- Σ* (21 entries) ---
+      N     z  symbol          conf
+      6    +1  Σ(1385)         PDG
+      8     —  Σ(1440)         guess
+     20     —  Σ(1480)         guess
+     27    +1  Σ(1670)         PDG
+     35    +0  Σ(1620)         approx
+     38     —  Σ(1690)         guess
+     41    +0  Σ(1750)         PDG
+     45     —  Σ(1840)         guess
+     49    +2  Σ(1765)         PDG
+     57    +0  Σ(1880)         PDG
+     59    +2  Σ(1915)         PDG
+     60    +1  Σ(1940)         approx
+     70    +0  Σ(2000)         approx
+     72    +3  Σ(2030)         PDG
+     75     —  Σ(2070)         guess
+     76    +1  Σ(2080)         approx
+     77    +3  Σ(2100)         PDG
+     84     —  Σ(2250)         guess
+    104     —  Σ(2455)         guess
+    121     —  Σ(2620)         guess
+    150     —  Σ(3000)         none
+
+--- ε family (9 entries) ---
+      N     z  symbol          conf
+     39    +0  δ(970)          PDG
+     49    +0  ε               approx
+    144    +0  η'(958)         PDG
+    170    +0  S*(993)         PDG
+    228    +3  g(1680)         PDG
+    253    +2  f(1270)         PDG
+    255    +1  D(1285)         PDG
+    272    +1  E(1420)         PDG
+    323    +2  f'(1514)        PDG
+
+--- ρ* (2 entries) ---
+      N     z  symbol          conf
+      8    +1  ρ(770)          PDG
+    215    +1  ρ'(1600)        PDG
+
+--- ω/φ (3 entries) ---
+      N     z  symbol          conf
+     64    +0  ω(783)          PDG
+    153    +0  Φ(1019)         PDG
+    342    +2  ω(1675)         PDG
+
+================================================================================
+ Monotonicity check (does z grow with N within a family?)
+================================================================================
+  A/B mesons   n=  4  z range: [1, 2]  monotonicity violations: 0/3
+  K*           n=  3  z range: [1, 2]  monotonicity violations: 0/2
+  N*           n= 15  z range: [0, 4]  monotonicity violations: 6/14
+  Δ*           n=  7  z range: [-1, 4]  monotonicity violations: 1/6
+  Λ*           n= 13  z range: [0, 4]  monotonicity violations: 4/12
+  Ξ*           n=  3  z range: [1, 2]  monotonicity violations: 0/2
+  Σ*           n= 12  z range: [0, 3]  monotonicity violations: 5/11
+  ε family     n=  9  z range: [0, 3]  monotonicity violations: 2/8
+  ω/φ          n=  3  z range: [0, 2]  monotonicity violations: 0/2
+
+================================================================================
+ Linear fit z = a·N + b per family (PDG-only entries)
+================================================================================
+  A/B mesons   n=  3  z = +0.0210·N -0.7395  RMSE=0.15
+  K*           n=  3  z = +0.0095·N +0.6857  RMSE=0.36
+  N*           n= 12  z = +0.0806·N -1.1018  RMSE=0.96
+  Δ*           n=  7  z = +0.0179·N -1.4590  RMSE=0.83
+  Λ*           n=  9  z = +0.0424·N -1.1710  RMSE=0.47
+  Σ*           n=  8  z = +0.0294·N +0.0721  RMSE=0.91
+  ε family     n=  8  z = +0.0084·N -0.6359  RMSE=0.79
+  ω/φ          n=  3  z = +0.0077·N -0.7725  RMSE=0.30
