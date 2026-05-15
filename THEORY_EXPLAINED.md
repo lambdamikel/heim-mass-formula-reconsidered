@@ -1514,11 +1514,18 @@ What would change the situation?
    first principles would settle whether the Heim framework's
    *internal* numerical consistency holds at the resonance level.
 
-2. **Resolve the 0.79 % electron-mass discrepancy** between Heim's
-   1989 Tabelle II (0.51100343 MeV) and the current port (0.50694 MeV).
-   Every other particle in the port matches Heim's table to ≤ 0.01 %.
-   This is a localised transcription / convention issue, not a
-   foundational one, but it indicates a third unfound upstream bug.
+2. **Confirm the proposed [B3] typo correction (diagnosed May 2026).**
+   The 0.79 % electron-mass discrepancy between Heim's 1989 Tabelle II
+   (0.51100343 MeV) and the canonical port (0.50694 MeV) was traced
+   to a likely typo in [B3]: the charge term `+4qα₋` appears to be
+   missing a `/α₊` factor that was present in the 1982 (XI) Φ
+   formula. With the proposed correction `+4qα₋/α₊` and Heim's 1989
+   constants, all 19 well-behaved particles match Heim Tabelle II to
+   **≤ 2 eV** — at Heim's own printing precision. The corrected form
+   is implemented in `python/b3_correction.py` and
+   `python/full_reproduction.py` as a tested hypothesis; community
+   confirmation from heim-theory.com is the remaining step before
+   promoting the correction to canonical.
 
 3. **A mathematical audit of the polymetric formalism.** Heim's
    selector calculus, hermetric forms, and condensor flows are
@@ -1575,13 +1582,19 @@ greedy decomposition, have been documented by Heim, by von Ludwiger
 & Grüner, and by this repository's annotations — but never
 mathematically audited. Until that audit happens, the framework's
 status remains: empirically remarkable, theoretically untested,
-internally not-yet-fully-reproduced.
+internally reproducible (to ≤ 2 eV across 19 of 21 ground states)
+once the proposed [B3] correction and Heim's 1989 constants are
+applied — pending community confirmation of the [B3] typo.
 
 The audit-priority order, after the May 2026 source review, is:
 
-1. **Reproduce A/G ground states.** This is mostly done — 20 of 21
-   particles match Heim's Tabelle II to ≤ 0.01 %; the electron is
-   0.79 % off and needs the unidentified bug fixed.
+1. **Reproduce A/G ground states.** Done modulo community
+   confirmation. All 19 well-behaved particles match Heim's Tabelle II
+   to ≤ 2 eV after applying the proposed [B3] correction
+   (`+4qα₋/α₊`, diagnosed May 2026) and using Heim's 1989 constants.
+   The two Δ resonances with q ∈ {+2, 0} retain a separate
+   (n, m, p, σ) issue (~1.5 MeV off). The canonical port still uses
+   the published [B3] form pending external confirmation of the typo.
 
 2. **Reproduce G Tabelle IV meson resonances (k=1)** in a clean
    implementation of Heim's (P, N, K_B) resonance procedure. This
