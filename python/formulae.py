@@ -554,20 +554,53 @@ def calc_phi(
 # calc_mass — main mass formula M = [B3]  (returns kg)
 # ---------------------------------------------------------------------------
 
+# Module-level flag for the published-vs-corrected [B3] charge term.
+#
+# Set LEGACY_B3_FORM = True to recover the published IGW-Innsbruck 2003
+# [B3] form "+4qα₋" (which is bit-identical to Eli Gildish's 2006 C
+# reference and the Heim Group 2002 C# implementation, but produces a
+# ~0.79 % electron-mass discrepancy versus Heim's own published
+# Tabelle II values).
+#
+# Default (LEGACY_B3_FORM = False) uses the *corrected* form
+# "+4qα₋/α₊", consistent with Heim's primary manuscript J0060
+# (Synmetronik Band IV), equation 192 + p. 709, where Heim writes
+# M_q = q · μ_- = 4qμα_- explicitly outside the μα_+ multiplication.
+# The 1982 (XI) Φ formula also has the trailing "+4qα_-/α_+" term
+# (inside Φ, multiplied through by μα_+); the IGW-Innsbruck 2003
+# simplification to [B3] appears to have dropped the 1/α_+ when
+# moving this piece out of Φ.
+#
+# With the corrected form + Heim's 1989 constants (set_constants_mode
+# "heim_1989"), all 19 well-behaved ground states match Heim's
+# Tabelle II to ≤ 2 eV. See python/full_reproduction.py and
+# python/modes_table.py for verification, and the May 2026 commit
+# log for the historical-source diagnostic chain.
+
+LEGACY_B3_FORM: bool = False
+
+
 def calc_mass(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
     """
     Particle rest mass from quantum numbers, in kilograms.
 
-    M = μ · α_+ · [(G_underline + S + F + Φ) + 4·q·α_-]                   [B3]
+    Canonical form (May 2026, based on J0060 manuscript evidence):
+
+        M = μ · α_+ · (K + S + F + Φ) + 4qμα_-                            [B3 corrected]
+          = μ · α_+ · (K + S + F + Φ + 4qα_-/α_+)                         (equivalent)
 
     where:
-        G_underline (called "K" in the upstream code) — same shape as S but
-                    with n,m,p,σ instead of Q_n,Q_m,Q_p,Q_σ
-        S          — uses Q_n,…,Q_σ; depends only on k
+        K          — n,m,p,σ occupation contribution (G_underline shape)
+        S          — Q_n,…,Q_σ structure contribution (depends only on k)
         F          — cross terms n_i·Q_i + φ (self-coupling)              [B5]
         Φ          — P·(−1)^(P+Q)·(P+Q)·N_5 + Q·(P+1)·N_6                  [B6]
+        +4qμα_-    — charge-field partial mass M_q = q·μ_- per Heim's
+                     own J0060 eq. 192 + p. 709 (Synmetronik Band IV).
 
-    The "+ 4·q·α_-" is the principal addition of 1989 over 1982.
+    Set the module-level LEGACY_B3_FORM = True to recover the published
+    IGW-Innsbruck 2003 [B3] form "M = μα_+ (... + 4qα_-)" which is
+    bit-identical to Eli Gildish's 2006 C reference but has a
+    well-known 0.79 % electron-mass discrepancy vs Heim's Tabelle II.
     """
     q = fabs(q_x)
     eta00 = _eta(1, 0)
@@ -613,11 +646,17 @@ def calc_mass(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
     # Φ — [B6]: capital-Phi piece, distinct from φ
     PHI = P * (-1) ** (P + Q) * (P + Q) * N[4] + Q * (P + 1) * N[5]
 
-    return (
-        mass_element()
-        * alpha_plus(eta00, th)
-        * (K + S + F + PHI + 4.0 * q * alpha_minus(eta00, th))
-    )
+    a_p = alpha_plus(eta00, th)
+    a_m = alpha_minus(eta00, th)
+    mu = mass_element()
+
+    if LEGACY_B3_FORM:
+        # Published IGW-Innsbruck 2003 [B3] form (with the inherited typo).
+        return mu * a_p * (K + S + F + PHI + 4.0 * q * a_m)
+    else:
+        # Corrected form: M_q added as q·μ_- outside μα_+ multiplication.
+        # Algebraically equivalent to "+4qα_-/α_+" inside the bracket.
+        return mu * a_p * (K + S + F + PHI) + 4.0 * q * mu * a_m
 
 
 __all__ = [

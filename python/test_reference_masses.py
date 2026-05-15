@@ -1,9 +1,28 @@
 """
-Regression test: lock the 21 reference particle masses to the values
-produced by Eli Gildish's 2006 C reference implementation.
+Regression test: lock the 21 reference particle masses to the canonical
+output of the Python port.
+
+Update history:
+  - 2026-04-29: pinned to Eli Gildish 2006 C reference output, after
+                fixing two upstream-inherited transcription bugs in
+                calc_N (missing *q factor) and calc_a (wrong y-nesting).
+  - 2026-05-14: pinned to the J0060-corrected B3 form (default).
+                Heim's primary manuscript J0060 (Synmetronik Band IV)
+                gives M_q = q·μ_- = 4qμα_- explicitly (eq. 192 + p. 709),
+                outside the μα_+ multiplication.  The IGW-Innsbruck 2003
+                restatement [B3] = "+4qα_-" inside the bracket is
+                missing a /α_+ factor and was the source of the 0.79 %
+                electron-mass discrepancy.  With the correction:
+                  electron:  -0.002 % off measurement (was -0.79 %)
+                  muon:      -0.002 % off (was -0.005 %)
+                  proton:    -0.002 % off (was -0.003 %)
+                Bit-equality with the C reference is preserved only
+                when formulae.LEGACY_B3_FORM = True (see commit
+                message for source pointers).
 
 Any future change to the Python port that breaks this test must be
-reviewed against the C reference (via `cd annotated && make`).
+reviewed against Heim's J0060 manuscript and the published Tabelle II
+values in G_Ausgewaehlte_Ergebnisse.pdf.
 
 Run:  pytest python/test_reference_masses.py
   or: python -m pytest test_reference_masses.py   (from the python/ dir)
@@ -16,37 +35,32 @@ import pytest
 from particle import REFERENCE_PARTICLES
 
 
-# Frozen snapshot of the 21 mass predictions in MeV/c², as produced by
-# both the C reference (annotated/heimmass) and this Python port. These
-# values match Heim's published figures via Eli Gildish's 2006
-# reimplementation.
+# Frozen snapshot of the 21 mass predictions in MeV/c² as produced by
+# the canonical Python port (J0060-corrected B3 form, LEGACY_B3_FORM=False).
+# These values match Heim's published Tabelle II to <= 30 ppm overall
+# and to <= 2 eV with heim_1989 constants.
 REFERENCE_MASSES_MEV: dict[str, float] = {
-    # Updated 2026-04-29 after fixing two transcription bugs in calc_N
-    # (the missing `*q` in the N_3 second term) and calc_a (the wrong
-    # nesting of y.22 and y.23 inside the y.21 P,2·(1-Q,3) factor).
-    # The new values match the Excel reference and match measurement
-    # 5-67× better than the previous (Eli Gildish C 2006) values.
     "e_0":      0.51615513,
-    "e_-":      0.50694371,
-    "miu_-":  105.65229677,
+    "e_-":      0.51098822,
+    "miu_-":  105.65634128,
     "eta":    548.78369542,
-    "KAPPA_+": 493.69551717,
+    "KAPPA_+": 493.69956168,
     "KAPPA_0": 497.70819066,
-    "pi_+-":  139.56017382,
+    "pi_+-":  139.56421834,
     "pi_0":   134.95602561,
     "LAMBDA":1115.56659651,
-    "OMEGA_-":1672.12138879,
-    "p":      938.24762887,
+    "OMEGA_-":1672.12543330,
+    "p":      938.25167338,
     "n":      939.54540401,
     "XI_0":  1314.86293703,
-    "XI_-":  1321.24989957,
-    "SIGMA_+":1189.33466416,
+    "XI_-":  1321.25394409,
+    "SIGMA_+":1189.33870868,
     "SIGMA_0":1192.44246612,
-    "SIGMA_-":1197.26476102,
-    "DELTA_++":1234.43430766,
-    "DELTA_+":1234.56902997,
+    "SIGMA_-":1197.26880554,
+    "DELTA_++":1234.44239668,
+    "DELTA_+":1234.57307449,
     "DELTA_0":1235.13841791,
-    "DELTA_-":1229.95465525,
+    "DELTA_-":1229.95869976,
 }
 
 

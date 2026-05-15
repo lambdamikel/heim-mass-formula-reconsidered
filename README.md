@@ -113,7 +113,7 @@ reproduced". Adapted from Joel's May 2026 review:
 
 | Sector | Source status |
 |---|---|
-| Ground-state leptons | Explicit in A and G (Tabelle I/II); reproduced by current port to ≤ 0.01 %, except for a 0.79 % electron-only discrepancy that was diagnosed in May 2026 as a published [B3] typo (`+4qα₋` should be `+4qα₋/α₊`). With the proposed correction + Heim's 1989 constants, all 19 well-behaved particles match Heim Tabelle II to ≤ 2 eV. See Open Question #1. |
+| Ground-state leptons | Explicit in A and G (Tabelle I/II); reproduced by canonical port (J0060-corrected B3) to ≤ 0.01 % for all 19 well-behaved particles. The historical 0.79 % electron-mass discrepancy was diagnosed in May 2026 as a missing `/α₊` factor in the IGW-Innsbruck 2003 [B3]; the canonical port now matches Heim's manuscript form. Set `LEGACY_B3_FORM = True` for the old published-[B3] behaviour. See Open Question #1. |
 | Ground-state mesons | Explicit in A and G; reproduced to ≤ 0.01 %. |
 | Ground-state baryons | Explicit in A and G; reproduced to ≤ 0.01 %. |
 | Neutrino masses | Explicit in B and G (Tabelle II, 5 species). Not reproduced from formula by current port; status only by direct comparison to G values (see `python/heim_neutrinos.py`). |
@@ -187,23 +187,45 @@ repository:
 > leading-order QED. Caveat: a from-first-principles prediction requires
 > the protosimplex/synmetronic side of the framework, not in our port.
 
-> **4. Two upstream-inherited transcription bugs corrected** in
-> Eli Gildish's 2006 C and Heim Group's 2002 C# implementations,
-> identified by cross-checking against the heim-theory.com Excel reference.
-> Mass predictions improved by 5–67×: proton, neutron, Λ, Ξ⁰ now match
-> measurement to **better than 0.01 %** (the proton specifically becomes
-> *stable*, as it should). Lifetime predictions went from 7/18 within
-> factor 3 to **17/18 within factor 3** — fifteen of those to better
-> than 12 %, across eleven orders of magnitude. The 1989 source itself
-> notes that "in the manuscript some brackets in very long equations were
-> lost during the process of writing; this had to be corrected at best
-> estimate" — our independent fixes are consistent with this known
-> transmission failure mode. **Caveat (per Joel's review):** the
-> Arbeitskreis source provides only this general warning, not a
-> bracket-by-bracket correction list. Our two bug fixes should not be
-> identified with the Arbeitskreis corrections unless a detailed
-> correction list is located; the safe statement is that both arise
-> from the same known transmission problem.
+> **4. Three transcription bugs corrected, including the long-standing
+> 0.79 % electron-mass discrepancy.**
+>
+> Two upstream-inherited bugs were fixed in April 2026 by cross-checking
+> against the heim-theory.com Excel reference (calc_N missing `*q`,
+> calc_a wrong y-nesting). Mass predictions improved 5–67× for
+> proton/neutron/Λ/Ξ⁰. Lifetime predictions went from 7/18 within
+> factor 3 to **17/18 within factor 3**.
+>
+> A *third* correction was diagnosed in May 2026: the published
+> IGW-Innsbruck 2003 [B3] form `"M = μα_+ (... + 4qα_-)"` is missing
+> a `/α_+` factor. Heim's primary manuscript **J0060** (Synmetronik
+> Band IV, equation 192 + p. 709, sent to the repo by Javier Mazzone
+> via the Heim-Theory Discord, May 2026) writes the charge-field
+> partial mass explicitly as `M_q = q · μ_- = 4qμα_-` — *outside*
+> the μα_+ multiplication. The correct mass formula is therefore:
+>
+> ```
+> M = μα_+ · (K + S + F + Φ) + 4qμα_-
+>   = μα_+ · (K + S + F + Φ + 4qα_-/α_+)        (equivalent)
+> ```
+>
+> The corrected form (canonical since May 2026) recovers:
+>   - electron: **0.510988 MeV** vs measured 0.51099907 MeV (-0.002 %,
+>     was -0.79 %), and matches Heim's own 1989 Tabelle II value
+>     0.51100343 MeV to ~1 eV;
+>   - all 19 well-behaved ground states match Heim Tabelle II to **≤ 2 eV**
+>     when combined with Heim's 1989 constants (`heim_1989` mode);
+>   - the two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ) issue
+>     (Open Question 1b).
+>
+> The 1989 source itself notes that "in the manuscript some brackets in
+> very long equations were lost during the process of writing; this
+> had to be corrected at best estimate" — the missing `/α_+` is most
+> likely an instance of exactly this transmission failure mode,
+> introduced when the IGW Innsbruck group restated Heim's J0060
+> formulation in their cleaner [B3] notation. Set
+> `formulae.LEGACY_B3_FORM = True` to recover bit-equality with the
+> Eli Gildish 2006 C reference.
 
 > **5. Heim's 1989 framework predicts five neutrinos with specific masses.**
 > G-Tabelle II ("Theoretical Data of Elementary Particles… Calculated
@@ -307,14 +329,14 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | **98 – 99 %** ↑ |
-| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | **20 – 32 %** ↑ slightly |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | **80 – 92 %** ↑ |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | **< 3 %** ↓ |
-| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | **90 – 97 %** ↑↑ |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis | After J0060 manuscript |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | 98 – 99 % | **≥ 99 %** ↑ |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | 20 – 32 % | **22 – 35 %** ↑ |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | 80 – 92 % | **85 – 94 %** ↑ |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | < 3 % | **< 2 %** ↓ |
+| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | 90 – 97 % | **97 – 99 %** ↑ |
 
 The most recent column reflects a deep source audit using the
 historical A / B / G transmission set provided by the Heim-Theory
@@ -403,12 +425,13 @@ What would still shift this assessment substantially:
   reproduce these G-table values from first principles using only Heim's
   documented quantum-number structure, the framework moves from
   "interesting structure" to "well-defined and reproducible".
-- **Community confirmation of the proposed [B3] typo correction**
-  (`+4qα₋` → `+4qα₋/α₊`). Diagnosed May 2026; the corrected form
-  reproduces Heim Tabelle II to ≤ 2 eV across all 19 well-behaved
-  particles when combined with Heim's 1989 physical constants.
-  Pending external validation from heim-theory.com sources before
-  promoting to canonical.
+- ~~Community confirmation of the proposed [B3] typo correction~~
+  **Resolved May 2026**: Heim's primary manuscript J0060 (Synmetronik
+  Band IV, equation 192 + p. 709), provided by Javier Mazzone, gives
+  the explicit construction `M = M_P + M_S + M_I + M_q` with
+  `M_q = 4qμα_-` outside the μα_+ multiplication. The canonical port
+  now uses this form; bit-identical Eli-Gildish-2006 behaviour is
+  available via `LEGACY_B3_FORM = True`.
 - **Confirming or refuting Heim's five-neutrino prediction.** The
   ν_5 at 207 MeV in particular is in a range where laboratory bounds
   on heavy neutral leptons / sterile neutrinos already exist. A
@@ -536,7 +559,9 @@ heim/
 │       ├── formulae.c         ← every line tagged with its [B##] equation
 │       └── constant.c         ← η, θ, α± and the fine-structure derivation
 │
-└── python/                    ← Python port (bit-identical to C)
+└── python/                    ← Python port (canonical = J0060-corrected B3;
+                                  set formulae.LEGACY_B3_FORM=True to recover
+                                  bit-identical-to-Eli-Gildish-C behaviour)
     ├── constants.py           ← physical & auxiliary constants
     ├── formulae.py            ← the mass formula itself
     ├── lifetime.py            ← mean-lifetime formula [B47]–[B57]
@@ -638,8 +663,11 @@ See [Lifetime predictions](#lifetime-predictions) below for current status.
 cd python && ../venv/bin/python -m pytest test_reference_masses.py -q
 ```
 
-Should report `23 passed` — the 21 reference masses are pinned to bit-equality
-with the C reference (plus 2 sanity tests on charges and list completeness).
+Should report `23 passed` — the 21 reference masses are pinned to the
+canonical Python-port output (J0060-corrected B3 form, May 2026; was
+previously pinned to Eli Gildish's 2006 C output before the
+manuscript-source promotion). 2 sanity tests on charges and list
+completeness.
 
 ### Reproduce the sensitivity analysis
 
@@ -661,7 +689,10 @@ The plan was deliberately simple:
 2. **Annotate every term** of the C code with its corresponding equation
    from [1989] so we know what each line is *supposed* to compute.
 3. **Port to Python** as an executable cross-check and a platform for
-   experiments. The port is bit-identical to the C output.
+   experiments. The port was originally bit-identical to the C output
+   and remains so when `formulae.LEGACY_B3_FORM = True` is set
+   (default since May 2026 is the J0060-corrected form — see Open
+   Question #1 / Headline 5).
 4. **Perturb each ingredient** of the formula and measure how the loss
    responds:
 
@@ -683,13 +714,11 @@ The plan was deliberately simple:
 RMS relative error over 20 measured particles  =  0.2188 %
 ```
 
-Worst single particle: electron at -0.79% (canonical port).
-Most particles below 0.05%. This matches the literature, and the
-electron-only outlier is now diagnosed (May 2026) as a likely [B3]
-typo missing `/α₊` in the charge-correction term — applying the
-proposed fix brings the electron in line with the rest (≤ 2 eV vs
-Heim Tabelle II). See "Electron-mass discrepancy" below and Open
-Question #1.
+Worst single particle in the *legacy* mode (LEGACY_B3_FORM=True,
+published [B3]): electron at -0.79%. With the J0060-corrected B3
+form (canonical since May 2026): electron matches measurement at
+-0.002 %, and the worst single particle is now η at +0.27 %
+(electromagnetic-decay outlier).
 
 The 21st particle in Heim's reference list — `e₀`, the *neutral electron* —
 is not in this average because it has no measured mass: it is **Heim's
@@ -833,30 +862,45 @@ The new RMS relative error over the 20 measured particles is about
 to the accuracy claimed by the Heim research group itself (5–8 of 16
 within experimental tolerance, depending on the choice of G).
 
-**Electron-mass discrepancy — diagnosed May 2026.** Heim's 1989
-Tabelle II (`downloads/G_Ausgewaehlte_Ergebnisse.pdf`, p. 3) lists
-the electron theoretical mass as **0.51100343 MeV** — matching the
-measured PDG value 0.51099907 MeV to **5 decimal digits**. The
-current canonical Python port (using the published [B3] form)
-computes **0.50694371 MeV** — 0.79 % off both Heim and PDG.
+**Electron-mass discrepancy — resolved May 2026 via Heim's J0060
+manuscript.** Heim's 1989 Tabelle II
+(`downloads/G_Ausgewaehlte_Ergebnisse.pdf`, p. 3) lists the electron
+theoretical mass as **0.51100343 MeV**, matching the measured PDG
+value 0.51099907 MeV to **5 decimal digits**. The legacy port form
+(LEGACY_B3_FORM=True, bit-equivalent to Eli Gildish's 2006 C and the
+Heim Group 2002 C#) computed 0.50694371 MeV — 0.79 % off both.
 
-A four-stage source audit traced this to a likely typo in the 1989
-[B3] simplification: the trailing additive piece `+ 4q·α₋/α₊` of
-Heim's 1982 (XI) Φ formula appears to have been transcribed into
-[B3] as `+ 4qα₋` (missing the `/α₊` factor). With the proposed
-correction `+4qα₋/α₊` applied — and using Heim's stated 1989
-constants (G = 6.6732·10⁻¹¹, CODATA-1986 h/e) — the electron
-matches Heim Tabelle II to **~1 eV** (machine precision against
-Heim's 8-decimal printed values). All 19 well-behaved particles
-match to ≤ 2 eV in the same configuration.
+A four-stage source audit traced the discrepancy to a missing `/α₊`
+factor in the IGW Innsbruck 2003 [B3] restatement. Heim's primary
+manuscript **J0060** (Synmetronik Band IV), provided by Javier
+Mazzone via the Heim-Theory Discord in May 2026, contains the
+explicit derivation. Equation 192 (p. 704) gives
+`μ_± = 4 · μ · α_±`; page 709 then writes
+`M_q = q · μ_- = 4qμα_-` for the charge-field partial mass,
+*outside* the μα_+ multiplication. The complete mass is built up as
+`M = M_P + M_S + M_I + M_q`, which factors as
 
-The repository contains both forms: the canonical port still uses
-the published [B3] (preserving bit-equality with Eli Gildish's 2006
-C and the Heim Group 2002 C# reference). The corrected form is
-implemented and tested in `python/b3_correction.py`,
-`python/full_reproduction.py`, and `python/modes_table.py` as a
-hypothesis pending external validation from the heim-theory.com
-community.
+```
+M = μα_+ · (K + S + F + Φ) + 4qμα_-
+  = μα_+ · (K + S + F + Φ + 4qα_-/α_+)        (equivalent)
+```
+
+— exactly the "corrected" form, not the published `"+4qα₋"`. The
+canonical Python port adopted the J0060 form in May 2026 (commit
+referenced in `formulae.py LEGACY_B3_FORM` comment).
+
+With the canonical (J0060-corrected) form:
+
+  - electron: **0.51098822 MeV**, -0.002 % vs measurement
+  - all 19 well-behaved ground states match Heim Tabelle II to
+    ≤ 30 ppm (`legacy_2006` constants) or ≤ 2 eV (`heim_1989`
+    constants)
+  - the two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ)
+    issue (Open Question 1b).
+
+Setting `LEGACY_B3_FORM = True` in `python/formulae.py` recovers
+the historical bit-identical-to-Eli-Gildish-2006 behaviour for
+direct comparison.
 
 ### Post-1989 particle predictions
 
@@ -870,20 +914,16 @@ categories**, which the repo previously conflated:
 1. **Reproduction of Heim/Arbeitskreis selected results in G**.
    Does the current Python port compute the same theoretical masses
    that Heim's 1989 G-tables list? *Status: ground states done, excited
-   states open.* For ground states, applying the proposed [B3]
-   correction `+4qα₋/α₊` (diagnosed May 2026) together with Heim's
-   1989 constants reproduces 19 of 21 Tabelle-II values **to ≤ 2 eV**
-   — i.e. Heim's own printing precision. The two Δ⁺⁺ / Δ⁰ resonances
-   retain a separate (n, m, p, σ) decomposition issue (~1.5 MeV off).
-   The current canonical port without the [B3] correction has the
-   well-known 0.79 % electron-mass offset; that is now understood as
-   a likely published-formula typo and is reproduced as such for
-   bit-equivalence with the Gildish 2006 C reference. For excited
-   states, our current scan does **not** implement Heim's resonance
-   procedure (which uses k=1 / k=2 parametrisation in (P, N, K_B),
-   separate from the (ε, k, P, Q, κ, x) ground-state procedure);
-   reproduction of G-Tabelle IV / Va from the formula is the
-   remaining open reconstruction task.
+   states open.* For ground states, the canonical port (J0060-corrected
+   [B3] since May 2026) together with Heim's 1989 constants reproduces
+   19 of 21 Tabelle-II values **to ≤ 2 eV** — i.e. Heim's own printing
+   precision. The two Δ⁺⁺ / Δ⁰ resonances retain a separate
+   (n, m, p, σ) decomposition issue (~1.5 MeV off). For excited states,
+   our current scan does **not** implement Heim's resonance procedure
+   (which uses k=1 / k=2 parametrisation in (P, N, K_B), separate from
+   the (ε, k, P, Q, κ, x) ground-state procedure); reproduction of
+   G-Tabelle IV / Va from the formula is the remaining open
+   reconstruction task.
 
 2. **Comparison of Heim's selected results to modern PDG values**.
    Heim's G-table predictions, *as he published them*, are mostly
@@ -1207,18 +1247,25 @@ derivability of η itself.
 
 In rough order of importance (revised May 2026 after A/B/G source audit):
 
-1. **The 0.79 % electron-mass discrepancy — DIAGNOSED MAY 2026,
-   community confirmation pending.** Heim's 1989 Tabelle II (G, p. 3)
-   lists the electron at 0.51100343 MeV; our canonical port (published
-   [B3]) computes 0.50694 MeV. Four-stage diagnostic localised the
-   discrepancy to a likely typo in the 1989 [B3] formula. With the
-   proposed correction and Heim's 1989 constants, the electron matches
-   Heim's published value to ~1 eV, and all 19 well-behaved particles
-   match Heim Tabelle II to ≤ 2 eV — at his own printing precision.
-   The corrected formula is implemented in `python/b3_correction.py`,
-   `python/full_reproduction.py`, and `python/modes_table.py` but
-   the canonical port keeps the published [B3] until external
-   confirmation.
+1. **The 0.79 % electron-mass discrepancy — RESOLVED MAY 2026 via
+   Heim's J0060 manuscript.** The IGW Innsbruck 2003 [B3] form
+   `"M = μα_+ (... + 4qα_-)"` was confirmed to be missing a `/α_+`
+   factor. Heim's primary manuscript **J0060** (Synmetronik Band IV,
+   equation 192 + p. 709), provided by Javier Mazzone via the
+   Heim-Theory Discord in May 2026, gives the explicit construction
+   `M = M_P + M_S + M_I + M_q` with `M_q = q · μ_- = 4qμα_-`,
+   *outside* the μα_+ multiplication. The canonical Python port now
+   uses the corrected form by default (set `formulae.LEGACY_B3_FORM =
+   True` to recover the historical Eli-Gildish-bit-identical
+   behaviour for direct comparison).
+
+   With the correction: electron matches measurement to -0.002 %
+   (was -0.79 %), Heim Tabelle II to ~1 eV. All 19 well-behaved
+   particles match Heim Tabelle II to ≤ 2 eV with Heim's 1989
+   constants.
+
+   The two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ)
+   greedy-decomposition issue (Open Question 1b).
 
    - **Stage 1: (n, m, p, σ) cross-check** (`python/nmps_cross_check.py`)
      ruled out the greedy decomposition. 19 of 21 ground-state quantum
