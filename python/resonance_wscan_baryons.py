@@ -152,11 +152,17 @@ def expand_to_states(entries):
     return out
 
 
-def scan_all(states, K_n_max=50, K_m_max=70, K_p_max=100, K_sig_max=50):
-    """For each state (label, P, q_x, M_t, KB_t), scan Q ∈ {1,3,5,7,9,11}
-    and find best match."""
-    # Group by (P, q_x) so we share enumeration across states in the same sector
-    Q_candidates = [1, 3, 5, 7, 9, 11]
+def scan_all(states, K_n_max=50, K_m_max=70, K_p_max=100, K_sig_max=50,
+              W0_max=1e8):
+    """For each state (label, P, q_x, M_t, KB_t), scan Q ∈ {1,3,5,7,9}
+    and find best match.  Skip (P, Q, κ, q) sectors where W_0 (eq. B22)
+    is > W0_max — those produce f_implied ≈ −1 trivially and make
+    the per-sector Anregerkurve check degenerate."""
+    # Q = 2·J for baryons; J ∈ {1/2, 3/2, ..., 9/2} covers all
+    # well-identified PDG baryon resonances.  Q = 11 (J = 11/2) excluded.
+    Q_candidates = [1, 3, 5, 7, 9]
+
+    I = fm.calc_Q(2)
     by_sector = defaultdict(list)
     for s in states:
         label, P, qx, M_t, KB_t = s
@@ -165,16 +171,27 @@ def scan_all(states, K_n_max=50, K_m_max=70, K_p_max=100, K_sig_max=50):
     results = {}   # label → (Q_best, dict)
     for (P, qx), tgts in sorted(by_sector.items()):
         for Q in Q_candidates:
+            # Reject sectors where W_0 diverges (= calc_W is huge for some
+            # (P, Q, κ, q) at k=2 — those entries are ranking degeneracies).
+            W0_min_kap = min(
+                fm.calc_W(1, 2, P, Q, kap, qx, I) for kap in (0, 1)
+                if fm.calc_W(1, 2, P, Q, kap, qx, I) > 0
+            ) if any(fm.calc_W(1, 2, P, Q, kap, qx, I) > 0
+                     for kap in (0, 1)) else 0
+            if W0_min_kap > W0_max or W0_min_kap == 0:
+                print(f"  Sector P={P} q={qx:+d} Q={Q}: W_0 = "
+                      f"{W0_min_kap:.2e} (>{W0_max:.0e} or 0) — skipped",
+                      flush=True)
+                continue
             targets = [(label, M_t, KB_t) for (label, M_t, KB_t) in tgts]
-            print(f"  Sector P={P} q={qx:+d} Q={Q}: {len(targets)} targets",
-                  flush=True)
+            print(f"  Sector P={P} q={qx:+d} Q={Q}: {len(targets)} targets "
+                  f"(W_0 = {W0_min_kap:.2e})", flush=True)
             m = match_sector_k2(P, Q, qx, targets, K_n_max=K_n_max,
                                 K_m_max=K_m_max, K_p_max=K_p_max,
                                 K_sig_max=K_sig_max)
             for label, mtch in m.items():
                 if mtch is None:
                     continue
-                # Find target
                 M_t, KB_t = next(
                     (M, K) for (lbl, M, K) in tgts if lbl == label)
                 dM = abs(mtch["M_MeV"] - M_t)
