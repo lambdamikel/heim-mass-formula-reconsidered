@@ -80,7 +80,11 @@ repository:
    With the proposed correction and Heim's 1989 constants, the port
    reproduces Heim Tabelle II to ~2 eV precision across 19 of 21
    ground states (community confirmation pending).
-6. Tests the framework on particles discovered or characterised after 1989.
+6. **Reproduces G-Tabelle IV** (23 mesonic resonances at k=1) from
+   Heim's J0032 exhaustion procedure: all 23 entries matched with
+   exact K_B and Δ_M < 0.2 MeV, and the matched (n, m, p, σ) tuples
+   lie sector-consistently on the Anregerkurve f(N) = a·N/(N+1) + b·N.
+7. Tests the framework on particles discovered or characterised after 1989.
 
 ## Scope of this repository
 
@@ -154,9 +158,9 @@ reproduced". Adapted from Joel's May 2026 review:
 | Ground-state baryons | Explicit in A and G; reproduced to ≤ 0.01 %. |
 | Neutrino masses | Explicit in B and G (Tabelle II, 5 species). Not reproduced from formula by current port; status only by direct comparison to G values (see `python/heim_neutrinos.py`). |
 | Lifetimes of ground states | Explicit in B and G; reconstruction-sensitive (Arbeitskreis bracket warning applies). Current port matches measurement to factor 3 for 17 of 18 particles. |
-| Meson resonances (k=1) | Explicit in G (Tabelle IV, 23 entries: ρ, ω, φ, K*, η', f-family, A-family, B(1235), F1, ρ', A3, g, …). **Needs audit** — current port does not implement Heim's (P, N, K_B) resonance procedure. |
+| Meson resonances (k=1) | Explicit in G (Tabelle IV, 23 entries: ρ, ω, φ, K*, η', f-family, A-family, B(1235), F1, ρ', A3, g, …). **Reproduced May 2026.** All 23 entries matched with exact K_B (eq. 14e) and Δ_M < 0.2 MeV via reachability-checked enumeration of the J0032 exhaustion procedure (eq. 16). Per-sector consistency check: the matched (n, m, p, σ) tuples lie on a common Anregerkurve f(N) = a·N/(N+1) + b·N (eq. 14) with κ = 1 throughout — strongest test the (P=0, Q=0, κ=1) sector with 3 entries, max \|Δf\| = 6.5·10⁻⁵. See `python/resonance_wscan.py` and `python/resonance_consistency.py`. |
 | Baryon resonances (k=2) | Explicit in G (Tabellen V_a–V_c, 50+ entries: N*, Δ*, Λ*, Σ*, Ξ* families). **Needs audit** — same as above. |
-| Light vector mesons (ρ, ω, φ) | Present in G with theoretical masses matching PDG to 0.02-0.7 %. Earlier "structural gap" claim retracted; the gap was the un-implemented resonance procedure, not the framework. |
+| Light vector mesons (ρ, ω, φ) | Present in G with theoretical masses matching PDG to 0.02-0.7 %. Reproduced May 2026 via the J0032 exhaustion procedure (ρ(770), ω(783), Φ(1019) all with exact K_B and Δ_M < 0.05 MeV — see Headline #6). Earlier "structural gap" claim retracted; the gap was the un-implemented resonance procedure, not the framework. |
 | Heavy-flavour states (J/ψ, D, B, Λ_c, Σ_c, Λ_b, …) | Unclear / probably not historically central to Heim's work. No A/B/G entries known. Open: how (or whether) a complete Heim-compatible theory recovers their phenomenology. |
 | Free quarks | Not in Heim's ontology. At most an effective internal-structure description of hadronic sub-content. |
 | W / Z gauge bosons | Not A/B/G mass-formula input. Empirical phenomenology must still be recovered by any complete Heim-compatible theory. |
@@ -174,13 +178,15 @@ repository:
    with q ∈ {+2, 0} retain a separate (n, m, p, σ) issue (#1b). See
    `python/modes_table.py` for the 2×2 mode breakdown.
 2. **Reproduce G Tabelle IV meson resonances (k=1)** from first
-   principles using Heim's (P, N, K_B) parameters. *Status: open.*
-   This is the largest single reconstruction task remaining. The 23
-   target entries are stored in `python/g_tables.py` as ground truth
-   (ω(783), Φ(1019), K*(892), ρ(770), η'(958), f(1270), D(1285),
-   E(1420), f'(1514), ω(1675), K*(1420), K_A(1240), L(1770), δ(970),
-   A1(1100), B(1235), A2(1310), F1(1540), ρ'(1600), A3(1640),
-   g(1680), S*(993), ε).
+   principles using Heim's (P, N, K_B) parameters. *Status: done
+   (May 2026).* All 23 entries reproduced via reachability-checked
+   enumeration of the J0032 exhaustion procedure (eq. 16): exact K_B
+   match (eq. 14e), mass agreement Δ_M < 0.2 MeV. Per-sector
+   consistency check confirms the matched (n, m, p, σ) tuples lie on a
+   common Anregerkurve f(N) = a·N/(N+1) + b·N (eq. 14) with κ = 1
+   throughout. Outstanding: derive a, b from J0032 eqs. 14a-14b₁
+   (closed-form expressions) and compare to the back-fitted values.
+   See `python/resonance_wscan.py` and `python/resonance_consistency.py`.
 3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
    *Status: open.* The 76 target entries are stored in
    `python/g_tables.py` (20 N\*, 16 Λ\*, 7 Ξ\*, 12 Δ\*, 21 Σ\*).
@@ -286,17 +292,59 @@ repository:
 > within PIENU / NA62 heavy-neutral-lepton sensitivity. See
 > [`python/heim_neutrinos.py`](python/heim_neutrinos.py).
 
+> **6. G-Tabelle IV (23 meson resonances at k=1) reproduced via the
+> J0032 exhaustion procedure.** Each entry's published (P, N, K_B,
+> mass) is matched to a reachable (n, m, p, σ) configuration with
+> **exact K_B** (eq. 14e) and **Δ_M < 0.2 MeV** (eq. 4). The non-trivial
+> part is the *reachability check*: the exhaustion ordering (cube,
+> square, linear, exponential per eq. 16) means most (K_n, K_m, K_p, K_σ)
+> tuples correspond to no actual w. The naive enumeration that ignores
+> reachability matched only 9/23 entries and had K_B 1–3 units off
+> (`python/resonance_enumerate.py`, kept in-tree as cautionary baseline);
+> the reachability-checked version matches all 23 cleanly
+> (`python/resonance_wscan.py`).
+>
+> The stronger test is sector-level consistency
+> (`python/resonance_consistency.py`): per-sector the matched (n, m, p, σ)
+> tuples imply f(N) = w/W₀ − 1 values that should lie on a common
+> Anregerkurve f(N) = a·N/(N+1) + b·N (eq. 14). Result with κ = 1:
+>
+> | Sector | #entries | fitted (a, b) | max \|Δf\| |
+> |---|---|---|---|
+> | (P=0, Q=0) | 3 (ε, η', S*) | (+0.286, +0.0045) | **6.5·10⁻⁵** |
+> | (P=0, Q=2) | 4 (ω, Φ, D, E) | (+13.19, +0.0484) | 0.038 |
+> | (P=1, Q=2) | 2 (K*(892), K_A) | (+14.78, +0.0722) | exact |
+> | (P=1, Q=4) | 2 (K*(1420), L) | (+91.02, +0.4526) | exact |
+> | (P=2, Q=2) | 5 (ρ, A1, B, F1, ρ') | (+35.43, +0.107) | 0.34 |
+> | (P=2, Q=4) | 2 (A2, A3) | (+212.7, +0.657) | exact |
+>
+> Three points over two parameters in the (P=0, Q=0) sector fit to
+> 6.5·10⁻⁵, and four points over two parameters in (P=0, Q=2) fit
+> to ~0.2 % of the f values — strong evidence that the matched
+> configurations are Heim's actual assignments, not accidental
+> (M, K_B) hits in the 2.4M-config parameter space.
+>
+> Outstanding: derive the (a, b) coefficients from J0032 eqs. 14a-14b₁
+> (closed-form sector-dependent expressions) and compare to the
+> back-fitted values above. G-Tabellen V_{a,b,c} (76 baryonic
+> resonances at k=2) not yet attempted.
+
 ### Findings that were retracted or sharpened after the source audit
 
 > **The "K\*(892) / Λ(1690) as new Heim predictions" claim** has been
 > retracted. Both particles are explicitly in Heim's G-Tabelle IV / Va
 > as approximated resonances (K\*(892) at theoretical 891.20 / 892.22 MeV;
 > Λ(1690) at theoretical 1693.28 MeV). Our excited-state scan at k=3
-> found K\* at 867.6 MeV (2.7 % below Heim's own published table value);
+> found K\* at 867.6 MeV (2.7 % below Heim's own published table value).
 > Heim's k=1 resonance procedure (using P, N, K_B parameters separate
-> from the (ε, k, P, Q, κ, x) ground-state scheme) is *not implemented*
-> in our port. The correct framing: this is a reconstruction gap, not
-> a new prediction. See
+> from the (ε, k, P, Q, κ, x) ground-state scheme) is now reproduced
+> in our port via the J0032 exhaustion procedure — see Headline #6 —
+> with K\*(892) matched at 891.08 MeV (Δ = −0.117 MeV, K_B = 29 exact)
+> and all 22 other Tabelle IV entries reproduced similarly. The Λ(1690)
+> sits in G-Tabelle V_a (k=2 baryonic resonances), which has not yet
+> been reproduced. The correct framing for both claims: these are
+> reconstruction targets reachable from Heim's published procedure,
+> not predictions ex nihilo. See
 > [Post-1989 particle predictions](#post-1989-particle-predictions).
 
 > **The "Higgs is structurally absent from Heim" framing** has been
@@ -407,11 +455,14 @@ Discord community in May 2026:
   formula to canonical. See `python/b3_correction.py`,
   `python/full_reproduction.py`, `python/modes_table.py`.
 
-  Additionally, our excited-state scan found K\*(892) at 867.6 MeV
-  in a k=3 sector, whereas Heim's G-Tabelle IV places K\* at
-  k=1 with theoretical 891.20 / 892.22 MeV — so our scan is *not
-  reproducing the historical resonance procedure*. That remains an
-  open reconstruction task.
+  Additionally, our earlier excited-state scan found K\*(892) at
+  867.6 MeV in a k=3 sector, whereas Heim's G-Tabelle IV places K\*
+  at k=1 with theoretical 891.20 / 892.22 MeV — so that scan was
+  *not reproducing the historical resonance procedure*. The
+  historical procedure itself (J0032 eqs. 11, 14, 16 — exhaustion
+  with Anregerfunktion) is now reproduced in `python/resonance_wscan.py`
+  (May 2026), matching K\*(892) at 891.08 MeV (Δ = −0.117 MeV) and
+  all 22 other Tabelle IV entries — see Headline #6.
 
 In short: the source audit *strengthens* the case for Heim's
 framework substantively (because G now provides concrete
@@ -651,6 +702,21 @@ heim/
     │                                 after [B3] correction + single global
     │                                 constant, RMS residual is 0.002 ppm
     │                                 across 19 particles (max 2 eV absolute)
+    ├── resonance_reproduction.py  ← J0032 procedure scaffold:
+    │                                 calc_resonance(eps, k, P, Q, κ, q, N, f)
+    │                                 with exhaustion + Anregerfunktion
+    ├── resonance_wscan.py         ← G-Tabelle IV reproduction: streaming
+    │                                 reachability-checked enumeration of
+    │                                 (K_n, K_m, K_p, K_σ) under the J0032
+    │                                 exhaustion order (eq. 16). 23/23 entries
+    │                                 matched with exact K_B and Δ_M < 0.2 MeV
+    ├── resonance_consistency.py   ← per-sector consistency: matched (n,m,p,σ)
+    │                                 lie on f(N) = a·N/(N+1) + b·N
+    │                                 (Anregerkurve, J0032 eq. 14) — max |Δf|
+    │                                 6.5·10⁻⁵ for the (P=0, Q=0) sector
+    ├── resonance_enumerate.py     ← cautionary baseline: naive enumeration
+    │                                 without reachability — matches only
+    │                                 9/23 entries with K_B 1-3 off
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -949,17 +1015,20 @@ categories**, which the repo previously conflated:
 
 1. **Reproduction of Heim/Arbeitskreis selected results in G**.
    Does the current Python port compute the same theoretical masses
-   that Heim's 1989 G-tables list? *Status: ground states done, excited
-   states open.* For ground states, the canonical port (J0060-corrected
-   [B3] since May 2026) together with Heim's 1989 constants reproduces
-   19 of 21 Tabelle-II values **to ≤ 2 eV** — i.e. Heim's own printing
-   precision. The two Δ⁺⁺ / Δ⁰ resonances retain a separate
-   (n, m, p, σ) decomposition issue (~1.5 MeV off). For excited states,
-   our current scan does **not** implement Heim's resonance procedure
-   (which uses k=1 / k=2 parametrisation in (P, N, K_B), separate from
-   the (ε, k, P, Q, κ, x) ground-state procedure); reproduction of
-   G-Tabelle IV / Va from the formula is the remaining open
-   reconstruction task.
+   that Heim's 1989 G-tables list? *Status: ground states done,
+   k=1 mesonic resonances (Tabelle IV) done, k=2 baryonic resonances
+   (Tabellen V_a-V_c) open.* For ground states, the canonical port
+   (J0060-corrected [B3] since May 2026) together with Heim's 1989
+   constants reproduces 19 of 21 Tabelle-II values **to ≤ 2 eV** —
+   i.e. Heim's own printing precision. The two Δ⁺⁺ / Δ⁰ resonances
+   retain a separate (n, m, p, σ) decomposition issue (~1.5 MeV off).
+   For k=1 meson resonances, the J0032 exhaustion procedure
+   (`python/resonance_wscan.py`, May 2026) reproduces all 23
+   G-Tabelle-IV entries with exact K_B and Δ_M < 0.2 MeV; the
+   matched (n, m, p, σ) tuples lie on a common Anregerkurve
+   f(N) = a·N/(N+1) + b·N per sector (verified by
+   `python/resonance_consistency.py`). The 76 baryonic resonances
+   of G-Tabellen V_a-V_c (k=2) remain to be done.
 
 2. **Comparison of Heim's selected results to modern PDG values**.
    Heim's G-table predictions, *as he published them*, are mostly
@@ -1399,13 +1468,14 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    of the greedy decomposition at (P=3, Q=3, k=2) uses a different
    branch than [B40]–[B46] specify.
 
-2. **Reproduction of Heim's G-Tabelle IV / V resonance procedure.**
-   Heim's k=1 / k=2 resonance scheme is parametrised by (P, N, K_B),
-   distinct from the ground-state (ε, k, P, Q, κ, x) scheme our port
-   implements. Reproducing G-Tabelle IV (23 mesonic resonances) and
-   V (50+ baryonic resonances) from first principles would close the
-   biggest "reconstruction problem" identified by the source audit
-   and is needed before any post-PDG scan can be properly interpreted.
+2. **Reproduction of Heim's G-Tabelle V resonance procedure (k=2
+   baryons).** G-Tabelle IV (23 mesonic resonances at k=1) was
+   reproduced in May 2026 via the J0032 exhaustion procedure — see
+   Headline #6. The corresponding G-Tabellen V_a-V_c (76 baryonic
+   resonances at k=2: N\*, Λ\*, Σ\*, Ξ\*, Δ\* families) remains to
+   be done. The procedure is the same (J0032 eqs. 11, 14, 16) but
+   with k=2 the structure constants and α coefficients shift and
+   the Anregerkurve fits must be redone per sector.
 
 3. **Heim's five-neutrino prediction (G-Tabelle II).** Heim 1989
    predicts ν_e at 3.81 meV (consistent with KATRIN); ν_μ at 5.37 keV;
