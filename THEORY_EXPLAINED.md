@@ -1,7 +1,13 @@
 # Heim Theory Explained
 
-*Burkhard Heim's 1989 mass formula and the ideas behind it,
-explained in three layers per chapter — from intuitive to rigorous.*
+*Burkhard Heim's mass formula — developed 1973-1976, refined into
+the 1982 Aik-matrix form, and most widely circulated via the
+IGW-Innsbruck 2003 restatement (labelled "1989") — and the ideas
+behind it, explained in three layers per chapter, from intuitive to
+rigorous. (Note: the "1989" label is an IGW-Innsbruck filename
+convention, not the actual date of the calculation; see the
+[Scope](#scope-where-this-document-and-this-repository-sit-in-heims-framework)
+section below for the historical-source layering.)*
 
 <p align="center">
   <img src="images/heim_1957_northeim.jpg" alt="Burkhard Heim at his Kontrabator apparatus in his Northeim apartment, 1957" width="500"><br>

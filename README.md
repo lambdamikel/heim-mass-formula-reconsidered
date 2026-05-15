@@ -56,14 +56,21 @@ ecosystem of Heim-theory work.
 
 ## TL;DR
 
-Burkhard Heim (1925–2001) published a formula that claims to compute the rest
-masses of ~20 elementary particles to ~0.2% accuracy from a handful of
-integer quantum numbers, with no free fitting parameters. Mainstream physics
-does not accept it. This repository:
+Burkhard Heim (1925–2001) published a mass formula — developed
+1973-1976 and refined into the 1982 Aik-matrix form, but most widely
+circulated via the IGW-Innsbruck 2003 restatement labelled "1989" —
+that claims to compute the rest masses of ~20 elementary particles to
+~0.2% accuracy from a handful of integer quantum numbers, with no
+free fitting parameters. Mainstream physics does not accept it. This
+repository:
 
 1. Contains a runnable, annotated reference implementation (C and Python).
 2. Reproduces Heim's published numbers bit-for-bit.
-3. Maps every line of code to its corresponding equation in the 1989 paper.
+3. Maps every line of code to its corresponding equation in the IGW
+   Innsbruck 2003 restatement ([B##] equation tags throughout). Note
+   that "1989" in this context is an IGW-Innsbruck filename convention,
+   not the actual date of the underlying calculation — Mazzone (2012)
+   has dated the underlying scripts to 1973-1976; see Scope below.
 4. Probes — by perturbing each ingredient — *which* parts of the formula are
    actually doing the work.
 5. Finds and corrects two transcription bugs in the upstream C/C# code
@@ -78,7 +85,36 @@ does not accept it. This repository:
 ## Scope of this repository
 
 *This statement was substantially rewritten following an extended review
-exchange with Joel from the Heim-Theory Discord in May 2026.*
+exchange with Joel and Javier Mazzone from the Heim-Theory Discord in
+May 2026.*
+
+> ### Terminology note: "1989" is an IGW-Innsbruck label, not a date
+>
+> Throughout this repository and in IGW-Innsbruck's 2003 reformulation
+> (`downloads/F_Erweiterte_Massenformel_nach_Heim 1989.pdf`), the
+> manuscript is labelled "1989". **Per Javier Mazzone's 2012 archival
+> investigation** (`downloads/Report on script Ausgewählte
+> Ergebnisse-1.pdf`), this is a misnomer:
+>
+> - **Script A** (`J0032 Heim_Ausgewählte Ergebnisse a.pdf`) uses
+>   constants from RevModPhys.45 (April 1973), cites *CERN Particle
+>   Properties 1973*, and is dated 1973.
+> - **Script B1, B2** (`J0033 Heim_Ausgewählte Ergebnisse b.pdf`) use
+>   constants from RevModPhys.48 (April 1976), include the
+>   J/ψ–φ–X mesons discovered 1974, and are dated 1975-1976.
+> - The label "1989" appears to refer either to a later transcription
+>   date or to a presumed MBB/DASA-era submission. **Olaf Posdzech
+>   (Heim-Theory Discord, May 2026) confirms** that no "1989" mass-
+>   formula implementation exists on Heim's UCSD-Pascal disks or PC
+>   backups — his last working version was the 1982 Aik-matrix form.
+>
+> We retain "1989" *as a stable file-naming convention* (matching the
+> public IGW-Innsbruck distribution) but flag generic phrases like
+> "Heim's 1989 mass formula" as historically misleading. The
+> underlying calculation is 1973-1976 Heim, and the manuscript
+> superseded by Heim's own 1982 Aik-matrix paper. See the section
+> [Historical-source layering](#scope-of-this-repository) below
+> for the cleaner A/B/G/programs/code structure.
 
 > The chain `Heim Theory ≠ Syntrometrie ≠ Synmetronik ≠ Elementarstrukturen
 > der Materie ≠ Mass Formula A/B ≠ Python code` is real and important.
