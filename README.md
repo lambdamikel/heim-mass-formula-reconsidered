@@ -96,7 +96,14 @@ repository:
    12-entry Λ z=0 branch shows b_fit = +0.0070 ≡ b_pred = +0.0070
    to 6 decimals, including the historically anomalous Λ(1405) and
    Λ(1690).
-8. Tests the framework on particles discovered or characterised after 1989.
+8. **Manuscript-anchored verification** of η, θ, α, Q_i, N_i and the
+   21 ground-state W_{N=0} values against Heim's own Anhang B
+   (J0032 pp.41-43). 24/24 (η, θ, α, Q, B, H, A) match exactly;
+   26/29 N_i values agree to 7+ decimals; 20/21 W_{N=0} agree to
+   10⁻⁴.  Three flagged discrepancies (N_3(2,2), N_6(2,0),
+   o⁰ W_{N=0}) trace to the same root: signed-vs-unsigned q
+   in calc_a for the Δ family.  See Open Question 1b.
+9. Tests the framework on particles discovered or characterised after 1989.
 
 ## Scope of this repository
 
@@ -196,38 +203,36 @@ repository:
    match (eq. 14e), mass agreement Δ_M < 0.2 MeV. Per-sector
    consistency check confirms the matched (n, m, p, σ) tuples lie on a
    common Anregerkurve f(N) = a·N/(N+1) + b·N (eq. 14) with κ = 1
-   throughout. Outstanding: derive a, b from J0032 eqs. 14a-14b₁
-   (closed-form expressions) and compare to the back-fitted values.
+   throughout. The (a, b) coefficients themselves are reproduced
+   ab initio from J0032 eqs. 14a-14b₁ for the z=0 branches
+   (`python/anregung_ab_initio.py`).
    See `python/resonance_wscan.py` and `python/resonance_consistency.py`.
 3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
    *Status: done (May 2026).* The 76 listed resonances expand to 145
    charge-state entries (Λ⁰, N⁰/N±, Ξ⁰/Ξ±, Δ, Σ⁻/Σ⁰/Σ⁺) in
    `python/g_tables.py`. The J0032 exhaustion procedure with K_x ≥ 1
    (allowing negative n, m, p, σ — matching Tabelle I's ground-state
-   convention) reaches:
-   - **120/145 K_B-exact** (within ±0.5)
-   - **106/145 mass within 2 MeV** of Heim's published values
+   convention) and canonical-η (commit a8b5a16) reaches:
+   - **144/145 K_B-exact** (within ±0.5)
+   - **143/145 mass within 2 MeV** of Heim's published values
+   - **135/145 mass within 0.5 MeV**
 
-   Per-state Q (= 2·J, baryon spin) is not given in Heim's Tabellen V;
-   only mass, N, K_B are.  An *iterative* Q-disambiguation
-   (`python/resonance_consistency_iter.py`) re-ranks Q candidates by
-   per-sector Anregerkurve consistency — no manual PDG-J lookup is
-   needed.  After 9 iterations all 145 states settle into 15 physical
-   (P, Q, κ, q) sectors:
-   - **All 15 sectors with max \|Δf\| ≤ 0.074**
-   - 9 of 15 sectors with max \|Δf\| < 0.01 (comparable to the k=1
-     mesonic case)
-   - Tightest sector: (P=2, Q=3, q=-1), 9 entries, max \|Δf\| = 1.75·10⁻³
-
-   No more W₀-degenerate Q=11 picks; all matched configurations sit
-   in sectors where calc_W gives a finite W₀.  The remaining
-   open task at k=2 is to derive the per-sector (a, b) coefficients
-   from J0032 eqs. 14a-14b₁ ab initio and compare to the back-fitted
-   values.  See `python/resonance_wscan_baryons.py` and
+   Per-state Q (= 2·J) is iteratively disambiguated from per-sector
+   Anregerkurve consistency, driving all 145 states into 18 physical
+   sectors.  Ab-initio (a, b) reproduction
+   (`python/anregung_ab_initio.py`) closes the loop for z=0 branches:
+   the 12-Λ sector gives b_fit = +0.0070 ≡ b_pred = +0.0070 to 6
+   decimals.  See `python/resonance_wscan_baryons.py` and
    `python/resonance_consistency_iter.py`.
 4. **Compare the resulting code's output to modern PDG values** —
-   only *after* steps 2 and 3 are clean. *Status: premature without
-   them.*
+   only *after* steps 2 and 3 are clean. *Status: partial.*
+   Steps 2 and 3 are done (May 2026); modern-PDG comparison for the
+   ground-state masses lives in `python/heimmass.py`.  For
+   resonances we have the PDG-J lookup
+   (`python/pdg_j_lookup.py`) and the empirical z(N) extraction
+   (`python/z_function_analysis.py`); a more systematic comparison
+   of Heim's tabulated theoretical masses to PDG-2024 measured
+   masses across all 99 resonances remains a useful next step.
 5. **Label non-canonical extrapolations (k > 2) explicitly as
    exploratory.** *Status: done* in `python/excited_state_search.py`
    after the May 2026 revision.
@@ -412,13 +417,31 @@ repository:
 > Per J0032 p.15, Heim explicitly notes that f(N) coefficients should
 > not depend on Q, and that Q itself can shift along an excitation
 > tower via Q(N) = Q(N=0) + 2·z(N) with z(N) "noch völlig unbekannt"
-> (eq. 14c).  Only the z=0 branch fits the ab-initio (a, b); other
-> sub-sectors (Q=3, Q=5) correspond to z(N)≠0 ladders not covered
-> by eqs. 14a-14b₁.  Of the 145 baryon states, **26 classify as
-> z=0 branch** (Λ family fully + 14 mixed N/Ξ states); the remaining
-> 119 sit on z≠0 towers.  For k=1 mesons, **5 states** classify as
-> z=0 (ε, S*(993), K*(1420)⁰, L(1770)±, ρ(770)⁰ — see
-> `python/resonance_z0_classify_k1.py`).
+> (eq. 14c).  J0032 p.27a confirms that Tabellen IV and V_{a,b,c}
+> were assembled under the z(N) = 0 approximation with stated
+> approximation error under 0.1 MeV, with three named exceptions
+> where eqs. (14)-(14b₁) themselves show uncertainty: ω(783),
+> η'(958), N(1688).  Underlined N̄ entries in Heim's tables (71 of
+> 181 entries) mark resonances that don't satisfy (14d) — they are
+> "single-process" resonances for which the (14a, 14b) Anregerkurve
+> doesn't apply.  See `MANUSCRIPT_FINDINGS.md` for the full
+> manuscript-anchored review.
+>
+> **Anhang B cross-check** (`python/verify_anhang_b.py`): Heim's
+> own canonical numerical values (J0032 pp.41-43) tabulate η, θ,
+> α, Q_i, B, H, A, N_1..N_6 per (k, q), and W_{N=0} for the 21
+> ground-state particles.  Our implementation matches:
+>
+>   - η, θ, α: 10/10 to 10⁻⁸
+>   - Q_i, B, H, A (k=1, k=2): 14/14 exact
+>   - N_i(k, q): 26/29 (Δ at q=2 differs — see Open Q 1b)
+>   - W_{N=0} per particle: 20/21 to 10⁻⁴ (o⁰ differs by 6.85 —
+>     same Open Q 1b origin)
+>
+> The remaining three discrepancies all trace to `calc_a`'s
+> handling of εq_x for the Δ-family (q = +2 and q = ±1 sub-cases).
+> See Open Question 1b for the diagnostic and proposed manuscript-
+> reading correction.
 
 ### Findings that were retracted or sharpened after the source audit
 
@@ -850,6 +873,25 @@ heim/
     │                              ← per-state z=0/z≠0 verdict (baryons)
     ├── meson_z0_classification.txt
     │                              ← per-state z=0/z≠0 verdict (mesons)
+    ├── pdg_j_lookup.py            ← curated PDG-J lookup for the 99
+    │                                 Heim resonances + Q(N=0) per family
+    ├── z_function_analysis.py     ← empirical z(N) extraction from
+    │                                 PDG-J — confirms z(N) is not a
+    │                                 simple function of N alone
+    ├── z_vs_sigma_check.py        ← test whether σ in matched configs
+    │                                 encodes z(N) — negative result
+    ├── underline_status.py        ← per-entry underline status from
+    │                                 Heim's Tabellen IV/V/V_a/V_b/V_c
+    │                                 (N̄ = single-process, not (14d)-stepwise)
+    ├── verify_heim_z0_claim.py    ← test Heim's z=0 + 0.1 MeV claim
+    │                                 (ALL entries)
+    ├── verify_z0_nonunderlined.py ← same restricted to non-underlined
+    │                                 entries (per Heim's actual scope)
+    ├── verify_anhang_b.py         ← cross-check our η, θ, α, Q, B, H,
+    │                                 A, N_i, W_{N=0} vs Heim's Anhang B
+    │                                 tabulated values (J0032 pp.41-43).
+    │                                 24/24 + 26/29 + 20/21 match.
+    ├── anhang_b_verification.txt  ← cached output of the above
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -1594,21 +1636,39 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    `b3_correction.py` / `full_reproduction.py` scripts hold the
    alternative as a tested hypothesis.
 
-1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies (new — May 2026).**
-   The same cross-check found that 19 of 21 ground states match
-   Heim's Tabelle I exactly, *but* the (p, σ) values for Δ⁺⁺ and Δ⁰
-   disagree:
-   - Δ⁺⁺ (q=+2): Heim (n=2, m=1, **p=9, σ=4**) vs ours (2, 1, **11, -6**)
-   - Δ⁰  (q=0):  Heim (2, -1, **-10, 2**) vs ours (2, -1, **-5, -1**)
-   - Δ⁺  (q=+1) and Δ⁻ (q=-1) match exactly.
+1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies — root cause identified
+   May 2026.**  The May 2026 cross-check found that 19 of 21 ground
+   states match Heim's Tabelle I exactly, but the (p, σ) values for
+   Δ⁺⁺ and Δ⁰ disagree, producing a 1.5–1.9 MeV mass discrepancy.
 
-   The (p, σ) mismatches propagate to a **1.5–1.9 MeV mass discrepancy**
-   versus Heim's Tabelle II for these two particles only. The pattern
-   (q = ±1 match; q = +2 and q = 0 disagree) suggests either a
-   charge-dependent issue in `calc_W` (which depends on q via W's
-   construction in [B22]) or that Heim's procedure for the σ-step
-   of the greedy decomposition at (P=3, Q=3, k=2) uses a different
-   branch than [B40]–[B46] specify.
+   The 15 May 2026 Anhang B cross-check (`python/verify_anhang_b.py`,
+   commit 17089b6) traced this to a specific bug in `calc_a`.
+   Heim's manuscript p.43 tabulates a_1, a_2 per particle; against
+   our values for the Δ family:
+
+     Particle  Heim a_1  ours a_1  Heim a_2  ours a_2
+     o⁺⁺ (q=+2)    23       21        27        27
+     o⁺  (q=+1)    23       23        22        27
+     o⁰  (q= 0)    23       23        39        41
+     o⁻  (q=-1)    21       23        27        22
+
+   Our `calc_a` uses `fabs(q_x)`; Heim's formula in (13c)–(13e₁)
+   evidently uses εq_x (signed).  The signed convention recovers
+   the q=±1 and q=0 entries correctly but four reading-variants
+   tested for the q=+2 row do not match Heim's value — there is
+   likely an additional manuscript-side correction at q=±2 we
+   have not yet identified.
+
+   Same diagnostic also explains the 6.85 W_{N=0} discrepancy for
+   o⁰ flagged in the Anhang B check, the 1.5–1.9 MeV mass error
+   for Δ⁺⁺ and Δ⁰, and the small N_3(2,2) ↔ 2.1219 vs 2.0168
+   mismatch.  All three trace back to the same calc_a / N_3 cluster
+   at high charge (q=2) for the k=2 Δ-multiplet.
+
+   Production-code calc_a is left unchanged pending a working
+   replacement for the q=+2 case.  Mass impact: < 0.05 MeV for Δ⁺⁺
+   resonances and 1.5–1.9 MeV for Δ⁺⁺/Δ⁰ ground-state masses
+   (vs Heim's Tabelle II).
 
 2. **The z(N) integer function in Heim's f(N).**  G-Tabelle IV
    (23 k=1 mesons), G-Tabellen V_{a,b,c} (145 charge-state k=2
@@ -1617,12 +1677,17 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    Headline #6).  The 12-Λ z=0 sector matches the ab-initio (a, b)
    prediction to 6 decimals.  Heim himself notes (eq. 14c) that
    Q can shift with excitation index via Q(N) = Q(N=0) + 2·z(N)
-   where z(N) is "noch völlig unbekannt".  Our z=0 classification
-   finds 26 of 145 baryon states and 5 of 36 meson states on the
-   z=0 branch; the remaining 119 + 31 sit on z≠0 ladders for which
-   Heim has no closed-form prediction.  Deriving (or empirically
-   inferring) z(N) is the natural next step — it would extend
-   ab-initio prediction from ~31 states to all 181 charge states.
+   where z(N) is "noch völlig unbekannt", AND that the Tabellen IV/V
+   were assembled assuming z(N) = 0 for all entries with stated
+   approximation error < 0.1 MeV (J0032 p.27a).  Our PDG-J extraction
+   of z(N) (`python/z_function_analysis.py`) finds z is NOT a simple
+   function of N — within a family z values bounce among {0..4} non-
+   monotonically.  Our σ ↔ z correlation test
+   (`python/z_vs_sigma_check.py`) also rules out σ as a z encoding.
+   Conclusion: z(N) survives empirical inspection as truly unknown
+   from Heim's published quantum numbers.  Closing this gap would
+   extend ab-initio prediction from the ~31 currently-verified z=0
+   states to all 181 charge states.
 
 3. **Heim's five-neutrino prediction (G-Tabelle II).** Heim 1989
    predicts ν_e at 3.81 meV (consistent with KATRIN); ν_μ at 5.37 keV;
