@@ -84,7 +84,11 @@ repository:
    Heim's J0032 exhaustion procedure: all 23 entries matched with
    exact K_B and Δ_M < 0.2 MeV, and the matched (n, m, p, σ) tuples
    lie sector-consistently on the Anregerkurve f(N) = a·N/(N+1) + b·N.
-7. Tests the framework on particles discovered or characterised after 1989.
+7. **Partially reproduces G-Tabellen V_{a,b,c}** (145 charge-state
+   entries of the 76 baryonic resonances at k=2): 120/145 K_B-exact,
+   108/145 within 2 MeV; Anregerkurve consistency in low-Q sectors
+   (Λ, Σ, Δ) matches the k=1 tightness.
+8. Tests the framework on particles discovered or characterised after 1989.
 
 ## Scope of this repository
 
@@ -159,7 +163,7 @@ reproduced". Adapted from Joel's May 2026 review:
 | Neutrino masses | Explicit in B and G (Tabelle II, 5 species). Not reproduced from formula by current port; status only by direct comparison to G values (see `python/heim_neutrinos.py`). |
 | Lifetimes of ground states | Explicit in B and G; reconstruction-sensitive (Arbeitskreis bracket warning applies). Current port matches measurement to factor 3 for 17 of 18 particles. |
 | Meson resonances (k=1) | Explicit in G (Tabelle IV, 23 entries: ρ, ω, φ, K*, η', f-family, A-family, B(1235), F1, ρ', A3, g, …). **Reproduced May 2026.** All 23 entries matched with exact K_B (eq. 14e) and Δ_M < 0.2 MeV via reachability-checked enumeration of the J0032 exhaustion procedure (eq. 16). Per-sector consistency check: the matched (n, m, p, σ) tuples lie on a common Anregerkurve f(N) = a·N/(N+1) + b·N (eq. 14) with κ = 1 throughout — strongest test the (P=0, Q=0, κ=1) sector with 3 entries, max \|Δf\| = 6.5·10⁻⁵. See `python/resonance_wscan.py` and `python/resonance_consistency.py`. |
-| Baryon resonances (k=2) | Explicit in G (Tabellen V_a–V_c, 50+ entries: N*, Δ*, Λ*, Σ*, Ξ* families). **Needs audit** — same as above. |
+| Baryon resonances (k=2) | Explicit in G (Tabellen V_a–V_c, 145 charge-state entries from 76 listed resonances: N*, Δ*, Λ*, Σ*, Ξ* families). **Partially reproduced May 2026** via the same J0032 exhaustion procedure (numpy-vectorised at k=2). 120/145 K_B-exact, 108/145 mass within 2 MeV, 78/145 within 0.5 MeV. Anregerkurve consistency check tight in low-Q sectors (Λ, Σ⁰, Σ⁻, Σ⁺, Δ — max \|Δf\| ≈ 10⁻²–10⁻³, comparable to k=1). High-Q (Q=11) picks are W₀-degenerate ranking artefacts and remain unidentified. See `python/resonance_wscan_baryons.py` and `python/resonance_consistency_baryons.py`. |
 | Light vector mesons (ρ, ω, φ) | Present in G with theoretical masses matching PDG to 0.02-0.7 %. Reproduced May 2026 via the J0032 exhaustion procedure (ρ(770), ω(783), Φ(1019) all with exact K_B and Δ_M < 0.05 MeV — see Headline #6). Earlier "structural gap" claim retracted; the gap was the un-implemented resonance procedure, not the framework. |
 | Heavy-flavour states (J/ψ, D, B, Λ_c, Σ_c, Λ_b, …) | Unclear / probably not historically central to Heim's work. No A/B/G entries known. Open: how (or whether) a complete Heim-compatible theory recovers their phenomenology. |
 | Free quarks | Not in Heim's ontology. At most an effective internal-structure description of hadronic sub-content. |
@@ -188,8 +192,25 @@ repository:
    (closed-form expressions) and compare to the back-fitted values.
    See `python/resonance_wscan.py` and `python/resonance_consistency.py`.
 3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
-   *Status: open.* The 76 target entries are stored in
-   `python/g_tables.py` (20 N\*, 16 Λ\*, 7 Ξ\*, 12 Δ\*, 21 Σ\*).
+   *Status: partial (May 2026).* The 76 listed resonances expand to 145
+   charge-state entries (Λ⁰, N⁰/N±, Ξ⁰/Ξ±, Δ, Σ⁻/Σ⁰/Σ⁺) in
+   `python/g_tables.py`. The J0032 exhaustion procedure with K_x ≥ 1
+   (allowing negative n, m, p, σ — matching Tabelle I's ground-state
+   convention) reaches:
+   - **120/145 K_B-exact** (within ±0.5)
+   - **108/145 mass within 2 MeV** of Heim's published values
+   - **78/145 mass within 0.5 MeV**
+
+   Anregerkurve consistency check on the low-Q sub-sectors (Q=1, where
+   the matching is physically determined rather than W₀-degenerate)
+   gives max \|Δf\| = 5·10⁻³ to 2·10⁻² across 4-7 entries per sector
+   (Λ, Σ⁻, Σ⁰, Σ⁺, Δ) — comparable tightness to the k=1 meson case.
+   The Q=11 ranking ties (where the formula's calc_W blows up to
+   W₀ ≈ 10⁹¹–10²⁷⁶ and f_imp ≈ −1 trivially) constitute the bulk
+   of the remaining 25 unidentified entries; a PDG-J lookup or the
+   first-principles f(N) derivation (item 14a-14b₁ in J0032) would
+   resolve them. See `python/resonance_wscan_baryons.py` and
+   `python/resonance_consistency_baryons.py`.
 4. **Compare the resulting code's output to modern PDG values** —
    only *after* steps 2 and 3 are clean. *Status: premature without
    them.*
@@ -324,10 +345,31 @@ repository:
 > configurations are Heim's actual assignments, not accidental
 > (M, K_B) hits in the 2.4M-config parameter space.
 >
-> Outstanding: derive the (a, b) coefficients from J0032 eqs. 14a-14b₁
-> (closed-form sector-dependent expressions) and compare to the
-> back-fitted values above. G-Tabellen V_{a,b,c} (76 baryonic
-> resonances at k=2) not yet attempted.
+> Outstanding for k=1: derive the (a, b) coefficients from J0032
+> eqs. 14a-14b₁ (closed-form sector-dependent expressions) and compare
+> to the back-fitted values above.
+>
+> **G-Tabellen V_{a,b,c} (k=2 baryonic resonances) reproduced partially**:
+> of the 145 charge-state entries (Λ, N, Ξ, Δ, Σ families), **120 match
+> K_B exactly** (within ±0.5) and **108 match mass within 2 MeV**.
+> The Anregerkurve consistency check on the low-Q sub-sectors (where
+> the matching is physically determined rather than W₀-degenerate)
+> gives the same tightness as the k=1 case:
+>
+> | Sector | #entries | max \|Δf\| |
+> |---|---|---|
+> | Λ  (P=0, Q=1, q=0)  | 6 | 2.07·10⁻² |
+> | Σ⁰ (P=2, Q=1, q=0)  | 7 | 6.80·10⁻³ |
+> | Σ⁻ (P=2, Q=1, q=−1) | 4 | 5.74·10⁻³ |
+> | Σ⁺ (P=2, Q=1, q=+1) | 5 | 8.02·10⁻³ |
+> | Δ  (P=3, Q=1, q=0)  | 6 | 6.06·10⁻³ |
+>
+> All five fit a ∈ [−0.87, −1.06] and b ≈ 0.001 — a similarly narrow
+> family of Anregerfunktion coefficients across particle families.
+> The high-Q (Q=11) picks are W₀-degenerate ranking artefacts and
+> require resolution by PDG-J lookup or the J0032 first-principles
+> f(N) derivation.  See `python/resonance_wscan_baryons.py` and
+> `python/resonance_consistency_baryons.py`.
 
 ### Findings that were retracted or sharpened after the source audit
 
@@ -341,10 +383,13 @@ repository:
 > in our port via the J0032 exhaustion procedure — see Headline #6 —
 > with K\*(892) matched at 891.08 MeV (Δ = −0.117 MeV, K_B = 29 exact)
 > and all 22 other Tabelle IV entries reproduced similarly. The Λ(1690)
-> sits in G-Tabelle V_a (k=2 baryonic resonances), which has not yet
-> been reproduced. The correct framing for both claims: these are
-> reconstruction targets reachable from Heim's published procedure,
-> not predictions ex nihilo. See
+> sits in G-Tabelle V_a (k=2 baryonic resonances), which was partially
+> reproduced in the May 2026 follow-up: 120/145 K_B-exact at k=2,
+> Λ(1690) specifically remains anomalous (a published K_B = 61 that is
+> unreachable under the standard exhaustion ordering — same category as
+> Λ(1405), historically also an outlier in 3-quark models). The correct
+> framing for both claims: these are reconstruction targets reachable
+> from Heim's published procedure, not predictions ex nihilo. See
 > [Post-1989 particle predictions](#post-1989-particle-predictions).
 
 > **The "Higgs is structurally absent from Heim" framing** has been
@@ -717,6 +762,18 @@ heim/
     ├── resonance_enumerate.py     ← cautionary baseline: naive enumeration
     │                                 without reachability — matches only
     │                                 9/23 entries with K_B 1-3 off
+    ├── resonance_wscan_baryons.py ← G-Tabellen V_{a,b,c} reproduction at
+    │                                 k=2: numpy-vectorised inner loop;
+    │                                 120/145 K_B-exact, 108/145 mass
+    │                                 within 2 MeV
+    ├── resonance_consistency_baryons.py
+    │                              ← per-sector Anregerkurve check at k=2;
+    │                                 low-Q sectors match k=1 tightness
+    │                                 (max |Δf| ≈ 10⁻²–10⁻³)
+    ├── baryon_reproduction_results.txt
+    │                              ← cached output (per-state matches)
+    ├── baryon_consistency_results.txt
+    │                              ← cached Anregerkurve fits per sector
     │
     └── plots/                     ← PNG outputs of all sensitivity sweeps
 ```
@@ -1017,8 +1074,8 @@ categories**, which the repo previously conflated:
    Does the current Python port compute the same theoretical masses
    that Heim's 1989 G-tables list? *Status: ground states done,
    k=1 mesonic resonances (Tabelle IV) done, k=2 baryonic resonances
-   (Tabellen V_a-V_c) open.* For ground states, the canonical port
-   (J0060-corrected [B3] since May 2026) together with Heim's 1989
+   (Tabellen V_a-V_c) partially done.* For ground states, the canonical
+   port (J0060-corrected [B3] since May 2026) together with Heim's 1989
    constants reproduces 19 of 21 Tabelle-II values **to ≤ 2 eV** —
    i.e. Heim's own printing precision. The two Δ⁺⁺ / Δ⁰ resonances
    retain a separate (n, m, p, σ) decomposition issue (~1.5 MeV off).
@@ -1027,8 +1084,15 @@ categories**, which the repo previously conflated:
    G-Tabelle-IV entries with exact K_B and Δ_M < 0.2 MeV; the
    matched (n, m, p, σ) tuples lie on a common Anregerkurve
    f(N) = a·N/(N+1) + b·N per sector (verified by
-   `python/resonance_consistency.py`). The 76 baryonic resonances
-   of G-Tabellen V_a-V_c (k=2) remain to be done.
+   `python/resonance_consistency.py`). For k=2 baryon resonances,
+   the same procedure (`python/resonance_wscan_baryons.py`) reaches
+   120/145 K_B-exact and 108/145 mass-within-2-MeV. The
+   Anregerkurve consistency in the low-Q sub-sectors (Λ, Σ⁻, Σ⁰,
+   Σ⁺, Δ) matches the k=1 tightness (max \|Δf\| ≈ 10⁻²–10⁻³). The
+   remaining 25 unidentified baryon entries cluster around Q=11
+   ranking-tie picks where calc_W diverges, and need either a
+   PDG-J lookup or the first-principles f(N) derivation
+   (J0032 eqs. 14a-14b₁) to resolve.
 
 2. **Comparison of Heim's selected results to modern PDG values**.
    Heim's G-table predictions, *as he published them*, are mostly
@@ -1468,14 +1532,22 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    of the greedy decomposition at (P=3, Q=3, k=2) uses a different
    branch than [B40]–[B46] specify.
 
-2. **Reproduction of Heim's G-Tabelle V resonance procedure (k=2
-   baryons).** G-Tabelle IV (23 mesonic resonances at k=1) was
-   reproduced in May 2026 via the J0032 exhaustion procedure — see
-   Headline #6. The corresponding G-Tabellen V_a-V_c (76 baryonic
-   resonances at k=2: N\*, Λ\*, Σ\*, Ξ\*, Δ\* families) remains to
-   be done. The procedure is the same (J0032 eqs. 11, 14, 16) but
-   with k=2 the structure constants and α coefficients shift and
-   the Anregerkurve fits must be redone per sector.
+2. **Q-assignment and high-mass tail of G-Tabellen V_{a,b,c} (k=2
+   baryons).** G-Tabelle IV (23 mesonic resonances at k=1) and the
+   bulk of G-Tabellen V_{a,b,c} (120/145 of the 76 baryonic
+   resonances, charge-state-expanded) were both reproduced in May 2026
+   via the J0032 exhaustion procedure — see Headline #6. The
+   remaining 25 baryon entries are not yet identified, for two
+   reasons: (a) several entries (Λ(1405), Λ(1690), high-N tail of
+   N* and Σ*) have published K_B values that require K_x indices
+   beyond the reachable triplet under the standard exhaustion
+   ordering; (b) the per-state J (= Q/2) is currently inferred by
+   brute-force scan, and many entries' best score lands at Q=11
+   where the calc_W ground-state formula diverges to W_0 ≈ 10⁹¹–10²⁷⁶
+   and the Anregerkurve consistency check becomes degenerate. A
+   PDG-J lookup table for the 76 entries, combined with deriving
+   the (a, b) Anregerfunktion coefficients ab initio from J0032
+   eqs. 14a-14b₁, would close both gaps.
 
 3. **Heim's five-neutrino prediction (G-Tabelle II).** Heim 1989
    predicts ν_e at 3.81 meV (consistent with KATRIN); ν_μ at 5.37 keV;
