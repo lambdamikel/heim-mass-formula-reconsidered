@@ -42,7 +42,13 @@ def match_sector_k2(P, Q, q_x, targets,
     """Stream-enumerate reachable (K_n,K_m,K_p,K_σ) configs at k=2.
     Match each target (id, M_t, KB_t) by smallest (dKB, dM) tuple."""
     q = fabs(q_x)
-    eta00 = eta(2, q)            # k=2 has its own η
+    # Canonical η_{1,0} ≈ 0.990, same as calc_mass uses for α_+, α_-.
+    # The earlier `eta(2, q)` call here was a bug — it gave η ≈ 0.881 and
+    # α_+ ≈ 0.198 (vs canonical α_+ ≈ 0.018), making the bracket size
+    # roughly 10× too small.  The matched (n, m, p, σ) under that bug
+    # were self-consistent in mass + K_B but NOT Heim's actual
+    # decompositions.
+    eta00 = eta(1, 0)
     th = theta(eta00)
     a_p = alpha_plus(eta00, th)
     a_m = alpha_minus(eta00, th)
