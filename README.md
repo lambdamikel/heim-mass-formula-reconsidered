@@ -259,15 +259,20 @@ repository:
 > charge field. The (4+k) factor — sensitivity-tested at 0.6 % tolerance
 > — is not a fit; it falls out of L · Δε₀±⁴ = 4 · Δε₀±⁴.
 
-> **3. The same η drives Heim's *magnetic-moment* formula.** Synmetronik
+> **3. The same η appears in Heim's *magnetic-moment* formula.** Synmetronik
 > Band III (1980), Eq. 186, gives the electron magnetic moment as
 > μ_e/μ_B = (e_w/e_±)·(1 − e·K/(6·√η)) with the *same* η-function that
-> appears in the mass formula and α-derivation. Reverse-engineering K
-> from the measured (g-2)/2 anomaly produces K ≈ 2.547·10⁻³, which
-> agrees with the QED-Schwinger expression 6·√η·α/(2π·e) = 2.551·10⁻³
-> to **0.15 %**. Heim's structural formula from 1980 is consistent with
-> leading-order QED. Caveat: a from-first-principles prediction requires
-> the protosimplex/synmetronic side of the framework, not in our port.
+> appears in the mass formula and α-derivation. **The structural claim
+> is that the same η governs all three** — a non-trivial 1980 unification.
+> **The numerical claim is weaker than initially worded.** Heim's K = m_s/m_r
+> is not computable from our port (it requires the protosimplex / synmetronic
+> apparatus of Band III chapters 7-8). Reverse-engineering K from the
+> measured a_e = (g-2)/2 produces K ≈ 2.547·10⁻³, and the Schwinger
+> leading-order value 6·√η·α/(2π·e) = 2.551·10⁻³ agrees with it to 0.15 %.
+> But that 0.15 % is the well-known agreement between α/(2π) and the
+> measured a_e — common factor of 6·√η/e cancels and is not Heim's
+> contribution. Heim's formula is consistent with QED's leading-order
+> Schwinger term; it does not *predict* it. See `python/magnetic_moment.py`.
 
 > **4. Three transcription bugs corrected, including the long-standing
 > 0.79 % electron-mass discrepancy.**
@@ -648,12 +653,16 @@ The strongest three anchors for *not coincidence* are now:
    dimensions. The (4+k) factor that we sensitivity-tested at 0.6 %
    tolerance is not a fit; it falls out of L = 4 (number of dimensions
    in R₃ + time) times Δε₀±⁴.
-3. The **electron magnetic moment**: Heim's Synmetronik III Eq. 186
-   (1980) gives μ_e/μ_B in terms of the *same* η. Reverse-engineering
-   the unknown internal ratio K from measured (g-2)/2 yields a value
-   that matches the QED-Schwinger expression 6·√η·α/(2π·e) to 0.15 %.
-   The structural shape Heim wrote in 1980 is consistent with leading-
-   order QED — a third independent role for η.
+3. The **electron magnetic moment formula uses the same η** (Synmetronik
+   III Eq. 186, 1980): μ_e/μ_B = (e_w/e_±)·(1 − e·K/(6·√η)). The
+   *structural* claim — the same η that drives mass and α also drives
+   this formula — is a non-trivial unification. The *numerical* claim
+   has been softened in May 2026 to reflect that the K parameter is
+   reverse-engineered, not derived: the 0.15 % "agreement with
+   experiment" is the well-known QED-Schwinger agreement carried
+   through the formula, not a Heim prediction. The structural-
+   unification anchor stands; the predictive anchor was overstated.
+   See `python/magnetic_moment.py` and the Headline section above.
 
 What would still shift this assessment substantially:
 
