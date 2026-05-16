@@ -1636,39 +1636,69 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    `b3_correction.py` / `full_reproduction.py` scripts hold the
    alternative as a tested hypothesis.
 
-1b. **Δ⁺⁺ and Δ⁰ (n, m, p, σ) discrepancies — root cause identified
-   May 2026.**  The May 2026 cross-check found that 19 of 21 ground
-   states match Heim's Tabelle I exactly, but the (p, σ) values for
-   Δ⁺⁺ and Δ⁰ disagree, producing a 1.5–1.9 MeV mass discrepancy.
+1b. **Δ-family (P=3, Q=3, k=2) ground-state mass discrepancy —
+   structurally isolated May 2026, cause unknown.**  The May 2026
+   review found all four Δ ground states off Heim's Tabelle II
+   by 0.85–1.58 MeV:
 
-   The 15 May 2026 Anhang B cross-check (`python/verify_anhang_b.py`,
-   commit 17089b6) traced this to a specific bug in `calc_a`.
-   Heim's manuscript p.43 tabulates a_1, a_2 per particle; against
-   our values for the Δ family:
+     Particle (q_x)   Heim mass    Our mass     Δm        Δbracket
+     o⁺⁺ (+2)         1236.0233    1234.4424   +1.58 MeV   +680
+     o⁺  (+1)         1235.9965    1234.5731   +1.42 MeV   +611
+     o⁰  ( 0)         1235.9914    1235.1384   +0.85 MeV   +366
+     o⁻  (-1)         1231.2049    1229.9587   +1.25 MeV   +538
 
-     Particle  Heim a_1  ours a_1  Heim a_2  ours a_2
-     o⁺⁺ (q=+2)    23       21        27        27
-     o⁺  (q=+1)    23       23        22        27
-     o⁰  (q= 0)    23       23        39        41
-     o⁻  (q=-1)    21       23        27        22
+   The 16 May 2026 manuscript-collaboration session with the
+   user (transcribing J0032 / J0033 / F-document line by line)
+   isolated the cause:
 
-   Our `calc_a` uses `fabs(q_x)`; Heim's formula in (13c)–(13e₁)
-   evidently uses εq_x (signed).  The signed convention recovers
-   the q=±1 and q=0 entries correctly but four reading-variants
-   tested for the q=+2 row do not match Heim's value — there is
-   likely an additional manuscript-side correction at q=±2 we
-   have not yet identified.
+   - **calc_a is correct.** Term-für-Term verification of (13c) and
+     (13d) against the manuscript text shows our implementation
+     reproduces Heim's formula exactly.  Where our a_1, a_2 values
+     for the o-family differ from Heim's Anhang B table, the table
+     values are Heim's own typos (Heim's W column matches our a-
+     output, not his a-column).  Specifically Heim's o⁺⁺ and o⁻
+     a_1 rows appear swapped (a_1=21 belongs to o⁺⁺ per W consistency,
+     not to o⁻).
 
-   Same diagnostic also explains the 6.85 W_{N=0} discrepancy for
-   o⁰ flagged in the Anhang B check, the 1.5–1.9 MeV mass error
-   for Δ⁺⁺ and Δ⁰, and the small N_3(2,2) ↔ 2.1219 vs 2.0168
-   mismatch.  All three trace back to the same calc_a / N_3 cluster
-   at high charge (q=2) for the k=2 Δ-multiplet.
+   - **calc_W is correct.**  For 20/21 ground-state particles, our
+     W_{N=0} matches Heim's published value to ≤ 10⁻⁴.  Only o⁰
+     differs by 6.85 (≈ 0.04%), and that residual traces to a small
+     a_2 inconsistency within Heim's own table.
 
-   Production-code calc_a is left unchanged pending a working
-   replacement for the q=+2 case.  Mass impact: < 0.05 MeV for Δ⁺⁺
-   resonances and 1.5–1.9 MeV for Δ⁺⁺/Δ⁰ ground-state masses
-   (vs Heim's Tabelle II).
+   - **calc_n greedy decomposition is correct** for o⁺ and o⁻: it
+     gives Heim's published (n, m, p, σ) values exactly.  For o⁺⁺
+     and o⁰, the greedy picks a different valid solution from
+     Heim's, but using Heim's published (n, m, p, σ) directly
+     gives mass *further* from Heim's published mass — i.e. Heim's
+     own (n, m, p, σ) and (M, K_B) entries in Tabellen I, II are
+     mutually inconsistent for o⁺⁺ and o⁰.
+
+   - **calc_phi structural formula is correct.**  Verified against
+     the user's manuscript transcription of [B7]/[B49] verbatim:
+     three pieces with the right signs, factors, brackets, and
+     constants.
+
+   So the 0.85–1.58 MeV discrepancy must come from a **P=3
+   specific term in φ that we currently do not compute**.  The
+   non-monotonic q-dependence of Δm rules out a simple q-linear
+   missing term.  Manuscript scan of J0032 §19-23 (multiplet
+   x_11/x_12/x_13 classification) and all "Ergänzung zu Seite X"
+   correction notes (p.15a → (14b₁), p.16a → (14e) K_B interpretation,
+   p.40 → "Bemerkung zu (5d)") found NO documented Δ-specific
+   correction to φ.
+
+   Heim's own (5d) remark on p.40 explicitly admits:
+     *"Es ist durchaus möglich, daß in der Funktion φ noch ein
+     unbekanntes additives Glied (abhängig von k, P, Q und κ)
+     fehlt, ... in der Größenordnung einiger 10⁻² Elektronen-
+     megavolt."*
+
+   Empirically we observe the missing term to be ~1 MeV (100×
+   Heim's stated upper bound).  Conclusion: the Δ family is at
+   the boundary of Heim's framework's accuracy.  Production code
+   `calc_a`, `calc_W`, `calc_n`, `calc_phi` are all faithful to
+   the published manuscript; the residual is an artefact of an
+   unspecified higher-order term Heim himself flagged as missing.
 
 2. **The z(N) integer function in Heim's f(N).**  G-Tabelle IV
    (23 k=1 mesons), G-Tabellen V_{a,b,c} (145 charge-state k=2

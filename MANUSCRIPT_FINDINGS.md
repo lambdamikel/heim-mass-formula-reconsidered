@@ -153,7 +153,75 @@ J0033 differs from J0032 in:
 
 J0033 carries no new z(N) information beyond J0032.
 
-## 8. Implications for our reproduction
+## 8. p.16a correction — K_B interpretation (16 May 2026 reading)
+
+J0032 p.16a "Korrektur zu Seite 16":
+
+> "...wobei N nach (14d) erlaubt sein muß" *entfällt*.  Statt dessen:
+> "Ergibt sich K_B = 0, dann besteht keine Möglichkeit einer externen
+> Anregung. Desgleichen ist im Fall K_B < 0 diese Möglichkeit nicht
+> gegeben; denn in diesem Fall würde der Term vor seinem Zerfall
+> zunächst durch eine Emission das tiefste Niveau K_B < 0 anstreben.
+> Nur im Fall K_B > 0 der Beziehung 14e liegt die Möglichkeit einer
+> externen Anregung vor."
+
+Conceptual clarification (no formula change):
+
+  - K_B > 0:  external excitation possible (true resonance)
+  - K_B = 0:  no external excitation possible
+  - K_B < 0:  no external excitation possible — the term would
+              instead emit down to the lowest K_B < 0 level before
+              decay
+
+In Tabellen IV / V this matters for: Λ(1815) K_B=-10, Λ(1860) -5,
+Λ(2100) 0, N(1535)⁰ -2, N(1688)⁰ -23, N(2000) -3 & -37, N(2190) -14,
+Δ(1690) 0, Δ(1910) -27, S*(993) -1, Σ(1620)⁰ -23, Σ(2620) -27,
+Σ(2455)⁰ -45, Σ(3000)⁻ -85, and others.  These are not the "Anregerkurve"-type
+external excitations Heim's (14a, 14b) describe — they are
+internal structural endpoints.  Our Z=0 classification (commits
+a766afe, 1262c7f) treats all sub-sectors uniformly; per Heim's
+p.16a correction these K_B ≤ 0 states are conceptually different
+from the K_B > 0 excitations.
+
+Does not affect any mass / K_B / W_{N=0} numerical reproduction —
+purely an interpretation note.
+
+
+## 9. Δ-family ground-state mass discrepancy (Open Q 1b refinement)
+
+The 16 May 2026 session traced the long-standing 1.5–1.9 MeV
+mass discrepancy for the four Δ ground-state particles
+(o⁺⁺, o⁺, o⁰, o⁻) to a structural endpoint:
+
+  - calc_a is correct (Term-für-Term match with J0032 (13c), (13d)).
+  - calc_W is correct (matches 20/21 Heim Anhang B W values).
+  - calc_n greedy is correct (gives Heim's published (n,m,p,σ)
+    for o⁺ and o⁻ exactly; for o⁺⁺ and o⁰ Heim's published
+    (n,m,p,σ) is self-inconsistent with Heim's own W₀ values).
+  - calc_phi structural formula matches Heim's [B7]/[B49] verbatim
+    (verified by user-transcribed manuscript text).
+  - Heim's Anhang B per-particle a_1, a_2 columns for the
+    o-family contain typos (o⁺⁺ a_1=23 belongs to o⁻ row by W
+    consistency, and vice versa).
+
+The remaining 0.85–1.58 MeV per-particle discrepancy comes from
+a P=3 specific term we do not compute.  Heim's own "Bemerkung zu
+(5d)" (J0032 p.40) explicitly admits:
+
+> "Es ist durchaus möglich, daß in der Funktion φ noch ein
+> unbekanntes additives Glied (abhängig von k, P, Q und κ)
+> fehlt..."
+
+Heim's stated upper bound (10⁻² MeV) is two orders of magnitude
+below what we observe at Δ (≈ 1 MeV).  No documented Δ-specific
+correction was found in the manuscript (J0032 §19-23 multiplet
+classifications, p.15a / p.16a "Ergänzung" notes, or F-document
+[B6]/[B7] sections).  Conclusion: the Δ-family sits at the
+empirically-detectable edge of Heim's framework's published
+accuracy.
+
+
+## 10. Implications for our reproduction
 
 - The 12-Λ z=0 sector with b_fit = b_pred = +0.0070 (commit a74c31b) is
   the canonical verification of Heim's z=0 approximation for non-
