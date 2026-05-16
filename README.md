@@ -87,7 +87,9 @@ repository:
    itself** — the `+4qα₋` charge term appears to be missing a `/α₊`
    factor.  With the proposed correction and Heim's 1989 constants,
    the port reproduces Heim Tabelle II to ~2 eV precision across 19 of
-   21 ground states (community confirmation pending). A May 2026
+   21 ground states (the J0060 source documentation removes the need
+   for community confirmation; the proposed correction now has a
+   primary-manuscript anchor). A May 2026
    port-side bug in the k=2 baryon scan (wrong η argument order in
    `resonance_wscan_baryons.py`) jumped baryon K_B-exact reproductions
    from 120/145 → 144/145 once fixed.

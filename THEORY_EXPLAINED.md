@@ -1416,22 +1416,25 @@ masses) very accurately, and falls silent on a *wider* problem
 The empirical reach of Heim's framework, as established in this
 investigation:
 
+Selected ground-state matches (canonical J0060-corrected port, May 2026;
+"Predicted" is the Python port output vs current PDG values):
+
 | Particle | Symbol | Predicted (MeV) | Measured (MeV) | Agreement | Notes |
 |---|---|---:|---:|---:|---|
-| electron | e⁻ | 0.5069 | 0.5110 | 99.2 % | |
-| muon | μ⁻ | 105.652 | 105.658 | 99.99 % | |
-| charged pion | π± | 139.560 | 139.570 | 99.99 % | |
-| charged kaon | K⁺ | 493.696 | 493.677 | 99.99 % | |
-| neutral kaon | K_L | ~549 | ~549 | ✓ | identified as K_L |
-| Λ baryon | Λ | 1 115.57 | 1 115.68 | 99.99 % | |
-| Σ⁺ baryon | Σ⁺ | 1 189.33 | 1 189.37 | 99.99 % | |
-| proton | p | 938.25 | 938.27 | 99.99 % | |
-| neutron | n | 939.55 | 939.57 | 99.99 % | |
+| electron | e⁻ | 0.510988 | 0.510999 | 99.998 % | was 0.5069 / 99.2% pre-J0060 correction |
+| muon | μ⁻ | 105.656 | 105.658 | 99.998 % | |
+| charged pion | π± | 139.564 | 139.570 | 99.996 % | |
+| charged kaon | K⁺ | 493.700 | 493.677 | 99.995 % | |
+| neutral kaon | K⁰ → K_L | 497.708 | 497.611 | 99.98 % | Heim's K⁰ identified empirically as K_L via the lifetime (~5·10⁻⁸ s) |
+| Λ baryon | Λ | 1115.57 | 1115.68 | 99.99 % | |
+| Σ⁺ baryon | Σ⁺ | 1189.34 | 1189.37 | 99.998 % | |
+| proton | p | 938.25 | 938.27 | 99.998 % | |
+| neutron | n | 939.55 | 939.57 | 99.998 % | |
 | K*⁰ meson | K*⁰ | 891.08 | 891.7 | 99.93 % | matched via J0032 exhaustion procedure — IS in G-Tabelle IV (theoretical 891.20 MeV); earlier "new prediction at 867 MeV" claim *retracted* |
-| Higgs H⁰ | H⁰ | (none) | 125 250 | — | outside scope (electroweak) |
-| W± boson | W± | (none) | 80 369 | — | outside scope (electroweak) |
-| Z⁰ boson | Z⁰ | (none) | 91 188 | — | outside scope (electroweak) |
-| J/ψ, D, B, Λ_c … | — | (none) | — | — | outside scope (heavy flavour) |
+| Higgs H⁰ | H⁰ | (no slot) | 125 250 | — | no Heim slot at correct (P=Q=q=0); electroweak symmetry breaking is not in Heim's framework |
+| W± boson | W± | (no slot) | 80 369 | — | no slot at correct (P, Q); electroweak gauge structure not in Heim |
+| Z⁰ boson | Z⁰ | (no slot) | 91 188 | — | same |
+| J/ψ, D, B, B_c, Λ_c, … | various | (slot exists at ≤1%) | (varies) | ~ 99–100 % | Heim *does* find ≤ 1 % slots at correct (P, Q); per the May 2026 pre-registered post-1989 test, these are slot-density-aided coincidences and not predictions — see README Framework limits §6 |
 
 The Higgs case is structurally interesting. The (P=0, Q=0, q=0)
 neutral spin-0 isospin-0 sector of Heim's lattice has the following
@@ -1457,10 +1460,17 @@ not exist in Heim's framework. The closest Heim candidates at 76 GeV
 (off by 5 % from W) sit at the wrong (P, Q) combination — i.e., they
 are not the W per se, just numerical coincidences.
 
-The framework's empirical *reach* is therefore: light hadrons, light
-mesons, leptons (electron, muon), and a small extension to states like
-K* that share the same spin-isospin classification as Heim's listed
-particles.
+The framework's empirical *reach*, as documented in this repository,
+covers: leptons (e, μ), light pseudoscalar mesons (π, K, η),
+light vector mesons (ρ, ω, φ, K*), light baryons (p, n, Λ, Σ, Ξ, Ω,
+Δ), and the full set of pre-1989 light-flavour resonances listed in
+Heim's G-Tabelle IV (23 mesonic) and G-Tabellen V_{a,b,c}
+(76 baryonic, 145 charge-state entries). What it *does not* cover is
+the electroweak gauge sector (W, Z), the Higgs, and charm/bottom/top
+quarks as primitives — though the lattice happens to admit ≤ 1 %
+slots at correct (P, Q) for heavy-quark *hadrons* (J/ψ, D, B, B_c,
+Λ_c, …), which the May 2026 pre-registered test classifies as
+slot-density coincidences rather than predictions.
 
 ---
 
@@ -1552,9 +1562,13 @@ The honest reasons mainstream physics has not engaged:
    Earlier passages of this document characterised Heim as having
    "20 reference particles". This was wrong: Heim's G-Tabelle IV / V
    list theoretical masses for 70+ resonances at typical agreement
-   ≤ 1 % with PDG. The wider empirical reach is real, but
-   reproducing it in code is a separate reconstruction task that
-   the current Python port has not undertaken.
+   ≤ 1 % with PDG. The wider empirical *reach* is real, and the
+   May 2026 reproduction effort verified all 23 mesonic and 144/145
+   baryonic charge-state entries via the J0032 exhaustion procedure
+   — though the *significance* of "≤ 1 % agreement with PDG" must
+   now be read against the May 2026 slot-density finding (the
+   integer lattice is moderately to densely populated at the 0.1–10
+   MeV scale; see README Framework limits §6).
 
 ### For Intermediate
 
@@ -1590,17 +1604,24 @@ What would change the situation?
    `formulae.py`).  Electron: 0.51098822 MeV vs measured 0.51100407
    MeV (−0.002 %).
 
-3. **Open Question 1b — Δ⁺⁺/Δ⁰ family discrepancy.** *Root cause
-   identified May 2026.*  The two Δ⁺⁺ / Δ⁰ ground states are off by
-   1.5–1.9 MeV from Heim's Tabelle II.  The 15 May Anhang B cross-
-   check (`python/verify_anhang_b.py`) traced this to a specific bug
-   in `calc_a` (formulae.py): per-particle a_1, a_2 values for the
-   o-family (Δ) differ from Heim's published table at q = +2 and
-   q = −1.  Our `calc_a` uses `fabs(q_x)` whereas Heim's formula in
-   eqs. 13c–13e₁ apparently uses signed εq_x.  Same diagnostic also
-   explains the small N_3(2,2) ≠ 2.1219 discrepancy and the
-   6.85 W_{N=0} mismatch for o⁰.  Production code is unchanged
-   pending a clean replacement at q = +2.
+3. **Open Question 1b — Δ-family ground-state mass discrepancy.**
+   *Structurally isolated May 2026 (16 May session with Mike on
+   Discord); cause located in Heim's own framework, not in our port.*
+   All four Δ ground states miss Heim's Tabelle II by 0.85–1.58 MeV
+   in our reproduction. A term-by-term manuscript reading verified
+   that calc_a, calc_W, calc_n and calc_phi are correct against
+   J0032 (13c), (13d), [B7] / [B49] respectively. Heim's own
+   Anhang B contains two self-inconsistencies in the o-family rows
+   (a₁ values for o⁺⁺ and o⁻ appear swapped relative to the
+   W column; Tabelle I (n,m,p,σ) for o⁺⁺ and o⁰ disagrees with
+   his Tabelle II W₀). The residual 1 MeV is consistent with
+   Heim's own "Bemerkung zu (5d)" (J0032 p. 40) admitting an
+   unknown additive term in φ "der Größenordnung einiger 10⁻²
+   Elektronen-megavolt" — i.e. our observation is ~100× above
+   his stated upper bound. Production code is unchanged because
+   the residual is in Heim's published framework, not in our
+   reproduction. See `MANUSCRIPT_FINDINGS.md` and
+   `python/check_delta_decomposition.py` / `python/verify_anhang_b.py`.
 
 4. **A mathematical audit of the polymetric formalism.** Heim's
    selector calculus, hermetric forms, and condensor flows are
@@ -1702,20 +1723,27 @@ the eigenvalue-spectrum structure that produces the (n, m, p, σ)
 greedy decomposition, have been documented by Heim, by von Ludwiger
 & Grüner, and by this repository's annotations — but never
 mathematically audited. Until that audit happens, the framework's
-status remains: empirically remarkable, theoretically untested,
-internally reproducible (to ≤ 2 eV across 19 of 21 ground states)
-once the proposed [B3] correction and Heim's 1989 constants are
-applied — pending community confirmation of the [B3] typo.
+status remains: **empirically mixed** (structural anchors hold,
+PDG-percent agreement is partly slot-density-aided),
+**theoretically untested** (no peer review of the polymetric
+formalism), and **internally reproducible** (to ≤ 2 eV across
+19 of 21 ground states with the J0060-corrected [B3] form and
+Heim's 1989 constants — the [B3] correction itself is sourced
+from Heim's primary manuscript J0060 and no longer pending).
 
 The audit-priority order, after the May 2026 source review, is:
 
-1. **Reproduce A/G ground states.** Done modulo community
-   confirmation. All 19 well-behaved particles match Heim's Tabelle II
-   to ≤ 2 eV after applying the proposed [B3] correction
-   (`+4qα₋/α₊`, diagnosed May 2026) and using Heim's 1989 constants.
-   The two Δ resonances with q ∈ {+2, 0} retain a separate
-   (n, m, p, σ) issue (~1.5 MeV off). The canonical port still uses
-   the published [B3] form pending external confirmation of the typo.
+1. **Reproduce A/G ground states.** Done — May 2026. All 19
+   well-behaved particles match Heim's Tabelle II to ≤ 2 eV
+   after applying the J0060-corrected [B3] form
+   (`+4qα₋/α₊`, sourced from Heim's primary manuscript J0060
+   Synmetronik Band IV eq. 192 + p. 709) and using Heim's 1989
+   constants. The two Δ resonances with q ∈ {+2, 0} retain a
+   separate (n, m, p, σ) decomposition issue, traceable to a
+   self-inconsistency in Heim's own Tabelle I ↔ Tabelle II for
+   o⁺⁺ and o⁰ (see Open Q 1b). The canonical port now uses the
+   J0060-corrected form by default; `LEGACY_B3_FORM = True` in
+   `formulae.py` recovers bit-equivalence with the published [B3].
 
 2. **Reproduce G Tabelle IV meson resonances (k=1)** in a clean
    implementation of Heim's (P, N, K_B) resonance procedure.
