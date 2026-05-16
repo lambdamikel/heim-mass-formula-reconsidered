@@ -533,16 +533,35 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis | After J0060 manuscript |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | 98 – 99 % | **≥ 99 %** ↑ |
-| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | 20 – 32 % | **22 – 35 %** ↑ |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | 80 – 92 % | **85 – 94 %** ↑ |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | < 3 % | **< 2 %** ↓ |
-| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | 90 – 97 % | **97 – 99 %** ↑ |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis | After J0060 manuscript | After post-1989 slot-density test |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | 98 – 99 % | ≥ 99 % | **60 – 80 %** ↓↓ |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | 20 – 32 % | 22 – 35 % | **8 – 18 %** ↓ |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | 80 – 92 % | 85 – 94 % | **40 – 65 %** ↓ |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | < 3 % | < 2 % | **20 – 40 %** ↑↑ |
+| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | 90 – 97 % | 97 – 99 % | **97 – 99 %** ✓ |
 
-The most recent column reflects a deep source audit using the
+The most recent column reflects the **pre-registered post-1989
+slot-density test** (May 2026, see
+[Framework limits #6](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
+and `POST_1989_PREREGISTRATION.md`). The test asked: do particles
+discovered after 1989 find Heim slots at the right (P, Q) and
+≤ 1 % mass agreement *more often than random masses with random
+(P, Q) drawn from the same distribution*? The pre-registered
+answer was no — 8 of 12 Tier-1 strict matches vs 28 of 50
+random-target strict matches, signal/background ratio 1.19× at
+strict and 0.99× at moderate. Per the criteria fixed before the
+scan ran, this is **falsification at the moderate tier**. The
+revision in the new column reflects that: the intra-Heim ≤ 2 eV
+result (his Tabelle II reproduction) is unaffected — that is a
+self-consistency claim — but the broader claim "Heim's PDG
+agreement is too good to be chance" loses most of its weight.
+The η-derivation and the fine-structure-constant calculation are
+untouched, since they are structural results independent of slot
+density.
+
+Previous columns reflected the deep source audit using the
 historical A / B / G transmission set provided by the Heim-Theory
 Discord community in May 2026:
 
@@ -584,12 +603,17 @@ Discord community in May 2026:
   (May 2026), matching K\*(892) at 891.08 MeV (Δ = −0.117 MeV) and
   all 22 other Tabelle IV entries — see Headline #6.
 
-In short: the source audit *strengthens* the case for Heim's
-framework substantively (because G now provides concrete
-ground-truth predictions to compare against, Heim's empirical
-reach is broader than we had reported, AND the apparent 0.79 %
-port discrepancy turns out to be a published-formula typo rather
-than a framework deficiency).
+In short: the source audit *strengthens* the structural case for
+Heim's framework substantively (G now provides concrete
+ground-truth predictions, Heim's empirical reach is broader than
+we had reported, the 0.79 % port discrepancy turns out to be a
+published-formula typo rather than a framework deficiency). The
+**slot-density test** of May 2026, however, **weakens the case
+that PDG agreement on mass values is evidence of correctness**:
+the integer scheme is dense enough that random masses match at a
+similar rate. What remains genuinely strong after both updates
+is intra-Heim self-consistency (≤ 2 eV) and the structural
+derivations (η in chapter 7, α from [B58]–[B62]).
 
 What remains uncertain is **the mathematical rigour of the
 foundations**: whether Heim's polymetric formalism (selector calculus,
@@ -599,11 +623,19 @@ someone fluent in the formalism. That is not testable from the code.
 (The rows are overlapping interpretations and do not sum to 100 %; they
 reflect weights, not partitions.)
 
-**Short version: there is probably something real here.** The η
-derivation in chapter 7 turns the most serious "but is it really
-derived?" objection from open into resolved (in Heim's favour). What
-remains uncertain is mostly empirical reach (post-1989 particles,
-lifetime accuracy with corrected b₁/b₂) rather than the foundations.
+**Short version (post-slot-density-test): there is *probably*
+something structurally real here — but less than the mass-fit
+headline numbers suggested.** The η derivation in chapter 7 still
+turns the "but is it really derived?" objection from open into
+resolved in Heim's favour, and the fine-structure-constant
+calculation remains a strong structural anchor. What the
+pre-registered post-1989 test removed, however, is the
+"too-accurate-to-be-coincidence" weight from the mass spectrum
+side: in a dense integer scheme, random masses also match at
+~50 % strict and ~75 % moderate. The framework is therefore
+better characterised as "interesting structural physics with an
+under-constrained mass-lattice" than as "a successful particle
+mass theory".
 
 The strongest three anchors for *not coincidence* are now:
 
