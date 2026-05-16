@@ -2167,15 +2167,18 @@ of organising structure* that Heim and Dröscher believed were needed
 to incorporate the strong nuclear force and to derive certain
 constants of nature that the 6D version had to take as inputs.
 
-The most striking achievement of the extended theory is the
-**derivation of Newton's gravitational constant *G* itself**. In the
+The most striking *claimed* achievement of the extended theory is
+the **derivation of Newton's gravitational constant *G***. In the
 6D version, *G* was an input — Heim used the experimental value. In
-the 8D extension, Dröscher computed *G* from purely geometric
-considerations and got G = 6.673 32 × 10⁻¹¹ — within the
-experimental error bar of NIST's measurement. That an input constant
-becomes a *derived* result of a higher-dimensional version of the
-theory is, on the face of it, a powerful piece of evidence for the
-geometric programme.
+the 8D extension, Dröscher reports computing *G* from purely
+geometric considerations and gets G = 6.673 32 × 10⁻¹¹ — within
+the experimental error bar of NIST's measurement. If the derivation
+is genuinely parameter-free, that would be a substantial piece of
+evidence for the geometric programme. This repository does not
+independently verify the 8D derivation chain (the polymetric
+formalism of HDT is even less audited than the 6D version), so the
+status of this claim is "reported by Dröscher, not yet
+independently checked".
 
 Dröscher and Häuser also derived from the extended theory two
 hypothetical new particles, the **gravitophoton** and the **graviton

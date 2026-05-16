@@ -418,8 +418,12 @@ repository:
 >     a_fit     = -0.0001
 >     a_pred    =  0.0000
 >
-> Six-decimal agreement on b across 12 over-determining points — Heim's
-> framework is **predictive**, not just descriptive, of the Λ Anregerkurve.
+> Six-decimal agreement on b across 12 over-determining points —
+> Heim's framework is **predictive of the Λ-sector Anregerkurve**
+> (not of individual masses; this is a multi-particle linear-pattern
+> test, not a single-mass slot match, and is therefore independent
+> of the slot-density issue documented in
+> [Framework limits §6](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)).
 >
 > **Λ(1405) and Λ(1690) are NOT anomalous** under the ab-initio re-ranking
 > (`python/resonance_z0_classify.py`).  Both were earlier flagged as
@@ -699,13 +703,20 @@ The strongest three anchors for *not coincidence* are now:
 
 What would still shift this assessment substantially:
 
-- **Reproducing Heim's G-Tabellen IV / V exactly.** Heim's own 1989
-  framework lists theoretical masses for 23 mesonic resonances (including
-  ρ, ω, φ, K* via their k=1 P-N-K_B parametrisation) and >50 baryonic
-  resonances at ≤ 1 % from PDG. If a clean modern implementation can
-  reproduce these G-table values from first principles using only Heim's
-  documented quantum-number structure, the framework moves from
-  "interesting structure" to "well-defined and reproducible".
+- ~~**Reproducing Heim's G-Tabellen IV / V exactly.**~~ **Done — May 2026.**
+  Heim's own 1989 framework lists theoretical masses for 23 mesonic
+  resonances and 76 baryonic resonances (145 charge-state entries).
+  The J0032 exhaustion procedure as implemented in
+  `python/resonance_wscan.py` and `python/resonance_wscan_baryons.py`
+  reproduces all 23 mesons (K_B exact, Δ_M < 0.2 MeV) and 144/145
+  baryons (K_B exact within ±0.5, 143/145 mass-within-2-MeV). The
+  Anregerkurve coefficient b for the 12-Λ z=0 sector is reproduced
+  ab initio from J0032 eqs. 14a-14b₁ to 6 decimals — a structural
+  multi-particle test that is *not* slot-density-aided. The framework
+  is therefore "well-defined and reproducible" in the sense this
+  bullet asked for; what remains uncertain is the broader empirical
+  significance, which the May 2026 pre-registered tests addressed
+  separately (see Framework limits §6).
 - ~~Community confirmation of the proposed [B3] typo correction~~
   **Resolved May 2026**: Heim's primary manuscript J0060 (Synmetronik
   Band IV, equation 192 + p. 709), provided by Javier Mazzone, gives
@@ -1072,6 +1083,15 @@ published [B3]): electron at -0.79%. With the J0060-corrected B3
 form (canonical since May 2026): electron matches measurement at
 -0.002 %, and the worst single particle is now η at +0.27 %
 (electromagnetic-decay outlier).
+
+*All figures in this subsection are PDG-vs-Heim comparisons at the
+percent-and-below tier. The May 2026 pre-registered lattice-density
+check showed that the integer lattice is moderately dense at
+~100 keV and densely populated at ~1 MeV — so the headline RMS is
+better than the chance baseline, but not by a wide margin. The
+stronger evidence for non-coincidence comes from intra-Heim
+self-consistency at ≤ 2 eV (lattice sparse) — see
+[Framework limits §6](#framework-limits-surfaced-by-the-may-2026-manuscript-audit).*
 
 The 21st particle in Heim's reference list — `e₀`, the *neutral electron* —
 is not in this average because it has no measured mass: it is **Heim's
