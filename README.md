@@ -538,16 +538,31 @@ favour.
 
 If forced to put numbers on it:
 
-| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis | After J0060 manuscript | After post-1989 slot-density test |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | 98 – 99 % | ≥ 99 % | **60 – 80 %** ↓↓ |
-| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
-| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | 20 – 32 % | 22 – 35 % | **8 – 18 %** ↓ |
-| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | 80 – 92 % | 85 – 94 % | **40 – 65 %** ↓ |
-| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | < 3 % | < 2 % | **20 – 40 %** ↑↑ |
-| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | 90 – 97 % | 97 – 99 % | **97 – 99 %** ✓ |
+| Statement | Pre-revision | After Herleitung | After lifetime port | After Excel cross-check | After η-triple-role | After A/B/G audit | After [B3] diagnosis | After J0060 manuscript | After post-1989 slot-density test | After lattice-density check at 2 eV |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Heim's mass-formula accuracy is not pure numerical coincidence | 70 – 80 % | 85 – 95 % | 90 – 97 % | 95 – 99 % | 97 – 99 % | 97 – 99 % | 98 – 99 % | ≥ 99 % | 60 – 80 % | **80 – 92 %** ↑ |
+| η's specific form follows from the 6D field equations | 25 – 40 % | 80 – 95 % | 80 – 95 % | 80 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | 85 – 95 % | **85 – 95 %** ✓ |
+| Heim theory will eventually be recognised as a correct unified field theory | 5 – 10 % | 10 – 20 % | 15 – 25 % | 20 – 30 % | 18 – 28 % | 18 – 30 % | 20 – 32 % | 22 – 35 % | 8 – 18 % | **10 – 22 %** ↑ |
+| The framework captures something real that mainstream physics has overlooked | 25 – 40 % | 40 – 60 % | 55 – 75 % | 70 – 85 % | 75 – 88 % | 78 – 90 % | 80 – 92 % | 85 – 94 % | 40 – 65 % | **60 – 78 %** ↑ |
+| It is elegant numerology with no physical content | 20 – 30 % | 5 – 15 % | 3 – 10 % | 2 – 7 % | 1 – 5 % | 1 – 4 % | < 3 % | < 2 % | 20 – 40 % | **8 – 22 %** ↓ |
+| Current Python port reproduces Heim's intended results | — | — | — | 85 – 95 % | 85 – 95 % | 60 – 75 % | 90 – 97 % | 97 – 99 % | 97 – 99 % | **97 – 99 %** ✓ |
 
-The most recent column reflects the **pre-registered post-1989
+The two most recent columns reflect two pre-registered tests run
+in May 2026.  The **lattice-density check at 2 eV**
+(`LATTICE_DENSITY_PREREGISTRATION.md`, `python/lattice_density_check.py`)
+asked a sharper version of the post-1989 question: at what precision
+tier does Heim's integer lattice transition from sparse to dense?
+The answer (median tuple counts within tier T across 18 well-behaved
+particles): **0 within 2 eV, 0 within 1 keV, 1 within 10 keV, 10 within
+100 keV, 93 within 1 MeV, 951 within 10 MeV**.  The lattice is genuinely
+sparse at Heim's own stated precision (≤ 2 eV — only his tuple is close),
+and the slot-density story applies *specifically* at the 100 keV–10 MeV
+PDG-comparison range, not uniformly.  So the intra-Heim ≤ 2 eV anchor —
+"Heim's tuple is uniquely the closest one in the sector at his own
+printing precision" — survives, while the post-1989 finding about
+PDG-percent matches is sharpened (not refuted).
+
+The earlier column reflects the **pre-registered post-1989
 slot-density test** (May 2026, see
 [Framework limits #6](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
 and `POST_1989_PREREGISTRATION.md`). The test asked: do particles
@@ -628,19 +643,23 @@ someone fluent in the formalism. That is not testable from the code.
 (The rows are overlapping interpretations and do not sum to 100 %; they
 reflect weights, not partitions.)
 
-**Short version (post-slot-density-test): there is *probably*
-something structurally real here — but less than the mass-fit
-headline numbers suggested.** The η derivation in chapter 7 still
-turns the "but is it really derived?" objection from open into
-resolved in Heim's favour, and the fine-structure-constant
-calculation remains a strong structural anchor. What the
-pre-registered post-1989 test removed, however, is the
-"too-accurate-to-be-coincidence" weight from the mass spectrum
-side: in a dense integer scheme, random masses also match at
-~50 % strict and ~75 % moderate. The framework is therefore
-better characterised as "interesting structural physics with an
-under-constrained mass-lattice" than as "a successful particle
-mass theory".
+**Short version (after both pre-registered tests of May 2026):
+there is probably something structurally real here.** The η
+derivation in chapter 7 still turns the "but is it really derived?"
+objection from open into resolved in Heim's favour. The
+fine-structure-constant calculation remains a strong structural
+anchor. The pre-registered post-1989 test established that *PDG-
+percent-level* matches are largely slot-density (~50–75 % chance
+hit rate). But the follow-up lattice-density check showed that the
+lattice is *not* dense at Heim's own ≤ 2 eV precision: across 18
+well-behaved ground states, the median number of alternative
+tuples within 2 eV of Heim's published mass is zero — Heim's tuple
+is uniquely the close one. The framework is therefore best
+characterised as "structural physics with a moderately
+under-constrained mass-lattice at the PDG-percent tier, but
+tight self-consistency at his own stated precision." That is a
+weaker claim than the headline pre-test numbers suggested, but a
+stronger claim than the post-1989 test alone implied.
 
 The strongest three anchors for *not coincidence* are now:
 
@@ -1694,6 +1713,29 @@ contribution is to quantify *how much* is missing.
    match test. See `python/post_1989_test.py` and
    `python/post_1989_test_results.txt`.
 
+   **Follow-up (lattice density check, May 2026)**: a second
+   pre-registered test (`LATTICE_DENSITY_PREREGISTRATION.md`,
+   `python/lattice_density_check.py`) sharpened the slot-density
+   story by enumerating all (n, m, p, σ) tuples in each ground-state
+   sector and counting how many lie within each precision tier of
+   Heim's target mass. Median counts across 18 well-behaved
+   ground states:
+
+   | Tier within | 2 eV | 100 eV | 1 keV | 10 keV | 100 keV | 1 MeV | 10 MeV |
+   |-------------|-----:|-------:|------:|-------:|--------:|------:|-------:|
+   | median count | 0 | 0 | 0 | 1 | 10 | 93 | 951 |
+
+   The lattice is sparse at ≤ 1 keV (median 0 alternatives near
+   Heim's mass), moderate at 100 keV (median 10), and dense at
+   ≥ 1 MeV (median 93–951). **Implication**: the post-1989
+   falsification specifically concerns the ~10 MeV / 1 % PDG tier
+   where the lattice is dense; Heim's *intra-Tabelle II* claim
+   at ≤ 2 eV is structural (lattice sparse). The pre-test headline
+   that conflated "Heim is accurate to PDG" with "Heim is accurate
+   to his own Tabelle II" was inaccurate; the two claims now have
+   distinct epistemic status (the former is slot-density-aided,
+   the latter is structural). See `python/lattice_density_results.txt`.
+
    **Note on quarks specifically.** Heim's 1989 framework has no
    quark primitives: the scheme indexes elementary basic states by
    (k, P, Q, κ, q, ε, x, n, m, p, σ) where k ∈ {1, 2} is interpreted
@@ -1881,66 +1923,66 @@ The three programs are doing different jobs. A fair summary:
    Heim's framework has more on the board than 50 years of
    string-theory phenomenology.
 
-The honest interpretation, in my view (and **revised downward**
-after the pre-registered post-1989 test of May 2026): Heim's
-framework looks like a striking *intra-table consistency* result
-plus a derivable η-function, sitting inside an integer scheme
-that is dense enough on the mass axis that 1 %-level matches to
-PDG values are not far from chance. Before the slot-density test
-I would have called the framework "narrow-but-deep mass
-quantisation"; after it, I would call it "narrow consistency
-with a possibly-genuine η derivation embedded in a wide state
-space". The mass matches are real; what they *mean* is more
-ambiguous than I had thought.
+The honest interpretation, in my view (revised twice in May
+2026 — first downward after the post-1989 slot-density test,
+then partly back up after the lattice-density check at 2 eV):
+Heim's framework has *two* distinct empirical successes that
+need to be evaluated separately. (a) **Intra-Heim consistency
+at ≤ 2 eV** is structural — across 18 well-behaved ground
+states the median number of alternative tuples within 2 eV
+of Heim's published value is zero, meaning the lattice is
+genuinely sparse at his stated precision and his tuple choice
+is essentially uniquely close. (b) **PDG agreement at the
+1 % tier** is largely slot-density — the median number of
+alternative tuples within 10 MeV of any given mass is ~951,
+so a 1 %-level fit is unsurprising. These two findings
+co-exist: Heim's framework *internally* is precise, and
+*externally* (vs PDG) is loose. The pre-test headline numbers
+collapsed both into one impressive figure; that conflation
+is now retracted.
 
 The right comparison is probably not "Heim vs. SM" (categorically
 different jobs) but **"Heim vs. the SM's silence on fermion mass
 generation".** The SM does not explain why the electron weighs
 0.511 MeV or why the muon weighs 105.66 MeV. Heim's framework
-reproduces those numbers — but the post-1989 test shows that the
-scheme would also reproduce *random* 1-GeV-scale masses with
-high probability. So the SM's silence on fermion masses is not
-being filled by Heim *as well as the headline numbers suggested*;
-it is filled with a structure that admits the right answer
-**and many other answers** in the same neighbourhood. What
-remains genuinely impressive is (a) intra-Heim reproduction to
-≤ 2 eV (a self-consistency property, not a slot-density test),
-and (b) the η derivation in Herleitung Kap. 7 (a structural
-claim independent of mass-fit density).
+does — *at his own ≤ 2 eV precision* — with a uniquely chosen
+integer tuple per particle. That precision is real and structural.
+What the slot-density work removed was the broader claim that
+*any* PDG-level mass agreement is significant evidence — at the
+1 % tier it is not, because the lattice is dense there.
 
 ### Subjective probability estimates
 
 Bets, not measurements. They reflect one reader's credences after
-working through the reproduction — and have been revised downward
-on Heim after the pre-registered post-1989 slot-density test:
+working through the reproduction — revised downward after the
+post-1989 slot-density test, then partly back up after the
+lattice-density check at 2 eV showed the intra-Heim anchor
+survives:
 
 - P(SM is the correct effective theory below ~10 TeV): **~99 %**.
 - P(string theory, in some form, correctly describes Planck-scale
   physics): **~30 %** (vast uncertainty).
 - P(Heim's framework is *literally* correct as published — every
-  published equation valid): revised to **~3–10 %** (was 5–15 %).
-  Open Question 1b alone shows at least one missing piece, and
-  the slot-density result removes much of the "too accurate to
-  be coincidence" weight.
+  published equation valid): **~5–12 %** (was 5–15 % pre-test,
+  3–10 % after post-1989, partly recovered after lattice-density).
+  Open Question 1b alone shows at least one missing piece.
 - P(Heim discovered something *substantively right* about mass
-  quantisation that mainstream physics has missed): revised to
-  **~10–20 %** (was 25–40 %). The intra-Heim ≤ 2 eV result and
-  the derivable η are still genuine; what is now weaker is the
-  case from "PDG agreement at 0.01–1 %", because chance does
-  most of that work in a dense integer grid.
+  quantisation that mainstream physics has missed): **~20–35 %**
+  (was 25–40 % pre-test, 10–20 % after post-1989, partly recovered
+  after lattice-density). The intra-Heim ≤ 2 eV result is now
+  confirmed *structural* (not slot-density), which is the strongest
+  remaining quantitative anchor after η-derivation.
 - P(Heim's framework will be the dominant approach in 2050):
-  **~2 %** (was ~5 %). The mainstreaming bar is now harder to
-  clear: in addition to rebuilding the polymetric formalism and
-  extending to post-1989 particles, one would need to demonstrate
-  that the integer-lattice mass match is *not* dominated by slot
-  density — i.e. argue from a tighter measure than PDG agreement
-  alone.
+  **~3 %**. The mainstreaming bar requires (a) rebuilding the
+  polymetric formalism, (b) extending to post-1989 particles, and
+  (c) demonstrating that the framework predicts *new* observables
+  beyond intra-Heim self-consistency at his precision.
 
 These numbers come from one programmer with several weeks of close
-reading, not from peer-reviewed consensus. They were lower after
-the slot-density test than before, which is what an honest update
-on new evidence looks like. Treat them as priors to argue with,
-not as conclusions.
+reading, not from peer-reviewed consensus. The trajectory — pre-test
+→ down → partly back up — is what an honest sequence of updates on
+new evidence looks like. Treat them as priors to argue with, not as
+conclusions.
 
 ## Open questions
 
