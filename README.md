@@ -1625,7 +1625,35 @@ contribution is to quantify *how much* is missing.
    cannot all be simultaneously correct, and any reproduction
    has to choose which to trust.
 
-6. **`c/ω = 3/4` in `calc_b2` embeds an obsolete
+6. **The integer grid is dense enough that random masses match
+   nearly as often as real particles** (pre-registered post-1989
+   test, May 2026). We enumerated Heim's full (ε, k, P, Q, κ, x) ×
+   (n, m, p, σ) lattice for 12 pre-1989 discoveries Heim could have
+   included (τ, J/ψ, ψ(2S), Υ(1S), D, D_s, B, W, Z, Λ_c) at the
+   PDG-supplied (2I, 2J) target quantum numbers, requiring ≤ 1 %
+   mass match with correct (P, Q). 8 of 12 hit at ≤ 1 %, another
+   one at 1.5 %; an *impressive* result in isolation. **But a
+   random-target background scan** (50 log-uniform masses over
+   [0.1, 200] GeV with random (P, Q, q)) matches at the same
+   ≤ 1 % rate 56 % of the time, and at ≤ 3 % rate 76 % of the
+   time. Signal/background ratio: **1.19× at strict, 0.99× at
+   moderate** — at the moderate tier the signal is *not
+   distinguishable from chance*. Per the pre-registered criteria
+   (`POST_1989_PREREGISTRATION.md`, committed before the scan
+   ran), this is a **FALSIFICATION at the moderate tier**. The
+   epistemic situation is structurally similar to string theory's
+   landscape: the framework's state-space is wide enough that
+   almost any low-energy mass finds a slot. Important consequence:
+   individual close matches between Heim predictions and PDG
+   values at the 0.01–1 % level — including matches in Heim's
+   *original* 21-particle set against PDG — must be interpreted
+   in light of this baseline. Heim's intra-table consistency
+   (≤ 2 eV vs his own Tabelle II) is still genuine, since that is
+   a reproduction at his own printing precision and not a slot-
+   match test. See `python/post_1989_test.py` and
+   `python/post_1989_test_results.txt`.
+
+7. **`c/ω = 3/4` in `calc_b2` embeds an obsolete
    gravitational-propagation assumption.** The constant `c/ω`
    in lifetime sub-formula (21f) equals 3/4 in Heim's original
    1980 derivation (ω = (4/3)·c). The IGW Innsbruck 2003
@@ -1644,18 +1672,24 @@ contribution is to quantify *how much* is missing.
    resolve. See `python/lifetime.py:calc_b2` and
    `MANUSCRIPT_FINDINGS.md` § 10.
 
-None of these limits is fatal to Heim's framework. Points 1–4
-are open questions Heim himself acknowledged (selection rule,
-z(N), unknown additive φ term) or that fall naturally out of
-the framework's published scope (no channel-distinction for
-decays). Point 5 is a manuscript-print issue. Point 6 is a
-fixable internal inconsistency. Taken together they sketch
-the *empirical reach* of the published 1989 framework: very
-accurate where it applies (mass ground states to ≤ 2 eV,
-lifetimes to factor 3 on 17/18 weak-channel particles, k=2
-baryonic resonances to Δ_M < 2 MeV on 144/145), with clearly
-demarcated boundaries beyond which the published equations do
-not yet predict.
+Point 6 (added May 2026 after the pre-registered post-1989
+slot test) is the most consequential of the limits listed here:
+it shows that the integer-lattice density is high enough that
+mass matches at the 1 % level — even on particles Heim could
+have known — are not statistically distinguishable from random
+hits. This re-frames the rest of the framework's predictive
+record. Points 1–4 are open questions Heim himself acknowledged
+(selection rule, z(N), unknown additive φ term) or that fall
+naturally out of the framework's published scope (no
+channel-distinction for decays). Point 5 is a manuscript-print
+issue. Point 7 is a fixable internal inconsistency. Taken
+together, the framework's *empirical reach* is narrower than
+the headline numbers suggest: the impressive parts are Heim's
+intra-table consistency (≤ 2 eV vs his own published values)
+and the η-derivation from physical principles. The
+PDG-against-Heim mass agreement at the 0.01–1 % level — while
+real — has to be assessed against a chance-hit baseline of
+~50–75 % that the same scheme provides to random masses.
 
 **Bottom line.** Heim's mass formula is *substantially more theory-driven
 than ordinary curve-fitting*, and the constants he explicitly called
@@ -1783,50 +1817,66 @@ The three programs are doing different jobs. A fair summary:
    Heim's framework has more on the board than 50 years of
    string-theory phenomenology.
 
-The honest interpretation, in my view: Heim's framework appears
-to be a real, narrow-but-deep result about *mass quantisation* —
-something the SM is silent about. The mass-formula match is too
-accurate, on too many particles, with too few free parameters,
-to be plausibly a coincidence. But it is emphatically not a
-complete theory in the SM sense, and it does not (yet) replace
-anything. It looks like *one corner* of a larger structure that
-nobody has yet built out.
+The honest interpretation, in my view (and **revised downward**
+after the pre-registered post-1989 test of May 2026): Heim's
+framework looks like a striking *intra-table consistency* result
+plus a derivable η-function, sitting inside an integer scheme
+that is dense enough on the mass axis that 1 %-level matches to
+PDG values are not far from chance. Before the slot-density test
+I would have called the framework "narrow-but-deep mass
+quantisation"; after it, I would call it "narrow consistency
+with a possibly-genuine η derivation embedded in a wide state
+space". The mass matches are real; what they *mean* is more
+ambiguous than I had thought.
 
 The right comparison is probably not "Heim vs. SM" (categorically
 different jobs) but **"Heim vs. the SM's silence on fermion mass
 generation".** The SM does not explain why the electron weighs
-0.511 MeV or why the muon weighs 105.66 MeV. Heim's framework,
-within the
-[Framework limits](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
-laid out above, *does* predict those numbers — to ≤ 2 eV. That
-is unusual enough to be worth understanding even if the larger
-framework around it turns out to need substantial reformulation.
+0.511 MeV or why the muon weighs 105.66 MeV. Heim's framework
+reproduces those numbers — but the post-1989 test shows that the
+scheme would also reproduce *random* 1-GeV-scale masses with
+high probability. So the SM's silence on fermion masses is not
+being filled by Heim *as well as the headline numbers suggested*;
+it is filled with a structure that admits the right answer
+**and many other answers** in the same neighbourhood. What
+remains genuinely impressive is (a) intra-Heim reproduction to
+≤ 2 eV (a self-consistency property, not a slot-density test),
+and (b) the η derivation in Herleitung Kap. 7 (a structural
+claim independent of mass-fit density).
 
 ### Subjective probability estimates
 
 Bets, not measurements. They reflect one reader's credences after
-working through the reproduction:
+working through the reproduction — and have been revised downward
+on Heim after the pre-registered post-1989 slot-density test:
 
 - P(SM is the correct effective theory below ~10 TeV): **~99 %**.
 - P(string theory, in some form, correctly describes Planck-scale
   physics): **~30 %** (vast uncertainty).
 - P(Heim's framework is *literally* correct as published — every
-  published equation valid): **~5–15 %**. Open Question 1b alone
-  shows at least one missing piece.
+  published equation valid): revised to **~3–10 %** (was 5–15 %).
+  Open Question 1b alone shows at least one missing piece, and
+  the slot-density result removes much of the "too accurate to
+  be coincidence" weight.
 - P(Heim discovered something *substantively right* about mass
-  quantisation that mainstream physics has missed): **~25–40 %**.
-  Strongest evidence: 19 masses to ≤ 2 eV with G/ℏ/c-only input
-  and a derivable η.
+  quantisation that mainstream physics has missed): revised to
+  **~10–20 %** (was 25–40 %). The intra-Heim ≤ 2 eV result and
+  the derivable η are still genuine; what is now weaker is the
+  case from "PDG agreement at 0.01–1 %", because chance does
+  most of that work in a dense integer grid.
 - P(Heim's framework will be the dominant approach in 2050):
-  **~5 %**. Even if substantively right, mainstreaming would
-  require (a) rebuilding the polymetric formalism in standard
-  mathematical language, (b) extending it to post-1989 particles,
-  and (c) reconciling it with the SM's confirmed dynamical
-  predictions.
+  **~2 %** (was ~5 %). The mainstreaming bar is now harder to
+  clear: in addition to rebuilding the polymetric formalism and
+  extending to post-1989 particles, one would need to demonstrate
+  that the integer-lattice mass match is *not* dominated by slot
+  density — i.e. argue from a tighter measure than PDG agreement
+  alone.
 
 These numbers come from one programmer with several weeks of close
-reading, not from peer-reviewed consensus. Treat them as priors to
-argue with, not as conclusions.
+reading, not from peer-reviewed consensus. They were lower after
+the slot-density test than before, which is what an honest update
+on new evidence looks like. Treat them as priors to argue with,
+not as conclusions.
 
 ## Open questions
 
