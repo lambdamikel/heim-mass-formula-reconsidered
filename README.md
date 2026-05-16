@@ -1685,6 +1685,29 @@ contribution is to quantify *how much* is missing.
    match test. See `python/post_1989_test.py` and
    `python/post_1989_test_results.txt`.
 
+   **Note on quarks specifically.** Heim's 1989 framework has no
+   quark primitives: the scheme indexes elementary basic states by
+   (k, P, Q, κ, q, ε, x, n, m, p, σ) where k ∈ {1, 2} is interpreted
+   meson-like / baryon-like, P = 2·isospin, Q = 2·spin, q is electric
+   charge. **There is no colour, flavour or quark index.** Heim's
+   bookkeeping competes with the QCD picture; it does not contain it.
+   This is reflected in the test results in three ways:
+   - Free quarks (c, b, t) were *excluded* from the scored Tier 1
+     per pre-registration, because free quarks are not observable
+     particles. Top was kept in Tier 2 as exploratory: it has no
+     Heim slot (83 % off — Heim's lattice doesn't reach 173 GeV at
+     the relevant (P, Q)).
+   - Hadrons *containing* heavy quarks (J/ψ ≡ c-c̄, Υ ≡ b-b̄, D's,
+     B's, B_c, Λ_c, Σ_c, Ξ_c, Λ_b, Σ_b, Ω_b) **do** find Heim slots
+     at ≤ 1 %. But background-equivalent random masses also match
+     at 56 % strict, so these matches are *not* evidence that Heim
+     "predicted heavy quark hadrons" — they are evidence that the
+     lattice is dense.
+   - W±, Z⁰ and the Higgs find *no* Heim slots — consistent with
+     Heim having no electroweak-symmetry-breaking mechanism. Heim's
+     1989 framework is genuinely silent on the electroweak sector,
+     not coincidentally so.
+
 7. **`c/ω = 3/4` in `calc_b2` embeds an obsolete
    gravitational-propagation assumption.** The constant `c/ω`
    in lifetime sub-formula (21f) equals 3/4 in Heim's original
