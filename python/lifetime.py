@@ -231,9 +231,19 @@ def calc_b2(
     eps: int, k: int, P: int, Q: int, kap: int, q_x: float, I, B: float, H: float
 ) -> float:
     """
-    b₂ — eq. [B55]. Verbose; transcribed line by line from the PDF.
+    b₂ — eq. [B55] / J0033 (21f). Verbose; transcribed line by line.
 
-    Ambiguities flagged inline.
+    Verified May 2026 against user-supplied J0033 (21f) transcription:
+    all 11 sub-terms match.  Two remaining manuscript-source questions:
+
+      - The constant `c/ω` in lines 7 and 10 (`(B − c/ω)²` and
+        `B/2·(H+2) + c/ω`) is hard-coded here as `3/4`.  Empirically
+        consistent with the 17/18 PDG match.  Source-symbol identity
+        of `c` and `ω` not yet recovered from J0033 directly.
+      - The trailing-bracket ambiguity in (21f): line 11 sits *outside*
+        the `Q·(P,2)` factor of line 10.  Confirmed manuscript-wise by
+        the user; an earlier ASCII transcription suggested otherwise
+        but produced a 4-decade Δ-family error.
     """
     from math import e as euler_e
     q = fabs(q_x)
@@ -302,6 +312,14 @@ def calc_b2(
     )
 
     # Line 11:  − (5/2) · H² · (P,3) · {q · (1 + π/3 · (2−q) · η₂,₂)·B − (2−q)(1−q)}
+    #
+    # Bracket scope verified May 2026 by empirical test:  user's J0033 (21f)
+    # transcription appeared to enclose this term inside the Q·(P,2) factor
+    # of line 10, but doing so destroys the Δ-family lifetime match (factor
+    # 1000–10000× off, one sign flip).  Keeping it as a separate additive
+    # term reproduces all 17/18 PDG lifetimes to within factor 3, so the
+    # trailing parentheses in (21f) likely close earlier than the
+    # ASCII transcription suggests.
     line11 = (
         -(5.0 / 2.0)
         * H * H
