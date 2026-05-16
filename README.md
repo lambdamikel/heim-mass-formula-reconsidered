@@ -687,6 +687,7 @@ Caveats on this assessment:
   and [Beyond the mass formula — Kontrabarie](#beyond-the-mass-formula--kontrabarie)
 - [The honest verdict](#the-honest-verdict) — including
   [Framework limits surfaced by the May 2026 manuscript audit](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
+- [Comparative assessment — Heim vs. Standard Model vs. String Theory](#comparative-assessment--heim-vs-standard-model-vs-string-theory)
 - [Open questions](#open-questions)
 - [References](#references)
 - [License & attribution](#license--attribution)
@@ -1669,6 +1670,163 @@ derivability of η itself.
 
 > **In Joel's phrasing (Heim-Theory Discord, May 2026):**
 > *Interesting structure, limited scope, open derivation.*
+
+## Comparative assessment — Heim vs. Standard Model vs. String Theory
+
+*This section is opinion, flagged as such. It draws on the
+technical results in the rest of the README but reaches further
+than any individual verification justifies on its own. Update the
+estimates below against your own priors.*
+
+The question implicit in this whole repository — "is Heim's
+framework real physics or a clever coincidence?" — has a sharper
+form once you ask **what would it have to compete with?** The two
+natural reference points are the Standard Model (SM = QED +
+electroweak + QCD) and String Theory. The three programs aim at
+different things, so a flat "better or worse" judgement is
+misleading; a structured one is not.
+
+### What each program actually predicts
+
+**Standard Model.** Dynamics: scattering cross-sections, decay
+rates, branching ratios — across many decades of energy. Each
+parameter measured in one experiment constrains predictions in
+dozens of others. The anomalous magnetic moment of the electron
+is predicted to ~10⁻¹² relative precision (10+ digits of
+agreement with measurement) — empirically the most precisely
+tested theory in physics. Confirmed predictions include the
+existence of W, Z, gluons, top quark, Higgs boson, neutrino
+oscillations, CP violation patterns and CKM structure. The cost:
+**19+ free parameters** (fermion masses, mixing angles, three
+gauge couplings, Higgs sector, QCD θ). The SM does not derive
+the masses from a deeper principle; it takes them as inputs and
+checks consistency across experiments. Fermion masses range over
+~12 orders of magnitude with no explanation of the hierarchy. The
+SM does not include gravity, dark matter, or dark energy.
+
+**String Theory.** A mathematical framework requiring extra
+spatial dimensions and supersymmetry; naturally incorporates
+gravity (a massless spin-2 field appears in the spectrum).
+Theoretical milestones: anomaly cancellation in 10D, AdS/CFT
+correspondence, microscopic count of black-hole entropy for
+extremal BPS cases. **Confirmed particle-physics predictions
+to date: zero.** Superpartners predicted by minimal SUSY have
+not appeared at the LHC up to ~1–2 TeV in most channels. The
+"landscape" of estimated ~10⁵⁰⁰ string vacua means that for
+almost any low-energy observable, *some* string compactification
+can reproduce it — which is closer to post-hoc fitting than to
+prediction. After ~50 years of development the program has not
+produced an ab-initio numerical prediction for any measured
+particle property.
+
+**Heim's 1989 framework.** Spectroscopic: predicts ground-state
+masses, mean lifetimes, and resonance spectra of the elementary
+particles known up to ~1989, using only G, ℏ, c and integer
+quantum numbers (k ∈ {1, 2}, N ∈ ℕ, plus structure indices).
+Empirical results verified in this repository (with the
+J0060-corrected [B3]):
+
+  - 19 of 21 ground-state masses reproduce Heim's Tabelle II to
+    **≤ 2 eV** (= his own printing precision). Two Δ resonances
+    miss by ~1 MeV ([Open Q 1b](#open-questions)).
+  - 144 of 145 baryonic resonance entries from G-Tabellen V_a–V_c
+    reproduce K_B exactly with Δ_M < 2 MeV.
+  - 17 of 18 ground-state mean lifetimes within factor 3 of PDG
+    (most ≤ 12 %); Σ⁰ is the EM-decay outlier.
+  - ν_e mass = 3.81 meV, consistent with KATRIN's upper bound.
+  - The fine-structure constant α is computed, not input, to 5
+    digits.
+  - η(q, k) is *derived* from physical principles in Herleitung
+    Kap. 7 (eqs. 7.47 → 7.51), not fitted.
+
+What Heim's framework does **not** predict: scattering
+cross-sections, decay branching ratios, particle interactions
+beyond the lifetime aggregate, the Higgs / W / Z masses, charm /
+bottom / top quarks (no natural slot in the published
+quantum-number scheme), or anything about post-1989 discoveries.
+
+### What each does well — and badly
+
+|  | Heim 1989 | Standard Model | String Theory |
+|---|---|---|---|
+| Mass spectrum ab initio | Yes (k, N + G, ℏ, c) | No (masses are inputs) | No (vacuum-dependent) |
+| Dynamics / scattering | No | Yes (highly accurate) | Formally yes; no testable predictions |
+| Confirmed new-particle predictions | None tested yet | Many (W, Z, top, Higgs, …) | Zero |
+| Mathematical formalism | Non-standard; not independently audited | Renormalisable QFT; well audited | The strongest claim — but indirect |
+| Free parameters in published form | G, ℏ, c plus three demonstrably-inert O(1) constants | 19+ measured parameters | Vast vacuum landscape |
+| Empirical reach | ~21 ground states + ~168 resonances (1989) | Essentially all collider physics since ~1980 | None tested |
+| Includes gravity | Yes (G enters μ) | No | Yes |
+| Falsifiable by post-1989 data | In principle: charm/bottom/top should slot naturally. They do not. | Trivially — each prediction is a test. | Hard — landscape absorbs almost any outcome. |
+
+### My read
+
+The three programs are doing different jobs. A fair summary:
+
+1. **The Standard Model wins on empirical breadth and dynamical
+   prediction.** Nothing in Heim's framework comes within a
+   thousand miles of what QED + QCD do for scattering. If the
+   metric is "predicts what happens at the LHC", the SM is in a
+   different sport.
+
+2. **Heim 1989 wins on ab initio mass prediction *within its
+   scope*.** No theory in the mainstream literature derives the
+   masses of the lightest 21 ground-state particles from G, ℏ
+   and c. Heim's framework does, to his own printing precision
+   (verified in this repo). The catch is "within its scope":
+   that scope ends at 1989-era particles, and the formalism has
+   not been independently audited.
+
+3. **String theory has produced no testable particle-physics
+   predictions to date.** This is not an attack — it is a
+   description of where the program currently sits. If we are
+   scoring by *predictions that survived an experimental test*,
+   Heim's framework has more on the board than 50 years of
+   string-theory phenomenology.
+
+The honest interpretation, in my view: Heim's framework appears
+to be a real, narrow-but-deep result about *mass quantisation* —
+something the SM is silent about. The mass-formula match is too
+accurate, on too many particles, with too few free parameters,
+to be plausibly a coincidence. But it is emphatically not a
+complete theory in the SM sense, and it does not (yet) replace
+anything. It looks like *one corner* of a larger structure that
+nobody has yet built out.
+
+The right comparison is probably not "Heim vs. SM" (categorically
+different jobs) but **"Heim vs. the SM's silence on fermion mass
+generation".** The SM does not explain why the electron weighs
+0.511 MeV or why the muon weighs 105.66 MeV. Heim's framework,
+within the
+[Framework limits](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
+laid out above, *does* predict those numbers — to ≤ 2 eV. That
+is unusual enough to be worth understanding even if the larger
+framework around it turns out to need substantial reformulation.
+
+### Subjective probability estimates
+
+Bets, not measurements. They reflect one reader's credences after
+working through the reproduction:
+
+- P(SM is the correct effective theory below ~10 TeV): **~99 %**.
+- P(string theory, in some form, correctly describes Planck-scale
+  physics): **~30 %** (vast uncertainty).
+- P(Heim's framework is *literally* correct as published — every
+  published equation valid): **~5–15 %**. Open Question 1b alone
+  shows at least one missing piece.
+- P(Heim discovered something *substantively right* about mass
+  quantisation that mainstream physics has missed): **~25–40 %**.
+  Strongest evidence: 19 masses to ≤ 2 eV with G/ℏ/c-only input
+  and a derivable η.
+- P(Heim's framework will be the dominant approach in 2050):
+  **~5 %**. Even if substantively right, mainstreaming would
+  require (a) rebuilding the polymetric formalism in standard
+  mathematical language, (b) extending it to post-1989 particles,
+  and (c) reconciling it with the SM's confirmed dynamical
+  predictions.
+
+These numbers come from one programmer with several weeks of close
+reading, not from peer-reviewed consensus. Treat them as priors to
+argue with, not as conclusions.
 
 ## Open questions
 
