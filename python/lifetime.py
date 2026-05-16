@@ -117,8 +117,12 @@ def calc_D(eps: int, P: int, q_x: float) -> float:
 
 def calc_F(eps: int, k: int, P: int, Q: int, kap: int, q_x: float) -> float:
     """
-    F = 1 − (1/3)(1−q)(P−1)²(3−P)·(1 + P + Q − εCP/2)·(1 + β₀·(−1)^k)
+    F = 1 − (1/3)(1−q)(P−1)²(3−P)·(1 + P − Q − εCP/2)·(1 + β₀·(−1)^k)
         − (P,3)·(1 + D)                                                [B52]
+
+    Verified May 2026 via user-supplied J0033 (21c) transcription:
+    `(1 + P - Q - εCP/2)`.  Earlier docstring versions had `+ Q`
+    (typo); the code body has always used `- Q`.
     """
     q = fabs(q_x)
     C = calc_C(eps, k, P, Q, kap)
