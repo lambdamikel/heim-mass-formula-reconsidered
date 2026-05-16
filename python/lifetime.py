@@ -234,12 +234,22 @@ def calc_b2(
     b₂ — eq. [B55] / J0033 (21f). Verbose; transcribed line by line.
 
     Verified May 2026 against user-supplied J0033 (21f) transcription:
-    all 11 sub-terms match.  Two remaining manuscript-source questions:
+    all 11 sub-terms match.  Two manuscript-source notes:
 
       - The constant `c/ω` in lines 7 and 10 (`(B − c/ω)²` and
-        `B/2·(H+2) + c/ω`) is hard-coded here as `3/4`.  Empirically
-        consistent with the 17/18 PDG match.  Source-symbol identity
-        of `c` and `ω` not yet recovered from J0033 directly.
+        `B/2·(H+2) + c/ω`) corresponds to the ratio of the speed of
+        light c to the propagation speed ω of gravitational field
+        disturbances.  Heim's original 1980 derivation gave
+        ω = (4/3)·c, hence c/ω = 3/4.  The IGW Innsbruck 2003
+        Herleitung (von Ludwiger & Grüner, S. 10 Fn. vi and S. 58)
+        identifies Heim's original operator expression as incorrect
+        and corrects the propagation speed to ω = c, i.e. c/ω = 1.
+        Empirically, however, the original 3/4 reproduces 17/18 PDG
+        lifetimes within factor 3, whereas 1 yields only 16/18
+        (Ω⁻ slips from +0.21 to +0.96 log-error).  Per Herleitung
+        S. 80 the IGW group never reprogrammed the lifetime formulas
+        — so the b₂-formula remains internally consistent in the
+        original ω = (4/3)·c convention, and we keep 3/4 here.
       - The trailing-bracket ambiguity in (21f): line 11 sits *outside*
         the `Q·(P,2)` factor of line 10.  Confirmed manuscript-wise by
         the user; an earlier ASCII transcription suggested otherwise
