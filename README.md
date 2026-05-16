@@ -685,7 +685,8 @@ Caveats on this assessment:
   [Post-1989 particle predictions](#post-1989-particle-predictions),
   [Lifetime predictions](#lifetime-predictions),
   and [Beyond the mass formula — Kontrabarie](#beyond-the-mass-formula--kontrabarie)
-- [The honest verdict](#the-honest-verdict)
+- [The honest verdict](#the-honest-verdict) — including
+  [Framework limits surfaced by the May 2026 manuscript audit](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
 - [Open questions](#open-questions)
 - [References](#references)
 - [License & attribution](#license--attribution)
@@ -1539,6 +1540,121 @@ extreme:
    "0.2 % RMS" headline accuracy thus partly reflects a single
    parameter (G) being effectively tuned within its experimental
    uncertainty band.
+
+### Framework limits surfaced by the May 2026 manuscript audit
+
+The May 2026 reading of J0032 / J0033 / F-document — combined with
+the new implementation of resonances ([B47] / Anregerkurve) and
+lifetimes ([B47]–[B57]) — surfaced a small number of *framework-level*
+limits that are distinct from transcription or implementation
+issues. We consolidate them here for visibility; per-item diagnostics
+live under "[Open questions](#open-questions)" and in
+`MANUSCRIPT_FINDINGS.md`.
+
+These are empirical observations about Heim's published framework
+*as it stands*, not judgements about its underlying physical
+motivation. Heim himself flagged several of these as open; our
+contribution is to quantify *how much* is missing.
+
+1. **A ~1 MeV "missing additive term" in φ at P = 3.** All four Δ
+   ground states reproduce Heim's Tabelle II to only 0.85–1.58 MeV,
+   while the other 19 ground states match to ≤ 2 eV after the
+   [B3] correction (Heim's own printing precision). `calc_a`,
+   `calc_W`, `calc_n`, and `calc_phi` are verified term-for-term
+   against the manuscript; no Δ-specific correction exists in any
+   "Ergänzung zu Seite X" note we have read. Heim's own
+   "Bemerkung zu (5d)" (J0032 p. 40) admits an unknown additive
+   term in φ may be missing, with stated upper bound
+   *einiger 10⁻² Elektronen-megavolt*. We observe ~1 MeV —
+   *two orders of magnitude above Heim's own stated bound*.
+   Either the bound is too optimistic or there is a P = 3
+   piece in φ that is not present in the manuscripts we currently
+   have access to. See [Open Question 1b](#open-questions).
+
+2. **The lifetime formula has no decay-channel distinction.**
+   Equations (21)–(21h) / [B47]–[B57] produce a single number per
+   particle, with no input identifying the dominant decay process.
+   17 of 18 measured particles match within factor 3 (most to
+   ≤ 12 %) — but Σ⁰, which decays electromagnetically
+   (Σ⁰ → Λγ, τ ≈ 7.4·10⁻²⁰ s), is off by ~12 orders of magnitude.
+   The framework as published appears to model weak-decay-dominated
+   lifetimes; electromagnetic and pure-strong channels are not
+   differentiated. This is consistent with Heim having reported
+   "12 of 14 within experimental error" in his own runs
+   (Herleitung S. 80), since the more channel-sensitive particles
+   are not in that 14-particle set.
+
+3. **An unknown selection rule generates apparent surplus
+   resonances.** The mass formula admits more (n, m, p, σ) tuples
+   per sector than the PDG lists as observed resonances. Heim
+   explicitly notes he was working on the "Auswahlregel"
+   (selection rule) until his illness in 1999; the documents we
+   have do not contain the rule. Empirically about 71 of 168
+   tabulated tuples in Heim's own Tabellen IV/V are *underlined*
+   — Heim's notation for single-process resonances that
+   *do not* obey the stepwise excitation condition (14d) — and
+   require a separate formula not given in J0032 (p. 15a).
+
+4. **z(N) is empirically not a simple function.** With
+   Q(N) = Q(N=0) + 2·z(N), Heim explicitly states z is
+   *"noch völlig unbekannt"* (J0032 p. 26). The closed-form
+   Anregerkurve matches the z = 0 sector (31 of 181 verified
+   charge-state resonances) to ≤ 10⁻⁴; the remaining 150
+   require z ≠ 0. Our PDG-J extraction of z
+   (`python/z_function_analysis.py`) shows z is *not* monotonic
+   in N and does not correlate with σ. The full resonance
+   spectrum is therefore not ab-initio predictable from Heim's
+   published equations alone.
+
+5. **Internal manuscript inconsistencies in the o-family
+   tables.** Term-by-term comparison surfaces two distinct
+   self-inconsistencies inside Heim's own published numerical
+   tables:
+   - **Anhang B (J0032 p. 43)**: the per-particle a₁ rows for
+     o⁺⁺ and o⁻ appear swapped — Heim's W column is consistent
+     with our calc_a output, *not* with his own tabulated a₁.
+   - **Tabelle I ↔ Tabelle II for o⁺⁺ and o⁰**: Heim's
+     published (n, m, p, σ) for these two particles produces
+     a w-value via eq. 11 that disagrees with his own published
+     W₀. The published mass and the published quantum numbers
+     are mutually inconsistent at the source.
+
+   These are isolated print-precision issues in two tables, not
+   framework defects; they do however mean the published numbers
+   cannot all be simultaneously correct, and any reproduction
+   has to choose which to trust.
+
+6. **`c/ω = 3/4` in `calc_b2` embeds an obsolete
+   gravitational-propagation assumption.** The constant `c/ω`
+   in lifetime sub-formula (21f) equals 3/4 in Heim's original
+   1980 derivation (ω = (4/3)·c). The IGW Innsbruck 2003
+   Herleitung identifies the original operator expression as
+   incorrect and corrects to ω = c, i.e. c/ω = 1
+   (Herleitung S. 10 Fn. vi, S. 58). The same Herleitung also
+   states (S. 80) that *the lifetime formulas were never
+   reprogrammed after the correction*. Empirically the older
+   3/4 reproduces 17/18 PDG lifetimes while the corrected 1.0
+   yields 16/18 (Ω⁻ slips out of factor 3). So the b₂ kernel
+   appears to be self-consistently calibrated in the older
+   ω = (4/3)·c convention — pointing at an *internal
+   inconsistency between the corrected mass-formula chapters
+   and the un-revised lifetime chapters of Heim's published
+   framework* which a future re-derivation would need to
+   resolve. See `python/lifetime.py:calc_b2` and
+   `MANUSCRIPT_FINDINGS.md` § 10.
+
+None of these limits is fatal to Heim's framework. Points 1–4
+are open questions Heim himself acknowledged (selection rule,
+z(N), unknown additive φ term) or that fall naturally out of
+the framework's published scope (no channel-distinction for
+decays). Point 5 is a manuscript-print issue. Point 6 is a
+fixable internal inconsistency. Taken together they sketch
+the *empirical reach* of the published 1989 framework: very
+accurate where it applies (mass ground states to ≤ 2 eV,
+lifetimes to factor 3 on 17/18 weak-channel particles, k=2
+baryonic resonances to Δ_M < 2 MeV on 144/145), with clearly
+demarcated boundaries beyond which the published equations do
+not yet predict.
 
 **Bottom line.** Heim's mass formula is *substantially more theory-driven
 than ordinary curve-fitting*, and the constants he explicitly called
