@@ -1,0 +1,44 @@
+Δ-family mass discrepancy diagnostic (May 2026 session continuation)
+====================================================================
+
+Verified intact (NOT the source of discrepancy):
+- calc_a (Term-für-Term Vergleich mit J0032 (13c) und (13d))
+- calc_W (matches Heim's Anhang B W_{N=0} for 20/21 particles)
+- calc_n greedy decomposition (gives Heim's published (n,m,p,σ)
+  for o⁺ and o⁻ exactly)
+- φ structural formula (matches user's manuscript transcription
+  of J0032 [B7] / [B49] verbatim)
+- All other 19 ground-state particles (mass matches Heim's
+  Tabelle II to ≤ 2 eV)
+
+The 1.42 MeV mass discrepancy for o⁺ (Δ⁺) — and analogous offsets
+of 0.85-1.58 MeV for the other three Δ ground states — must
+therefore come from a P=3 specific term in φ that:
+  - Is non-zero for P=3 (Δ family)
+  - Is zero (or much smaller) for P ∈ {0, 1, 2}
+  - We currently do not compute
+
+Where to look next (for manuscript reading):
+  - J0032 [B6] (Φ capital) and [B7]/[B49] (φ self-coupling)
+    for P=3 specific corrections
+  - J0032 §19-20 multiplet classifications x_11, x_12, x_13
+    (Δ quartets/quintets at k=2, λ_2 = 2, P=3,4) for
+    structure-specific extra terms
+  - Whether (Q_m - Q_n) in φ piece3 depends on (P, κ, q)
+
+Per-particle discrepancies (mass = Heim − ours):
+  o⁺⁺ (q=+2):  Δm = +1.58 MeV  (Δbracket = +680)
+  o⁺  (q=+1):  Δm = +1.42 MeV  (Δbracket = +611)
+  o⁰  (q= 0):  Δm = +0.85 MeV  (Δbracket = +366)
+  o⁻  (q=-1):  Δm = +1.25 MeV  (Δbracket = +538)
+
+The discrepancy varies with q but in a non-monotonic way.  This
+rules out a simple q-linear missing term.  A missing term involving
+both P=3 and some q-dependent factor (e.g. (1-q²)(1+q²/k)) is
+the closest functional fit.
+
+For the o⁰ specifically: there's an ADDITIONAL 6.85-unit W₀
+discrepancy (W₀ off by 6.85 → propagates to mass via greedy +
+φ).  But for o⁺ and o⁻ where W₀ matches Heim's to 10⁻⁴ and
+(n,m,p,σ) matches Heim's published values exactly, the
+discrepancy is purely in φ.
