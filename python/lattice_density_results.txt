@@ -1,0 +1,50 @@
+==============================================================================================================
+ Lattice density check at Heim's 21 ground-state mass points
+ Pre-registration: LATTICE_DENSITY_PREREGISTRATION.md
+==============================================================================================================
+
+  particle         M_target     rank1 [MeV]     rank2 [MeV]   n_total    counts within tier
+  ---------- --------------  --------------  --------------  --------    -------------------
+  e_-             0.5109882       0.000e+00       9.287e-03   4922190    2 eV:1 100 eV:1 1 keV:1 10 keV:2 100 keV:23 1 MeV:1165 10 MeV:12516
+  miu_-         105.6563413       1.304e-04       6.752e-04   4922190    2 eV:0 100 eV:0 1 keV:3 10 keV:19 100 keV:168 1 MeV:2138 10 MeV:16363
+  eta           548.7836954       2.475e-03       2.475e-03   4842708    2 eV:0 100 eV:0 1 keV:0 10 keV:16 100 keV:162 1 MeV:1477 10 MeV:9784
+  KAPPA_+       493.6995617       1.824e-03       4.328e-03   4922190    2 eV:0 100 eV:0 1 keV:0 10 keV:4 100 keV:33 1 MeV:879 10 MeV:11835
+  KAPPA_0       497.7081907       1.704e-03       1.704e-03   4842708    2 eV:0 100 eV:0 1 keV:0 10 keV:33 100 keV:330 1 MeV:2358 10 MeV:12925
+  pi_+-         139.5642183       7.414e-04       1.205e-03   4922190    2 eV:0 100 eV:0 1 keV:1 10 keV:16 100 keV:187 1 MeV:1935 10 MeV:17066
+  pi_0          134.9560256       2.603e-03       2.603e-03   4842708    2 eV:0 100 eV:0 1 keV:0 10 keV:25 100 keV:265 1 MeV:2486 10 MeV:14354
+  LAMBDA       1115.5665965       1.022e-01       1.114e-01    878825    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:51 10 MeV:779
+  OMEGA_-      1672.1254333       3.687e-01       3.780e-01    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:40 10 MeV:1075
+  p             938.2516734       2.973e-03       6.314e-03    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:2 100 keV:14 1 MeV:68 10 MeV:425
+  n             939.5454040       6.619e-01       6.712e-01    878825    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:25 10 MeV:325
+  XI_0         1314.8629370       1.634e-01       1.727e-01    878825    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:50 10 MeV:801
+  XI_-         1321.2539441       3.130e-03       6.157e-03    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:2 100 keV:20 1 MeV:75 10 MeV:950
+  SIGMA_+      1189.3387087       1.740e-01       1.833e-01    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:76 10 MeV:946
+  SIGMA_0      1192.4424661       2.256e-01       2.349e-01    878825    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:58 10 MeV:850
+  SIGMA_-      1197.2688055       4.466e-02       5.395e-02    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:6 1 MeV:99 10 MeV:875
+  DELTA_+      1234.5730745       1.048e-01       1.141e-01    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:87 10 MeV:952
+  DELTA_-      1229.9586998       1.335e-01       1.428e-01    916800    2 eV:0 100 eV:0 1 keV:0 10 keV:0 100 keV:0 1 MeV:100 10 MeV:900
+
+==============================================================================================================
+ Pre-registered metric: median count of close tuples per precision tier
+==============================================================================================================
+  (n = 18 particles)
+
+  tier          median     min     max  classification      
+  ----------  --------  ------  ------  --------------------
+  2 eV             0.0       0       1  sparse              
+  100 eV           0.0       0       1  sparse              
+  1 keV            0.0       0       3  sparse              
+  10 keV           1.0       0      33  sparse              
+  100 keV         10.0       0     330  moderately dense    
+  1 MeV           93.0      25    2486  dense               
+  10 MeV         951.0     325   17066  dense               
+
+==============================================================================================================
+ VERDICT (pre-registered tiers, not modified after run)
+==============================================================================================================
+  First tier where lattice becomes DENSE (median count ≥ 10):  1 MeV
+
+  → Heim's lattice becomes dense at 1 MeV.
+    Intra-Heim consistency AND much of the PDG-percent match is
+    structural; only the very-loose PDG comparison is slot-density.
+    Would partially walk back the post-1989 falsification severity.
