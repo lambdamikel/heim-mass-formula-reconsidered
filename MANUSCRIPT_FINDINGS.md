@@ -221,7 +221,68 @@ empirically-detectable edge of Heim's framework's published
 accuracy.
 
 
-## 10. Implications for our reproduction
+## 10. Lifetime formula (21f) b₂ — `c/ω` identified as gravity-speed ratio
+
+May 2026 reading of J0033 (21f) (b₂ sub-expression of the lifetime
+formula) revealed two occurrences of a constant transcribed as `c/ω`
+in lines 7 and 10:
+
+    Line 7:  − (B − c/ω)² · (P−1)(P−2)(P−3) · (−1)^(k−1)
+    Line 10:                      … + (B/2·(H+2) + c/ω) · …
+
+Our `python/lifetime.py` had `c/ω = 3/4` hard-coded.  Tracking down
+the symbols led to Herleitung Kap. 1 (von Ludwiger & Grüner, IGW
+Innsbruck 2003):
+
+  - S. 10 Fn. vi:
+      > "B. Heim hatte in seiner ersten Publikation (1980) einen
+      > Wert von 4/3 c für die Ausbreitungsgeschwindigkeit
+      > gravitativer Feldstörungen errechnet, was auf die Verwendung
+      > eines falschen Operator-Ausdrucks zurückzuführen war. Im
+      > Folgenden wird mit c als der Ausbreitungsgeschwindigkeit
+      > von Gravitationsfeldstörungen gerechnet."
+
+  - S. 3310:
+      > "Wenn sich ε̇ und η̇ zeitlich nicht ändern, ist ω = c."
+
+Identification:
+
+  - `c` = speed of light.
+  - `ω` = propagation speed of gravitational field disturbances.
+  - Heim's original 1980 value:  ω = (4/3)·c   ⟹  c/ω = 3/4.
+  - IGW-corrected value:         ω =  c        ⟹  c/ω = 1.
+
+### Empirical test
+
+Replacing `c/ω = 3/4 → 1.0` in both lines 7 and 10 of `calc_b2`:
+
+  Score:   17/18 → 16/18 within factor 3 of PDG.
+  Effect:  Ω⁻ slips from log-err +0.21 to +0.96 (out of factor 3);
+           η improves marginally (−0.33 → −0.25);
+           all other 16 particles within ±0.01 of original.
+
+### Interpretation
+
+The b₂ formula is internally consistent in Heim's original
+ω = (4/3)·c convention.  The Herleitung (S. 80) explicitly notes:
+
+  > "Wegen des erheblichen Aufwands, den die Überprüfung der
+  > Formeln für die Lebensdauern bereitet, wurde dieser Teil von
+  > uns noch nicht neu programmiert. Es werden die von Heim
+  > gerechneten Werte vorgestellt."
+
+So the IGW group never reprogrammed the lifetime side.  The
+ω-correction in their mass-formula chapters was therefore never
+propagated through equations (21)–(21h).  Our `c/ω = 3/4` choice
+matches Heim's published b₂ kernel; it does NOT match what the
+IGW correction would suggest theoretically.
+
+This is documented in `python/lifetime.py:calc_b2` and provides
+a concrete example of the gap between Heim's original framework
+and IGW's later re-derivation that the lifetime sector still
+inherits.
+
+## 11. Implications for our reproduction
 
 - The 12-Λ z=0 sector with b_fit = b_pred = +0.0070 (commit a74c31b) is
   the canonical verification of Heim's z=0 approximation for non-

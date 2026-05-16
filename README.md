@@ -1366,6 +1366,28 @@ Highlights:
 - **Σ⁰** is the only remaining outlier; it decays electromagnetically
   (Σ⁰ → Λγ) and is consistent with being out of the weak-decay scope.
 
+**Note on `c/ω` in b₂** (May 2026 manuscript reading). The b₂
+sub-expression of the lifetime formula (J0033 (21f), our `calc_b2`)
+contains a constant `c/ω` in two places — `(B − c/ω)²` in line 7
+and `B/2·(H+2) + c/ω` in line 10. The Herleitung (Kap. 1, Fn. vi
+and S. 58) identifies these symbols:
+
+  - `c` = speed of light;
+  - `ω` = propagation speed of gravitational field disturbances.
+
+Heim's original 1980 derivation used ω = (4/3)·c (later identified
+by von Ludwiger & Grüner as resulting from an incorrect operator
+expression), giving c/ω = 3/4. The IGW Innsbruck correction sets
+ω = c, giving c/ω = 1. We tested both: 3/4 matches 17/18 PDG
+lifetimes within factor 3, whereas 1 yields only 16/18 (Ω⁻ slips
+from log-err +0.21 to +0.96). The Herleitung S. 80 explicitly
+states that IGW never reprogrammed the lifetime formulas, so the
+ω-correction was never propagated through equations (21)–(21h);
+the b₂-kernel remains internally consistent in Heim's original
+ω = (4/3)·c convention. We therefore keep c/ω = 3/4 — see
+`python/lifetime.py:calc_b2` and `MANUSCRIPT_FINDINGS.md` § 10
+for the full reasoning.
+
 History of the iteration:
 
 | Iteration | Within ×3 | Within ×100 | ≥ ×100 | Negative | Zero |
