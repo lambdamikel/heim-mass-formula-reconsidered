@@ -59,9 +59,17 @@ ecosystem of Heim-theory work.
 Burkhard Heim (1925–2001) published a mass formula — developed
 1973-1976 and refined into the 1982 Aik-matrix form, but most widely
 circulated via the IGW-Innsbruck 2003 restatement labelled "1989" —
-that claims to compute the rest masses of ~20 elementary particles to
-~0.2% accuracy from a handful of integer quantum numbers, with no
-free fitting parameters. Mainstream physics does not accept it. This
+that claims to compute the rest masses of ~20 elementary particles
+from a handful of integer quantum numbers, with no free fitting
+parameters in the continuous sense. The internal self-consistency
+to Heim's own Tabelle II is at the ≤ 2 eV level (8-decimal
+agreement); against modern PDG values it is ~0.05–0.2 % RMS.
+The pre-registered post-1989 / lattice-density tests of May 2026
+sharpen this further: the ≤ 2 eV intra-Heim figure is *structural*
+(the integer lattice is sparse at that precision), whereas the
+~ 0.1 % PDG-comparison is partly slot-density-aided (the lattice
+becomes dense at the 100 keV–1 MeV scale). Mainstream physics
+does not accept the framework. This
 repository:
 
 1. Contains a runnable, annotated reference implementation (C and Python).
@@ -243,14 +251,20 @@ repository:
 
 ## Headline findings
 
-> **1. The mass-formula layer carries non-trivial numerical structure.**
+> **1. The mass-formula layer carries non-trivial numerical structure
+> in its *continuous* parameters.**
 > Sensitivity analysis shows three of Heim's *self-described* "fitted"
 > constants (⁴√2, (π/e)², 4π/⁴√2) are essentially inert — changing them
 > by factors of 1000× has effects below the formula's own quoted accuracy.
-> The accuracy lives instead in η(q, k), the mass element μ, the integer
-> structure constants Q_i, and the integer quantum numbers, none of which
-> are free parameters. This is the central positive result: the formula
-> is not succeeding through hidden tunable knobs.
+> The accuracy lives instead in η(q, k), the mass element μ, and the
+> integer structure constants Q_i, none of which are continuous free
+> parameters. **Caveat (May 2026, pre-registered)**: the *integer*-valued
+> structure — quantum-number tuples (ε, k, P, Q, κ, q) plus excitation
+> indices (n, m, p, σ) — does provide effective freedom via slot
+> selection in a dense lattice, particularly at the 100 keV–10 MeV
+> precision tier (see Framework limits #6). The continuous-parameter
+> structure is therefore not the whole story; the framework's match to
+> PDG percent-level values depends partly on integer-tuple choice.
 
 > **2. The η-function is derived from physical principles, not postulated.**
 > The 81-page "Zur Herleitung" manuscript (chapter 7, eqs. 7.47 → 7.51)
@@ -1201,6 +1215,18 @@ The new RMS relative error over the 20 measured particles is about
 to the accuracy claimed by the Heim research group itself (5–8 of 16
 within experimental tolerance, depending on the choice of G).
 
+**Caveat (May 2026, after the lattice-density check)**: the 0.05 %
+PDG-vs-Heim RMS sits in the slot-density-relevant precision range
+(~50 keV–10 MeV for typical hadron masses). The pre-registered
+post-1989 test showed that random masses match Heim slots at ≤ 1 %
+about 56 % of the time, and the follow-up lattice-density check
+identified the dense-tier transition at ~ 1 MeV. So 0.05 % is
+*better than the random-baseline*, but not by a wide margin in the
+absolute sense; the stronger argument for non-coincidence comes
+from Heim's intra-Tabelle II reproduction at ≤ 2 eV (where the
+lattice is genuinely sparse), not from PDG comparison alone. See
+[Framework limits #6](#framework-limits-surfaced-by-the-may-2026-manuscript-audit).
+
 **Electron-mass discrepancy — resolved May 2026 via Heim's J0060
 manuscript.** Heim's 1989 Tabelle II
 (`downloads/G_Ausgewaehlte_Ergebnisse.pdf`, p. 3) lists the electron
@@ -1265,16 +1291,17 @@ categories**, which the repo previously conflated:
    matched (n, m, p, σ) tuples lie on a common Anregerkurve
    f(N) = a·N/(N+1) + b·N per sector (verified by
    `python/resonance_consistency.py`). For k=2 baryon resonances,
-   the same procedure (`python/resonance_wscan_baryons.py`) reaches
-   120/145 K_B-exact and 106/145 mass-within-2-MeV. Per-state Q
-   (= 2·J) is then disambiguated *iteratively* from per-sector
-   Anregerkurve consistency (`python/resonance_consistency_iter.py`,
-   no PDG-J lookup needed) — all 145 states classify into 15
-   physical (P, Q, κ, q) sectors with max |Δf| ≤ 0.074, the 9 tightest
-   sectors matching the k=1 tightness (|Δf| ≤ 0.01).  The remaining
-   open task at k=2 is the same as at k=1: derive the per-sector
-   (a, b) Anregerfunktion coefficients ab initio from J0032
-   eqs. 14a-14b₁ and compare to the back-fitted values.
+   the same procedure (`python/resonance_wscan_baryons.py`, after
+   the canonical-η fix) reaches **144/145 K_B-exact** and
+   **143/145 mass-within-2-MeV**. Per-state Q (= 2·J) is then
+   disambiguated *iteratively* from per-sector Anregerkurve
+   consistency (`python/resonance_consistency_iter.py`, no PDG-J
+   lookup needed) — all 145 states classify into 18 physical
+   (P, Q, κ, q) sectors with max |Δf| down to 1.07·10⁻⁴ in the
+   tightest sector. **Anregerkurve (a, b) coefficients reproduced
+   ab initio** from J0032 eqs. 14a-14b₁ for z=0 branches
+   (`python/anregung_ab_initio.py`): the 12-Λ z=0 sector achieves
+   b_fit = +0.0070 ≡ b_pred = +0.0070 to 6 decimals.
 
 2. **Comparison of Heim's selected results to modern PDG values**.
    Heim's G-table predictions, *as he published them*, are mostly
@@ -1797,16 +1824,24 @@ PDG-against-Heim mass agreement at the 0.01–1 % level — while
 real — has to be assessed against a chance-hit baseline of
 ~50–75 % that the same scheme provides to random masses.
 
-**Bottom line.** Heim's mass formula is *substantially more theory-driven
-than ordinary curve-fitting*, and the constants he explicitly called
-"fitted" are not in fact doing the work. The central η-function — the
-quantity that does most of the actual work — *is* derived from physical
-principles in chapter 7 of the Herleitung manuscript (eqs. 7.47 → 7.51),
-emerging from a metron-quantised geometry plus the renormalisation
-ε'₀± = ε₀±·⁴√(1+k/4) of the elementary charge field. The remaining open
-questions concern empirical reach (extension to post-1989 particles)
-and the rigour of the underlying polymetric formalism, not the
-derivability of η itself.
+**Bottom line.** Heim's mass formula contains a real structural
+core — η is derived from physical principles in chapter 7 of the
+Herleitung manuscript (eqs. 7.47 → 7.51), the continuous constants
+he explicitly called "fitted" are essentially inert, and the
+intra-table reproduction is tight at his own ≤ 2 eV precision.
+Where the framework is *not* doing as much work as the headline
+numbers initially suggested is at the PDG-percent comparison
+tier: the May 2026 pre-registered tests showed that the integer
+lattice is dense enough at 100 keV–10 MeV that random masses find
+slots about as often as Heim's chosen ones. The framework is
+therefore "more theory-driven than ordinary curve-fitting" in
+its continuous parameters and intra-table self-consistency, and
+"more lattice-density-aided than initially presented" in its
+PDG-vs-Heim percent-level agreement. The remaining open questions
+concern empirical reach (post-1989 particles slot-density-aided
+rather than predicted), the rigour of the underlying polymetric
+formalism, and the unresolved Δ-family / z(N) / selection-rule
+gaps in Heim's own published framework.
 
 > **In Joel's phrasing (Heim-Theory Discord, May 2026):**
 > *Interesting structure, limited scope, open derivation.*

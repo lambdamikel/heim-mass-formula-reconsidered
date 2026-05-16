@@ -1341,30 +1341,43 @@ within factor 3 of measurement, 15 to ≤ 12 % accuracy.
 
 Heim's formula gets these things right:
 
-- Masses of about 20 light hadrons and leptons to ~0.05 % RMS.
+- Heim's own Tabelle II to ≤ 2 eV (8-decimal agreement) across 19 of
+  21 ground-state particles — an intra-table self-consistency
+  reproduction at his own printing precision.
+- Masses of about 20 light hadrons and leptons to ~0.05 % RMS *against
+  modern PDG values* (a weaker claim than the intra-table one: the
+  pre-registered May 2026 tests show this PDG tier is partly
+  slot-density-aided — see Chapter 11).
+- 23 mesonic resonances (G-Tabelle IV) reproduced exactly via Heim's
+  own J0032 exhaustion procedure, with K_B exact and Δ_M < 0.2 MeV.
+- 144 of 145 baryonic resonance entries (G-Tabellen V_a–V_c)
+  K_B-exact, 143 within 2 MeV.
 - Lifetimes of about 17 unstable particles to within factor 3, mostly
   to better than 12 %.
 - The fine-structure constant α to about 5 decimal places (1/α =
   137.036).
-- The K* meson at 867 MeV (measured 892 MeV) — this is a successful
-  *new* prediction beyond Heim's published list.
 
-It does **not** predict:
+It has **no natural slot at the right quantum numbers** for:
 
-- The Higgs boson (125 GeV). Heim's quantum-number lattice has no
-  allowed state with the right (P=0, Q=0, q=0) combination near 125
-  GeV — there's a structural gap from the η meson (549 MeV) up to ~61
-  TeV.
-- The W± and Z⁰ gauge bosons.
-- The J/ψ, D, B mesons, the Λ_c, Λ_b, Σ_c baryons.
-- The top quark (which has fractional electric charge anyway and
-  therefore can't be a Heim "free particle" by Heim's own conventions).
+- The Higgs boson (125 GeV, P=Q=q=0): Heim's lattice at (P=0, Q=0, q=0)
+  jumps from the η meson (549 MeV) directly to ~61 TeV. No slot near
+  125 GeV. (Confirmed by the May 2026 post-1989 test, 76 % off.)
+- The W± and Z⁰ gauge bosons: closest Heim candidates sit at the
+  *wrong* (P, Q), 5–8 % off in mass.
+- The top quark (172.6 GeV): no slot at the relevant (P, Q); 83 % off
+  in the test. Heim's framework lacks free-quark concepts in general.
 
-The pattern is clear: Heim's formula covers *light hadrons and
-leptons*. Heavy-flavour states (containing charm, bottom, or top
-quarks) are outside its scope. So are electroweak gauge bosons (W, Z)
-and the Higgs. These are not failures of the formula — they are
-*things outside the formula's intended domain*.
+It *does* find numerically close slots — at the right (P, Q) and
+≤ 1 % — for many heavy-flavour *hadrons* (J/ψ, ψ(2S), Υ(1S), D, D_s,
+B, Λ_c, Σ_c, Ξ_c, Λ_b, Σ_b, Ω_b, B_c). However, the May 2026
+pre-registered post-1989 slot-density test showed that random masses
+with random (P, Q) also find ≤ 1 % matches 56 % of the time —
+i.e. these heavy-hadron matches are not statistically distinguishable
+from lattice density alone, and **should not be read as Heim
+"predicting" heavy-flavour states.** Heim's scheme has no colour, no
+flavour, no quark index; the matches are quantum-number coincidences
+in a dense integer scheme. See README §"Framework limits §6" for the
+full pre-registered test and falsification verdict.
 
 ### For Intermediate
 
@@ -1414,7 +1427,7 @@ investigation:
 | Σ⁺ baryon | Σ⁺ | 1 189.33 | 1 189.37 | 99.99 % | |
 | proton | p | 938.25 | 938.27 | 99.99 % | |
 | neutron | n | 939.55 | 939.57 | 99.99 % | |
-| K*⁰ meson | K*⁰ | 867.6 | 891.7 | 97.3 % | **new** match (not in Heim's list) |
+| K*⁰ meson | K*⁰ | 891.08 | 891.7 | 99.93 % | matched via J0032 exhaustion procedure — IS in G-Tabelle IV (theoretical 891.20 MeV); earlier "new prediction at 867 MeV" claim *retracted* |
 | Higgs H⁰ | H⁰ | (none) | 125 250 | — | outside scope (electroweak) |
 | W± boson | W± | (none) | 80 369 | — | outside scope (electroweak) |
 | Z⁰ boson | Z⁰ | (none) | 91 188 | — | outside scope (electroweak) |
@@ -1471,13 +1484,25 @@ to predict the rest masses of about 20 ground-state particles, plus
 their lifetimes, plus the masses of an additional 99 approximated
 mesonic and baryonic resonances (23 in G-Tabelle IV at k=1, 76 in
 G-Tabellen V_{a,b,c} at k=2), plus the fine-structure constant α,
-plus the electron magnetic moment, plus five neutrino masses
-including two beyond the Standard Model. When those predictions are
-checked carefully, *most* of them are right — when one stays within
-the empirical phenomena the framework addresses.  The May 2026
-reproduction in this repository verifies all 23 mesons and 144/145
-baryon charge-states from the J0032 exhaustion procedure, with
-ab-initio Anregerkurve agreement for the z=0 branches.
+plus a structural formula for the electron magnetic moment, plus
+five neutrino masses including two beyond the Standard Model. When
+those predictions are checked carefully, *most* of them are right
+when one stays within the empirical phenomena the framework
+addresses. The May 2026 reproduction in this repository verifies
+all 23 mesons and 144/145 baryon charge-states from the J0032
+exhaustion procedure, with ab-initio Anregerkurve agreement for
+the z=0 branches.
+
+Two pre-registered tests in May 2026 sharpened what "most of them
+are right" actually means: (a) Heim's *intra-table* reproduction
+to ≤ 2 eV is genuinely tight — across 18 well-behaved particles
+the lattice has 0 alternative tuples within 2 eV of Heim's own
+target; (b) PDG-vs-Heim percent-level agreement is partly
+slot-density-aided — for random masses with random (P, Q) the
+lattice produces ≤ 1 % matches 56 % of the time. The framework
+is therefore best characterised as tight on Heim's own predictive
+ground and loose where the integer-lattice grid is naturally
+dense.
 
 The honest reasons mainstream physics has not engaged:
 
@@ -1616,34 +1641,62 @@ What would change the situation?
 ### For Experts
 
 The empirical reach of Heim's mass formula, as established in this
-investigation, is genuinely difficult to dismiss as numerology:
+investigation, is non-trivial — though more carefully bounded than
+earlier versions of this document suggested. The May 2026
+pre-registered tests (post-1989 slot density + lattice-density check
+at 2 eV; see Framework limits §6 in the README and
+`POST_1989_PREREGISTRATION.md` / `LATTICE_DENSITY_PREREGISTRATION.md`)
+sharpened the empirical picture into two epistemically distinct
+classes:
 
-- 16 particle masses to ≤ 0.05 % RMS, derived from G, ℏ, c plus six
-  integer quantum numbers per particle, with the four shape parameters
-  of the central η-function being **derived** (not fitted) from a
-  metron-geometric chain.
-- 17 lifetimes (across 11 orders of magnitude) to within factor 3 of
-  measurement, 15 to better than 12 %.
-- The fine-structure constant α = 1/137.03601 emerging at 5-decimal
-  agreement with measurement from the same η, θ, π without any
+**Structural anchors** (lattice-sparse / first-principles results):
+- 19 of 21 ground-state masses reproduce Heim's Tabelle II to **≤ 2 eV**,
+  with the lattice density check confirming that the second-closest
+  alternative tuple sits at MeV-scale distances — Heim's tuple is
+  uniquely close at his own printing precision (median of 0 alternatives
+  within 2 eV across 18 particles).
+- The fine-structure constant α = 1/137.03601 emerges at 5-decimal
+  agreement with measurement from η, θ, π via [B58]–[B62] with no
   parameter-fit input.
-- The electron magnetic moment: Heim's 1980 Synmetronik III Eq. 186
-  uses the same η-function, and reverse-engineering its K parameter
-  from the measured anomaly gives agreement with QED Schwinger
-  6·√η·α/(2π·e) to 0.15 %.
-- Heim's own G-Tabelle IV / V list theoretical masses for 23 mesonic
-  and 76 baryonic resonances (= 145 charge-state entries) at typical
-  0.02-1 % agreement with PDG, including ρ(770), ω(782), Φ(1019),
-  K*(892), η'(958), the f / A / B meson families, the N* nucleon
-  excitations, Δ resonances, Λ*, Σ*, Ξ* families — empirically far
-  wider than the 21-particle ground-state set this repository
-  originally focused on.  The May 2026 reproduction work
-  (`python/resonance_wscan*.py`) verifies all 23 mesons and 144/145
-  baryons to within Heim's stated 2 MeV approximation, with the
-  Anregerkurve coefficient b for the 12-Λ z=0 sector reproduced
-  ab initio from J0032 eqs. 14a-14b₁ to 6 decimals.
+- The four shape parameters of η(q, k) — (4, 4, 4, 1/4) — are
+  **derived** from a metron-geometric chain (Herleitung Kap. 7,
+  eqs. 7.47 → 7.51), not fitted.
+- The same η-function appears in Heim's 1980 magnetic-moment formula
+  (Synmetronik III Eq. 186) — a structural unification across three
+  formulas (mass, α, μ_e/μ_B). Note: the *predictive* claim about
+  reproducing the electron g-2 anomaly numerically was overstated in
+  earlier versions of this document. Heim's formula has a free
+  parameter K = m_s/m_r that is reverse-engineered from a_e; the
+  resulting 0.15 % "agreement with QED Schwinger" is the well-known
+  α/(2π) ↔ a_e match carried through the formula via the common
+  factor 6·√η/e. The structural-unification claim stands; the
+  numerical-prediction claim does not.
+- 23 G-Tabelle IV mesons + 144/145 G-Tabellen V_{a,b,c} baryon
+  charge-states reproduced via the J0032 exhaustion procedure
+  (`python/resonance_wscan*.py`), with the **Anregerkurve**
+  coefficient b for the 12-Λ z=0 sector reproduced *ab initio*
+  from J0032 eqs. 14a-14b₁ to 6 decimals. The Anregerkurve
+  per-sector consistency is a multi-particle structural test
+  (12 points on 2 parameters → 6 decimals agreement) and not
+  vulnerable to slot density.
 
-The honest mathematical status, however, is that Heim's polymetric
+**Slot-density-aided observations** (the integer lattice is dense
+enough that these are not strong evidence in isolation):
+- The 0.05 % RMS PDG agreement on 20 ground-state particles sits in
+  the 100 keV–10 MeV precision range. The May 2026 lattice-density
+  check (median 10 alternative tuples within 100 keV, 93 within 1 MeV
+  across 18 ground-state sectors) shows the lattice is dense at this
+  scale.
+- The pre-registered post-1989 test: 8 of 12 Tier-1 pre-1989
+  discoveries find Heim slots to ≤ 1 % with correct (P, Q), but
+  random masses with random (P, Q) match at the same ≤ 1 % rate
+  56 % of the time. Falsification at the moderate tier per
+  pre-registered criteria.
+- 17 of 18 measured lifetimes within factor 3 of PDG — informative
+  but the lifetime formula has its own slot-like effective freedom
+  in K, with one structural outlier (Σ⁰, EM channel).
+
+The honest mathematical status remains that Heim's polymetric
 formalism has not been peer-reviewed. The chain G → τ → μ → η, and
 the eigenvalue-spectrum structure that produces the (n, m, p, σ)
 greedy decomposition, have been documented by Heim, by von Ludwiger
@@ -1665,31 +1718,52 @@ The audit-priority order, after the May 2026 source review, is:
    the published [B3] form pending external confirmation of the typo.
 
 2. **Reproduce G Tabelle IV meson resonances (k=1)** in a clean
-   implementation of Heim's (P, N, K_B) resonance procedure. This
-   has not been done by the current repository.
+   implementation of Heim's (P, N, K_B) resonance procedure.
+   *Done — May 2026.* All 23 G-Tabelle-IV entries reproduced via the
+   J0032 exhaustion procedure with exact K_B and Δ_M < 0.2 MeV
+   (`python/resonance_wscan.py`).
 
 3. **Reproduce G Tabellen V_a–V_c baryon resonances (k=2)** similarly.
+   *Done — May 2026.* 144/145 K_B-exact, 143/145 mass-within-2-MeV
+   via the same procedure (`python/resonance_wscan_baryons.py`).
+   Anregerkurve coefficient b reproduced ab initio from J0032
+   eqs. 14a-14b₁ for the 12-Λ z=0 sector to 6 decimals.
 
 4. **Compare the same machinery to modern PDG values** to assess
    how Heim's published numbers stand against post-1989 measurements.
+   *Done — May 2026.* The pre-registered post-1989 test
+   (`POST_1989_PREREGISTRATION.md`, `python/post_1989_test.py`) showed
+   that PDG-percent agreement is partly slot-density-aided: random
+   masses with random (P, Q) find Heim slots at ≤ 1 % about 56 % of
+   the time, so individual close matches are not statistically
+   distinguishable from chance at that precision tier.
 
-5. **Label non-canonical extrapolations (k > 2) explicitly as
-   exploratory.** The current `python/excited_state_search.py` does
-   this after the May 2026 revision, but it is not a substitute for
-   steps 2-3.
+5. **Pre-registered lattice-density check at 2 eV.** *Done — May 2026.*
+   The follow-up test (`LATTICE_DENSITY_PREREGISTRATION.md`) showed
+   that Heim's intra-Tabelle II ≤ 2 eV reproduction is sparse-lattice
+   (his tuple uniquely close); the slot-density concern applies
+   specifically at the 100 keV–10 MeV PDG-comparison range, not at
+   his own stated precision.
 
-6. **Address the empirical phenomena that lie outside Heim's
+6. **Label non-canonical extrapolations (k > 2) explicitly as
+   exploratory.** *Done* in `python/excited_state_search.py`.
+
+7. **Address the empirical phenomena that lie outside Heim's
    selected-result tables** — W / Z / Higgs / J/ψ / D / B /
    heavy-flavour baryons. The right question, per Joel's reframing,
    is not "does Heim's mass formula contain these as primitives?"
    (no, by construction) but *"does a complete Heim-compatible
    theory recover the observed phenomenology of these states?"*
-   That question is currently open.
+   That question is currently open. The post-1989 test confirmed
+   that Heim has *no* natural slot for W, Z, Higgs at the right
+   quantum numbers — consistent with the framework's structural
+   silence on the electroweak sector.
 
-7. **Mathematical audit of the polymetric formalism** by a
+8. **Mathematical audit of the polymetric formalism** by a
    mathematical physicist fluent in selector calculus and condensor
    geometry. The full 81-page *Herleitung* manuscript (chapters
-   1–11) is the entry point. This is the deepest open question.
+   1–11) is the entry point. **This remains the deepest open
+   question.**
 
 This repository's contribution — beyond correcting two upstream
 transcription bugs and producing a Python port — is to make the
