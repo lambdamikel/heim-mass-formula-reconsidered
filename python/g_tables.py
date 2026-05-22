@@ -95,10 +95,15 @@ TABLE_II_BARYONS: list[TableII] = [
     TableII("Ξ-",    1321.29326013, 0.5, +1, 0.5, -2, 1, 0.01653050 * 1e-8),
     TableII("Ξ0",    1314.90206200, 0.5, +1, 0.5, -2, 1, 0.02961947 * 1e-8),
     TableII("Ω-",    1672.17518902, 1.5, +1, 0,   -3, 1, 0.01317650 * 1e-8),
-    TableII("o++",   1232.91663788, 1.5, +1, 1.5,  0, 1, 5.99071759e-16),
-    TableII("o+",    1234.60981181, 1.5, +1, 1.5,  0, 1, 5.72954997e-16),
-    TableII("o-",    1229.99529979, 1.5, +1, 1.5,  0, 1, 6.74230244e-16),
-    TableII("o0",    1237.06132359, 1.5, +1, 1.5,  0, 1, 5.08526841e-16),
+    # o-family values corrected May 2026 from direct manuscript
+    # reading of J0032 p.39. The previous values (1232.92, 1234.61,
+    # 1229.99, 1237.06) were transcribed from a derivative source
+    # and did not match Heim's published Tabelle II. Lifetimes are
+    # retained pending a re-read of the same page.
+    TableII("o++",   1236.02333225, 1.5, +1, 1.5,  0, 1, 5.99071759e-16),
+    TableII("o+",    1235.99646406, 1.5, +1, 1.5,  0, 1, 5.72954997e-16),
+    TableII("o-",    1231.20485197, 1.5, +1, 1.5,  0, 1, 6.74230244e-16),
+    TableII("o0",    1235.99143567, 1.5, +1, 1.5,  0, 1, 5.08526841e-16),
 ]
 
 

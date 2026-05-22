@@ -1,7 +1,7 @@
 """
 Demonstration: with the proposed [B3] correction AND a single global
 constant rescaling, Heim's 1989 Tabelle II is reproducible to
-sub-1-ppm accuracy across all 19 well-behaved particles.
+sub-1-ppm accuracy across all 17 well-behaved (non-Δ) particles.
 
 After source diagnosis (electron_bug_diagnosis.md) and the proposed
 [B3] correction (b3_correction.py), the residual offset against
@@ -117,13 +117,16 @@ def main():
   Stage 3: residual analysis — should be sub-1-ppm if the framework is
            consistent
 
-  The two Δ resonances with q ∈ {+2, 0} are excluded (separate (n,m,p,σ)
-  bug — see nmps_cross_check.py).
+  All four Δ ground states (o⁺⁺, o⁺, o⁰, o⁻) are excluded: they share
+  a separate ~0.85–1.58 MeV residual against Heim's Tabelle II that
+  is NOT a port bug and NOT a greedy-decomposition artefact —
+  suspected missing P=3-specific term in φ. See Open Question 1b.
 """)
 
     # Compute mass and ratio for all valid particles
     rows = []
-    excluded = {"DELTA_++", "DELTA_0"}   # separate decomposition bug
+    # All four Δ ground states share the Open Q 1b residual (~0.85–1.58 MeV).
+    excluded = {"DELTA_++", "DELTA_+", "DELTA_0", "DELTA_-"}
     for p in REFERENCE_PARTICLES:
         if p.symbol in excluded:
             continue
@@ -140,7 +143,7 @@ def main():
 
     # Stage 3: compute residuals after applying that constant
     print(f"  Number of particles in analysis: {n_rows} "
-          f"(21 total minus 2 excluded Δ states minus 0 unmatched)")
+          f"(21 total minus 4 excluded Δ states minus 0 unmatched)")
     print()
     print(f"  {'Particle':<10} {'k':>2}  {'Heim T-II':>14}  {'ours+B3':>14}  "
           f"{'Heim/ours':>14}  {'Δ_ppm vs mean':>15}  {'Δ_keV':>10}")

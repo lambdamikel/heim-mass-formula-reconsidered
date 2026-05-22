@@ -29,8 +29,9 @@ Four modes:
     D: corrected B3 + heim_1989 constants  (both fixes — full reproduction)
 
 Each mode is compared against Heim's 1989 Tabelle II.  Two reference
-points reported for each: the 19 well-behaved particles separately
-from the 2 Δ resonances with the (n, m, p, σ) decomposition issue.
+points reported for each: the 17 well-behaved non-Δ particles
+separately from the 4 Δ ground states with the ~0.85–1.58 MeV
+residual (Open Q 1b — suspected missing P=3 specific term in φ).
 
 Run with:
     ./venv/bin/python python/modes_table.py
@@ -57,8 +58,10 @@ SYMBOL_MAP = {
     "DELTA_++": "o++", "DELTA_+": "o+", "DELTA_0": "o0", "DELTA_-": "o-",
 }
 
-# Particles with the separate (n,m,p,σ) greedy-decomposition discrepancy
-DECOMP_ANOMALY = {"DELTA_++", "DELTA_0"}
+# All four Δ ground states share the ~0.85–1.58 MeV residual (Open Q 1b).
+# This is NOT a greedy-decomposition artefact (using Heim's own
+# (n, m, p, σ) for o⁺/o⁻ does not close the residual).
+DECOMP_ANOMALY = {"DELTA_++", "DELTA_+", "DELTA_0", "DELTA_-"}
 
 
 def heim_TII_mass(symbol):
@@ -115,7 +118,7 @@ def run_mode(b3_form: str, const_mode: str) -> dict:
             continue
         m_ours = calc_mass_in_mode(p, b3_form)
         rows.append((p.symbol, p.k, h, m_ours))
-    # Split: well-behaved (19) vs Δ anomaly (2)
+    # Split: well-behaved non-Δ (17) vs all four Δ ground states (4)
     good = [r for r in rows if r[0] not in DECOMP_ANOMALY]
     bad = [r for r in rows if r[0] in DECOMP_ANOMALY]
     return {"good": good, "bad": bad}
@@ -124,7 +127,7 @@ def run_mode(b3_form: str, const_mode: str) -> dict:
 def summarize(name: str, results: dict):
     good = results["good"]
     bad = results["bad"]
-    # Stats on the 19 well-behaved
+    # Stats on the 17 well-behaved non-Δ particles
     ppms = [(m - h) / h * 1e6 for _, _, h, m in good]
     keVs = [(m - h) * 1000 for _, _, h, m in good]
     mean_ppm = sum(ppms) / len(ppms)
@@ -162,8 +165,9 @@ def main():
                               'heim_1989' = Heim's G=6.6732e-11 + CODATA-1986 h, e
 
   Target = Heim's published Tabelle II values.
-  Stats computed over the 19 well-behaved particles
-  (Δ⁺⁺ and Δ⁰ excluded; separate (n, m, p, σ) bug — see Open Q #1b).
+  Stats computed over the 17 well-behaved non-Δ particles
+  (all four Δ ground states excluded; ~0.85–1.58 MeV residual,
+  suspected missing P=3 specific term in φ — see Open Q #1b).
 """)
 
     # Run all four modes
@@ -210,18 +214,13 @@ def main():
     print(f"  Neutral (q=0):   n={len(neu)}, RMS={sqrt(sum(c*c for c in neu)/len(neu)):.3f} keV, "
           f"max |Δ|={max(abs(c) for c in neu):.3f} keV")
 
-    banner("Δ⁺⁺ and Δ⁰ in each mode (separate decomposition bug)", ch="-")
-    print(f"  {'Mode':<42} {'Δ⁺⁺ ours':>12} {'Δ⁺⁺ Heim':>11} {'Δ⁺⁺ Δ [keV]':>14}  "
-          f"{'Δ⁰ ours':>12} {'Δ⁰ Heim':>11} {'Δ⁰ Δ [keV]':>13}")
+    banner("All four Δ ground states in each mode (Open Q 1b residual)", ch="-")
+    print(f"  {'Mode':<42} {'Particle':>8} {'ours':>12} {'Heim T-II':>11} {'Δ [keV]':>11}")
     print("  " + "-" * 94)
     for label, _, results in modes:
-        bad_dict = {sym: (h, m) for sym, k, h, m in results["bad"]}
-        if "DELTA_++" in bad_dict and "DELTA_0" in bad_dict:
-            h_pp, m_pp = bad_dict["DELTA_++"]
-            h_0, m_0 = bad_dict["DELTA_0"]
-            print(f"  {label:<42} {m_pp:>12.3f} {h_pp:>11.3f} "
-                  f"{(m_pp-h_pp)*1000:>+14.3f}  {m_0:>12.3f} {h_0:>11.3f} "
-                  f"{(m_0-h_0)*1000:>+13.3f}")
+        for sym, k, h, m in results["bad"]:
+            print(f"  {label:<42} {sym:>8} {m:>12.3f} {h:>11.3f} "
+                  f"{(m-h)*1000:>+11.3f}")
 
     banner("Interpretation (in Joel's language)")
     summ_A = modes[0][1]
@@ -247,7 +246,7 @@ def main():
 
   Mode D (corrected B3 + heim_1989 constants) — full reproduction:
       mean offset {summ_D['mean_ppm']:+.3f} ppm, max raw residual {summ_D['max_keV_raw']:.3f} keV.
-      All 19 well-behaved particles match Heim's Tabelle II to within
+      All 17 well-behaved non-Δ particles match Heim's Tabelle II to within
       {summ_D['max_keV_raw']:.2f} keV.  This is heim_reproduction_mode.
 
   The natural mode pair, per Joel's framework, is therefore:

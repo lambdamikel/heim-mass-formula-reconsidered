@@ -204,7 +204,7 @@ reproduced". Adapted from Joel's May 2026 review:
 
 | Sector | Source status |
 |---|---|
-| Ground-state leptons | Explicit in A and G (Tabelle I/II); reproduced by canonical port (J0060-corrected B3) to ≤ 0.01 % for all 19 well-behaved particles. The historical 0.79 % electron-mass discrepancy was diagnosed in May 2026 as a missing `/α₊` factor in the IGW-Innsbruck 2003 [B3]; the canonical port now matches Heim's manuscript form. Set `LEGACY_B3_FORM = True` for the old published-[B3] behaviour. See Open Question #1. |
+| Ground-state leptons | Explicit in A and G (Tabelle I/II); reproduced by canonical port (J0060-corrected B3) to ≤ 0.01 % for 17 of 21 well-behaved non-Δ particles (all four o-family Δs retain a separate ~0.85–1.58 MeV residual — Open Q 1b). The historical 0.79 % electron-mass discrepancy was diagnosed in May 2026 as a missing `/α₊` factor in the IGW-Innsbruck 2003 [B3]; the canonical port now matches Heim's manuscript form. Set `LEGACY_B3_FORM = True` for the old published-[B3] behaviour. See Open Question #1. |
 | Ground-state mesons | Explicit in A and G; reproduced to ≤ 0.01 %. |
 | Ground-state baryons | Explicit in A and G; reproduced to ≤ 0.01 %. |
 | Neutrino masses | Explicit in B and G (Tabelle II, 5 species). Not reproduced from formula by current port; status only by direct comparison to G values (see `python/heim_neutrinos.py`). |
@@ -222,8 +222,8 @@ reproduced". Adapted from Joel's May 2026 review:
 Seven-step roadmap for any team picking up the framework after this
 repository:
 
-1. **Reproduce A/G ground states.** *Status: done.* All 19 well-
-   behaved particles match Heim's Tabelle II to **≤ 2 eV** after
+1. **Reproduce A/G ground states.** *Status: done.* 17 of 21 well-
+   behaved non-Δ particles match Heim's Tabelle II to **≤ 2 eV** after
    applying the [B3] correction (`+4qα₋/α₊`) and using Heim's 1989
    constants. The correction is **manuscript-anchored through J0060**
    (Heim, *Synmetronik Band IV*, eq. 192 + p. 709) — confirmed by
@@ -387,8 +387,8 @@ repository:
 >   - electron: **0.510988 MeV** vs measured 0.51099907 MeV (-0.002 %,
 >     was -0.79 %), and matches Heim's own 1989 Tabelle II value
 >     0.51100343 MeV to ~1 eV;
->   - all 19 well-behaved ground states match Heim Tabelle II to **≤ 2 eV**
->     when combined with Heim's 1989 constants (`heim_1989` mode);
+>   - 17 of 21 well-behaved non-Δ ground states match Heim Tabelle II
+>     to **≤ 2 eV** when combined with Heim's 1989 constants (`heim_1989` mode);
 >   - all four Δ ground states retain a separate ~0.85–1.58 MeV
 >     residual — suspected missing P=3 specific term in φ
 >     (Open Question 1b).
@@ -595,7 +595,7 @@ repository:
 >
 > So Heim's intra-Tabelle II match at ≤ 2 eV is **structural** —
 > only his tuple is close at his own printing precision, and the
-> ≤ 2 eV agreement across 19/21 ground states (Headline #4) is
+> ≤ 2 eV agreement across 17/21 well-behaved non-Δ ground states (Headline #4) is
 > not a slot-density artefact. The PDG-vs-Heim agreement at the
 > 0.1–1 % level, however, sits in the dense-lattice tier and is
 > **slot-density-aided** — at the percent level there are dozens
@@ -771,9 +771,9 @@ Discord community in May 2026:
   J0060-anchored correction. With the corrected `+4qα₋/α₊` form
   (now the canonical port) and Heim's 1989 constants
   (G = 6.6732·10⁻¹¹, CODATA-1986 h/e), the electron matches
-  measurement to -0.002 % (0.510988 MeV) and **all 19 well-
-  behaved particles match Heim Tabelle II to ≤ 2 eV — at Heim's
-  own printing precision**. All four Δ ground states retain a
+  measurement to -0.002 % (0.510988 MeV) and **17 of 21 well-
+  behaved non-Δ particles match Heim Tabelle II to ≤ 2 eV — at
+  Heim's own printing precision**. All four Δ ground states retain a
   separate ~0.85–1.58 MeV residual (Open Q #1b — *not* a greedy-
   decomposition artefact and *not* a port bug; suspected missing
   P=3 specific term in φ that Heim himself flagged as possible).
@@ -1053,8 +1053,11 @@ heim/
     │                                 vs PDG-2024 measurements
     ├── nmps_cross_check.py        ← (n, m, p, σ) cross-check between
     │                                 Heim's Tabelle I listed values and
-    │                                 our greedy decomposition. 19/21 match;
-    │                                 Δ⁺⁺ and Δ⁰ disagree (May 2026)
+    │                                 our greedy decomposition. 19/21 tuples
+    │                                 match (calc_n is correct for o⁺/o⁻);
+    │                                 Δ⁺⁺ and Δ⁰ tuples disagree (May 2026)
+    │                                 — note: mass agreement is a separate
+    │                                 metric, see modes_table.py (17/21)
     ├── electron_trace.py          ← per-term decomposition of e_- and e_0
     │                                 mass calculation (K, S, F, Φ, 4qα₋)
     ├── electron_bug_diagnosis.md  ← source-comparison write-up for the
@@ -1065,7 +1068,10 @@ heim/
     ├── full_reproduction.py       ← complete reproduction proof:
     │                                 after [B3] correction + single global
     │                                 constant, RMS residual is 0.002 ppm
-    │                                 across 19 particles (max 2 eV absolute)
+    │                                 across 17 non-Δ particles (max 2 eV
+    │                                 absolute); four Δ ground states
+    │                                 excluded with separate ~1 MeV residual
+    │                                 (Open Q 1b)
     ├── resonance_reproduction.py  ← J0032 procedure scaffold:
     │                                 calc_resonance(eps, k, P, Q, κ, q, N, f)
     │                                 with exhaustion + Anregerfunktion
@@ -1434,11 +1440,12 @@ referenced in `formulae.py LEGACY_B3_FORM` comment).
 With the canonical (J0060-corrected) form:
 
   - electron: **0.51098822 MeV**, -0.002 % vs measurement
-  - all 19 well-behaved ground states match Heim Tabelle II to
-    ≤ 30 ppm (`legacy_2006` constants) or ≤ 2 eV (`heim_1989`
+  - 17 of 21 well-behaved non-Δ ground states match Heim Tabelle II
+    to ≤ 30 ppm (`legacy_2006` constants) or ≤ 2 eV (`heim_1989`
     constants)
-  - the two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ)
-    issue (Open Question 1b).
+  - all four Δ ground states retain a separate ~0.85–1.58 MeV
+    residual (Open Question 1b — *not* a port bug; suspected
+    missing P=3 specific term in φ).
 
 Setting `LEGACY_B3_FORM = True` in `python/formulae.py` recovers
 the historical bit-identical-to-Eli-Gildish-2006 behaviour for
@@ -1459,9 +1466,11 @@ categories**, which the repo previously conflated:
    k=1 mesonic resonances (Tabelle IV) done, k=2 baryonic resonances
    (Tabellen V_a-V_c) done.* For ground states, the canonical
    port (J0060-corrected [B3] since May 2026) together with Heim's 1989
-   constants reproduces 19 of 21 Tabelle-II values **to ≤ 2 eV** —
-   i.e. Heim's own printing precision. The two Δ⁺⁺ / Δ⁰ resonances
-   retain a separate (n, m, p, σ) decomposition issue (~1.5 MeV off).
+   constants reproduces 17 of 21 Tabelle-II values **to ≤ 2 eV** —
+   i.e. Heim's own printing precision. All four Δ ground states retain
+   a separate ~0.85–1.58 MeV residual (Open Q 1b — *not* a greedy-
+   decomposition artefact and *not* a port bug; suspected missing P=3
+   specific term in φ).
    For k=1 meson resonances, the J0032 exhaustion procedure
    (`python/resonance_wscan.py`, May 2026) reproduces all 23
    G-Tabelle-IV entries with exact K_B and Δ_M < 0.2 MeV; the
@@ -1823,7 +1832,7 @@ contribution is to quantify *how much* is missing.
 
 1. **A ~1 MeV "missing additive term" in φ at P = 3.** All four Δ
    ground states reproduce Heim's Tabelle II to only 0.85–1.58 MeV,
-   while the other 19 ground states match to ≤ 2 eV after the
+   while the other 17 ground states match to ≤ 2 eV after the
    [B3] correction (Heim's own printing precision). `calc_a`,
    `calc_W`, `calc_n`, and `calc_phi` are verified term-for-term
    against the manuscript; no Δ-specific correction exists in any
@@ -2078,9 +2087,9 @@ quantum numbers (k ∈ {1, 2}, N ∈ ℕ, plus structure indices).
 Empirical results verified in this repository (with the
 J0060-corrected [B3]):
 
-  - 19 of 21 ground-state masses reproduce Heim's Tabelle II to
-    **≤ 2 eV** (= his own printing precision). Two Δ resonances
-    miss by ~1 MeV ([Open Q 1b](#open-questions)).
+  - 17 of 21 ground-state masses reproduce Heim's Tabelle II to
+    **≤ 2 eV** (= his own printing precision). All four Δ ground
+    states miss by ~0.85–1.58 MeV ([Open Q 1b](#open-questions)).
   - 144 of 145 baryonic resonance entries from G-Tabellen V_a–V_c
     reproduce K_B exactly with Δ_M < 2 MeV.
   - 17 of 18 ground-state mean lifetimes within factor 3 of PDG
@@ -2213,9 +2222,9 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    behaviour for direct comparison).
 
    With the correction: electron matches measurement to -0.002 %
-   (was -0.79 %), Heim Tabelle II to ~1 eV. All 19 well-behaved
-   particles match Heim Tabelle II to ≤ 2 eV with Heim's 1989
-   constants.
+   (was -0.79 %), Heim Tabelle II to ~1 eV. 17 of 21 well-behaved
+   non-Δ particles match Heim Tabelle II to ≤ 2 eV with Heim's
+   1989 constants.
 
    All four Δ ground states retain a separate ~0.85–1.58 MeV
    residual — *not* a greedy-decomposition artefact and *not* a
@@ -2270,8 +2279,8 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
 
    **Companion finding: the residual is a single global constant.**
    After the [B3] correction is applied, the remaining residual against
-   Heim T-II is a **uniform −29.76 ppm shift across all 19 well-behaved
-   particles** (all four Δ ground states retain the separate
+   Heim T-II is a **uniform −29.76 ppm shift across the 17 well-behaved
+   non-Δ particles** (all four Δ ground states retain the separate
    ~0.85–1.58 MeV residual — see Open Question 1b). Subtracting this
    single global ratio leaves a residual of:
 

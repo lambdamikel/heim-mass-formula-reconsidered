@@ -599,10 +599,13 @@ def calc_phi(
 # moving this piece out of Φ.
 #
 # With the corrected form + Heim's 1989 constants (set_constants_mode
-# "heim_1989"), all 19 well-behaved ground states match Heim's
-# Tabelle II to ≤ 2 eV. See python/full_reproduction.py and
-# python/modes_table.py for verification, and the May 2026 commit
-# log for the historical-source diagnostic chain.
+# "heim_1989"), 17 of 21 ground states match Heim's Tabelle II
+# to ≤ 2 eV. All four Δ ground states (o⁺⁺/o⁺/o⁰/o⁻) retain a
+# separate ~0.85–1.58 MeV residual — suspected missing P=3
+# specific term in φ (Open Question 1b in README). See
+# python/full_reproduction.py and python/modes_table.py for
+# verification, and the May 2026 commit log for the historical-
+# source diagnostic chain.
 
 LEGACY_B3_FORM: bool = False
 

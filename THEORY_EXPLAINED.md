@@ -1142,9 +1142,11 @@ The mass of the proton, for example, comes out at 938.26 MeV by this
 formula. The measured value is 938.27 MeV — agreement to better than
 0.01 %. The neutron, the Λ-baryon, the Ξ baryons, the Σ baryons, all
 the kaons, pions, the muon, and the electron all match measurement to
-similar accuracy. With Heim's own 1989 constants, all 19
-well-behaved ground states match Heim's Tabelle II to ≤ 2 eV — at
-Heim's own printing precision.
+similar accuracy. With Heim's own 1989 constants, 17 of 21
+well-behaved non-Δ ground states match Heim's Tabelle II to ≤ 2 eV
+— at Heim's own printing precision. The four o-family Δ ground
+states (Δ⁺⁺/Δ⁺/Δ⁰/Δ⁻) retain a separate ~0.85–1.58 MeV residual
+(Open Q 1b).
 
 ### For Intermediate
 
@@ -1681,11 +1683,12 @@ sharpened the empirical picture into two epistemically distinct
 classes:
 
 **Structural anchors** (lattice-sparse / first-principles results):
-- 19 of 21 ground-state masses reproduce Heim's Tabelle II to **≤ 2 eV**,
+- 17 of 21 ground-state masses reproduce Heim's Tabelle II to **≤ 2 eV**,
   with the lattice density check confirming that the second-closest
   alternative tuple sits at MeV-scale distances — Heim's tuple is
   uniquely close at his own printing precision (median of 0 alternatives
-  within 2 eV across 18 particles).
+  within 2 eV across 18 particles). All four Δ ground states retain
+  a separate ~0.85–1.58 MeV residual (Open Q 1b).
 - The fine-structure constant α = 1/137.03601 emerges at 5-decimal
   agreement with measurement from η, θ, π via [B58]–[B62] with no
   parameter-fit input.
@@ -1737,14 +1740,16 @@ status remains: **empirically mixed** (structural anchors hold,
 PDG-percent agreement is partly slot-density-aided),
 **theoretically untested** (no peer review of the polymetric
 formalism), and **internally reproducible** (to ≤ 2 eV across
-19 of 21 ground states with the J0060-corrected [B3] form and
-Heim's 1989 constants — the [B3] correction itself is sourced
-from Heim's primary manuscript J0060 and no longer pending).
+17 of 21 well-behaved non-Δ ground states with the J0060-corrected
+[B3] form and Heim's 1989 constants — the [B3] correction itself is
+sourced from Heim's primary manuscript J0060 and no longer pending;
+all four Δ ground states retain a separate ~0.85–1.58 MeV residual,
+Open Q 1b).
 
 The audit-priority order, after the May 2026 source review, is:
 
-1. **Reproduce A/G ground states.** Done — May 2026. All 19
-   well-behaved particles match Heim's Tabelle II to ≤ 2 eV
+1. **Reproduce A/G ground states.** Done — May 2026. 17 of 21
+   well-behaved non-Δ particles match Heim's Tabelle II to ≤ 2 eV
    after applying the J0060-corrected [B3] form
    (`+4qα₋/α₊`, sourced from Heim's primary manuscript J0060
    Synmetronik Band IV eq. 192 + p. 709) and using Heim's 1989
