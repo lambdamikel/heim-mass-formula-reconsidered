@@ -2343,20 +2343,140 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
 
 ## References
 
-- **Primary**: Heim, B. (1989), "Erweiterte Massenformel" — internal
-  manuscript sent to MBB/DASA. The original code is lost.
-- **Reformulation**: IGW Innsbruck (2002), "Heim's Mass Formula (1989)" —
-  English-language restatement with the [B##] equation numbering used
-  here. Included as `downloads/pdfs/F_1989_en.pdf`.
-- **Derivation (partial)**: von Ludwiger, I. & Grüner, K. (2003), "Zur
-  Herleitung der Heimschen Massenformel" — only chapters 1–2 (10 of 81
-  pages) are publicly available.
-- **C implementation**: Eli Gildish (2006), "Burkhard Heim's Mass
-  Formula", on SourceForge. The starting point of this work.
-- **Critical history**: Landis, G. A. — *Rise and fall of the Heim
-  theory* — at <http://www.geoffreylandis.com/Heim_theory.html>.
-- **Heim community**: <https://heim-theory.com/> and
-  <https://www.engon.de/protosimplex/> (Protosimplex archive).
+### Heim's primary manuscripts (J-series)
+
+The "J-series" are Heim's own published research papers. Real source
+dating is 1973–1976 (per Olaf Posdzech); the "1989" label denotes the
+IGW Innsbruck restatement layer, not the underlying calculation.
+
+- **J0023** — Heim, B. (1977), *Zur Beschreibung der Elementar­korpuskeln*.
+  `downloads/J0023 1982_Heim_Zur Beschreibung der Elementarkorpuskeln.pdf`.
+- **J0025** — Heim, B., *Vorschlag eines Weges zur einheitlichen
+  Beschreibung der Elementarteilchen*.
+  `downloads/J0025 Heim_Vorschlag eines Weges zur einheitlichen Beschreibung der Elementarteilchen.pdf`.
+- **J0032** — Heim, B., *Ausgewählte Ergebnisse — Teil a*. Primary
+  source for the mass formula and the resonance / Anregerkurve
+  procedure; equations (5d), (11), (13c/d), (14)–(14e), (16) are
+  cited throughout this README.
+  `downloads/J0032 Heim_Ausgewählte Ergebnisse a.pdf`.
+- **J0033** — Heim, B., *Ausgewählte Ergebnisse — Teil b*. Primary
+  source for the lifetime formula; equations (21)–(21h) are cited
+  throughout this README.
+  `downloads/J0033 Heim_Ausgewählte Ergebnisse b.pdf`.
+- **J0060** — Heim, B., *Syntrometrische Maximentelezentrik, Teil C —
+  Synmetronik der Welt, Band IV*. The manuscript source resolving the
+  charge-term `+4qα₋/α₊` in [B3]: eq. 192 and p. 709. Provided by
+  Javier Mazzone, May 2026.
+  `downloads/J0060 SYNTROMETRISCHE MAXIMENTELEZENTRIK - TEIL C - SYNMETRONIK DER WELT - BAND IV optimized.pdf`.
+
+### IGW Innsbruck reformulation — the A–H source bundle
+
+Compiled by the Forschungskreis Heimsche Theorie (Innsbruck); the
+letter codes A–H are the bundle's own conventional labels.
+
+- **A** — *Massenformel Kurzfassung* (1982 source / short form).
+  `downloads/A_Massenformel_Kurzfassung.pdf`.
+- **B** — *Bemerkungen über Heim* (editorial notes).
+  `downloads/B_Bemerkungen_ueber_Heim.pdf`.
+- **C** — *Zum Stand der Elementarteilchenphysik* (context).
+  `downloads/C_Zum_Stand_der_Elementarteilchenphysik.pdf`.
+- **D** — von Ludwiger, I. & Grüner, K. (2003),
+  *Zur Herleitung der Heimschen Massenformel*. **81-page derivation
+  manuscript**; chapter 7 (eqs. 7.47 → 7.51) derives η from metron
+  geometry and charge-field renormalisation — this resolved the
+  central pre-revision open question about η.
+  `downloads/D_Zur_Herleitung_Der_Heimschen_Massenformel.pdf`.
+  (An earlier note in this README claimed only chapters 1–2 (10 pages)
+  were available — that was a `file`-vs-`pdfinfo` misidentification;
+  the full 81 pages are present.)
+- **E** — Heim, B. (1982), *Massenformel nach B. Heim 1982*
+  (signed Northeim 25.2.1982). Source for the 1982-tradition
+  equations (IX), (X), (XI) cited in this README.
+  `downloads/E_Massenformel_nach_B_Heim_1982.pdf` and
+  `downloads/pdfs/E_1982.pdf`.
+- **F** — IGW Innsbruck (2002/2003),
+  *Erweiterte Massenformel nach Heim 1989* — English-language
+  restatement with the [B##] equation numbering used throughout
+  this README. The German source is
+  `downloads/F_Erweiterte_Massenformel_nach_Heim 1989.pdf`;
+  the English version (preferred for cross-reference) is
+  `downloads/pdfs/F_1989_en.pdf`.
+- **G** — *Ausgewählte Ergebnisse* — selected results: ground
+  states (Tabellen I/II/III), meson resonances k=1 (IV), baryon
+  resonances k=2 (V_{a,b,c}), neutrinos, lifetimes, numerical
+  evaluations. Heim's own published numerical reference.
+  `downloads/G_Ausgewaehlte_Ergebnisse.pdf`.
+- **H** — *Literaturverzeichnis* (bibliography).
+  `downloads/H_Literaturverzeichnis.pdf`.
+
+### Transmission-chain code implementations
+
+- **DESY / Pascal**: Olaf Posdzech, Pascal 0.62 — early transmission
+  of the 1982 FORTRAN code. `downloads/Pascal 0.62/`.
+- **C 0.66**: a C transcription of the same line; `downloads/C0.66/`.
+- **C reference**: Eli Gildish (2006), *Burkhard Heim's Mass
+  Formula*, on SourceForge. The starting point of this repository.
+  `downloads/c_impl/` (verbatim), `annotated/src/` (per-line [B##]
+  tags). Non-commercial license.
+- **C# variants**: 1982 / 1989 / HeimGroup implementations.
+  `downloads/csharp_impl/OutDir/formula/{f1982, f1989, HeimGroup}/`.
+  The HeimGroup variant's `SelfCouplingFunction.cs` confirmed
+  `Q_n^3` (not the typo `Q_n^2` in the F_1989_en.pdf [B25])
+  — see Open Question #4 resolution.
+- **Excel reference**: Joel Michalowitz's working Excel
+  implementation `downloads/Heim_1989_Massenformel_0.4.xlsm`,
+  containing both mass and lifetime calculations. Surfaced the
+  `calc_N` (missing `*q`) and `calc_a` (`min(1, q²)` clamp) bugs
+  in our first-pass port, May 2026.
+
+### Heim's books and related manuscripts
+
+- Heim, B. (2000), *Syntrometrische Maximentelezentrik*.
+  `downloads/Burkhard Heim - 2000 - Syntrometrische Maximentelezentrik.pdf`.
+- Heim, B., *Syntrometrische Maximentelezentrik, Teil C — Synmetronik
+  der Welt*, Bände I–IV. Bände I–III in
+  `downloads/Heim-Teil-C_Synmetronik_der_Welt-Band-{I,II,III}_Optimized.pdf`;
+  Band IV is J0060 (see above).
+- *Syntrometry_Heim's.pdf* (English summary).
+  `downloads/Syntrometry_Heim's.pdf`.
+- von Ludwiger, I. (2017),
+  *Feldtheorie nach dem Heim-Prinzip / Kontrabarie* —
+  IGAAP 2-page summary of Heim's contrabaric / field-drive claims.
+  `downloads/Feldtheorie-Heim-Prinzip-Kontrabarie-IvL-IGAAP-2017-2-seitig.pdf`.
+
+### Experimental data and physical constants
+
+- **Particle Data Group**, *Review of Particle Physics* (PDG). All
+  PDG-comparison masses, lifetimes, and quantum numbers in this
+  repository are taken from the current PDG live tables at
+  <https://pdg.lbl.gov/>. The post-1989 falsification test
+  (`POST_1989_PREREGISTRATION.md`) draws its 12 Tier-1 targets and
+  their PDG values from the same source.
+- **CODATA 2006** — the C reference and Python port use the 2006
+  values of G, h, e, μ₀, etc., **deliberately frozen** to preserve
+  bit-identical numerical equality with Eli Gildish's 2006 C
+  implementation. Modern (post-2019 SI redefinition) values are
+  not used. See `python/constants.py` and CLAUDE.md "CODATA values
+  are frozen at 2006".
+
+### Critical and historical context
+
+- Landis, G. A., *Rise and fall of the Heim theory* —
+  <http://www.geoffreylandis.com/Heim_theory.html>. The critical
+  history that motivated this reconstruction.
+- Posdzech, O. — clarified that no working "1989" disk exists and
+  that the real source dating is 1973–1976 (the "1989" label is
+  the IGW Innsbruck restatement layer, not the underlying
+  calculation).
+
+### Community resources
+
+- **Heim-Theory project page**: <https://heim-theory.com/>.
+- **Protosimplex archive**: <https://www.engon.de/protosimplex/>.
+- **Heim-Theory Discord** (Joel Michalowitz, Javier Mazzone,
+  Olaf Posdzech, and the broader community). The 16 May 2026
+  Discord exchange with Javier Mazzone resolved the Δ-family
+  diagnostic and the J0033 (21) lifetime transcription.
 
 ## License & attribution
 
