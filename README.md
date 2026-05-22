@@ -731,28 +731,32 @@ Discord community in May 2026:
   excited-state-scan procedure — not a feature of Heim's framework.
   Heim's framework is empirically broader than our port currently
   exposes. Additionally, G-Tabelle II lists masses for **five
-  neutrino species** (3.81 meV, 5.37 meV, 10.75 meV, 21.06 meV,
-  207 MeV) — concrete falsifiable post-Standard-Model predictions
+  neutrino species** (3.81 meV, 5.37 keV, 10.75 keV, 21.06 keV,
+  207 keV) — concrete falsifiable post-Standard-Model predictions
   this repo had not previously documented.
 
-- **Mixed** for "current Python port reproduces Heim's intended
+- **Resolved** for "current Python port reproduces Heim's intended
   results": Heim's 1989 Tabelle II gives an electron mass of
-  0.51100343 MeV. Our current canonical port (published [B3])
-  computes 0.50694 MeV — 0.79 % off. **As of May 2026 this has
-  been diagnosed**: the published 1989 [B3] charge-correction term
-  "+4qα₋" appears to have lost a `/α₊` factor when Heim simplified
-  Φ from 1982 (XI). With the proposed correction `+4qα₋/α₊` and
-  Heim's 1989 constants (G = 6.6732·10⁻¹¹, CODATA-1986 h/e), **all
-  19 well-behaved particles match Heim Tabelle II to ≤ 2 eV — at
-  Heim's own printing precision**. All four Δ ground states
-  retain a separate ~0.85–1.58 MeV residual (Open Q #1b — *not*
-  a greedy-decomposition artefact; using Heim's own (n, m, p, σ)
-  makes the discrepancy worse. Most likely a missing P=3
-  specific term in φ that Heim himself flagged as possible.)
-  Awaiting community
-  confirmation of the [B3] typo before promoting the corrected
-  formula to canonical. See `python/b3_correction.py`,
-  `python/full_reproduction.py`, `python/modes_table.py`.
+  0.51100343 MeV. The legacy port form (published [B3], available
+  via `LEGACY_B3_FORM = True`) computes 0.50694 MeV — 0.79 % off.
+  **Diagnosed May 2026**: the published 1989 [B3] charge-correction
+  term "+4qα₋" lost a `/α₊` factor when Heim simplified Φ from
+  1982 (XI), and Heim's primary manuscript J0060 (Synmetronik
+  Band IV, eq. 192 + p. 709, sourced by Javier Mazzone via the
+  Heim-Theory Discord) writes the charge-field partial mass
+  explicitly as `M_q = 4qμα_-` *outside* the μα₊ multiplication.
+  Joel Michalowitz's May-2026 final review confirmed the
+  J0060-anchored correction. With the corrected `+4qα₋/α₊` form
+  (now the canonical port) and Heim's 1989 constants
+  (G = 6.6732·10⁻¹¹, CODATA-1986 h/e), the electron matches
+  measurement to -0.002 % (0.510988 MeV) and **all 19 well-
+  behaved particles match Heim Tabelle II to ≤ 2 eV — at Heim's
+  own printing precision**. All four Δ ground states retain a
+  separate ~0.85–1.58 MeV residual (Open Q #1b — *not* a greedy-
+  decomposition artefact and *not* a port bug; suspected missing
+  P=3 specific term in φ that Heim himself flagged as possible).
+  See `python/b3_correction.py`, `python/full_reproduction.py`,
+  `python/modes_table.py`.
 
   Additionally, our earlier excited-state scan found K\*(892) at
   867.6 MeV in a k=3 sector, whereas Heim's G-Tabelle IV places K\*
@@ -847,9 +851,10 @@ What would still shift this assessment substantially:
   now uses this form; bit-identical Eli-Gildish-2006 behaviour is
   available via `LEGACY_B3_FORM = True`.
 - **Confirming or refuting Heim's five-neutrino prediction.** The
-  ν_5 at 207 MeV in particular is in a range where laboratory bounds
-  on heavy neutral leptons / sterile neutrinos already exist. A
-  detailed comparison would be a clean falsification test.
+  ν_5 at 207 keV in particular is in a range where laboratory bounds
+  on heavy neutral leptons / sterile neutrinos already exist
+  (PIENU, NA62). A detailed comparison would be a clean falsification
+  test.
 - **A mathematical audit of the chapter 7 η-derivation** by someone
   fluent in Heim's polymetric formalism, to confirm that no circular
   reasoning enters via the chain ε₀± → η.
@@ -868,10 +873,18 @@ Caveats on this assessment:
   geometry, selector calculus, 6D eigenvalue equations) — only about
   what reaches the C/Python implementations and what the Herleitung
   document presents.
-- The author of this analysis used an LLM (Claude Opus 4.7) extensively;
-  LLMs trend either toward sycophantic agreement or toward dismissive
-  over-skepticism. The probabilities above are an attempt at the
-  middle, not a guarantee of one.
+- The technical reconstruction work in this repository — the
+  Python port, the [B3] manuscript diagnosis, the resonance and
+  lifetime reproductions, the two pre-registered tests, the
+  analysis scripts, and most of this README's prose — was
+  performed by Claude Opus 4.7 (Anthropic's coding model) under
+  light human supervision (LambdaMikel: direction-setting,
+  judgment calls, manuscript collaboration, community
+  interface). The probability estimates above are accordingly
+  one model's calibrated bets after several weeks of close
+  reading; LLMs trend either toward sycophantic agreement or
+  toward dismissive over-skepticism, and these numbers are an
+  attempt at the middle, not a guarantee of one.
 
 ---
 
