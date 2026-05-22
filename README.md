@@ -2182,8 +2182,11 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    particles match Heim Tabelle II to ≤ 2 eV with Heim's 1989
    constants.
 
-   The two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ)
-   greedy-decomposition issue (Open Question 1b).
+   All four Δ ground states retain a separate ~0.85–1.58 MeV
+   residual — *not* a greedy-decomposition artefact and *not* a
+   port bug (calc_a, calc_W, calc_n, calc_phi all verified
+   manuscript-correct). Suspected P=3 specific missing term in φ;
+   see Open Question 1b.
 
    - **Stage 1: (n, m, p, σ) cross-check** (`python/nmps_cross_check.py`)
      ruled out the greedy decomposition. 19 of 21 ground-state quantum
@@ -2226,15 +2229,15 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    | e⁻ | -4.06 keV | **-0.015 keV** | machine precision ✓ |
    | All q ≠ 0 (10 particles) | various | +4 keV better | systematic improvement |
    | All q = 0 (9 particles) | various | unchanged | (correction inert) |
-   | Δ⁺⁺ | +1518 keV | +1526 keV | unchanged (separate bug, see 1b) |
+   | All four Δ (o⁺⁺/o⁺/o⁰/o⁻) | +850 to +1580 keV | +850 to +1580 keV | unchanged — separate residual, not a port bug (Open Q 1b) |
 
    Σ\|Δ\| over 21 particles drops by ~36 keV (about 1 %).
 
    **Companion finding: the residual is a single global constant.**
    After the [B3] correction is applied, the remaining residual against
    Heim T-II is a **uniform −29.76 ppm shift across all 19 well-behaved
-   particles** (the two Δ⁺⁺ / Δ⁰ resonances retain a separate
-   greedy-decomposition issue — see Open Question 1b). Subtracting this
+   particles** (all four Δ ground states retain the separate
+   ~0.85–1.58 MeV residual — see Open Question 1b). Subtracting this
    single global ratio leaves a residual of:
 
    ```
@@ -2258,12 +2261,16 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    constants), the Python port reproduces Heim's Tabelle II to **better
    than 1 ppm** — effectively bit-equivalent at his printing precision.
 
-   The correction needs independent confirmation from the
-   heim-theory.com community (Joel, Javier) before promoting it
-   to the canonical implementation. Until then the published [B3]
-   form remains the canonical formula in the repository, and the
-   `b3_correction.py` / `full_reproduction.py` scripts hold the
-   alternative as a tested hypothesis.
+   **Status update (May 2026).** The correction is **manuscript-
+   anchored** through Heim's own J0060 (Synmetronik Band IV,
+   eq. 192 + p. 709), provided by Javier Mazzone via the
+   Heim-Theory Discord, and **confirmed in Joel Michalowitz's May
+   2026 final review** ("the B3 charge-term issue is now
+   manuscript-anchored through J0060"). The canonical Python port
+   therefore uses the corrected form by default; set
+   `formulae.LEGACY_B3_FORM = True` to recover bit-equality with
+   the Eli Gildish 2006 C reference. The community-confirmation
+   caveat that previously gated this finding has been retired.
 
 1b. **Δ-family (P=3, Q=3, k=2) ground-state mass discrepancy —
    structurally isolated May 2026, cause unknown.**  The May 2026
