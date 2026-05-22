@@ -2602,7 +2602,7 @@ The propagation chain in detail:
 | 1985 | Auerbach, Harasim, Kroy, von Ludwiger (MBB) | SQUID magnetometer detection of B-field from rotating mass | Apparatus built, experiment not run to completion (funding shortfall) |
 | 1992-1996 | Podkletnov (Tampere) | "Gravitational shielding" via rotating superconductor in EM field | Initial positive claim; subsequent independent replications negative; consensus: artifact |
 | 2002-2008 | Tajmar et al. (ARC Seibersdorf) | Gravito-magnetic effect of rotating superconductor on gyroscopes | Initial 10⁻⁸ effect reported; later experiments ruled out as systematic artifacts |
-| 1990s? | Ning Li (Forschungszentrum Jülich, then USA) | Reported (rumour) ponderomotive forces from laser-irradiated crystals | Never independently confirmed; Li went on to classified DoD propulsion research |
+| 1991-1997 | Ning Li & Douglas Torr (University of Alabama in Huntsville) | Theoretical prediction of a gravitomagnetic field induced by rotating superconductors in a strong magnetic field, via BCS Cooper-pair phase coherence (Phys Rev D 43, Foundations of Physics Letters, etc.) | Published theoretical mechanism; no clean experimental confirmation of the predicted magnitude. Li participated in NASA's BPP program (1996-2002), later founded AC Gravity LLC and reportedly received DoD funding; her recent activities are largely not in the open literature |
 | Mid-2000s | Dröscher / Häuser (AIAA) | Theoretical extension of Heim → 8D / 12D + gravitophoton coupling | Theoretical claim; no experimental test attempted |
 
 **Status per Millis & Davis ("Frontiers of Propulsion Science",

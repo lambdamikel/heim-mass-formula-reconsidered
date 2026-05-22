@@ -397,6 +397,7 @@ empirically resolved during commissioning:
 |---|---|---|---|
 | 1957 | Heim (Northeim) | Hand-soldered 17 cm hollow rings, ~10 kW magnetron | Negative (component loss too high) |
 | 1985 | MBB / DASA | Proposed SQUID gravito-magnetic test | Funded experiment never completed |
+| 1991–97 | Li & Torr (Univ. of Alabama in Huntsville) | Theoretical: gravitomagnetic field from rotating SC + B-field via Cooper-pair phase coherence | Published theory; not cleanly confirmed experimentally |
 | 1992–96 | Podkletnov (Tampere) | Rotating superconductor + EM field | Initial positive, refuted by replications |
 | 2002–08 | Tajmar et al. (ARC Seibersdorf) | Rotating SC + gyroscopes | Initial 10⁻⁸ effect, attributed to systematics |
 | 2003 | Millis & Davis (AIAA) | "Frontiers of Propulsion Science" review | Concluded Heim's design is "promising" but untested |
