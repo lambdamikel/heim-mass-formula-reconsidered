@@ -203,9 +203,11 @@ repository:
 1. **Reproduce A/G ground states.** *Status: done (modulo community
    confirmation).* All 19 well-behaved particles match Heim's Tabelle II
    to **≤ 2 eV** after applying the proposed [B3] correction
-   (`+4qα₋/α₊`) and using Heim's 1989 constants. The two Δ resonances
-   with q ∈ {+2, 0} retain a separate (n, m, p, σ) issue (#1b). See
-   `python/modes_table.py` for the 2×2 mode breakdown.
+   (`+4qα₋/α₊`) and using Heim's 1989 constants. All four Δ ground
+   states retain a separate ~0.85–1.58 MeV residual (Open Q #1b —
+   suspected P=3 specific missing term in φ; *not* a greedy-
+   decomposition artefact). See `python/modes_table.py` for the
+   2×2 mode breakdown.
 2. **Reproduce G Tabelle IV meson resonances (k=1)** from first
    principles using Heim's (P, N, K_B) parameters. *Status: done
    (May 2026).* All 23 entries reproduced via reachability-checked
@@ -318,7 +320,8 @@ repository:
 >     0.51100343 MeV to ~1 eV;
 >   - all 19 well-behaved ground states match Heim Tabelle II to **≤ 2 eV**
 >     when combined with Heim's 1989 constants (`heim_1989` mode);
->   - the two Δ⁺⁺ / Δ⁰ resonances retain a separate (n, m, p, σ) issue
+>   - all four Δ ground states retain a separate ~0.85–1.58 MeV
+>     residual — suspected missing P=3 specific term in φ
 >     (Open Question 1b).
 >
 > The 1989 source itself notes that "in the manuscript some brackets in
@@ -627,9 +630,12 @@ Discord community in May 2026:
   Φ from 1982 (XI). With the proposed correction `+4qα₋/α₊` and
   Heim's 1989 constants (G = 6.6732·10⁻¹¹, CODATA-1986 h/e), **all
   19 well-behaved particles match Heim Tabelle II to ≤ 2 eV — at
-  Heim's own printing precision**. The two Δ resonances with
-  q ∈ {+2, 0} retain a separate (n, m, p, σ) greedy-decomposition
-  issue (~1.5–1.9 MeV off, Open Q #1b). Awaiting community
+  Heim's own printing precision**. All four Δ ground states
+  retain a separate ~0.85–1.58 MeV residual (Open Q #1b — *not*
+  a greedy-decomposition artefact; using Heim's own (n, m, p, σ)
+  makes the discrepancy worse. Most likely a missing P=3
+  specific term in φ that Heim himself flagged as possible.)
+  Awaiting community
   confirmation of the [B3] typo before promoting the corrected
   formula to canonical. See `python/b3_correction.py`,
   `python/full_reproduction.py`, `python/modes_table.py`.
@@ -2208,6 +2214,34 @@ In rough order of importance (revised May 2026 after A/B/G source audit):
    `calc_a`, `calc_W`, `calc_n`, `calc_phi` are all faithful to
    the published manuscript; the residual is an artefact of an
    unspecified higher-order term Heim himself flagged as missing.
+   Because our observation sits two orders of magnitude above
+   Heim's own 10⁻² MeV bound, the (5d) caveat is *not* a
+   sufficient explanation — either the bound is too optimistic
+   or a separate P=3 mechanism is at work.  We leave this open
+   and decline to invent a corrective term.
+
+   **Future manuscript probes (per Joel Michalowitz, May 2026
+   correspondence).**  Concrete avenues we have not yet
+   exhausted, ranked by plausibility:
+
+   - Does the P=3, k=2, Q=3 quartet use a special convention in
+     Anhang B or Tabelle I/II that differs from the lower-P
+     baryons (e.g., a separate sub-formula or auxiliary table)?
+   - Does q_x vs. |q_x| enter more than once in a Δ-specific
+     branch, especially for q = ±2 where the bracket Δ is
+     largest?
+   - Does the o-family label correspond exactly to modern Δ
+     states, or did Heim use a slightly different internal
+     assignment (multiplet x_11/x_12/x_13 reassignment)?
+   - Is there a later "Ergänzung" or marginal correction in
+     J0032/J0033/J0060 that was not carried into the IGW
+     restatement?
+   - Do Warmann or later Heim-inspired derivations treat the
+     P=3 baryon sector differently through spin/angular terms?
+
+   None of these are claims of explanation; they are next-step
+   diagnostics for anyone with access to additional Heim
+   correspondence or unpublished manuscript material.
 
 2. **The z(N) integer function in Heim's f(N).**  G-Tabelle IV
    (23 k=1 mesons), G-Tabellen V_{a,b,c} (145 charge-state k=2

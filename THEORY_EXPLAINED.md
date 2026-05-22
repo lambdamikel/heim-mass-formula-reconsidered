@@ -1614,14 +1614,24 @@ What would change the situation?
    Anhang B contains two self-inconsistencies in the o-family rows
    (a₁ values for o⁺⁺ and o⁻ appear swapped relative to the
    W column; Tabelle I (n,m,p,σ) for o⁺⁺ and o⁰ disagrees with
-   his Tabelle II W₀). The residual 1 MeV is consistent with
-   Heim's own "Bemerkung zu (5d)" (J0032 p. 40) admitting an
-   unknown additive term in φ "der Größenordnung einiger 10⁻²
-   Elektronen-megavolt" — i.e. our observation is ~100× above
-   his stated upper bound. Production code is unchanged because
-   the residual is in Heim's published framework, not in our
-   reproduction. See `MANUSCRIPT_FINDINGS.md` and
-   `python/check_delta_decomposition.py` / `python/verify_anhang_b.py`.
+   his Tabelle II W₀). Heim's own "Bemerkung zu (5d)" (J0032 p. 40)
+   admits an unknown additive term in φ may be missing "der
+   Größenordnung einiger 10⁻² Elektronen-megavolt" — but our
+   observation is ~1 MeV, **two orders of magnitude above Heim's
+   own stated upper bound**, so the (5d) caveat alone is *not*
+   a sufficient explanation. Either the bound is too optimistic
+   or a separate P=3 mechanism is at work. We leave Open Q 1b
+   open and decline to invent a corrective term (per Joel
+   Michalowitz, May 2026 correspondence). Future probes worth
+   pursuing if additional Heim manuscript material surfaces:
+   P=3,k=2,Q=3 Anhang-B convention; q_x vs |q_x| in Δ-specific
+   branches; o-family ↔ modern Δ multiplet assignment; later
+   "Ergänzungen" not in the IGW restatement; Warmann or related
+   later-derivation handling of the P=3 baryon sector.
+   Production code is unchanged because the residual is in
+   Heim's published framework, not in our reproduction. See
+   `MANUSCRIPT_FINDINGS.md` and `python/check_delta_decomposition.py`
+   / `python/verify_anhang_b.py`.
 
 4. **A mathematical audit of the polymetric formalism.** Heim's
    selector calculus, hermetric forms, and condensor flows are
@@ -1738,10 +1748,12 @@ The audit-priority order, after the May 2026 source review, is:
    after applying the J0060-corrected [B3] form
    (`+4qα₋/α₊`, sourced from Heim's primary manuscript J0060
    Synmetronik Band IV eq. 192 + p. 709) and using Heim's 1989
-   constants. The two Δ resonances with q ∈ {+2, 0} retain a
-   separate (n, m, p, σ) decomposition issue, traceable to a
-   self-inconsistency in Heim's own Tabelle I ↔ Tabelle II for
-   o⁺⁺ and o⁰ (see Open Q 1b). The canonical port now uses the
+   constants. All four Δ ground states retain a separate
+   ~0.85–1.58 MeV residual — *not* a greedy-decomposition
+   artefact (using Heim's own (n, m, p, σ) makes it worse),
+   most likely a missing P=3 specific term in φ that Heim
+   himself flagged as possible (see Open Q 1b). The canonical
+   port now uses the
    J0060-corrected form by default; `LEGACY_B3_FORM = True` in
    `formulae.py` recovers bit-equivalence with the published [B3].
 
