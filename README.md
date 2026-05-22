@@ -197,17 +197,20 @@ reproduced". Adapted from Joel's May 2026 review:
 
 ### Audit-priority order (recommended)
 
-Six-step roadmap for any team picking up the framework after this
+Seven-step roadmap for any team picking up the framework after this
 repository:
 
-1. **Reproduce A/G ground states.** *Status: done (modulo community
-   confirmation).* All 19 well-behaved particles match Heim's Tabelle II
-   to **≤ 2 eV** after applying the proposed [B3] correction
-   (`+4qα₋/α₊`) and using Heim's 1989 constants. All four Δ ground
-   states retain a separate ~0.85–1.58 MeV residual (Open Q #1b —
-   suspected P=3 specific missing term in φ; *not* a greedy-
-   decomposition artefact). See `python/modes_table.py` for the
-   2×2 mode breakdown.
+1. **Reproduce A/G ground states.** *Status: done.* All 19 well-
+   behaved particles match Heim's Tabelle II to **≤ 2 eV** after
+   applying the [B3] correction (`+4qα₋/α₊`) and using Heim's 1989
+   constants. The correction is **manuscript-anchored through J0060**
+   (Heim, *Synmetronik Band IV*, eq. 192 + p. 709) — confirmed by
+   Joel Michalowitz's May 2026 final review — so the earlier
+   "modulo community confirmation" caveat has been retired. All
+   four Δ ground states retain a separate ~0.85–1.58 MeV residual
+   (Open Q #1b — suspected P=3 specific missing term in φ; *not* a
+   greedy-decomposition artefact). See `python/modes_table.py` for
+   the 2×2 mode breakdown.
 2. **Reproduce G Tabelle IV meson resonances (k=1)** from first
    principles using Heim's (P, N, K_B) parameters. *Status: done
    (May 2026).* All 23 entries reproduced via reachability-checked
@@ -237,21 +240,65 @@ repository:
    decimals.  See `python/resonance_wscan_baryons.py` and
    `python/resonance_consistency_iter.py`.
 4. **Compare the resulting code's output to modern PDG values** —
-   only *after* steps 2 and 3 are clean. *Status: partial.*
-   Steps 2 and 3 are done (May 2026); modern-PDG comparison for the
-   ground-state masses lives in `python/heimmass.py`.  For
-   resonances we have the PDG-J lookup
-   (`python/pdg_j_lookup.py`) and the empirical z(N) extraction
-   (`python/z_function_analysis.py`); a more systematic comparison
-   of Heim's tabulated theoretical masses to PDG-2024 measured
-   masses across all 99 resonances remains a useful next step.
+   only *after* steps 2 and 3 are clean. *Status: done at the
+   falsification level (May 2026).* Two **pre-registered** tests,
+   with acceptance criteria committed to git before the scans ran:
+   - **Post-1989 slot-density test**
+     (`POST_1989_PREREGISTRATION.md`). 12 Tier-1 pre-1989 targets
+     (τ, J/ψ, ψ(2S), Υ, D, D_s, B, W, Z, Λ_c) vs. 50 random
+     log-uniform background masses: 8/12 strict ≤ 1 % matches with
+     correct (P, Q); background also 56 %. **Falsification at the
+     moderate tier per pre-registered criteria** — the integer
+     lattice is dense enough at ≤ 3 % precision that "Heim matches
+     PDG to 1 %" is not distinguishable from chance for random
+     targets. An earlier excited-state scan reporting K*⁰ at
+     867.6 MeV as a "new prediction" was an artefact — K* is in
+     G-Tabelle IV at k=1 with theoretical 891.20 / 892.22 MeV; the
+     scan claim was retracted.
+   - **Lattice-density check at 2 eV**
+     (`LATTICE_DENSITY_PREREGISTRATION.md`). Median across 18
+     well-behaved ground-state sectors: 0 alternative (n, m, p, σ)
+     tuples within 2 eV, 0 within 100 eV, 0 within 1 keV, 1 within
+     10 keV, 10 within 100 keV, **93 within 1 MeV**, 951 within
+     10 MeV. So Heim's intra-Tabelle II match at ≤ 2 eV is
+     *structural* (only his tuple is close at his own precision);
+     the PDG-vs-Heim agreement at ~0.1–1 % is in the dense-lattice
+     tier and **slot-density-aided**.
+
+   Ground-state PDG comparison lives in `python/heimmass.py`; for
+   resonances see `python/pdg_j_lookup.py` and
+   `python/z_function_analysis.py`.
+
 5. **Label non-canonical extrapolations (k > 2) explicitly as
    exploratory.** *Status: done* in `python/excited_state_search.py`
    after the May 2026 revision.
 6. **Address empirical phenomena outside A/B/G** (W, Z, Higgs,
    heavy-flavour). The question is not "are they Heim primitives?"
    (no, by construction) but "can a complete Heim-compatible theory
-   recover their phenomenology?" *Status: open.*
+   recover their phenomenology?" *Status: open.* The post-1989
+   slot-density test (step 4) shows the lattice finds slots for
+   J/ψ, D, B, B_c, Λ_c, Σ_c, Ξ_c, Λ_b, Σ_b, Ω_b at ≤ 1 % — but
+   at the same rate as for random masses, so these are quantum-
+   number coincidences, not predictions. W, Z, Higgs find no
+   slots, consistent with Heim having no electroweak-symmetry-
+   breaking mechanism.
+7. **Resolve the Δ-family ~1 MeV residual (Open Q #1b).**
+   *Status: open.* Concrete next-step manuscript probes (per Joel
+   Michalowitz, May 2026 correspondence), in roughly descending
+   plausibility: (a) does the P=3, k=2, Q=3 quartet use a special
+   convention in Anhang B or Tabelle I/II that differs from
+   lower-P baryons? (b) does q_x vs. |q_x| enter more than once
+   in a Δ-specific branch, especially for q = ±2? (c) does the
+   o-family label correspond exactly to modern Δ states, or did
+   Heim use a different internal multiplet x_11/x_12/x_13
+   assignment? (d) is there a later "Ergänzung" or marginal
+   correction in J0032/J0033/J0060 that was not carried into the
+   IGW restatement? (e) do Warmann or later Heim-inspired
+   derivations treat the P=3 baryon sector differently through
+   spin/angular terms? None of these are claims of explanation;
+   they are diagnostic directions for anyone with access to
+   additional Heim manuscript material. We declined to invent a
+   corrective term. See Open Question #1b for the full diagnostic.
 
 ## Headline findings
 
