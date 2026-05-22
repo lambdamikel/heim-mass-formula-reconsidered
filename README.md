@@ -402,6 +402,16 @@ repository:
 > Heim's bare framework. Falsification handle: ν_5 at 207 keV is
 > within PIENU / NA62 heavy-neutral-lepton sensitivity. See
 > [`python/heim_neutrinos.py`](python/heim_neutrinos.py).
+>
+> *Slot-density caveat (Headline #1 / Findings #7–#8 apply):* these
+> are Heim's *own* G-Tabelle II tabulated values for the five
+> species. They depend on Heim's tuple assignments — quantum
+> numbers plus (n, m, p, σ) — at the meV-to-keV scale, a regime
+> where the lattice-density test (Finding #8) shows hundreds of
+> alternative tuples are reachable within Heim's stated
+> approximation tolerance. The "predicts" claim is therefore that
+> Heim *chose* these five tuples and *wrote down* these masses,
+> not that the values are uniquely picked out by the framework.
 
 > **6. G-Tabelle IV (23 meson resonances at k=1) reproduced via the
 > J0032 exhaustion procedure.** Each entry's published (P, N, K_B,
@@ -517,6 +527,63 @@ repository:
 > handling of εq_x for the Δ-family (q = +2 and q = ±1 sub-cases).
 > See Open Question 1b for the diagnostic and proposed manuscript-
 > reading correction.
+
+> **7. Post-1989 slot-density test: falsification at the moderate
+> tier (pre-registered, May 2026).**
+> Acceptance criteria committed to git *before* the scan ran
+> (`POST_1989_PREREGISTRATION.md`). Question: do 12 Tier-1 pre-1989
+> particles Heim could have included (τ, J/ψ, ψ(2S), Υ, D⁰, D±,
+> D_s, B, W, Z, Λ_c) find Heim slots at ≤ 1 % with correct (P, Q)
+> *more often* than random log-uniform masses with random (P, Q)?
+>
+>     Signal       8 / 12 strict (≤ 1 %) matches with correct (P, Q)
+>     Background  56 % of 50 random log-uniform targets get ≤ 1 %
+>                  strict matches.
+>     Ratios       1.19× at strict, 0.99× at moderate.
+>
+> Per the pre-registered criteria this is **falsification at the
+> moderate tier** — the integer lattice is dense enough at ≤ 3 %
+> precision that "Heim matches PDG to 1 %" is not distinguishable
+> from chance for random targets. The earlier excited-state scan
+> reporting K*⁰ at 867.6 MeV as a "new Heim prediction" was a
+> scan artefact (K* is in G-Tabelle IV at k=1 with theoretical
+> 891.20 / 892.22 MeV) — retracted. **Heavy-flavour "matches"
+> (J/ψ, D, B, B_c, Λ_c, Σ_c, Ξ_c, Λ_b, Σ_b, Ω_b) are not
+> predictions in the strict sense**; they are quantum-number
+> coincidences in a dense scheme. **W±, Z⁰, Higgs find no
+> slots** — consistent with Heim having no electroweak-symmetry-
+> breaking mechanism (structural silence, not coincidence).
+
+> **8. Lattice-density check at 2 eV: intra-Heim agreement is
+> structural, PDG-percent agreement is slot-density-aided
+> (pre-registered, May 2026).**
+> Acceptance criteria committed to git *before* the scan ran
+> (`LATTICE_DENSITY_PREREGISTRATION.md`). Within each ground-state
+> sector, how many alternative (n, m, p, σ) tuples lie within tier
+> T of Heim's published mass? Median across 18 well-behaved
+> ground-state particles:
+>
+>     within 2 eV       0
+>     within 100 eV     0
+>     within 1 keV      0
+>     within 10 keV     1
+>     within 100 keV   10
+>     within 1 MeV     93
+>     within 10 MeV   951
+>
+> So Heim's intra-Tabelle II match at ≤ 2 eV is **structural** —
+> only his tuple is close at his own printing precision, and the
+> ≤ 2 eV agreement across 19/21 ground states (Headline #4) is
+> not a slot-density artefact. The PDG-vs-Heim agreement at the
+> 0.1–1 % level, however, sits in the dense-lattice tier and is
+> **slot-density-aided** — at the percent level there are dozens
+> to thousands of alternative tuples a framework could have been
+> tuned to.
+>
+> The two findings co-exist: Heim's framework is precise on its
+> own predictive ground (his Tabelle II at his stated precision),
+> and looser on the PDG-comparison side at the percent level
+> where the integer scheme is naturally dense.
 
 ### Findings that were retracted or sharpened after the source audit
 
