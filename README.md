@@ -73,7 +73,10 @@ does not accept the framework. This
 repository:
 
 1. Contains a runnable, annotated reference implementation (C and Python).
-2. Reproduces Heim's published numbers bit-for-bit.
+2. Reproduces Eli Gildish's 2006 C output **bit-for-bit** (via
+   `formulae.LEGACY_B3_FORM = True`), and Heim's own Tabelle II to
+   ≤ 2 eV across the well-behaved ground states under the canonical
+   port's J0060-corrected [B3] form.
 3. Maps every line of code to its corresponding equation in the IGW
    Innsbruck 2003 restatement ([B##] equation tags throughout). Note
    that "1989" in this context is an IGW-Innsbruck filename convention,
@@ -110,10 +113,29 @@ repository:
    21 ground-state W_{N=0} values against Heim's own Anhang B
    (J0032 pp.41-43). 24/24 (η, θ, α, Q, B, H, A) match exactly;
    26/29 N_i values agree to 7+ decimals; 20/21 W_{N=0} agree to
-   10⁻⁴.  Three flagged discrepancies (N_3(2,2), N_6(2,0),
-   o⁰ W_{N=0}) trace to the same root: signed-vs-unsigned q
-   in calc_a for the Δ family.  See Open Question 1b.
+   10⁻⁴. The three flagged Anhang-B discrepancies (N_3(2,2),
+   N_6(2,0), o⁰ W_{N=0}) trace to **typos within Heim's own
+   Anhang B table** (e.g. Heim's o⁺⁺ and o⁻ a_1 rows appear
+   swapped relative to the W column) — calc_a, calc_W, calc_n,
+   calc_phi have all been verified manuscript-correct against
+   J0032 (13c, 13d), [B7]/[B49] and [B40]–[B46]. See Open
+   Question 1b for the full diagnostic.
 9. Tests the framework on particles discovered or characterised after 1989.
+10. **Pre-registered post-1989 slot-density test** (May 2026,
+    acceptance criteria committed to git *before* the scan ran):
+    8/12 strict ≤ 1 % matches with correct (P, Q) vs. 56 %
+    background — **falsification at the moderate tier**. Heavy-
+    flavour "matches" are quantum-number coincidences in a dense
+    scheme; W±, Z⁰, Higgs find no slots (consistent with no
+    electroweak-symmetry-breaking mechanism in Heim). See
+    `POST_1989_PREREGISTRATION.md`.
+11. **Pre-registered lattice-density check at 2 eV** (May 2026):
+    median across 18 well-behaved sectors is **0 alternative
+    tuples within 2 eV**, 93 within 1 MeV. So the intra-Heim
+    ≤ 2 eV agreement is *structural* (only Heim's tuple is close
+    at his own precision); the ~ 0.1 % PDG agreement is in the
+    dense-lattice tier and **slot-density-aided**. See
+    `LATTICE_DENSITY_PREREGISTRATION.md`.
 
 ## Scope of this repository
 
