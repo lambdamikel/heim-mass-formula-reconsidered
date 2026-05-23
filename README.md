@@ -20,6 +20,49 @@ how much of it is genuinely theory-driven?*
 
 ---
 
+## Table of contents
+
+**Top of the report**
+- [TL;DR](#tldr) — one-paragraph summary plus 11-item highlight list
+- [Acknowledgements](#acknowledgements) — community contributors
+- [Scope of this repository](#scope-of-this-repository) — what is and is not implemented
+  - [Sector-by-sector source status](#sector-by-sector-source-status)
+  - [Audit-priority order (recommended)](#audit-priority-order-recommended) — seven-step roadmap
+
+**Results**
+- [Headline findings](#headline-findings) — eight top-line results, including the two pre-registered tests
+  - [Findings retracted or sharpened after the source audit](#findings-that-were-retracted-or-sharpened-after-the-source-audit)
+- [Speculative summary](#speculative-summary) — subjective probability bet
+- [Findings](#findings) — full per-test results
+  - [Baseline accuracy](#baseline-accuracy)
+  - [The "fitted" constants](#the-fitted-constants)
+  - [Where the accuracy actually lives](#where-the-accuracy-actually-lives)
+  - [Probing η's functional form](#probing-ηs-functional-form)
+  - [The fine-structure constant](#the-fine-structure-constant)
+  - [Choice of physical constants](#choice-of-physical-constants)
+  - [Mass predictions](#mass-predictions)
+  - [Post-1989 particle predictions](#post-1989-particle-predictions)
+  - [Charge-doublet mass splittings](#charge-doublet-mass-splittings-new--extracted-from-g-tabelle-iv)
+  - [Lifetime predictions](#lifetime-predictions)
+  - [Beyond the mass formula — Kontrabarie](#beyond-the-mass-formula--kontrabarie)
+
+**Reading the repository**
+- [Background](#background) — 6D geometry, metrons, the mass formula in 60 seconds
+- [Repository layout](#repository-layout) — file map
+- [Quickstart](#quickstart) — build, run, test, reproduce
+- [Methodology](#methodology) — how the analysis was conducted
+
+**Verdict**
+- [The honest verdict](#the-honest-verdict)
+  - [Framework limits surfaced by the May 2026 manuscript audit](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
+- [Comparative assessment — Heim vs. SM vs. String Theory](#comparative-assessment--heim-vs-standard-model-vs-string-theory)
+  - [Subjective probability estimates](#subjective-probability-estimates)
+- [Open questions](#open-questions) — including the Δ-family Open Q 1b
+- [References](#references) — J-series manuscripts, A–H bundle, code chain, PDG/CODATA
+- [License & attribution](#license--attribution)
+
+---
+
 ## Acknowledgements
 
 This investigation would not have been possible without the original
@@ -907,32 +950,6 @@ Caveats on this assessment:
   reading; LLMs trend either toward sycophantic agreement or
   toward dismissive over-skepticism, and these numbers are an
   attempt at the middle, not a guarantee of one.
-
----
-
-## Contents
-
-- **[THEORY_EXPLAINED.md](THEORY_EXPLAINED.md)** — companion document:
-  conceptual three-level walk-through of Heim theory (start here if
-  you are new to the framework)
-- [Scope of this repository](#scope-of-this-repository) — what is actually implemented
-- [Headline findings](#headline-findings) — top-line results
-- [Speculative summary](#speculative-summary) — subjective probability bet
-- [Background](#background)
-- [Repository layout](#repository-layout)
-- [Quickstart](#quickstart)
-- [Methodology](#methodology)
-- [Findings](#findings) — including
-  [Mass predictions](#mass-predictions),
-  [Post-1989 particle predictions](#post-1989-particle-predictions),
-  [Lifetime predictions](#lifetime-predictions),
-  and [Beyond the mass formula — Kontrabarie](#beyond-the-mass-formula--kontrabarie)
-- [The honest verdict](#the-honest-verdict) — including
-  [Framework limits surfaced by the May 2026 manuscript audit](#framework-limits-surfaced-by-the-may-2026-manuscript-audit)
-- [Comparative assessment — Heim vs. Standard Model vs. String Theory](#comparative-assessment--heim-vs-standard-model-vs-string-theory)
-- [Open questions](#open-questions)
-- [References](#references)
-- [License & attribution](#license--attribution)
 
 ---
 
