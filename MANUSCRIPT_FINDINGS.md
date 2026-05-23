@@ -189,9 +189,11 @@ purely an interpretation note.
 
 ## 9. Δ-family ground-state mass discrepancy (Open Q 1b refinement)
 
-The 16 May 2026 session traced the long-standing 1.5–1.9 MeV
-mass discrepancy for the four Δ ground-state particles
-(o⁺⁺, o⁺, o⁰, o⁻) to a structural endpoint:
+The 16 May 2026 session traced the long-standing ~0.85–1.58 MeV
+mass discrepancy (against Heim's J0032 p.39 Tabelle II values —
+o⁺⁺ = 1236.0233, o⁺ = 1235.9965, o⁰ = 1235.9914, o⁻ = 1231.2049)
+for the four Δ ground-state particles (o⁺⁺, o⁺, o⁰, o⁻) to a
+structural endpoint:
 
   - calc_a is correct (Term-für-Term match with J0032 (13c), (13d)).
   - calc_W is correct (matches 20/21 Heim Anhang B W values).
@@ -213,12 +215,16 @@ a P=3 specific term we do not compute.  Heim's own "Bemerkung zu
 > fehlt..."
 
 Heim's stated upper bound (10⁻² MeV) is two orders of magnitude
-below what we observe at Δ (≈ 1 MeV).  No documented Δ-specific
-correction was found in the manuscript (J0032 §19-23 multiplet
-classifications, p.15a / p.16a "Ergänzung" notes, or F-document
-[B6]/[B7] sections).  Conclusion: the Δ-family sits at the
-empirically-detectable edge of Heim's framework's published
-accuracy.
+below what we observe at Δ (≈ 1 MeV), so the (5d) caveat alone
+is *not* a sufficient explanation — either the bound is too
+optimistic or a separate P=3 mechanism is at work.  No documented
+Δ-specific correction was found in the manuscript (J0032 §19-23
+multiplet classifications, p.15a / p.16a "Ergänzung" notes, or
+F-document [B6]/[B7] sections).  Conclusion: the Δ-family sits
+at the empirically-detectable edge of Heim's framework's
+published accuracy; we leave Open Q 1b open and decline to
+invent a corrective term (per Joel Michalowitz's May 2026
+final review).
 
 
 ## 10. Lifetime formula (21f) b₂ — `c/ω` identified as gravity-speed ratio
