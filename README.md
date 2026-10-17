@@ -1,5 +1,7 @@
 # Heim's Mass Formula — Inspected
 
+#### Project Page: [www.michael-wessel.info/software.html](https://www.michael-wessel.info/software.html#heim-s-mass-formula-inspected)
+
 *A reproducible investigation of Burkhard Heim's 1989 elementary-particle mass
 formula: how does it work, where does its accuracy actually come from, and
 how much of it is genuinely theory-driven?*
